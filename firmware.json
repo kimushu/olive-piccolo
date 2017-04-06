@@ -1,0 +1,10 @@
+{
+  "name": {
+    "en": "olive"
+  },
+  "description": {
+    "en": "Basic firmware with scripting language runtime. This configuration has SPI, I2C, UART and Servo peripherals.",
+    "ja": "スクリプト言語のランタイムを搭載した標準的なファームウェア。SPI、I2C、UART、サーボ制御機能が使用できます。"
+  },
+  "preview": true
+}
