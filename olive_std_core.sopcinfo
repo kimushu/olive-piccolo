@@ -5,11 +5,11 @@
  version="1.0"
  fabric="QSYS">
  <!-- Format version 16.1 203 (Future versions may contain additional information.) -->
- <!-- 2017.04.06.20:38:05 -->
+ <!-- 2017.07.05.00:48:32 -->
  <!-- A collection of modules and connections -->
  <parameter name="AUTO_GENERATION_ID">
   <type>java.lang.Integer</type>
-  <value>1491478685</value>
+  <value>1499183312</value>
   <derived>false</derived>
   <enabled>true</enabled>
   <visible>false</visible>
@@ -4889,7 +4889,7 @@ the requested settings for a module instance. -->
   </assignment>
   <assignment>
    <name>embeddedsw.CMacro.TIMESTAMP</name>
-   <value>1491478685</value>
+   <value>1499183312</value>
   </assignment>
   <assignment>
    <name>embeddedsw.CMacro.USE_EPCSBOOT</name>
@@ -5111,7 +5111,7 @@ the requested settings for a module instance. -->
   </parameter>
   <parameter name="SWI_TIMECODE">
    <type>int</type>
-   <value>1491478685</value>
+   <value>1499183312</value>
    <derived>false</derived>
    <enabled>false</enabled>
    <visible>false</visible>
@@ -12763,6 +12763,10 @@ the requested settings for a module instance. -->
    <value>32</value>
   </assignment>
   <assignment>
+   <name>embeddedsw.memoryInfo.MEM_INIT_FILENAME</name>
+   <value>altera_onchip_flash</value>
+  </assignment>
+  <assignment>
    <name>embeddedsw.memoryInfo.USE_BYTE_ADDRESSING_FOR_HEX</name>
    <value>1</value>
   </assignment>
@@ -12856,7 +12860,7 @@ the requested settings for a module instance. -->
   </parameter>
   <parameter name="initFlashContent">
    <type>boolean</type>
-   <value>false</value>
+   <value>true</value>
    <derived>false</derived>
    <enabled>true</enabled>
    <visible>true</visible>
@@ -12864,17 +12868,17 @@ the requested settings for a module instance. -->
   </parameter>
   <parameter name="useNonDefaultInitFile">
    <type>boolean</type>
-   <value>false</value>
+   <value>true</value>
    <derived>false</derived>
-   <enabled>false</enabled>
+   <enabled>true</enabled>
    <visible>true</visible>
    <valid>true</valid>
   </parameter>
   <parameter name="initializationFileName">
    <type>java.lang.String</type>
-   <value>altera_onchip_flash.hex</value>
+   <value>altera_onchip_flash.mif</value>
    <derived>false</derived>
-   <enabled>false</enabled>
+   <enabled>true</enabled>
    <visible>true</visible>
    <valid>true</valid>
   </parameter>
@@ -12882,7 +12886,7 @@ the requested settings for a module instance. -->
    <type>java.lang.String</type>
    <value>altera_onchip_flash.dat</value>
    <derived>false</derived>
-   <enabled>false</enabled>
+   <enabled>true</enabled>
    <visible>true</visible>
    <valid>true</valid>
   </parameter>
@@ -12897,7 +12901,7 @@ the requested settings for a module instance. -->
   </parameter>
   <parameter name="INIT_FILENAME">
    <type>java.lang.String</type>
-   <value></value>
+   <value>altera_onchip_flash.mif</value>
    <derived>true</derived>
    <enabled>false</enabled>
    <visible>false</visible>
@@ -12905,7 +12909,7 @@ the requested settings for a module instance. -->
   </parameter>
   <parameter name="INIT_FILENAME_SIM">
    <type>java.lang.String</type>
-   <value></value>
+   <value>altera_onchip_flash.dat</value>
    <derived>true</derived>
    <enabled>false</enabled>
    <visible>false</visible>

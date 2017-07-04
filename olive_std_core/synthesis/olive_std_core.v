@@ -242,7 +242,7 @@ module olive_std_core (
 		.SWI_UIDREAD_FEATURE  ("ENABLE"),
 		.SWI_MESSAGE_FEATURE  ("ENABLE"),
 		.SWI_CLASSID          (32'b01110010101000000000000000000000),
-		.SWI_TIMECODE         (1489759619),
+		.SWI_TIMECODE         (1499183312),
 		.SWI_CPURESET_KEY     (16'b1101111010101101),
 		.SWI_CPURESET_INIT    (0)
 	) peridot_hostbridge (
@@ -433,8 +433,8 @@ module olive_std_core (
 	);
 
 	altera_onchip_flash #(
-		.INIT_FILENAME                       (""),
-		.INIT_FILENAME_SIM                   (""),
+		.INIT_FILENAME                       ("altera_onchip_flash.mif"),
+		.INIT_FILENAME_SIM                   ("altera_onchip_flash.dat"),
 		.DEVICE_FAMILY                       ("MAX 10"),
 		.PART_NAME                           ("10M08SAE144C8G"),
 		.DEVICE_ID                           ("08"),
