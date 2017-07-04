@@ -5,11 +5,11 @@
  version="1.0"
  fabric="QSYS">
  <!-- Format version 16.1 203 (Future versions may contain additional information.) -->
- <!-- 2017.03.17.23:06:59 -->
+ <!-- 2017.04.06.20:38:05 -->
  <!-- A collection of modules and connections -->
  <parameter name="AUTO_GENERATION_ID">
   <type>java.lang.Integer</type>
-  <value>1489759619</value>
+  <value>1491478685</value>
   <derived>false</derived>
   <enabled>true</enabled>
   <visible>false</visible>
@@ -4876,6 +4876,10 @@ parameters are a RESULT of the module parameters. -->
   <!-- Describes a single module. Module parameters are
 the requested settings for a module instance. -->
   <assignment>
+   <name>DEVICE_FAMILY</name>
+   <value>MAX 10</value>
+  </assignment>
+  <assignment>
    <name>embeddedsw.CMacro.CPURESET_KEY</name>
    <value>0xdead</value>
   </assignment>
@@ -4885,7 +4889,7 @@ the requested settings for a module instance. -->
   </assignment>
   <assignment>
    <name>embeddedsw.CMacro.TIMESTAMP</name>
-   <value>1489759619</value>
+   <value>1491478685</value>
   </assignment>
   <assignment>
    <name>embeddedsw.CMacro.USE_EPCSBOOT</name>
@@ -5107,7 +5111,7 @@ the requested settings for a module instance. -->
   </parameter>
   <parameter name="SWI_TIMECODE">
    <type>int</type>
-   <value>1489759619</value>
+   <value>1491478685</value>
    <derived>false</derived>
    <enabled>false</enabled>
    <visible>false</visible>
