@@ -2,7 +2,7 @@ set_global_assignment -entity "olive_std_core" -library "olive_std_core" -name I
 set_global_assignment -entity "olive_std_core" -library "olive_std_core" -name IP_TOOL_VERSION "16.1"
 set_global_assignment -entity "olive_std_core" -library "olive_std_core" -name IP_TOOL_ENV "Qsys"
 set_global_assignment -library "olive_std_core" -name SOPCINFO_FILE [file join $::quartus(qip_path) "../../olive_std_core.sopcinfo"]
-set_global_assignment -entity "olive_std_core" -library "olive_std_core" -name SLD_INFO "QSYS_NAME olive_std_core HAS_SOPCINFO 1 GENERATION_ID 1499183312"
+set_global_assignment -entity "olive_std_core" -library "olive_std_core" -name SLD_INFO "QSYS_NAME olive_std_core HAS_SOPCINFO 1 GENERATION_ID 1499259316"
 set_global_assignment -library "olive_std_core" -name MISC_FILE [file join $::quartus(qip_path) "../olive_std_core.cmp"]
 set_global_assignment -library "olive_std_core" -name SLD_FILE [file join $::quartus(qip_path) "olive_std_core.regmap"]
 set_global_assignment -library "olive_std_core" -name SLD_FILE [file join $::quartus(qip_path) "olive_std_core.debuginfo"]
@@ -16,7 +16,7 @@ set_global_assignment -entity "olive_std_core" -library "olive_std_core" -name I
 set_global_assignment -entity "olive_std_core" -library "olive_std_core" -name IP_COMPONENT_REPORT_HIERARCHY "On"
 set_global_assignment -entity "olive_std_core" -library "olive_std_core" -name IP_COMPONENT_INTERNAL "Off"
 set_global_assignment -entity "olive_std_core" -library "olive_std_core" -name IP_COMPONENT_VERSION "MS4w"
-set_global_assignment -entity "olive_std_core" -library "olive_std_core" -name IP_COMPONENT_PARAMETER "QVVUT19HRU5FUkFUSU9OX0lE::MTQ5OTE4MzMxMg==::QXV0byBHRU5FUkFUSU9OX0lE"
+set_global_assignment -entity "olive_std_core" -library "olive_std_core" -name IP_COMPONENT_PARAMETER "QVVUT19HRU5FUkFUSU9OX0lE::MTQ5OTI1OTMxNg==::QXV0byBHRU5FUkFUSU9OX0lE"
 set_global_assignment -entity "olive_std_core" -library "olive_std_core" -name IP_COMPONENT_PARAMETER "QVVUT19ERVZJQ0VfRkFNSUxZ::TUFYIDEw::QXV0byBERVZJQ0VfRkFNSUxZ"
 set_global_assignment -entity "olive_std_core" -library "olive_std_core" -name IP_COMPONENT_PARAMETER "QVVUT19ERVZJQ0U=::MTBNMDhTQUUxNDRDOEc=::QXV0byBERVZJQ0U="
 set_global_assignment -entity "olive_std_core" -library "olive_std_core" -name IP_COMPONENT_PARAMETER "QVVUT19ERVZJQ0VfU1BFRURHUkFERQ==::OA==::QXV0byBERVZJQ0VfU1BFRURHUkFERQ=="
@@ -1291,7 +1291,7 @@ set_global_assignment -entity "peridot_hostbridge" -library "olive_std_core" -na
 set_global_assignment -entity "peridot_hostbridge" -library "olive_std_core" -name IP_COMPONENT_PARAMETER "U1dJX1VTRV9VSURSRUFE::dHJ1ZQ==::VXNlIGNoaXAtVUlEIHJlYWRvdXQgcmVnaXN0ZXJz"
 set_global_assignment -entity "peridot_hostbridge" -library "olive_std_core" -name IP_COMPONENT_PARAMETER "U1dJX01FU1NBR0VfRkVBVFVSRQ==::RU5BQkxF::U1dJX01FU1NBR0VfRkVBVFVSRQ=="
 set_global_assignment -entity "peridot_hostbridge" -library "olive_std_core" -name IP_COMPONENT_PARAMETER "U1dJX1VTRV9NRVNTQUdF::dHJ1ZQ==::VXNlIG1lc3NhZ2UgYW5kIHNvZnR3YXJlIGludGVycnB1dCByZWdpc3RlcnM="
-set_global_assignment -entity "peridot_hostbridge" -library "olive_std_core" -name IP_COMPONENT_PARAMETER "U1dJX0NMQVNTSUQ=::MTkyMzA4ODM4NA==::MzIgYml0IENsYXNzIElE"
+set_global_assignment -entity "peridot_hostbridge" -library "olive_std_core" -name IP_COMPONENT_PARAMETER "U1dJX0NMQVNTSUQ=::MTI1ODM1NjczNw==::MzIgYml0IENsYXNzIElE"
 set_global_assignment -entity "peridot_hostbridge" -library "olive_std_core" -name IP_COMPONENT_PARAMETER "U1dJX0NQVVJFU0VUX0tFWQ==::NTcwMDU=::Y3B1cmVzZXQga2V5IHZhbHVl"
 set_global_assignment -entity "peridot_hostbridge" -library "olive_std_core" -name IP_COMPONENT_PARAMETER "U1dJX0NQVVJFU0VUX0lOSVQ=::MA==::Y3B1cmVzZXQgaW5pdGlhbCB2YWx1ZQ=="
 set_global_assignment -entity "olive_std_core_nios2_fast" -library "olive_std_core" -name IP_COMPONENT_NAME "b2xpdmVfc3RkX2NvcmVfbmlvczJfZmFzdA=="

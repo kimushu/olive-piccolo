@@ -2,31 +2,46 @@ const fs = require("fs");
 const path = require("path");
 const JSZip = require("jszip");
 
+const OUTPUT_FILES = path.join(__dirname, "..", "output_files");
 const RELEASE_JSON = "release.json";
 const info = JSON.parse(fs.readFileSync(path.join(__dirname, RELEASE_JSON)));
 
 const OUTPUT_ZIP = "data.zip";
+const RPD_CFM2 = path.join(OUTPUT_FILES, "olive_std_top_cfm1_auto.rpd");
+const RPD_UFM = path.join(OUTPUT_FILES, "olive_std_top_ufm_auto.rpd");
 
 let zip = new JSZip();
-info.variations.forEach((variation) => {
+info.variations.reduce((promise, variation) => {
     let name = variation.path;
-    let base = path.basename(name, ".elf");
-    let src = path.join(__dirname, base, base + "-compressed.elf");
-    let data;
-    if (fs.existsSync(src)) {
-        data = fs.readFileSync(src);
-    } else {
-        src = path.join(__dirname, base, name);
-        data = fs.readFileSync(src);
-    }
-    console.info("Adding " + name + " (" + data.length + " bytes)");
-    zip.file(name, data);
-});
-zip.file(RELEASE_JSON, JSON.stringify(info));
-console.info("Compressing...");
-zip.generateAsync({
-    compression: "DEFLATE",
-    type: "nodebuffer"
+    return promise
+    .then(() => {
+        let base = path.basename(name, ".zip");
+        let src = path.join(__dirname, base, base + "-compressed.elf");
+        let data;
+        if (fs.existsSync(src)) {
+            data = fs.readFileSync(src);
+        } else {
+            src = path.join(__dirname, base, base + ".elf");
+            data = fs.readFileSync(src);
+        }
+        let zip_in = new JSZip();
+        console.info("Adding " + name + " (" + data.length + " bytes)");
+        zip_in.file("spi.elf", data);
+        zip_in.file("cfm2.rpd", fs.readFileSync(RPD_CFM2));
+        zip_in.file("ufm.rpd", fs.readFileSync(RPD_UFM));
+        return zip_in.generateAsync({type: "nodebuffer"})
+    })
+    .then((content) => {
+        zip.file(name, content);
+    });
+}, Promise.resolve())
+.then(() => {
+    zip.file(RELEASE_JSON, JSON.stringify(info));
+    console.info("Compressing...");
+    return zip.generateAsync({
+        compression: "DEFLATE",
+        type: "nodebuffer"
+    });
 })
 .then((content) => {
     console.info("Writing " + OUTPUT_ZIP + " (" + content.length + " bytes)");

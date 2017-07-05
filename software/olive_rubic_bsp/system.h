@@ -4,7 +4,7 @@
  * Machine generated for CPU 'nios2_fast' in SOPC Builder design 'olive_std_core'
  * SOPC Builder design path: ../../olive_std_core.sopcinfo
  *
- * Generated: Wed Jul 05 00:49:44 JST 2017
+ * Generated: Wed Jul 05 21:56:54 JST 2017
  */
 
 /*
@@ -264,12 +264,12 @@
 #define ALT_MODULE_CLASS_peridot_hostbridge peridot_hostbridge
 #define PERIDOT_HOSTBRIDGE_BASE 0x10000000
 #define PERIDOT_HOSTBRIDGE_CPURESET_KEY 0xdead
-#define PERIDOT_HOSTBRIDGE_ID 0x72a00000
+#define PERIDOT_HOSTBRIDGE_ID 0x4b010001
 #define PERIDOT_HOSTBRIDGE_IRQ 31
 #define PERIDOT_HOSTBRIDGE_IRQ_INTERRUPT_CONTROLLER_ID 0
 #define PERIDOT_HOSTBRIDGE_NAME "/dev/peridot_hostbridge"
 #define PERIDOT_HOSTBRIDGE_SPAN 32
-#define PERIDOT_HOSTBRIDGE_TIMESTAMP 1499183312
+#define PERIDOT_HOSTBRIDGE_TIMESTAMP 1499259316
 #define PERIDOT_HOSTBRIDGE_TYPE "peridot_hostbridge"
 #define PERIDOT_HOSTBRIDGE_USE_EPCSBOOT 1
 #define PERIDOT_HOSTBRIDGE_USE_MESSAGE 1

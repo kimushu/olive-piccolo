@@ -1,7 +1,7 @@
 {
     "variations": [
         {
-            "path": "olive_rubic_duktape.elf",
+            "path": "olive_rubic_duktape.zip",
             "name": {
                 "en": "Duktape搭載ファームウェア",
                 "ja": "Firmware with Duktape"
