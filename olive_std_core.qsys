@@ -758,10 +758,10 @@
   <parameter name="READ_BURST_MODE" value="Incrementing" />
   <parameter name="SECTOR_ACCESS_MODE">Read only,Read only,Hidden,Hidden,Hidden</parameter>
   <parameter name="autoInitializationFileName" value="$${FILENAME}_ufm" />
-  <parameter name="initFlashContent" value="false" />
-  <parameter name="initializationFileName">altera_onchip_flash.hex</parameter>
+  <parameter name="initFlashContent" value="true" />
+  <parameter name="initializationFileName">altera_onchip_flash.mif</parameter>
   <parameter name="initializationFileNameForSim">altera_onchip_flash.dat</parameter>
-  <parameter name="useNonDefaultInitFile" value="false" />
+  <parameter name="useNonDefaultInitFile" value="true" />
  </module>
  <connection
    kind="avalon"
