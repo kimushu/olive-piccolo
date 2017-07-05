@@ -1,0 +1,21 @@
+{
+    "variations": [
+        {
+            "path": "olive_rubic_duktape.elf",
+            "name": {
+                "en": "Duktape搭載ファームウェア",
+                "ja": "Firmware with Duktape"
+            },
+            "description": {
+                "en": "This firmware includes embeddable JavaScript engine, Duktape. Supports JavaScript/TypeScript.",
+                "ja": "組み込み向けJavaScriptエンジンの「Duktape」を搭載したファームウェアです。JavaScript/TypeScriptによる開発ができます。"
+            },
+            "runtimes": [
+                {
+                    "name": "duktape",
+                    "version": "2.1.0"
+                }
+            ]
+        }
+    ]
+}

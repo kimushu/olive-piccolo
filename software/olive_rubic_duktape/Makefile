@@ -1066,6 +1066,7 @@ endif # QSYS == 1
 $(ELF) : $(APP_OBJS) $(LINKER_SCRIPT) $(APP_LDDEPS)
 	@$(ECHO) Info: Linking $@
 	$(LD) $(APP_LDFLAGS) $(APP_CFLAGS) -o $@ $(filter-out $(CRT0),$(APP_OBJS)) $(APP_LIBS) $(APP_BSP_DEP_LIBS)
+	tclsh $(BSP_ROOT_DIR)/drivers/tools/flash_boot_gen.tcl -o $(basename $@)-compressed.elf --elf $(ELF) --compress LZ4
 ifneq ($(DISABLE_ELFPATCH),1)
 	$(ELFPATCH) $@ $(ELF_PATCH_FLAG)
 	tclsh $(dir $(SOPCINFO_FILE))/generate_mem_init.tcl $@ $(dir $(SOPCINFO_FILE))

@@ -1,0 +1,23 @@
+{
+  "name": "olive-piccolo",
+  "version": "0.0.1",
+  "description": "Rubic firmware for PERIDOT Piccolo (Olive configuration)",
+  "private": true,
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "release": "node software/release.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kimushu/olive-piccolo.git"
+  },
+  "author": "kimu_shu",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/kimushu/olive-piccolo/issues"
+  },
+  "homepage": "https://github.com/kimushu/olive-piccolo#readme",
+  "devDependencies": {
+    "jszip": "^3.1.3"
+  }
+}
