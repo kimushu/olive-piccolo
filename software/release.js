@@ -7,7 +7,7 @@ const RELEASE_JSON = "release.json";
 const info = JSON.parse(fs.readFileSync(path.join(__dirname, RELEASE_JSON)));
 
 const OUTPUT_ZIP = "data.zip";
-const RPD_CFM2 = path.join(OUTPUT_FILES, "olive_std_top_cfm1_auto.rpd");
+const RPD_IMG1 = path.join(OUTPUT_FILES, "olive_std_top_cfm1_auto.rpd");
 const RPD_UFM = path.join(OUTPUT_FILES, "olive_std_top_ufm_auto.rpd");
 
 let zip = new JSZip();
@@ -27,7 +27,7 @@ info.variations.reduce((promise, variation) => {
         let zip_in = new JSZip();
         console.info("Adding " + name + " (" + data.length + " bytes)");
         zip_in.file("spi.elf", data);
-        zip_in.file("cfm2.rpd", fs.readFileSync(RPD_CFM2));
+        zip_in.file("image1.rpd", fs.readFileSync(RPD_IMG1));
         zip_in.file("ufm.rpd", fs.readFileSync(RPD_UFM));
         return zip_in.generateAsync({type: "nodebuffer"})
     })
