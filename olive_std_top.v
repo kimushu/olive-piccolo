@@ -283,7 +283,7 @@ module olive_std_top(
 	peridot_pfc #(
 		.PIN_WIDTH			( 8 ),				// output port width :1-8
 		.DEFAULT_PINREGS	( 32'h00000000 ),	// init pinreg value
-		.DEFAULT_FUNCREGS	( 32'h00000000 )	// init funcreg value
+		.DEFAULT_FUNCREGS	( 32'h00110000 )	// init funcreg value
 	)
 	u_pfc1 (
 		.coe_pin			(D[15:8]),
