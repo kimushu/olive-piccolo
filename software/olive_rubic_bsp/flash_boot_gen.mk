@@ -29,7 +29,7 @@ endif
 combined_rbf: $(COMBINED_RBF)
 
 $(COMBINED_RBF): $(ELF) $(RBF_FILE)
-	tclsh $(BSP_ROOT_DIR)/drivers/tools/flash_boot_gen.tcl -o $@ --elf $(ELF) $(addprefix --rbf ,$(RBF_FILE)) --offset 0x0 --compress none
+	tclsh $(BSP_ROOT_DIR)/drivers/tools/flash_boot_gen.tcl -o $@ --elf $(ELF) $(addprefix --rbf ,$(RBF_FILE)) --offset 0x0 --compress LZ4
 
 .DELETE_ON_ERROR: $(COMBINED_RBF)
 

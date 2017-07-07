@@ -4,7 +4,7 @@
  * Machine generated for CPU 'nios2_fast' in SOPC Builder design 'olive_std_core'
  * SOPC Builder design path: ../../olive_std_core.sopcinfo
  *
- * Generated: Wed Jul 05 21:56:54 JST 2017
+ * Generated: Fri Jul 07 15:44:50 JST 2017
  */
 
 /*
@@ -308,6 +308,7 @@
  *
  */
 
+#define SWI_FLASH_BOOT_DECOMPRESS_LZ4
 #define SWI_FLASH_BOOT_ENABLE
 #define SWI_FLASH_BOOT_OFFSET 0x0
 

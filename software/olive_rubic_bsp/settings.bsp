@@ -2,8 +2,8 @@
 <sch:Settings xmlns:sch="http://www.altera.com/embeddedsw/bsp/schema">
         <BspType>tinyth</BspType>
         <BspVersion>default</BspVersion>
-        <BspGeneratedTimeStamp>2017/07/05 21:56:51</BspGeneratedTimeStamp>
-        <BspGeneratedUnixTimeStamp>1499259411665</BspGeneratedUnixTimeStamp>
+        <BspGeneratedTimeStamp>2017/07/07 23:11:28</BspGeneratedTimeStamp>
+        <BspGeneratedUnixTimeStamp>1499436688888</BspGeneratedUnixTimeStamp>
         <BspGeneratedLocation>D:\Works\Altera\olive-piccolo\software\olive_rubic_bsp</BspGeneratedLocation>
         <BspSettingsFile>settings.bsp</BspSettingsFile>
         <SopcDesignFile>..\..\olive_std_core.sopcinfo</SopcDesignFile>
@@ -1574,7 +1574,7 @@
                 <SettingName>peridot_swi_driver.flash_boot.decompress.lz4</SettingName>
                 <Identifier>SWI_FLASH_BOOT_DECOMPRESS_LZ4</Identifier>
                 <Type>BooleanDefineOnly</Type>
-                <Value>false</Value>
+                <Value>true</Value>
                 <DefaultValue>0</DefaultValue>
                 <DestinationFile>system_h_define</DestinationFile>
                 <Description>Enable decompression with LZ4 algorithm</Description>
