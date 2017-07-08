@@ -13,6 +13,11 @@
 #include "rubic_agent.h"
 #include "epcs_fatfs.h"
 
+static const char CJS_PROLOGUE[] = "(function(require,module,exports){";
+static const int CJS_PROLOGUE_LEN = sizeof(CJS_PROLOGUE) - 1;
+static const char CJS_EPILOGUE[] = "\n})(require,m={exports:{}},m.exports)";
+static const int CJS_EPILOGUE_LEN = sizeof(CJS_EPILOGUE) - 1;
+
 volatile int abort_request = 0;
 
 static void set_abort_request(int reason)
@@ -24,7 +29,7 @@ static int compile_file(duk_context *ctx, const char *filename)
 {
 	int fd;
 	char *src, *next;
-	duk_size_t len, remainder;
+	duk_size_t file_len, total_len, remainder;
 	duk_int_t result;
 
 	fd = open(filename, O_RDONLY);
@@ -32,19 +37,22 @@ static int compile_file(duk_context *ctx, const char *filename)
 		duk_push_error_object(ctx, DUK_ERR_ERROR, "Cannot open file");
 		return -1;
 	}
-	len = lseek(fd, 0, SEEK_END);
-	if (len == ((duk_size_t)-1)) {
+	file_len = lseek(fd, 0, SEEK_END);
+	if (file_len == ((duk_size_t)-1)) {
 		duk_push_error_object(ctx, DUK_ERR_ERROR, "Cannot seek file");
 		return -1;
 	}
 	lseek(fd, 0, SEEK_SET);
-	src = malloc(len);
+	total_len = file_len + CJS_PROLOGUE_LEN + CJS_EPILOGUE_LEN;
+	src = malloc(total_len);
 	if (!src) {
 		duk_push_error_object(ctx, DUK_ERR_ERROR, "Not enough memory");
 		return -1;
 	}
 	next = src;
-	for (remainder = len; remainder > 0;) {
+	memcpy(next, CJS_PROLOGUE, CJS_PROLOGUE_LEN);
+	next += CJS_PROLOGUE_LEN;
+	for (remainder = file_len; remainder > 0;) {
 		int done = read(fd, next, remainder);
 		if (done < 0) {
 			close(fd);
@@ -56,9 +64,10 @@ static int compile_file(duk_context *ctx, const char *filename)
 		remainder -= done;
 	}
 	close(fd);
+	memcpy(next, CJS_EPILOGUE, CJS_EPILOGUE_LEN);
 
 	duk_push_string(ctx, filename);
-	result = duk_pcompile_lstring_filename(ctx, 0, src, len);
+	result = duk_pcompile_lstring_filename(ctx, 0, src, total_len);
 	free(src);
 	return result;
 }
@@ -81,6 +90,7 @@ int main(void)
 				while (!abort_request && dux_tick(ctx));
 			} else {
 				// Error
+				fprintf(stderr, "Error: Compile error\n%s\n", duk_safe_to_string(ctx, -1));
 			}
 			duk_destroy_heap(ctx);
 		} else if (msg.request == RUBIC_AGENT_REQUEST_FORMAT) {
