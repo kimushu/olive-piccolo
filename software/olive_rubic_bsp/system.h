@@ -4,7 +4,7 @@
  * Machine generated for CPU 'nios2_fast' in SOPC Builder design 'olive_std_core'
  * SOPC Builder design path: ../../olive_std_core.sopcinfo
  *
- * Generated: Fri Jul 07 15:44:50 JST 2017
+ * Generated: Sat Jul 08 21:37:06 JST 2017
  */
 
 /*
@@ -292,7 +292,7 @@
 #define PERIDOT_RPCSRV_ISOLATED_SECTION ".public"
 #define PERIDOT_RPCSRV_REQUEST_LENGTH 1024
 #define PERIDOT_RPCSRV_RESPONSE_LENGTH 1024
-#define PERIDOT_RPCSRV_WORKER_THREADS 0
+#define PERIDOT_RPCSRV_WORKER_THREADS 1
 
 
 /*

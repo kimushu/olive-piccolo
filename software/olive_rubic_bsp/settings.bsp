@@ -2,9 +2,9 @@
 <sch:Settings xmlns:sch="http://www.altera.com/embeddedsw/bsp/schema">
         <BspType>tinyth</BspType>
         <BspVersion>default</BspVersion>
-        <BspGeneratedTimeStamp>2017/07/07 23:11:28</BspGeneratedTimeStamp>
-        <BspGeneratedUnixTimeStamp>1499436688888</BspGeneratedUnixTimeStamp>
-        <BspGeneratedLocation>D:\Works\Altera\olive-piccolo\software\olive_rubic_bsp</BspGeneratedLocation>
+        <BspGeneratedTimeStamp>2017/07/08 21:37:03</BspGeneratedTimeStamp>
+        <BspGeneratedUnixTimeStamp>1499517423926</BspGeneratedUnixTimeStamp>
+        <BspGeneratedLocation>D:\Altera\olive-piccolo\software\olive_rubic_bsp</BspGeneratedLocation>
         <BspSettingsFile>settings.bsp</BspSettingsFile>
         <SopcDesignFile>..\..\olive_std_core.sopcinfo</SopcDesignFile>
         <JdiFile>default</JdiFile>
@@ -1190,7 +1190,7 @@
                 <SettingName>peridot_rpc_server.worker_threads</SettingName>
                 <Identifier>PERIDOT_RPCSRV_WORKER_THREADS</Identifier>
                 <Type>DecimalNumber</Type>
-                <Value>0</Value>
+                <Value>1</Value>
                 <DefaultValue>0</DefaultValue>
                 <DestinationFile>system_h_define</DestinationFile>
                 <Description>Number of worker threads for processing requests. When non-zero value is specified, multi-threading (pthread) support is required.</Description>
