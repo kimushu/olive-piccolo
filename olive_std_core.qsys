@@ -666,7 +666,7 @@
   <parameter name="AVS_CLOCKFREQ" value="25000000" />
   <parameter name="DEVICE_FAMILY" value="MAX 10" />
   <parameter name="HOSTINTERFACE_TYPE" value="UART" />
-  <parameter name="HOSTUART_BAUDRATE" value="115200" />
+  <parameter name="HOSTUART_BAUDRATE" value="921600" />
   <parameter name="HOSTUART_INFIFODEPTH" value="6" />
   <parameter name="PART_NAME" value="10M08SAE144C8G" />
   <parameter name="PERIDOT_GENCODE" value="78" />
