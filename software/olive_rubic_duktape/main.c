@@ -10,6 +10,7 @@
 #include <unistd.h>
 #include <fcntl.h>
 
+#include "named_fifo.h"
 #include "rubic_agent.h"
 #include "epcs_fatfs.h"
 
@@ -83,6 +84,9 @@ int main(void)
 		rubic_agent_wait_request(&msg);
 
 		if (msg.request == RUBIC_AGENT_REQUEST_START) {
+			named_fifo_flush(NAMED_FIFO_STDIN_NAME);
+			named_fifo_flush(NAMED_FIFO_STDOUT_NAME);
+			named_fifo_flush(NAMED_FIFO_STDERR_NAME);
 			duk_context *ctx = duk_create_heap_default();
 			dux_initialize(ctx);
 			if (compile_file(ctx, msg.body.start.program) == 0 && duk_pcall(ctx, 0) == 0) {

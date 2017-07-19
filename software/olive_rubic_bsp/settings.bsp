@@ -2,8 +2,8 @@
 <sch:Settings xmlns:sch="http://www.altera.com/embeddedsw/bsp/schema">
         <BspType>tinyth</BspType>
         <BspVersion>default</BspVersion>
-        <BspGeneratedTimeStamp>2017/07/09 23:15:09</BspGeneratedTimeStamp>
-        <BspGeneratedUnixTimeStamp>1499609709156</BspGeneratedUnixTimeStamp>
+        <BspGeneratedTimeStamp>2017/07/11 22:42:54</BspGeneratedTimeStamp>
+        <BspGeneratedUnixTimeStamp>1499780574498</BspGeneratedUnixTimeStamp>
         <BspGeneratedLocation>D:\Works\Altera\olive-piccolo\software\olive_rubic_bsp</BspGeneratedLocation>
         <BspSettingsFile>settings.bsp</BspSettingsFile>
         <SopcDesignFile>..\..\olive_std_core.sopcinfo</SopcDesignFile>
