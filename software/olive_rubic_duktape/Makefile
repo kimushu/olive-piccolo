@@ -146,6 +146,7 @@ C_SRCS += duktape-2.1.0/duktape.c
 C_SRCS += main.c
 C_SRCS += resources.c
 C_SRCS += duktape-extension-0.0.1/dist/dukext.c
+C_SRCS += runtime_duktape.c
 CXX_SRCS :=
 ASM_SRCS :=
 
