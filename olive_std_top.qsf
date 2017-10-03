@@ -42,7 +42,7 @@ set_global_assignment -name DEVICE 10M08SAE144C8G
 set_global_assignment -name TOP_LEVEL_ENTITY olive_std_top
 set_global_assignment -name ORIGINAL_QUARTUS_VERSION 16.1.2
 set_global_assignment -name PROJECT_CREATION_TIME_DATE "19:17:39  MARCH 01, 2017"
-set_global_assignment -name LAST_QUARTUS_VERSION "16.1.2 Lite Edition"
+set_global_assignment -name LAST_QUARTUS_VERSION "17.0.2 Lite Edition"
 set_global_assignment -name PROJECT_OUTPUT_DIRECTORY output_files
 set_global_assignment -name ERROR_CHECK_FREQUENCY_DIVISOR 256
 set_global_assignment -name ENABLE_OCT_DONE OFF
@@ -65,7 +65,7 @@ set_global_assignment -name PARTITION_NETLIST_TYPE SOURCE -section_id Top
 set_global_assignment -name PARTITION_FITTER_PRESERVATION_LEVEL PLACEMENT_AND_ROUTING -section_id Top
 set_global_assignment -name PARTITION_COLOR 16764057 -section_id Top
 set_global_assignment -name USE_CHECKSUM_AS_USERCODE OFF
-set_global_assignment -name STRATIX_JTAG_USER_CODE 20170317
+set_global_assignment -name STRATIX_JTAG_USER_CODE 20171002
 
 
 
@@ -189,16 +189,11 @@ set_global_assignment -name POST_MODULE_SCRIPT_FILE "quartus_sh:auto_generate_du
 # Compile Settings Assignments
 # =============================
 
-set_global_assignment -name SMART_RECOMPILE ON
+set_global_assignment -name SMART_RECOMPILE OFF
 set_global_assignment -name FITTER_EFFORT "STANDARD FIT"
 set_global_assignment -name OPTIMIZATION_MODE "AGGRESSIVE AREA"
 
 set_global_assignment -name TIMEQUEST_MULTICORNER_ANALYSIS ON
-set_global_assignment -name QIP_FILE olive_std_core/synthesis/olive_std_core.qip
-set_global_assignment -name QIP_FILE ip/syspll/syspll.qip
-set_global_assignment -name VERILOG_FILE olive_std_top.v
-set_global_assignment -name SDC_FILE peridot_piccolo.sdc
-set_global_assignment -name CDF_FILE output_files/olive_std_top.cdf
 set_global_assignment -name CYCLONEII_OPTIMIZATION_TECHNIQUE SPEED
 set_global_assignment -name PHYSICAL_SYNTHESIS_COMBO_LOGIC ON
 set_global_assignment -name PHYSICAL_SYNTHESIS_REGISTER_DUPLICATION ON
@@ -206,4 +201,9 @@ set_global_assignment -name PHYSICAL_SYNTHESIS_REGISTER_RETIMING ON
 set_global_assignment -name ROUTER_LCELL_INSERTION_AND_LOGIC_DUPLICATION ON
 set_global_assignment -name ROUTER_TIMING_OPTIMIZATION_LEVEL MAXIMUM
 set_global_assignment -name QII_AUTO_PACKED_REGISTERS NORMAL
+set_global_assignment -name QIP_FILE olive_std_core/synthesis/olive_std_core.qip
+set_global_assignment -name QIP_FILE ip/syspll/syspll.qip
+set_global_assignment -name VERILOG_FILE olive_std_top.v
+set_global_assignment -name SDC_FILE peridot_piccolo.sdc
+set_global_assignment -name CDF_FILE output_files/olive_std_top.cdf
 set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top

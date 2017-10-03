@@ -1,6 +1,16 @@
+# Quartus design database
+db
+incremental_db
+greybox_tmp
+output_files
+simulation
+.qsys_edit
+*_previous.rpt
 *.qws
-/db
-/incremental_db
-/output_files
-/.qsys_edit
-node_modules
+*.bak
+*~
+
+# ModelSim
+vsim.wlf
+work
+transcript

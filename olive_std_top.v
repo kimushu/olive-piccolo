@@ -73,8 +73,7 @@ module olive_std_top(
 	wire			clock_core_sig;
 	wire			clock_peri_sig;
 	wire			cpureset_sig;
-	reg  [1:0]		resetreq_reg;
-	wire [3:0]		led_sig;
+	wire [0:0]		led_sig;
 
 	wire			pfc_clock_sig;
 	wire			pfc_reset_sig;
@@ -132,11 +131,10 @@ module olive_std_top(
         .clk_100m_clk    (clock_core_sig),			// clk_100m.clk
         .clk_25m_clk     (clock_peri_sig),			//  clk_25m.clk
 
-        .mreset_mreset_n (qsys_reset_n_sig),		//   mreset.mreset_n
         .hostuart_rxd    (RXD),						// hostuart.rxd
         .hostuart_txd    (TXD),						//         .txd
 
-        .nios2_cpu_resetrequest (resetreq_reg[1]),	//    nios2.cpu_resetrequest <-- NiosIIのバストランザクションを完了させるリセット要求 
+        .nios2_cpu_resetrequest (1'b0),				//    nios2.cpu_resetrequest <-- NiosIIのバストランザクションを完了させるリセット要求 
         .nios2_cpu_resettaken   (),					//         .cpu_resettaken
 
         .sdr_addr        (SDR_A),					//      sdr.addr
@@ -149,12 +147,12 @@ module olive_std_top(
         .sdr_dqm         (SDR_DQM),					//         .dqm
         .sdr_cke         (SDR_CKE),					//         .cke
 
-        .swi_cpu_resetrequest   (cpureset_sig),		//      swi.cpu_resetrequest
-        .swi_led         (led_sig),					//         .led
-        .epcs_cso_n      (SPI_SS_N),				//     epcs.cso_n
-        .epcs_dclk       (SPI_SCK),					//         .dclk
-        .epcs_asdo       (SPI_MOSI),				//         .asdo
-        .epcs_data0      (SPI_MISO),				//         .data0
+        .led_export      (led_sig),					//      led.export
+
+        .epcs_ss_n       (SPI_SS_N),				//     epcs.ss_n
+        .epcs_sclk       (SPI_SCK),					//         .sclk
+        .epcs_mosi       (SPI_MOSI),				//         .mosi
+        .epcs_miso       (SPI_MISO),				//         .miso
 
         .pfcif_pfc_clk   (pfc_clock_sig), 			//    pfcif.pfc_clk
         .pfcif_pfc_reset (pfc_reset_sig),			//         .pfc_reset
@@ -183,22 +181,9 @@ module olive_std_top(
 
         .servo_pwm       (servo_sig),				//    servo.pwm
         .servo_dsm       (analog_sig)				//         .dsm
-    );
+    ); 
 
 	assign LED = led_sig[0];
-
-
-	// cpu_resetrequest信号の同期化 
-
-	always @(posedge clock_core_sig or negedge qsys_reset_n_sig) begin
-		if (!qsys_reset_n_sig) begin
-			resetreq_reg <= 2'b00;
-		end
-		else begin
-			resetreq_reg <= {resetreq_reg[0], cpureset_sig};
-		end
-	end
-
 
 
 	///// ピンファンクションコントローラ接続 /////
