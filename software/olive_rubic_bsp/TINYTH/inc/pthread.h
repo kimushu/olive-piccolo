@@ -2,7 +2,7 @@
 #define __PTHREAD_H__
 
 #include <stddef.h>
-#include <sched.h>
+#include "sched.h"
 
 #ifdef __cplusplus
 extern "C" {
@@ -29,13 +29,13 @@ struct sched_param
   int sched_priority;
 };
 
-#ifndef PTHREAD_STACK_MIN
-#define PTHREAD_STACK_MIN     4096
+#ifdef PTHREAD_STACK_MIN_OVERRIDE
+# define PTHREAD_STACK_MIN    (PTHREAD_STACK_MIN_OVERRIDE)
+#else
+# define PTHREAD_STACK_MIN    4096
 #endif
 
-#ifndef PTHREAD_STACK_ALIGN
 #define PTHREAD_STACK_ALIGN   (sizeof(void *))
-#endif
 
 typedef struct
 {

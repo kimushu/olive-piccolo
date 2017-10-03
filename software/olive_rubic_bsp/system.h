@@ -4,7 +4,7 @@
  * Machine generated for CPU 'nios2_fast' in SOPC Builder design 'olive_std_core'
  * SOPC Builder design path: ../../olive_std_core.sopcinfo
  *
- * Generated: Tue Jul 11 22:42:55 JST 2017
+ * Generated: Mon Oct 02 20:24:24 JST 2017
  */
 
 /*
@@ -144,11 +144,14 @@
  */
 
 #define __ALTERA_AVALON_NEW_SDRAM_CONTROLLER
+#define __ALTERA_AVALON_PIO
+#define __ALTERA_AVALON_SYSID_QSYS
 #define __ALTERA_AVALON_TIMER
 #define __ALTERA_AVALON_UART
+#define __ALTERA_DUAL_BOOT
 #define __ALTERA_NIOS2_GEN2
 #define __ALTERA_ONCHIP_FLASH
-#define __PERIDOT_HOSTBRIDGE
+#define __BUFFERED_UART
 #define __PERIDOT_I2C_MASTER
 #define __PERIDOT_PFC_INTERFACE
 #define __PERIDOT_SERVO
@@ -186,6 +189,35 @@
 
 
 /*
+ * dual_boot_0 configuration
+ *
+ */
+
+#define ALT_MODULE_CLASS_dual_boot_0 altera_dual_boot
+#define DUAL_BOOT_0_BASE 0x10000060
+#define DUAL_BOOT_0_IRQ -1
+#define DUAL_BOOT_0_IRQ_INTERRUPT_CONTROLLER_ID -1
+#define DUAL_BOOT_0_NAME "/dev/dual_boot_0"
+#define DUAL_BOOT_0_SPAN 32
+#define DUAL_BOOT_0_TYPE "altera_dual_boot"
+
+
+/*
+ * epcs configuration
+ *
+ */
+
+#define ALT_MODULE_CLASS_epcs peridot_spi_master
+#define EPCS_BASE 0xff00000
+#define EPCS_FREQ 100000000
+#define EPCS_IRQ 2
+#define EPCS_IRQ_INTERRUPT_CONTROLLER_ID 0
+#define EPCS_NAME "/dev/epcs"
+#define EPCS_SPAN 8
+#define EPCS_TYPE "peridot_spi_master"
+
+
+/*
  * epcs_fatfs configuration
  *
  */
@@ -195,7 +227,7 @@
 #define EPCS_FATFS_FLASH_SECTOR 4096
 #define EPCS_FATFS_FLASH_START 0x80000
 #define EPCS_FATFS_IF_INST_NAME 0
-#define EPCS_FATFS_IF_PERIDOT_SWI
+#define EPCS_FATFS_IF_PERIDOT_SPI_FLASH
 #define EPCS_FATFS_IF_SPI_SLAVE 0
 #define EPCS_FATFS_MOUNT_POINT "/mnt/internal"
 
@@ -209,6 +241,25 @@
 #define ALT_MAX_FD 32
 #define ALT_SYS_CLK SYSTIMER
 #define ALT_TIMESTAMP_CLK none
+
+
+/*
+ * hostbridge configuration
+ *
+ */
+
+#define ALT_MODULE_CLASS_hostbridge buffered_uart
+#define HOSTBRIDGE_BASE 0x10000010
+#define HOSTBRIDGE_DATA_BITS 8
+#define HOSTBRIDGE_DIVIDER_BITS 6
+#define HOSTBRIDGE_FIXED_BAUD 1
+#define HOSTBRIDGE_IRQ 1
+#define HOSTBRIDGE_IRQ_INTERRUPT_CONTROLLER_ID 0
+#define HOSTBRIDGE_NAME "/dev/hostbridge"
+#define HOSTBRIDGE_RX_DEPTH_BITS 10
+#define HOSTBRIDGE_SPAN 16
+#define HOSTBRIDGE_TX_DEPTH_BITS 10
+#define HOSTBRIDGE_TYPE "buffered_uart"
 
 
 /*
@@ -227,19 +278,44 @@
 
 
 /*
+ * led configuration
+ *
+ */
+
+#define ALT_MODULE_CLASS_led altera_avalon_pio
+#define LED_BASE 0x10000040
+#define LED_BIT_CLEARING_EDGE_REGISTER 0
+#define LED_BIT_MODIFYING_OUTPUT_REGISTER 0
+#define LED_CAPTURE 0
+#define LED_DATA_WIDTH 1
+#define LED_DO_TEST_BENCH_WIRING 0
+#define LED_DRIVEN_SIM_VALUE 0
+#define LED_EDGE_TYPE "NONE"
+#define LED_FREQ 25000000
+#define LED_HAS_IN 0
+#define LED_HAS_OUT 1
+#define LED_HAS_TRI 0
+#define LED_IRQ -1
+#define LED_IRQ_INTERRUPT_CONTROLLER_ID -1
+#define LED_IRQ_TYPE "NONE"
+#define LED_NAME "/dev/led"
+#define LED_RESET_VALUE 0
+#define LED_SPAN 16
+#define LED_TYPE "altera_avalon_pio"
+
+
+/*
  * named_fifo configuration
  *
  */
 
-#define NAMED_FIFO_STDERR_BACK_PRESSURE 0
 #define NAMED_FIFO_STDERR_ENABLE 1
 #define NAMED_FIFO_STDERR_NAME "/dev/stderr"
 #define NAMED_FIFO_STDERR_SIZE 1024
-#define NAMED_FIFO_STDIN_BACK_PRESSURE 1
 #define NAMED_FIFO_STDIN_ENABLE 1
 #define NAMED_FIFO_STDIN_NAME "/dev/stdin"
 #define NAMED_FIFO_STDIN_SIZE 1024
-#define NAMED_FIFO_STDOUT_BACK_PRESSURE 0
+#define NAMED_FIFO_STDIO_INIT_OPENED 0
 #define NAMED_FIFO_STDOUT_ENABLE 1
 #define NAMED_FIFO_STDOUT_NAME "/dev/stdout"
 #define NAMED_FIFO_STDOUT_SIZE 1024
@@ -257,26 +333,6 @@
 
 
 /*
- * peridot_hostbridge configuration
- *
- */
-
-#define ALT_MODULE_CLASS_peridot_hostbridge peridot_hostbridge
-#define PERIDOT_HOSTBRIDGE_BASE 0x10000000
-#define PERIDOT_HOSTBRIDGE_CPURESET_KEY 0xdead
-#define PERIDOT_HOSTBRIDGE_ID 0x4b010001
-#define PERIDOT_HOSTBRIDGE_IRQ 31
-#define PERIDOT_HOSTBRIDGE_IRQ_INTERRUPT_CONTROLLER_ID 0
-#define PERIDOT_HOSTBRIDGE_NAME "/dev/peridot_hostbridge"
-#define PERIDOT_HOSTBRIDGE_SPAN 32
-#define PERIDOT_HOSTBRIDGE_TIMESTAMP 1499608649
-#define PERIDOT_HOSTBRIDGE_TYPE "peridot_hostbridge"
-#define PERIDOT_HOSTBRIDGE_USE_EPCSBOOT 1
-#define PERIDOT_HOSTBRIDGE_USE_MESSAGE 1
-#define PERIDOT_HOSTBRIDGE_USE_UIDREAD 1
-
-
-/*
  * peridot_i2c_master_driver configuration
  *
  */
@@ -289,9 +345,8 @@
  *
  */
 
-#define PERIDOT_RPCSRV_ISOLATED_SECTION ".public"
-#define PERIDOT_RPCSRV_REQUEST_LENGTH 1024
-#define PERIDOT_RPCSRV_RESPONSE_LENGTH 1024
+#define PERIDOT_RPCSRV_CHANNEL 1
+#define PERIDOT_RPCSRV_MAX_REQUEST_LENGTH 1024
 #define PERIDOT_RPCSRV_WORKER_THREADS 1
 
 
@@ -300,17 +355,25 @@
  *
  */
 
+#define EPCS_DRIVER_INSTANCE ({ extern peridot_spi_master_state epcs; &epcs; })
+#define EPCS_FLASH_CLKDIV (4)
+#define PERIDOT_SPI_FLASH_BITRATE 10000000
+#define PERIDOT_SPI_FLASH_BOOT_DECOMPRESS_LZ4
+#define PERIDOT_SPI_FLASH_BOOT_ENABLE
+#define PERIDOT_SPI_FLASH_BOOT_OFFSET 0x0
+#define PERIDOT_SPI_FLASH_ENABLE
+#define PERIDOT_SPI_FLASH_NAME epcs
+#define PERIDOT_SPI_FLASH_SLAVE_NUMBER 0
+#define PERIDOT_SPI_MASTER_DRIVER_INSTANCE EPCS
 #define SPI_DRIVER_INSTANCE ({ extern peridot_spi_master_state spi; &spi; })
 
 
 /*
- * peridot_swi_driver configuration
+ * peridot_sw_hostbridge_gen2 configuration
  *
  */
 
-#define SWI_FLASH_BOOT_DECOMPRESS_LZ4
-#define SWI_FLASH_BOOT_ENABLE
-#define SWI_FLASH_BOOT_OFFSET 0x0
+#define PERIDOT_SW_HOSTBRIDGE_GEN2_USE_RECEIVER_THREAD
 
 
 /*
@@ -332,7 +395,6 @@
  *
  */
 
-#define RUBIC_AGENT_ROOT_NAME "/sys/rubic"
 #define RUBIC_AGENT_RUBIC_VERSION ">= 1.0.0"
 #define RUBIC_AGENT_RUNTIME1_NAME ""
 #define RUBIC_AGENT_RUNTIME1_VERSION "0.0.1"
@@ -340,6 +402,7 @@
 #define RUBIC_AGENT_RUNTIME2_VERSION "0.0.1"
 #define RUBIC_AGENT_RUNTIME3_NAME ""
 #define RUBIC_AGENT_RUNTIME3_VERSION "0.0.1"
+#define RUBIC_AGENT_STORAGE_INTERNAL "/mnt"
 
 
 /*
@@ -413,6 +476,22 @@
 
 
 /*
+ * sysid configuration
+ *
+ */
+
+#define ALT_MODULE_CLASS_sysid altera_avalon_sysid_qsys
+#define SYSID_BASE 0x10000000
+#define SYSID_ID 1923109377
+#define SYSID_IRQ -1
+#define SYSID_IRQ_INTERRUPT_CONTROLLER_ID -1
+#define SYSID_NAME "/dev/sysid"
+#define SYSID_SPAN 8
+#define SYSID_TIMESTAMP 1506921214
+#define SYSID_TYPE "altera_avalon_sysid_qsys"
+
+
+/*
  * systimer configuration
  *
  */
@@ -443,7 +522,7 @@
  *
  */
 
-#define PTHREAD_STACK_MIN 0x1000
+#define PTHREAD_STACK_MIN_OVERRIDE 0x1000
 #define SCHED_POLICY_DEFAULT_FF 0
 #define SCHED_PRIORITY_DEFAULT 10
 #define SCHED_PRIORITY_MAX 99
@@ -454,9 +533,12 @@
 #define TTHREAD_ENABLE_PROF 0
 #define TTHREAD_ENABLE_RWLOCK 1
 #define TTHREAD_ENABLE_SEM 1
+#define TTHREAD_ENABLE_SLEEP 1
 #define TTHREAD_ENABLE_SPIN 1
 #define TTHREAD_PREEMPTION_ENABLE 1
 #define TTHREAD_PREEMPTION_INTERVAL 10
+#define TTHREAD_THREAD_SAFE_NEWLIB 1
+#define TTHREAD_TICKS_PER_SEC SYSTIMER_TICKS_PER_SEC
 
 
 /*

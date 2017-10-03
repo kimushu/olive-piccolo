@@ -93,12 +93,12 @@ OBJ_DIR := ./obj
 
 # This following VERSION comment indicates the version of the tool used to 
 # generate this makefile. A makefile variable is provided for VERSION as well. 
-# ACDS_VERSION: 16.1
-ACDS_VERSION := 16.1
+# ACDS_VERSION: 17.0
+ACDS_VERSION := 17.0
 
 # This following BUILD_NUMBER comment indicates the build number of the tool 
 # used to generate this makefile. 
-# BUILD_NUMBER: 203
+# BUILD_NUMBER: 602
 
 SETTINGS_FILE := settings.bsp
 SOPC_FILE := ../../olive_std_core.sopcinfo
@@ -208,6 +208,17 @@ GENERATED_C_LIB_SRCS += alt_sys_init.c
 # used to build each file.
 #-------------------------------------------------------------------------------
 
+# altera_avalon_pio_driver sources root 
+altera_avalon_pio_driver_SRCS_ROOT := drivers
+
+# altera_avalon_pio_driver sources 
+# altera_avalon_sysid_qsys_driver sources root 
+altera_avalon_sysid_qsys_driver_SRCS_ROOT := drivers
+
+# altera_avalon_sysid_qsys_driver sources 
+altera_avalon_sysid_qsys_driver_C_LIB_SRCS := \
+	$(altera_avalon_sysid_qsys_driver_SRCS_ROOT)/src/altera_avalon_sysid_qsys.c
+
 # altera_avalon_timer_driver sources root 
 altera_avalon_timer_driver_SRCS_ROOT := drivers
 
@@ -234,7 +245,6 @@ altera_nios2_gen2_hal_driver_SRCS_ROOT := HAL
 # altera_nios2_gen2_hal_driver sources 
 altera_nios2_gen2_hal_driver_C_LIB_SRCS := \
 	$(altera_nios2_gen2_hal_driver_SRCS_ROOT)/src/altera_nios2_gen2_irq.c \
-	$(altera_nios2_gen2_hal_driver_SRCS_ROOT)/src/alt_usleep.c \
 	$(altera_nios2_gen2_hal_driver_SRCS_ROOT)/src/alt_busy_sleep.c \
 	$(altera_nios2_gen2_hal_driver_SRCS_ROOT)/src/alt_irq_vars.c \
 	$(altera_nios2_gen2_hal_driver_SRCS_ROOT)/src/alt_icache_flush.c \
@@ -264,6 +274,13 @@ altera_nios2_gen2_hal_driver_ASM_LIB_SRCS := \
 	$(altera_nios2_gen2_hal_driver_SRCS_ROOT)/src/alt_mcount.S \
 	$(altera_nios2_gen2_hal_driver_SRCS_ROOT)/src/alt_log_macro.S \
 	$(altera_nios2_gen2_hal_driver_SRCS_ROOT)/src/crt0.S
+
+# buffered_uart_driver sources root 
+buffered_uart_driver_SRCS_ROOT := drivers
+
+# buffered_uart_driver sources 
+buffered_uart_driver_C_LIB_SRCS := \
+	$(buffered_uart_driver_SRCS_ROOT)/src/buffered_uart.c
 
 # epcs_fatfs sources root 
 epcs_fatfs_SRCS_ROOT := drivers
@@ -379,18 +396,19 @@ peridot_spi_master_driver_SRCS_ROOT := drivers
 
 # peridot_spi_master_driver sources 
 peridot_spi_master_driver_C_LIB_SRCS := \
-	$(peridot_spi_master_driver_SRCS_ROOT)/src/peridot_spi_master.c
+	$(peridot_spi_master_driver_SRCS_ROOT)/src/peridot_spi_master.c \
+	$(peridot_spi_master_driver_SRCS_ROOT)/src/peridot_spi_flash.c
 
-# peridot_swi_driver sources root 
-peridot_swi_driver_SRCS_ROOT := drivers
+peridot_spi_master_driver_ASM_LIB_SRCS := \
+	$(peridot_spi_master_driver_SRCS_ROOT)/src/peridot_spi_flash_boot.S
 
-# peridot_swi_driver sources 
-peridot_swi_driver_C_LIB_SRCS := \
-	$(peridot_swi_driver_SRCS_ROOT)/src/peridot_swi.c \
-	$(peridot_swi_driver_SRCS_ROOT)/src/peridot_swi_flash.c
+# peridot_sw_hostbridge_gen2 sources root 
+peridot_sw_hostbridge_gen2_SRCS_ROOT := services
 
-peridot_swi_driver_ASM_LIB_SRCS := \
-	$(peridot_swi_driver_SRCS_ROOT)/src/peridot_swi_flash_boot.S
+# peridot_sw_hostbridge_gen2 sources 
+peridot_sw_hostbridge_gen2_C_LIB_SRCS := \
+	$(peridot_sw_hostbridge_gen2_SRCS_ROOT)/src/peridot_sw_hostbridge_gen2.c \
+	$(peridot_sw_hostbridge_gen2_SRCS_ROOT)/src/peridot_sw_hostbridge_gen2_avm.c
 
 # rubic_agent sources root 
 rubic_agent_SRCS_ROOT := services
@@ -413,6 +431,7 @@ tinyth_C_LIB_SRCS := \
 	$(tinyth_SRCS_ROOT)/src/tth_once.c \
 	$(tinyth_SRCS_ROOT)/src/tth_sched.c \
 	$(tinyth_SRCS_ROOT)/src/tth_sem.c \
+	$(tinyth_SRCS_ROOT)/src/tth_sleep.c \
 	$(tinyth_SRCS_ROOT)/src/tth_thread.c
 
 tinyth_ASM_LIB_SRCS := \
@@ -421,9 +440,11 @@ tinyth_ASM_LIB_SRCS := \
 
 # Assemble all component C source files 
 COMPONENT_C_LIB_SRCS += \
+	$(altera_avalon_sysid_qsys_driver_C_LIB_SRCS) \
 	$(altera_avalon_timer_driver_C_LIB_SRCS) \
 	$(altera_avalon_uart_driver_C_LIB_SRCS) \
 	$(altera_nios2_gen2_hal_driver_C_LIB_SRCS) \
+	$(buffered_uart_driver_C_LIB_SRCS) \
 	$(epcs_fatfs_C_LIB_SRCS) \
 	$(hal_C_LIB_SRCS) \
 	$(named_fifo_C_LIB_SRCS) \
@@ -433,14 +454,14 @@ COMPONENT_C_LIB_SRCS += \
 	$(peridot_rpc_server_C_LIB_SRCS) \
 	$(peridot_servo_driver_C_LIB_SRCS) \
 	$(peridot_spi_master_driver_C_LIB_SRCS) \
-	$(peridot_swi_driver_C_LIB_SRCS) \
+	$(peridot_sw_hostbridge_gen2_C_LIB_SRCS) \
 	$(rubic_agent_C_LIB_SRCS) \
 	$(tinyth_C_LIB_SRCS)
 
 # Assemble all component assembly source files 
 COMPONENT_ASM_LIB_SRCS += \
 	$(altera_nios2_gen2_hal_driver_ASM_LIB_SRCS) \
-	$(peridot_swi_driver_ASM_LIB_SRCS) \
+	$(peridot_spi_master_driver_ASM_LIB_SRCS) \
 	$(tinyth_ASM_LIB_SRCS)
 
 # Assemble all component C++ source files 

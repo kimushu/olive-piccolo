@@ -22,10 +22,10 @@
 <td width="20%" bgcolor="#77BBFF">BSP Version:</td><td>default</td>
 </tr>
 <tr mode="wrap">
-<td width="20%" bgcolor="#77BBFF">BSP Generated On:</td><td>2017/07/11 22:42:54</td>
+<td width="20%" bgcolor="#77BBFF">BSP Generated On:</td><td>2017/10/03 0:41:20</td>
 </tr>
 <tr mode="wrap">
-<td width="20%" bgcolor="#77BBFF">BSP Generated Timestamp:</td><td>1499780574498</td>
+<td width="20%" bgcolor="#77BBFF">BSP Generated Timestamp:</td><td>1506958880410</td>
 </tr>
 <tr mode="wrap">
 <td width="20%" bgcolor="#77BBFF">BSP Generated Location:</td><td>D:\Works\Altera\olive-piccolo\software\olive_rubic_bsp</td>
@@ -56,10 +56,22 @@
 <td>pfc</td><td>0x10000080 - 0x100000BF</td><td>64</td><td class="listing">&nbsp;</td>
 </tr>
 <tr mode="wrap" STYLE="display: 'block'; font-family: 'courier'; color: '#000000'; font-weight: '500'; font-size: '14'; margin-top: '10pt'; text-align: 'left'">
+<td>dual_boot_0</td><td>0x10000060 - 0x1000007F</td><td>32</td><td class="listing">&nbsp;</td>
+</tr>
+<tr mode="wrap" STYLE="display: 'block'; font-family: 'courier'; color: '#000000'; font-weight: '500'; font-size: '14'; margin-top: '10pt'; text-align: 'left'">
+<td>led</td><td>0x10000040 - 0x1000004F</td><td>16</td><td class="listing">&nbsp;</td>
+</tr>
+<tr mode="wrap" STYLE="display: 'block'; font-family: 'courier'; color: '#000000'; font-weight: '500'; font-size: '14'; margin-top: '10pt'; text-align: 'left'">
 <td>systimer</td><td>0x10000020 - 0x1000003F</td><td>32</td><td class="listing">timer</td>
 </tr>
 <tr mode="wrap" STYLE="display: 'block'; font-family: 'courier'; color: '#000000'; font-weight: '500'; font-size: '14'; margin-top: '10pt'; text-align: 'left'">
-<td>peridot_hostbridge</td><td>0x10000000 - 0x1000001F</td><td>32</td><td class="listing">&nbsp;</td>
+<td>hostbridge</td><td>0x10000010 - 0x1000001F</td><td>16</td><td class="listing">printable</td>
+</tr>
+<tr mode="wrap" STYLE="display: 'block'; font-family: 'courier'; color: '#000000'; font-weight: '500'; font-size: '14'; margin-top: '10pt'; text-align: 'left'">
+<td>sysid</td><td>0x10000000 - 0x10000007</td><td>8</td><td class="listing">&nbsp;</td>
+</tr>
+<tr mode="wrap" STYLE="display: 'block'; font-family: 'courier'; color: '#000000'; font-weight: '500'; font-size: '14'; margin-top: '10pt'; text-align: 'left'">
+<td>epcs</td><td>0x0FF00000 - 0x0FF00007</td><td>8</td><td class="listing">&nbsp;</td>
 </tr>
 <tr mode="wrap" STYLE="display: 'block'; font-family: 'courier'; color: '#000000'; font-weight: '500'; font-size: '14'; margin-top: '10pt'; text-align: 'left'">
 <td>ufm</td><td>0x0F800000 - 0x0F807FFF</td><td>32768</td><td class="listing">flash, memory, non-volatile</td>
@@ -123,6 +135,9 @@
 </tr>
 <tr mode="wrap" STYLE="display: 'block'; font-family: 'courier'; color: '#000000'; font-weight: '500'; font-size: '14'; margin-top: '10pt'; text-align: 'left'">
 <td>peridot_rpc_server</td><td>default</td>
+</tr>
+<tr mode="wrap" STYLE="display: 'block'; font-family: 'courier'; color: '#000000'; font-weight: '500'; font-size: '14'; margin-top: '10pt'; text-align: 'left'">
+<td>peridot_sw_hostbridge_gen2</td><td>default</td>
 </tr>
 <tr mode="wrap" STYLE="display: 'block'; font-family: 'courier'; color: '#000000'; font-weight: '500'; font-size: '14'; margin-top: '10pt'; text-align: 'left'">
 <td>rubic_agent</td><td>default</td>
@@ -441,10 +456,10 @@
 <br>
 <table border="1" bgcolor="#FFFFCC" width="60%">
 <tr bgcolor="#77BBFF">
-<td align="left" width="15%">Setting Name:</td><td align="left">epcs_fatfs.interface.use_peridot_swi</td>
+<td align="left" width="15%">Setting Name:</td><td align="left">epcs_fatfs.interface.use_peridot_spi_flash</td>
 </tr>
 <tr>
-<td width="20%">Identifier:</td><td>EPCS_FATFS_IF_PERIDOT_SWI</td>
+<td width="20%">Identifier:</td><td>EPCS_FATFS_IF_PERIDOT_SPI_FLASH</td>
 </tr>
 <tr>
 <td width="20%">Default Value:</td><td>0</td>
@@ -459,7 +474,7 @@
 <td width="20%">Destination:</td><td>system_h_define</td>
 </tr>
 <tr mode="wrap">
-<td width="20%">Description:</td><td>Use SWI interface (peridot_swi_driver)</td>
+<td width="20%">Description:</td><td>Use SPI flash interface (peridot_spi_master_driver)</td>
 </tr>
 <tr mode="wrap">
 <td width="20%">Restrictions:</td><td>none</td>
@@ -720,7 +735,7 @@
 <td width="20%">Default Value:</td><td>0</td>
 </tr>
 <tr>
-<td width="20%">Value:</td><td>0</td>
+<td width="20%">Value:</td><td>1</td>
 </tr>
 <tr>
 <td width="20%">Type:</td><td>Boolean</td>
@@ -801,7 +816,7 @@
 <td width="20%">Default Value:</td><td>0</td>
 </tr>
 <tr>
-<td width="20%">Value:</td><td>1</td>
+<td width="20%">Value:</td><td>0</td>
 </tr>
 <tr>
 <td width="20%">Type:</td><td>Boolean</td>
@@ -2439,33 +2454,6 @@
 <br>
 <table border="1" bgcolor="#FFFFCC" width="60%">
 <tr bgcolor="#77BBFF">
-<td align="left" width="15%">Setting Name:</td><td align="left">named_fifo.stderr.back_pressure</td>
-</tr>
-<tr>
-<td width="20%">Identifier:</td><td>NAMED_FIFO_STDERR_BACK_PRESSURE</td>
-</tr>
-<tr>
-<td width="20%">Default Value:</td><td>0</td>
-</tr>
-<tr>
-<td width="20%">Value:</td><td>0</td>
-</tr>
-<tr>
-<td width="20%">Type:</td><td>Boolean</td>
-</tr>
-<tr mode="wrap">
-<td width="20%">Destination:</td><td>system_h_define</td>
-</tr>
-<tr mode="wrap">
-<td width="20%">Description:</td><td>If back-pressure is enabled, writing to full buffer will be blocked. If back-pressure is disabled, writing to full buffer will overwrite old data.</td>
-</tr>
-<tr mode="wrap">
-<td width="20%">Restrictions:</td><td>none</td>
-</tr>
-</table>
-<br>
-<table border="1" bgcolor="#FFFFCC" width="60%">
-<tr bgcolor="#77BBFF">
 <td align="left" width="15%">Setting Name:</td><td align="left">named_fifo.stderr.enable</td>
 </tr>
 <tr>
@@ -2539,33 +2527,6 @@
 </tr>
 <tr mode="wrap">
 <td width="20%">Description:</td><td>Buffer length for stderr device (in bytes)</td>
-</tr>
-<tr mode="wrap">
-<td width="20%">Restrictions:</td><td>none</td>
-</tr>
-</table>
-<br>
-<table border="1" bgcolor="#FFFFCC" width="60%">
-<tr bgcolor="#77BBFF">
-<td align="left" width="15%">Setting Name:</td><td align="left">named_fifo.stdin.back_pressure</td>
-</tr>
-<tr>
-<td width="20%">Identifier:</td><td>NAMED_FIFO_STDIN_BACK_PRESSURE</td>
-</tr>
-<tr>
-<td width="20%">Default Value:</td><td>1</td>
-</tr>
-<tr>
-<td width="20%">Value:</td><td>1</td>
-</tr>
-<tr>
-<td width="20%">Type:</td><td>Boolean</td>
-</tr>
-<tr mode="wrap">
-<td width="20%">Destination:</td><td>system_h_define</td>
-</tr>
-<tr mode="wrap">
-<td width="20%">Description:</td><td>If back-pressure is enabled, writing to full buffer will be blocked. If back-pressure is disabled, writing to full buffer will overwrite old data.</td>
 </tr>
 <tr mode="wrap">
 <td width="20%">Restrictions:</td><td>none</td>
@@ -2655,13 +2616,13 @@
 <br>
 <table border="1" bgcolor="#FFFFCC" width="60%">
 <tr bgcolor="#77BBFF">
-<td align="left" width="15%">Setting Name:</td><td align="left">named_fifo.stdout.back_pressure</td>
+<td align="left" width="15%">Setting Name:</td><td align="left">named_fifo.stdio.initially_opened</td>
 </tr>
 <tr>
-<td width="20%">Identifier:</td><td>NAMED_FIFO_STDOUT_BACK_PRESSURE</td>
+<td width="20%">Identifier:</td><td>NAMED_FIFO_STDIO_INIT_OPENED</td>
 </tr>
 <tr>
-<td width="20%">Default Value:</td><td>0</td>
+<td width="20%">Default Value:</td><td>1</td>
 </tr>
 <tr>
 <td width="20%">Value:</td><td>0</td>
@@ -2673,7 +2634,7 @@
 <td width="20%">Destination:</td><td>system_h_define</td>
 </tr>
 <tr mode="wrap">
-<td width="20%">Description:</td><td>If back-pressure is enabled, writing to full buffer will be blocked. If back-pressure is disabled, writing to full buffer will overwrite old data.</td>
+<td width="20%">Description:</td><td>Start system with stdio opened.</td>
 </tr>
 <tr mode="wrap">
 <td width="20%">Restrictions:</td><td>none</td>
@@ -2871,52 +2832,25 @@
 <br>
 <table border="1" bgcolor="#FFFFCC" width="60%">
 <tr bgcolor="#77BBFF">
-<td align="left" width="15%">Setting Name:</td><td align="left">peridot_rpc_server.enable_isolation</td>
+<td align="left" width="15%">Setting Name:</td><td align="left">peridot_rpc_server.channel</td>
 </tr>
 <tr>
-<td width="20%">Identifier:</td><td>PERIDOT_RPCSRV_ENABLE_ISOLATION</td>
+<td width="20%">Identifier:</td><td>PERIDOT_RPCSRV_CHANNEL</td>
 </tr>
 <tr>
-<td width="20%">Default Value:</td><td>0</td>
+<td width="20%">Default Value:</td><td>1</td>
 </tr>
 <tr>
-<td width="20%">Value:</td><td>false</td>
+<td width="20%">Value:</td><td>1</td>
 </tr>
 <tr>
-<td width="20%">Type:</td><td>BooleanDefineOnly</td>
+<td width="20%">Type:</td><td>DecimalNumber</td>
 </tr>
 <tr mode="wrap">
 <td width="20%">Destination:</td><td>system_h_define</td>
 </tr>
 <tr mode="wrap">
-<td width="20%">Description:</td><td>Enable isolation of shared memory areas by locating them out of .data section.</td>
-</tr>
-<tr mode="wrap">
-<td width="20%">Restrictions:</td><td>none</td>
-</tr>
-</table>
-<br>
-<table border="1" bgcolor="#FFFFCC" width="60%">
-<tr bgcolor="#77BBFF">
-<td align="left" width="15%">Setting Name:</td><td align="left">peridot_rpc_server.isolated_section</td>
-</tr>
-<tr>
-<td width="20%">Identifier:</td><td>PERIDOT_RPCSRV_ISOLATED_SECTION</td>
-</tr>
-<tr>
-<td width="20%">Default Value:</td><td>.public</td>
-</tr>
-<tr>
-<td width="20%">Value:</td><td>.public</td>
-</tr>
-<tr>
-<td width="20%">Type:</td><td>QuotedString</td>
-</tr>
-<tr mode="wrap">
-<td width="20%">Destination:</td><td>system_h_define</td>
-</tr>
-<tr mode="wrap">
-<td width="20%">Description:</td><td>Section name to locate shared memory (This is valid only when enable_isolation is true)</td>
+<td width="20%">Description:</td><td>Channel number for RPC server</td>
 </tr>
 <tr mode="wrap">
 <td width="20%">Restrictions:</td><td>none</td>
@@ -2928,37 +2862,10 @@
 <td align="left" width="15%">Setting Name:</td><td align="left">peridot_rpc_server.request_length</td>
 </tr>
 <tr>
-<td width="20%">Identifier:</td><td>PERIDOT_RPCSRV_REQUEST_LENGTH</td>
+<td width="20%">Identifier:</td><td>PERIDOT_RPCSRV_MAX_REQUEST_LENGTH</td>
 </tr>
 <tr>
-<td width="20%">Default Value:</td><td>1024</td>
-</tr>
-<tr>
-<td width="20%">Value:</td><td>1024</td>
-</tr>
-<tr>
-<td width="20%">Type:</td><td>DecimalNumber</td>
-</tr>
-<tr mode="wrap">
-<td width="20%">Destination:</td><td>system_h_define</td>
-</tr>
-<tr mode="wrap">
-<td width="20%">Description:</td><td>Byte length of request data</td>
-</tr>
-<tr mode="wrap">
-<td width="20%">Restrictions:</td><td>none</td>
-</tr>
-</table>
-<br>
-<table border="1" bgcolor="#FFFFCC" width="60%">
-<tr bgcolor="#77BBFF">
-<td align="left" width="15%">Setting Name:</td><td align="left">peridot_rpc_server.response_length</td>
-</tr>
-<tr>
-<td width="20%">Identifier:</td><td>PERIDOT_RPCSRV_RESPONSE_LENGTH</td>
-</tr>
-<tr>
-<td width="20%">Default Value:</td><td>1024</td>
+<td width="20%">Default Value:</td><td>8192</td>
 </tr>
 <tr>
 <td width="20%">Value:</td><td>1024</td>
@@ -2970,7 +2877,7 @@
 <td width="20%">Destination:</td><td>system_h_define</td>
 </tr>
 <tr mode="wrap">
-<td width="20%">Description:</td><td>Byte length of response data</td>
+<td width="20%">Description:</td><td>Maximum byte length of request data</td>
 </tr>
 <tr mode="wrap">
 <td width="20%">Restrictions:</td><td>none</td>
@@ -3006,10 +2913,37 @@
 <br>
 <table border="1" bgcolor="#FFFFCC" width="60%">
 <tr bgcolor="#77BBFF">
-<td align="left" width="15%">Setting Name:</td><td align="left">peridot_swi_driver.flash_boot.decompress.lz4</td>
+<td align="left" width="15%">Setting Name:</td><td align="left">peridot_spi_master_driver.flash_boot.after_cfg</td>
 </tr>
 <tr>
-<td width="20%">Identifier:</td><td>SWI_FLASH_BOOT_DECOMPRESS_LZ4</td>
+<td width="20%">Identifier:</td><td>peridot_spi_master_driver_PERIDOT_SPI_FLASH_BOOT_AFTER_CFG</td>
+</tr>
+<tr>
+<td width="20%">Default Value:</td><td>0</td>
+</tr>
+<tr>
+<td width="20%">Value:</td><td>0</td>
+</tr>
+<tr>
+<td width="20%">Type:</td><td>BooleanDefineOnly</td>
+</tr>
+<tr mode="wrap">
+<td width="20%">Destination:</td><td>system_h_define</td>
+</tr>
+<tr mode="wrap">
+<td width="20%">Description:</td><td>Load ELF image after FPGA configuration data</td>
+</tr>
+<tr mode="wrap">
+<td width="20%">Restrictions:</td><td>none</td>
+</tr>
+</table>
+<br>
+<table border="1" bgcolor="#FFFFCC" width="60%">
+<tr bgcolor="#77BBFF">
+<td align="left" width="15%">Setting Name:</td><td align="left">peridot_spi_master_driver.flash_boot.decompress.lz4</td>
+</tr>
+<tr>
+<td width="20%">Identifier:</td><td>PERIDOT_SPI_FLASH_BOOT_DECOMPRESS_LZ4</td>
 </tr>
 <tr>
 <td width="20%">Default Value:</td><td>0</td>
@@ -3033,10 +2967,10 @@
 <br>
 <table border="1" bgcolor="#FFFFCC" width="60%">
 <tr bgcolor="#77BBFF">
-<td align="left" width="15%">Setting Name:</td><td align="left">peridot_swi_driver.flash_boot.enable</td>
+<td align="left" width="15%">Setting Name:</td><td align="left">peridot_spi_master_driver.flash_boot.enable</td>
 </tr>
 <tr>
-<td width="20%">Identifier:</td><td>SWI_FLASH_BOOT_ENABLE</td>
+<td width="20%">Identifier:</td><td>PERIDOT_SPI_FLASH_BOOT_ENABLE</td>
 </tr>
 <tr>
 <td width="20%">Default Value:</td><td>0</td>
@@ -3051,7 +2985,7 @@
 <td width="20%">Destination:</td><td>system_h_define</td>
 </tr>
 <tr mode="wrap">
-<td width="20%">Description:</td><td>Enable boot from flash (ALT_ALLOW_CODE_RESET must be disabled)</td>
+<td width="20%">Description:</td><td>Enable boot from flash (hal.linker.allow_code_at_reset must be disabled)</td>
 </tr>
 <tr mode="wrap">
 <td width="20%">Restrictions:</td><td>none</td>
@@ -3060,10 +2994,10 @@
 <br>
 <table border="1" bgcolor="#FFFFCC" width="60%">
 <tr bgcolor="#77BBFF">
-<td align="left" width="15%">Setting Name:</td><td align="left">peridot_swi_driver.flash_boot.offset</td>
+<td align="left" width="15%">Setting Name:</td><td align="left">peridot_spi_master_driver.flash_boot.offset</td>
 </tr>
 <tr>
-<td width="20%">Identifier:</td><td>SWI_FLASH_BOOT_OFFSET</td>
+<td width="20%">Identifier:</td><td>PERIDOT_SPI_FLASH_BOOT_OFFSET</td>
 </tr>
 <tr>
 <td width="20%">Default Value:</td><td>0</td>
@@ -3087,25 +3021,133 @@
 <br>
 <table border="1" bgcolor="#FFFFCC" width="60%">
 <tr bgcolor="#77BBFF">
-<td align="left" width="15%">Setting Name:</td><td align="left">rubic_agent.root.name</td>
+<td align="left" width="15%">Setting Name:</td><td align="left">peridot_spi_master_driver.flash.bitrate</td>
 </tr>
 <tr>
-<td width="20%">Identifier:</td><td>RUBIC_AGENT_ROOT_NAME</td>
+<td width="20%">Identifier:</td><td>PERIDOT_SPI_FLASH_BITRATE</td>
 </tr>
 <tr>
-<td width="20%">Default Value:</td><td>/sys/rubic</td>
+<td width="20%">Default Value:</td><td>10000000</td>
 </tr>
 <tr>
-<td width="20%">Value:</td><td>/sys/rubic</td>
+<td width="20%">Value:</td><td>10000000</td>
 </tr>
 <tr>
-<td width="20%">Type:</td><td>QuotedString</td>
+<td width="20%">Type:</td><td>DecimalNumber</td>
 </tr>
 <tr mode="wrap">
 <td width="20%">Destination:</td><td>system_h_define</td>
 </tr>
 <tr mode="wrap">
-<td width="20%">Description:</td><td>Root name of Rubic agent</td>
+<td width="20%">Description:</td><td>Bitrate for SPI flash device</td>
+</tr>
+<tr mode="wrap">
+<td width="20%">Restrictions:</td><td>none</td>
+</tr>
+</table>
+<br>
+<table border="1" bgcolor="#FFFFCC" width="60%">
+<tr bgcolor="#77BBFF">
+<td align="left" width="15%">Setting Name:</td><td align="left">peridot_spi_master_driver.flash.enable</td>
+</tr>
+<tr>
+<td width="20%">Identifier:</td><td>PERIDOT_SPI_FLASH_ENABLE</td>
+</tr>
+<tr>
+<td width="20%">Default Value:</td><td>1</td>
+</tr>
+<tr>
+<td width="20%">Value:</td><td>true</td>
+</tr>
+<tr>
+<td width="20%">Type:</td><td>BooleanDefineOnly</td>
+</tr>
+<tr mode="wrap">
+<td width="20%">Destination:</td><td>system_h_define</td>
+</tr>
+<tr mode="wrap">
+<td width="20%">Description:</td><td>Enable flash feature</td>
+</tr>
+<tr mode="wrap">
+<td width="20%">Restrictions:</td><td>none</td>
+</tr>
+</table>
+<br>
+<table border="1" bgcolor="#FFFFCC" width="60%">
+<tr bgcolor="#77BBFF">
+<td align="left" width="15%">Setting Name:</td><td align="left">peridot_spi_master_driver.flash.name</td>
+</tr>
+<tr>
+<td width="20%">Identifier:</td><td>PERIDOT_SPI_FLASH_NAME</td>
+</tr>
+<tr>
+<td width="20%">Default Value:</td><td>none</td>
+</tr>
+<tr>
+<td width="20%">Value:</td><td>epcs</td>
+</tr>
+<tr>
+<td width="20%">Type:</td><td>UnquotedString</td>
+</tr>
+<tr mode="wrap">
+<td width="20%">Destination:</td><td>system_h_define</td>
+</tr>
+<tr mode="wrap">
+<td width="20%">Description:</td><td>Slave descriptor for SPI flash</td>
+</tr>
+<tr mode="wrap">
+<td width="20%">Restrictions:</td><td>none</td>
+</tr>
+</table>
+<br>
+<table border="1" bgcolor="#FFFFCC" width="60%">
+<tr bgcolor="#77BBFF">
+<td align="left" width="15%">Setting Name:</td><td align="left">peridot_spi_master_driver.flash.slave_number</td>
+</tr>
+<tr>
+<td width="20%">Identifier:</td><td>PERIDOT_SPI_FLASH_SLAVE_NUMBER</td>
+</tr>
+<tr>
+<td width="20%">Default Value:</td><td>0</td>
+</tr>
+<tr>
+<td width="20%">Value:</td><td>0</td>
+</tr>
+<tr>
+<td width="20%">Type:</td><td>DecimalNumber</td>
+</tr>
+<tr mode="wrap">
+<td width="20%">Destination:</td><td>system_h_define</td>
+</tr>
+<tr mode="wrap">
+<td width="20%">Description:</td><td>Slave number (SS_N bit number) for SPI flash device</td>
+</tr>
+<tr mode="wrap">
+<td width="20%">Restrictions:</td><td>none</td>
+</tr>
+</table>
+<br>
+<table border="1" bgcolor="#FFFFCC" width="60%">
+<tr bgcolor="#77BBFF">
+<td align="left" width="15%">Setting Name:</td><td align="left">peridot_sw_hostbridge_gen2.use_receiver_thread</td>
+</tr>
+<tr>
+<td width="20%">Identifier:</td><td>PERIDOT_SW_HOSTBRIDGE_GEN2_USE_RECEIVER_THREAD</td>
+</tr>
+<tr>
+<td width="20%">Default Value:</td><td>0</td>
+</tr>
+<tr>
+<td width="20%">Value:</td><td>true</td>
+</tr>
+<tr>
+<td width="20%">Type:</td><td>BooleanDefineOnly</td>
+</tr>
+<tr mode="wrap">
+<td width="20%">Destination:</td><td>system_h_define</td>
+</tr>
+<tr mode="wrap">
+<td width="20%">Description:</td><td>Use receiver thread in multi-thread system.</td>
 </tr>
 <tr mode="wrap">
 <td width="20%">Restrictions:</td><td>none</td>
@@ -3357,6 +3399,33 @@
 <br>
 <table border="1" bgcolor="#FFFFCC" width="60%">
 <tr bgcolor="#77BBFF">
+<td align="left" width="15%">Setting Name:</td><td align="left">rubic_agent.storage.internal</td>
+</tr>
+<tr>
+<td width="20%">Identifier:</td><td>RUBIC_AGENT_STORAGE_INTERNAL</td>
+</tr>
+<tr>
+<td width="20%">Default Value:</td><td>/mnt</td>
+</tr>
+<tr>
+<td width="20%">Value:</td><td>/mnt</td>
+</tr>
+<tr>
+<td width="20%">Type:</td><td>QuotedString</td>
+</tr>
+<tr mode="wrap">
+<td width="20%">Destination:</td><td>system_h_define</td>
+</tr>
+<tr mode="wrap">
+<td width="20%">Description:</td><td>Path of internal storage</td>
+</tr>
+<tr mode="wrap">
+<td width="20%">Restrictions:</td><td>none</td>
+</tr>
+</table>
+<br>
+<table border="1" bgcolor="#FFFFCC" width="60%">
+<tr bgcolor="#77BBFF">
 <td align="left" width="15%">Setting Name:</td><td align="left">tinyth.feature.enable_cond</td>
 </tr>
 <tr>
@@ -3519,6 +3588,33 @@
 <br>
 <table border="1" bgcolor="#FFFFCC" width="60%">
 <tr bgcolor="#77BBFF">
+<td align="left" width="15%">Setting Name:</td><td align="left">tinyth.feature.enable_sleep</td>
+</tr>
+<tr>
+<td width="20%">Identifier:</td><td>TTHREAD_ENABLE_SLEEP</td>
+</tr>
+<tr>
+<td width="20%">Default Value:</td><td>1</td>
+</tr>
+<tr>
+<td width="20%">Value:</td><td>1</td>
+</tr>
+<tr>
+<td width="20%">Type:</td><td>Boolean</td>
+</tr>
+<tr mode="wrap">
+<td width="20%">Destination:</td><td>system_h_define</td>
+</tr>
+<tr mode="wrap">
+<td width="20%">Description:</td><td>Enable sleep()/usleep() APIs</td>
+</tr>
+<tr mode="wrap">
+<td width="20%">Restrictions:</td><td>none</td>
+</tr>
+</table>
+<br>
+<table border="1" bgcolor="#FFFFCC" width="60%">
+<tr bgcolor="#77BBFF">
 <td align="left" width="15%">Setting Name:</td><td align="left">tinyth.feature.enable_spin</td>
 </tr>
 <tr>
@@ -3546,10 +3642,10 @@
 <br>
 <table border="1" bgcolor="#FFFFCC" width="60%">
 <tr bgcolor="#77BBFF">
-<td align="left" width="15%">Setting Name:</td><td align="left">tinyth.pthreads.min_stack_size</td>
+<td align="left" width="15%">Setting Name:</td><td align="left">tinyth.others.min_stack_size</td>
 </tr>
 <tr>
-<td width="20%">Identifier:</td><td>PTHREAD_STACK_MIN</td>
+<td width="20%">Identifier:</td><td>PTHREAD_STACK_MIN_OVERRIDE</td>
 </tr>
 <tr>
 <td width="20%">Default Value:</td><td>0x1000</td>
@@ -3565,6 +3661,87 @@
 </tr>
 <tr mode="wrap">
 <td width="20%">Description:</td><td>Minimum stack size for threads</td>
+</tr>
+<tr mode="wrap">
+<td width="20%">Restrictions:</td><td>none</td>
+</tr>
+</table>
+<br>
+<table border="1" bgcolor="#FFFFCC" width="60%">
+<tr bgcolor="#77BBFF">
+<td align="left" width="15%">Setting Name:</td><td align="left">tinyth.others.thread_safe_newlib</td>
+</tr>
+<tr>
+<td width="20%">Identifier:</td><td>TTHREAD_THREAD_SAFE_NEWLIB</td>
+</tr>
+<tr>
+<td width="20%">Default Value:</td><td>1</td>
+</tr>
+<tr>
+<td width="20%">Value:</td><td>1</td>
+</tr>
+<tr>
+<td width="20%">Type:</td><td>Boolean</td>
+</tr>
+<tr mode="wrap">
+<td width="20%">Destination:</td><td>system_h_define</td>
+</tr>
+<tr mode="wrap">
+<td width="20%">Description:</td><td>Require thread safe C library</td>
+</tr>
+<tr mode="wrap">
+<td width="20%">Restrictions:</td><td>none</td>
+</tr>
+</table>
+<br>
+<table border="1" bgcolor="#FFFFCC" width="60%">
+<tr bgcolor="#77BBFF">
+<td align="left" width="15%">Setting Name:</td><td align="left">tinyth.pthreads.min_stack_size</td>
+</tr>
+<tr>
+<td width="20%">Identifier:</td><td>PTHREAD_STACK_MIN_OVERRIDE</td>
+</tr>
+<tr>
+<td width="20%">Default Value:</td><td>0x1000</td>
+</tr>
+<tr>
+<td width="20%">Value:</td><td>0x1000</td>
+</tr>
+<tr>
+<td width="20%">Type:</td><td>HexNumber</td>
+</tr>
+<tr mode="wrap">
+<td width="20%">Destination:</td><td>system_h_define</td>
+</tr>
+<tr mode="wrap">
+<td width="20%">Description:</td><td>Minimum stack size for threads</td>
+</tr>
+<tr mode="wrap">
+<td width="20%">Restrictions:</td><td>none</td>
+</tr>
+</table>
+<br>
+<table border="1" bgcolor="#FFFFCC" width="60%">
+<tr bgcolor="#77BBFF">
+<td align="left" width="15%">Setting Name:</td><td align="left">tinyth.pthreads.thread_safe_newlib</td>
+</tr>
+<tr>
+<td width="20%">Identifier:</td><td>TTHREAD_THREAD_SAFE_NEWLIB</td>
+</tr>
+<tr>
+<td width="20%">Default Value:</td><td>1</td>
+</tr>
+<tr>
+<td width="20%">Value:</td><td>1</td>
+</tr>
+<tr>
+<td width="20%">Type:</td><td>Boolean</td>
+</tr>
+<tr mode="wrap">
+<td width="20%">Destination:</td><td>system_h_define</td>
+</tr>
+<tr mode="wrap">
+<td width="20%">Description:</td><td>Use thread safe C library</td>
 </tr>
 <tr mode="wrap">
 <td width="20%">Restrictions:</td><td>none</td>
@@ -3645,7 +3822,7 @@
 <td width="20%">Destination:</td><td>system_h_define</td>
 </tr>
 <tr mode="wrap">
-<td width="20%">Description:</td><td>Interval of preemption (in tick counts) / Zero means preemption disable</td>
+<td width="20%">Description:</td><td>Interval of preemption (in milliseconds)</td>
 </tr>
 <tr mode="wrap">
 <td width="20%">Restrictions:</td><td>none</td>

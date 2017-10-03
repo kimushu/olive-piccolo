@@ -4,7 +4,7 @@
  * Machine generated for CPU 'nios2_fast' in SOPC Builder design 'olive_std_core'
  * SOPC Builder design path: ../../olive_std_core.sopcinfo
  *
- * Generated: Sun Jul 09 23:15:10 JST 2017
+ * Generated: Mon Oct 02 09:49:49 JST 2017
  */
 
 /*
@@ -59,17 +59,19 @@
  */
 
 #include "altera_nios2_gen2_irq.h"
+#include "altera_avalon_sysid_qsys.h"
 #include "altera_avalon_timer.h"
 #include "altera_avalon_uart.h"
+#include "buffered_uart.h"
 #include "epcs_fatfs.h"
 #include "named_fifo.h"
 #include "peridot_client_fs.h"
-#include "peridot_hostbridge.h"
 #include "peridot_i2c_master.h"
 #include "peridot_pfc_interface.h"
 #include "peridot_rpc_server.h"
 #include "peridot_servo.h"
 #include "peridot_spi_master.h"
+#include "peridot_sw_hostbridge_gen2.h"
 #include "rubic_agent.h"
 
 /*
@@ -77,18 +79,21 @@
  */
 
 ALTERA_NIOS2_GEN2_IRQ_INSTANCE ( NIOS2_FAST, nios2_fast);
+ALTERA_AVALON_SYSID_QSYS_INSTANCE ( SYSID, sysid);
 ALTERA_AVALON_TIMER_INSTANCE ( SYSTIMER, systimer);
 ALTERA_AVALON_UART_INSTANCE ( UART0, uart0);
 ALTERA_AVALON_UART_INSTANCE ( UART1, uart1);
+BUFFERED_UART_INSTANCE ( HOSTBRIDGE, hostbridge);
 EPCS_FATFS_INSTANCE ( EPCS_FATFS, epcs_fatfs);
 NAMED_FIFO_INSTANCE ( NAMED_FIFO, named_fifo);
 PERIDOT_CLIENT_FS_INSTANCE ( PERIDOT_CLIENT_FS, peridot_client_fs);
-PERIDOT_HOSTBRIDGE_INSTANCE ( PERIDOT_HOSTBRIDGE, peridot_hostbridge);
 PERIDOT_I2C_MASTER_INSTANCE ( I2C, i2c);
 PERIDOT_PFC_INTERFACE_INSTANCE ( PFC, pfc);
 PERIDOT_RPC_SERVER_INSTANCE ( PERIDOT_RPC_SERVER, peridot_rpc_server);
 PERIDOT_SERVO_INSTANCE ( SERVO, servo);
+PERIDOT_SPI_MASTER_INSTANCE ( EPCS, epcs);
 PERIDOT_SPI_MASTER_INSTANCE ( SPI, spi);
+PERIDOT_SW_HOSTBRIDGE_GEN2_INSTANCE ( PERIDOT_SW_HOSTBRIDGE_GEN2, peridot_sw_hostbridge_gen2);
 RUBIC_AGENT_INSTANCE ( RUBIC_AGENT, rubic_agent);
 
 /*
@@ -113,15 +118,18 @@ void alt_irq_init ( const void* base )
 void alt_sys_init( void )
 {
     ALTERA_AVALON_TIMER_INIT ( SYSTIMER, systimer);
+    ALTERA_AVALON_SYSID_QSYS_INIT ( SYSID, sysid);
     ALTERA_AVALON_UART_INIT ( UART0, uart0);
     ALTERA_AVALON_UART_INIT ( UART1, uart1);
+    BUFFERED_UART_INIT ( HOSTBRIDGE, hostbridge);
     EPCS_FATFS_INIT ( EPCS_FATFS, epcs_fatfs);
     NAMED_FIFO_INIT ( NAMED_FIFO, named_fifo);
-    PERIDOT_HOSTBRIDGE_INIT ( PERIDOT_HOSTBRIDGE, peridot_hostbridge);
     PERIDOT_I2C_MASTER_INIT ( I2C, i2c);
     PERIDOT_PFC_INTERFACE_INIT ( PFC, pfc);
     PERIDOT_SERVO_INIT ( SERVO, servo);
+    PERIDOT_SPI_MASTER_INIT ( EPCS, epcs);
     PERIDOT_SPI_MASTER_INIT ( SPI, spi);
+    PERIDOT_SW_HOSTBRIDGE_GEN2_INIT ( PERIDOT_SW_HOSTBRIDGE_GEN2, peridot_sw_hostbridge_gen2);
     RUBIC_AGENT_INIT ( RUBIC_AGENT, rubic_agent);
     PERIDOT_RPC_SERVER_INIT ( PERIDOT_RPC_SERVER, peridot_rpc_server);
     PERIDOT_CLIENT_FS_INIT ( PERIDOT_CLIENT_FS, peridot_client_fs);

@@ -2,8 +2,8 @@
 <sch:Settings xmlns:sch="http://www.altera.com/embeddedsw/bsp/schema">
         <BspType>tinyth</BspType>
         <BspVersion>default</BspVersion>
-        <BspGeneratedTimeStamp>2017/07/11 22:42:54</BspGeneratedTimeStamp>
-        <BspGeneratedUnixTimeStamp>1499780574498</BspGeneratedUnixTimeStamp>
+        <BspGeneratedTimeStamp>2017/10/03 0:41:20</BspGeneratedTimeStamp>
+        <BspGeneratedUnixTimeStamp>1506958880410</BspGeneratedUnixTimeStamp>
         <BspGeneratedLocation>D:\Works\Altera\olive-piccolo\software\olive_rubic_bsp</BspGeneratedLocation>
         <BspSettingsFile>settings.bsp</BspSettingsFile>
         <SopcDesignFile>..\..\olive_std_core.sopcinfo</SopcDesignFile>
@@ -734,7 +734,7 @@
                 <SettingName>hal.enable_small_c_library</SettingName>
                 <Identifier>none</Identifier>
                 <Type>Boolean</Type>
-                <Value>1</Value>
+                <Value>0</Value>
                 <DefaultValue>0</DefaultValue>
                 <DestinationFile>public_mk_define</DestinationFile>
                 <Description>Causes the small newlib (C library) to be used. This reduces code and data footprint at the expense of reduced functionality. Several newlib features are removed such as floating-point support in printf(), stdin input routines, and buffered I/O. The small C library is not compatible with Micrium MicroC/OS-II. If true, adds -msmallc to ALT_LDFLAGS in public.mk.</Description>
@@ -794,7 +794,7 @@
                 <SettingName>hal.enable_reduced_device_drivers</SettingName>
                 <Identifier>ALT_USE_SMALL_DRIVERS</Identifier>
                 <Type>Boolean</Type>
-                <Value>0</Value>
+                <Value>1</Value>
                 <DefaultValue>0</DefaultValue>
                 <DestinationFile>public_mk_define</DestinationFile>
                 <Description>Certain drivers are compiled with reduced functionality to reduce code footprint. Not all drivers observe this setting. The altera_avalon_uart and altera_avalon_jtag_uart drivers switch from interrupt-driven to polled operation. CAUTION: Several device drivers are disabled entirely. These include the altera_avalon_cfi_flash, altera_avalon_epcs_flash_controller, and altera_avalon_lcd_16207 drivers. This can result in certain API (HAL flash access routines) to fail. You can define a symbol provided by each driver to prevent it from being removed. If true, adds -DALT_USE_SMALL_DRIVERS to ALT_CPPFLAGS in public.mk.</Description>
@@ -947,6 +947,18 @@
                 <Group xsi:nil="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
         </Setting>
         <Setting>
+                <SettingName>tinyth.feature.enable_sleep</SettingName>
+                <Identifier>TTHREAD_ENABLE_SLEEP</Identifier>
+                <Type>Boolean</Type>
+                <Value>1</Value>
+                <DefaultValue>1</DefaultValue>
+                <DestinationFile>system_h_define</DestinationFile>
+                <Description>Enable sleep()/usleep() APIs</Description>
+                <Restrictions>none</Restrictions>
+                <Enabled>false</Enabled>
+                <Group xsi:nil="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+        </Setting>
+        <Setting>
                 <SettingName>tinyth.feature.enable_profile</SettingName>
                 <Identifier>TTHREAD_ENABLE_PROF</Identifier>
                 <Type>Boolean</Type>
@@ -977,7 +989,7 @@
                 <Value>10</Value>
                 <DefaultValue>10</DefaultValue>
                 <DestinationFile>system_h_define</DestinationFile>
-                <Description>Interval of preemption (in tick counts) / Zero means preemption disable</Description>
+                <Description>Interval of preemption (in milliseconds)</Description>
                 <Restrictions>none</Restrictions>
                 <Enabled>false</Enabled>
                 <Group xsi:nil="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
@@ -1031,8 +1043,8 @@
                 <Group xsi:nil="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
         </Setting>
         <Setting>
-                <SettingName>tinyth.pthreads.min_stack_size</SettingName>
-                <Identifier>PTHREAD_STACK_MIN</Identifier>
+                <SettingName>tinyth.others.min_stack_size</SettingName>
+                <Identifier>PTHREAD_STACK_MIN_OVERRIDE</Identifier>
                 <Type>HexNumber</Type>
                 <Value>0x1000</Value>
                 <DefaultValue>0x1000</DefaultValue>
@@ -1043,15 +1055,39 @@
                 <Group xsi:nil="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
         </Setting>
         <Setting>
-                <SettingName>rubic_agent.root.name</SettingName>
-                <Identifier>RUBIC_AGENT_ROOT_NAME</Identifier>
-                <Type>QuotedString</Type>
-                <Value>/sys/rubic</Value>
-                <DefaultValue>/sys/rubic</DefaultValue>
+                <SettingName>tinyth.others.thread_safe_newlib</SettingName>
+                <Identifier>TTHREAD_THREAD_SAFE_NEWLIB</Identifier>
+                <Type>Boolean</Type>
+                <Value>1</Value>
+                <DefaultValue>1</DefaultValue>
                 <DestinationFile>system_h_define</DestinationFile>
-                <Description>Root name of Rubic agent</Description>
+                <Description>Require thread safe C library</Description>
                 <Restrictions>none</Restrictions>
                 <Enabled>false</Enabled>
+                <Group xsi:nil="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+        </Setting>
+        <Setting>
+                <SettingName>tinyth.pthreads.min_stack_size</SettingName>
+                <Identifier>PTHREAD_STACK_MIN_OVERRIDE</Identifier>
+                <Type>HexNumber</Type>
+                <Value>0x1000</Value>
+                <DefaultValue>0x1000</DefaultValue>
+                <DestinationFile>system_h_define</DestinationFile>
+                <Description>Minimum stack size for threads</Description>
+                <Restrictions>none</Restrictions>
+                <Enabled>true</Enabled>
+                <Group xsi:nil="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+        </Setting>
+        <Setting>
+                <SettingName>tinyth.pthreads.thread_safe_newlib</SettingName>
+                <Identifier>TTHREAD_THREAD_SAFE_NEWLIB</Identifier>
+                <Type>Boolean</Type>
+                <Value>1</Value>
+                <DefaultValue>1</DefaultValue>
+                <DestinationFile>system_h_define</DestinationFile>
+                <Description>Use thread safe C library</Description>
+                <Restrictions>none</Restrictions>
+                <Enabled>true</Enabled>
                 <Group xsi:nil="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
         </Setting>
         <Setting>
@@ -1062,6 +1098,18 @@
                 <DefaultValue>>=0.99.1</DefaultValue>
                 <DestinationFile>system_h_define</DestinationFile>
                 <Description>Supported Rubic version (semver range syntax)</Description>
+                <Restrictions>none</Restrictions>
+                <Enabled>false</Enabled>
+                <Group xsi:nil="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+        </Setting>
+        <Setting>
+                <SettingName>rubic_agent.storage.internal</SettingName>
+                <Identifier>RUBIC_AGENT_STORAGE_INTERNAL</Identifier>
+                <Type>QuotedString</Type>
+                <Value>/mnt</Value>
+                <DefaultValue>/mnt</DefaultValue>
+                <DestinationFile>system_h_define</DestinationFile>
+                <Description>Path of internal storage</Description>
                 <Restrictions>none</Restrictions>
                 <Enabled>false</Enabled>
                 <Group xsi:nil="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
@@ -1163,25 +1211,37 @@
                 <Group xsi:nil="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
         </Setting>
         <Setting>
-                <SettingName>peridot_rpc_server.request_length</SettingName>
-                <Identifier>PERIDOT_RPCSRV_REQUEST_LENGTH</Identifier>
-                <Type>DecimalNumber</Type>
-                <Value>1024</Value>
-                <DefaultValue>1024</DefaultValue>
+                <SettingName>peridot_sw_hostbridge_gen2.use_receiver_thread</SettingName>
+                <Identifier>PERIDOT_SW_HOSTBRIDGE_GEN2_USE_RECEIVER_THREAD</Identifier>
+                <Type>BooleanDefineOnly</Type>
+                <Value>true</Value>
+                <DefaultValue>0</DefaultValue>
                 <DestinationFile>system_h_define</DestinationFile>
-                <Description>Byte length of request data</Description>
+                <Description>Use receiver thread in multi-thread system.</Description>
                 <Restrictions>none</Restrictions>
                 <Enabled>false</Enabled>
                 <Group xsi:nil="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
         </Setting>
         <Setting>
-                <SettingName>peridot_rpc_server.response_length</SettingName>
-                <Identifier>PERIDOT_RPCSRV_RESPONSE_LENGTH</Identifier>
+                <SettingName>peridot_rpc_server.channel</SettingName>
+                <Identifier>PERIDOT_RPCSRV_CHANNEL</Identifier>
+                <Type>DecimalNumber</Type>
+                <Value>1</Value>
+                <DefaultValue>1</DefaultValue>
+                <DestinationFile>system_h_define</DestinationFile>
+                <Description>Channel number for RPC server</Description>
+                <Restrictions>none</Restrictions>
+                <Enabled>false</Enabled>
+                <Group xsi:nil="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+        </Setting>
+        <Setting>
+                <SettingName>peridot_rpc_server.request_length</SettingName>
+                <Identifier>PERIDOT_RPCSRV_MAX_REQUEST_LENGTH</Identifier>
                 <Type>DecimalNumber</Type>
                 <Value>1024</Value>
-                <DefaultValue>1024</DefaultValue>
+                <DefaultValue>8192</DefaultValue>
                 <DestinationFile>system_h_define</DestinationFile>
-                <Description>Byte length of response data</Description>
+                <Description>Maximum byte length of request data</Description>
                 <Restrictions>none</Restrictions>
                 <Enabled>false</Enabled>
                 <Group xsi:nil="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
@@ -1194,30 +1254,6 @@
                 <DefaultValue>0</DefaultValue>
                 <DestinationFile>system_h_define</DestinationFile>
                 <Description>Number of worker threads for processing requests. When non-zero value is specified, multi-threading (pthread) support is required.</Description>
-                <Restrictions>none</Restrictions>
-                <Enabled>false</Enabled>
-                <Group xsi:nil="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
-        </Setting>
-        <Setting>
-                <SettingName>peridot_rpc_server.enable_isolation</SettingName>
-                <Identifier>PERIDOT_RPCSRV_ENABLE_ISOLATION</Identifier>
-                <Type>BooleanDefineOnly</Type>
-                <Value>false</Value>
-                <DefaultValue>0</DefaultValue>
-                <DestinationFile>system_h_define</DestinationFile>
-                <Description>Enable isolation of shared memory areas by locating them out of .data section.</Description>
-                <Restrictions>none</Restrictions>
-                <Enabled>false</Enabled>
-                <Group xsi:nil="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
-        </Setting>
-        <Setting>
-                <SettingName>peridot_rpc_server.isolated_section</SettingName>
-                <Identifier>PERIDOT_RPCSRV_ISOLATED_SECTION</Identifier>
-                <Type>QuotedString</Type>
-                <Value>.public</Value>
-                <DefaultValue>.public</DefaultValue>
-                <DestinationFile>system_h_define</DestinationFile>
-                <Description>Section name to locate shared memory (This is valid only when enable_isolation is true)</Description>
                 <Restrictions>none</Restrictions>
                 <Enabled>false</Enabled>
                 <Group xsi:nil="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
@@ -1307,18 +1343,6 @@
                 <Group xsi:nil="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
         </Setting>
         <Setting>
-                <SettingName>named_fifo.stdin.back_pressure</SettingName>
-                <Identifier>NAMED_FIFO_STDIN_BACK_PRESSURE</Identifier>
-                <Type>Boolean</Type>
-                <Value>1</Value>
-                <DefaultValue>1</DefaultValue>
-                <DestinationFile>system_h_define</DestinationFile>
-                <Description>If back-pressure is enabled, writing to full buffer will be blocked. If back-pressure is disabled, writing to full buffer will overwrite old data.</Description>
-                <Restrictions>none</Restrictions>
-                <Enabled>false</Enabled>
-                <Group xsi:nil="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
-        </Setting>
-        <Setting>
                 <SettingName>named_fifo.stdout.enable</SettingName>
                 <Identifier>NAMED_FIFO_STDOUT_ENABLE</Identifier>
                 <Type>Boolean</Type>
@@ -1350,18 +1374,6 @@
                 <DefaultValue>1024</DefaultValue>
                 <DestinationFile>system_h_define</DestinationFile>
                 <Description>Buffer length for stdout device (in bytes)</Description>
-                <Restrictions>none</Restrictions>
-                <Enabled>false</Enabled>
-                <Group xsi:nil="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
-        </Setting>
-        <Setting>
-                <SettingName>named_fifo.stdout.back_pressure</SettingName>
-                <Identifier>NAMED_FIFO_STDOUT_BACK_PRESSURE</Identifier>
-                <Type>Boolean</Type>
-                <Value>0</Value>
-                <DefaultValue>0</DefaultValue>
-                <DestinationFile>system_h_define</DestinationFile>
-                <Description>If back-pressure is enabled, writing to full buffer will be blocked. If back-pressure is disabled, writing to full buffer will overwrite old data.</Description>
                 <Restrictions>none</Restrictions>
                 <Enabled>false</Enabled>
                 <Group xsi:nil="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
@@ -1403,13 +1415,13 @@
                 <Group xsi:nil="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
         </Setting>
         <Setting>
-                <SettingName>named_fifo.stderr.back_pressure</SettingName>
-                <Identifier>NAMED_FIFO_STDERR_BACK_PRESSURE</Identifier>
+                <SettingName>named_fifo.stdio.initially_opened</SettingName>
+                <Identifier>NAMED_FIFO_STDIO_INIT_OPENED</Identifier>
                 <Type>Boolean</Type>
                 <Value>0</Value>
-                <DefaultValue>0</DefaultValue>
+                <DefaultValue>1</DefaultValue>
                 <DestinationFile>system_h_define</DestinationFile>
-                <Description>If back-pressure is enabled, writing to full buffer will be blocked. If back-pressure is disabled, writing to full buffer will overwrite old data.</Description>
+                <Description>Start system with stdio opened.</Description>
                 <Restrictions>none</Restrictions>
                 <Enabled>false</Enabled>
                 <Group xsi:nil="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
@@ -1427,13 +1439,13 @@
                 <Group xsi:nil="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
         </Setting>
         <Setting>
-                <SettingName>epcs_fatfs.interface.use_peridot_swi</SettingName>
-                <Identifier>EPCS_FATFS_IF_PERIDOT_SWI</Identifier>
+                <SettingName>epcs_fatfs.interface.use_peridot_spi_flash</SettingName>
+                <Identifier>EPCS_FATFS_IF_PERIDOT_SPI_FLASH</Identifier>
                 <Type>BooleanDefineOnly</Type>
                 <Value>true</Value>
                 <DefaultValue>0</DefaultValue>
                 <DestinationFile>system_h_define</DestinationFile>
-                <Description>Use SWI interface (peridot_swi_driver)</Description>
+                <Description>Use SPI flash interface (peridot_spi_master_driver)</Description>
                 <Restrictions>none</Restrictions>
                 <Enabled>false</Enabled>
                 <Group xsi:nil="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
@@ -1547,20 +1559,68 @@
                 <Group xsi:nil="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
         </Setting>
         <Setting>
-                <SettingName>peridot_swi_driver.flash_boot.enable</SettingName>
-                <Identifier>SWI_FLASH_BOOT_ENABLE</Identifier>
+                <SettingName>peridot_spi_master_driver.flash.enable</SettingName>
+                <Identifier>PERIDOT_SPI_FLASH_ENABLE</Identifier>
                 <Type>BooleanDefineOnly</Type>
                 <Value>true</Value>
-                <DefaultValue>0</DefaultValue>
+                <DefaultValue>1</DefaultValue>
                 <DestinationFile>system_h_define</DestinationFile>
-                <Description>Enable boot from flash (ALT_ALLOW_CODE_RESET must be disabled)</Description>
+                <Description>Enable flash feature</Description>
                 <Restrictions>none</Restrictions>
                 <Enabled>false</Enabled>
                 <Group xsi:nil="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
         </Setting>
         <Setting>
-                <SettingName>peridot_swi_driver.flash_boot.offset</SettingName>
-                <Identifier>SWI_FLASH_BOOT_OFFSET</Identifier>
+                <SettingName>peridot_spi_master_driver.flash.name</SettingName>
+                <Identifier>PERIDOT_SPI_FLASH_NAME</Identifier>
+                <Type>UnquotedString</Type>
+                <Value>epcs</Value>
+                <DefaultValue>none</DefaultValue>
+                <DestinationFile>system_h_define</DestinationFile>
+                <Description>Slave descriptor for SPI flash</Description>
+                <Restrictions>none</Restrictions>
+                <Enabled>false</Enabled>
+                <Group xsi:nil="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+        </Setting>
+        <Setting>
+                <SettingName>peridot_spi_master_driver.flash.slave_number</SettingName>
+                <Identifier>PERIDOT_SPI_FLASH_SLAVE_NUMBER</Identifier>
+                <Type>DecimalNumber</Type>
+                <Value>0</Value>
+                <DefaultValue>0</DefaultValue>
+                <DestinationFile>system_h_define</DestinationFile>
+                <Description>Slave number (SS_N bit number) for SPI flash device</Description>
+                <Restrictions>none</Restrictions>
+                <Enabled>false</Enabled>
+                <Group xsi:nil="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+        </Setting>
+        <Setting>
+                <SettingName>peridot_spi_master_driver.flash.bitrate</SettingName>
+                <Identifier>PERIDOT_SPI_FLASH_BITRATE</Identifier>
+                <Type>DecimalNumber</Type>
+                <Value>10000000</Value>
+                <DefaultValue>10000000</DefaultValue>
+                <DestinationFile>system_h_define</DestinationFile>
+                <Description>Bitrate for SPI flash device</Description>
+                <Restrictions>none</Restrictions>
+                <Enabled>false</Enabled>
+                <Group xsi:nil="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+        </Setting>
+        <Setting>
+                <SettingName>peridot_spi_master_driver.flash_boot.enable</SettingName>
+                <Identifier>PERIDOT_SPI_FLASH_BOOT_ENABLE</Identifier>
+                <Type>BooleanDefineOnly</Type>
+                <Value>true</Value>
+                <DefaultValue>0</DefaultValue>
+                <DestinationFile>system_h_define</DestinationFile>
+                <Description>Enable boot from flash (hal.linker.allow_code_at_reset must be disabled)</Description>
+                <Restrictions>none</Restrictions>
+                <Enabled>false</Enabled>
+                <Group xsi:nil="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+        </Setting>
+        <Setting>
+                <SettingName>peridot_spi_master_driver.flash_boot.offset</SettingName>
+                <Identifier>PERIDOT_SPI_FLASH_BOOT_OFFSET</Identifier>
                 <Type>HexNumber</Type>
                 <Value>0x0</Value>
                 <DefaultValue>0</DefaultValue>
@@ -1571,8 +1631,8 @@
                 <Group xsi:nil="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
         </Setting>
         <Setting>
-                <SettingName>peridot_swi_driver.flash_boot.decompress.lz4</SettingName>
-                <Identifier>SWI_FLASH_BOOT_DECOMPRESS_LZ4</Identifier>
+                <SettingName>peridot_spi_master_driver.flash_boot.decompress.lz4</SettingName>
+                <Identifier>PERIDOT_SPI_FLASH_BOOT_DECOMPRESS_LZ4</Identifier>
                 <Type>BooleanDefineOnly</Type>
                 <Value>true</Value>
                 <DefaultValue>0</DefaultValue>
@@ -1581,6 +1641,18 @@
                 <Restrictions>none</Restrictions>
                 <Enabled>false</Enabled>
                 <Group xsi:nil="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+        </Setting>
+        <Setting>
+                <SettingName>peridot_spi_master_driver.flash_boot.after_cfg</SettingName>
+                <Identifier>peridot_spi_master_driver_PERIDOT_SPI_FLASH_BOOT_AFTER_CFG</Identifier>
+                <Type>BooleanDefineOnly</Type>
+                <Value>0</Value>
+                <DefaultValue>0</DefaultValue>
+                <DestinationFile>system_h_define</DestinationFile>
+                <Description>Load ELF image after FPGA configuration data</Description>
+                <Restrictions>none</Restrictions>
+                <Enabled>true</Enabled>
+                <Group>module_setting</Group>
         </Setting>
         <Setting>
                 <SettingName>altera_avalon_uart_driver.enable_small_driver</SettingName>
@@ -1619,16 +1691,40 @@
                 <attributes>flash, memory, non-volatile</attributes>
         </MemoryMap>
         <MemoryMap>
-                <slaveDescriptor>peridot_hostbridge</slaveDescriptor>
-                <addressRange>0x10000000 - 0x1000001F</addressRange>
-                <addressSpan>32</addressSpan>
+                <slaveDescriptor>epcs</slaveDescriptor>
+                <addressRange>0x0FF00000 - 0x0FF00007</addressRange>
+                <addressSpan>8</addressSpan>
                 <attributes/>
+        </MemoryMap>
+        <MemoryMap>
+                <slaveDescriptor>sysid</slaveDescriptor>
+                <addressRange>0x10000000 - 0x10000007</addressRange>
+                <addressSpan>8</addressSpan>
+                <attributes/>
+        </MemoryMap>
+        <MemoryMap>
+                <slaveDescriptor>hostbridge</slaveDescriptor>
+                <addressRange>0x10000010 - 0x1000001F</addressRange>
+                <addressSpan>16</addressSpan>
+                <attributes>printable</attributes>
         </MemoryMap>
         <MemoryMap>
                 <slaveDescriptor>systimer</slaveDescriptor>
                 <addressRange>0x10000020 - 0x1000003F</addressRange>
                 <addressSpan>32</addressSpan>
                 <attributes>timer</attributes>
+        </MemoryMap>
+        <MemoryMap>
+                <slaveDescriptor>led</slaveDescriptor>
+                <addressRange>0x10000040 - 0x1000004F</addressRange>
+                <addressSpan>16</addressSpan>
+                <attributes/>
+        </MemoryMap>
+        <MemoryMap>
+                <slaveDescriptor>dual_boot_0</slaveDescriptor>
+                <addressRange>0x10000060 - 0x1000007F</addressRange>
+                <addressSpan>32</addressSpan>
+                <attributes/>
         </MemoryMap>
         <MemoryMap>
                 <slaveDescriptor>pfc</slaveDescriptor>
@@ -1700,6 +1796,10 @@
         </DriverPackageInfo>
         <SoftwarePackageInfo>
                 <name>rubic_agent</name>
+                <version>default</version>
+        </SoftwarePackageInfo>
+        <SoftwarePackageInfo>
+                <name>peridot_sw_hostbridge_gen2</name>
                 <version>default</version>
         </SoftwarePackageInfo>
         <SoftwarePackageInfo>
