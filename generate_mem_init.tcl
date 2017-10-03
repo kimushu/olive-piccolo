@@ -13,7 +13,7 @@
 #   	$(LD) $(APP_LDFLAGS) $(APP_CFLAGS) -o $@ ...
 #   ifneq ($(DISABLE_ELFPATCH),1)
 #   	$(ELFPATCH) $@ $(ELF_PATCH_FLAG)
-# + 	tclsh $(QUARTUS_PROJECT_DIR)/generate_mem_init.tcl $@ $(QUARTUS_PROJECT_DIR)
+# + 	tclsh $(dir $(SOPCINFO_FILE))/generate_mem_init.tcl $@ $(dir $(SOPCINFO_FILE))
 #   endif
 #
 # 3. Every time you build your application, memory initialization files
@@ -434,9 +434,21 @@ proc main { argv0 argv } {
 	}
 
 	foreach module $modules {
+		set temp [ lindex [ XML_list_tags module parameter name initMemContent ] 0 ]
+		if { $temp != "" } {
+			set temp [ lindex [ XML_list_tags temp value ] 0 ]
+			set temp [ XML_get_data temp ]
+			if { $temp == "false" } { continue }
+		}
+		set temp [ lindex [ XML_list_tags module parameter name initFlashContent ] 0 ]
+		if { $temp != "" } {
+			set temp [ lindex [ XML_list_tags temp value ] 0 ]
+			set temp [ XML_get_data temp ]
+			if { $temp == "false" } { continue }
+		}
 		set temp [ lindex [ XML_list_tags module parameter name initializationFileName ] 0 ]
-		set mod_path [ lindex [ XML_get_attr module path ] 1 ]
 		if { $temp == "" } { continue }
+		set mod_path [ lindex [ XML_get_attr module path ] 1 ]
 		if { $verbose > 0 } {
 			set kind [ lindex [ XML_get_attr module kind ] 1 ]
 			puts stderr "Info: Found module with memory initialization ($kind @ $mod_path)"
@@ -521,12 +533,22 @@ proc main { argv0 argv } {
 
 		set data [ string repeat $filler $span ]
 		set init 0
+		set used 0
 		foreach ph [ lrange $phlist 1 end ] {
 			array set phdr $ph
 			set ofs [ expr $phdr(p_paddr) - $base ]
 			if { $ofs < 0 } { continue }
-			if { $phdr(p_filesz) > ($span - $ofs) } { continue }
+			if { $ofs >= $span } { continue }
+			if { $phdr(p_filesz) > ($span - $ofs) } {
+				puts stderr "Error: Program exceeds memory size! ([
+					format "0x%08x-0x%08x" $phdr(p_paddr) [ expr $phdr(p_paddr) + $phdr(p_filesz) ]
+				])"
+				exit 1
+			}
 			set last [ expr $ofs + $phdr(p_filesz) - 1 ]
+			if { ($last + 1) > $used } {
+				set used [ expr $last + 1 ]
+			}
 			set data [ string replace $data $ofs $last $phdr(content) ]
 			set init 1
 		}
@@ -535,7 +557,8 @@ proc main { argv0 argv } {
 			puts stderr "Info: Skipping $outfile"
 			continue
 		}
-		puts stderr "Info: Generating $outfile"
+		set ratio [ expr $used * 100 / $span ]
+		puts stderr "Info: Generating $outfile : $used bytes ($ratio%) used"
 		switch -glob -nocase $outfile {
 			*.hex {
 				generate_hex $outfile data $base $span $width $baddr
