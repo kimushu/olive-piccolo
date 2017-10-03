@@ -6,3 +6,4 @@ mem_init
 *.map
 *.elf
 lib*_bsp.a
+.force_*

@@ -4,7 +4,7 @@
  * Machine generated for CPU 'nios2_fast' in SOPC Builder design 'olive_std_core'
  * SOPC Builder design path: ../../olive_std_core.sopcinfo
  *
- * Generated: Mon Oct 02 20:24:24 JST 2017
+ * Generated: Tue Oct 03 17:00:48 JST 2017
  */
 
 /*
@@ -487,7 +487,7 @@
 #define SYSID_IRQ_INTERRUPT_CONTROLLER_ID -1
 #define SYSID_NAME "/dev/sysid"
 #define SYSID_SPAN 8
-#define SYSID_TIMESTAMP 1506921214
+#define SYSID_TIMESTAMP 1507016425
 #define SYSID_TYPE "altera_avalon_sysid_qsys"
 
 
