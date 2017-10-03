@@ -2,17 +2,17 @@
 		port (
 			clk_100m_clk           : in    std_logic                     := 'X';             -- clk
 			clk_25m_clk            : in    std_logic                     := 'X';             -- clk
-			epcs_cso_n             : out   std_logic;                                        -- cso_n
-			epcs_dclk              : out   std_logic;                                        -- dclk
-			epcs_asdo              : out   std_logic;                                        -- asdo
-			epcs_data0             : in    std_logic                     := 'X';             -- data0
+			epcs_ss_n              : out   std_logic;                                        -- ss_n
+			epcs_sclk              : out   std_logic;                                        -- sclk
+			epcs_mosi              : out   std_logic;                                        -- mosi
+			epcs_miso              : in    std_logic                     := 'X';             -- miso
 			hostuart_rxd           : in    std_logic                     := 'X';             -- rxd
 			hostuart_txd           : out   std_logic;                                        -- txd
 			i2c_scl                : in    std_logic                     := 'X';             -- scl
 			i2c_scl_oe             : out   std_logic;                                        -- scl_oe
 			i2c_sda                : in    std_logic                     := 'X';             -- sda
 			i2c_sda_oe             : out   std_logic;                                        -- sda_oe
-			mreset_mreset_n        : in    std_logic                     := 'X';             -- mreset_n
+			led_export             : out   std_logic;                                        -- export
 			nios2_cpu_resetrequest : in    std_logic                     := 'X';             -- cpu_resetrequest
 			nios2_cpu_resettaken   : out   std_logic;                                        -- cpu_resettaken
 			pfcif_pfc_clk          : out   std_logic;                                        -- pfc_clk
@@ -35,8 +35,6 @@
 			spi_sclk               : out   std_logic;                                        -- sclk
 			spi_mosi               : out   std_logic;                                        -- mosi
 			spi_miso               : in    std_logic                     := 'X';             -- miso
-			swi_cpu_resetrequest   : out   std_logic;                                        -- cpu_resetrequest
-			swi_led                : out   std_logic_vector(3 downto 0);                     -- led
 			uart0_rxd              : in    std_logic                     := 'X';             -- rxd
 			uart0_txd              : out   std_logic;                                        -- txd
 			uart0_cts_n            : in    std_logic                     := 'X';             -- cts_n

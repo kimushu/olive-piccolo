@@ -11,18 +11,18 @@
 // agreement for further details.
 
 
-// $Id: //acds/rel/16.1/ip/merlin/altera_irq_mapper/altera_irq_mapper.sv.terp#1 $
+// $Id: //acds/rel/17.0std/ip/merlin/altera_irq_mapper/altera_irq_mapper.sv.terp#1 $
 // $Revision: #1 $
-// $Date: 2016/08/07 $
+// $Date: 2017/01/22 $
 // $Author: swbranch $
 
 // -------------------------------------------------------
 // Altera IRQ Mapper
 //
 // Parameters
-//   NUM_RCVRS        : 6
+//   NUM_RCVRS        : 7
 //   SENDER_IRW_WIDTH : 32
-//   IRQ_MAP          : 0:31,1:0,2:8,3:9,4:4,5:5
+//   IRQ_MAP          : 0:0,1:8,2:9,3:4,4:5,5:1,6:2
 //
 // -------------------------------------------------------
 
@@ -45,6 +45,7 @@ module olive_std_core_irq_mapper
     input                receiver3_irq,
     input                receiver4_irq,
     input                receiver5_irq,
+    input                receiver6_irq,
 
     // -------------------
     // Command Source (Output)
@@ -56,12 +57,13 @@ module olive_std_core_irq_mapper
     always @* begin
 	sender_irq = 0;
 
-        sender_irq[31] = receiver0_irq;
-        sender_irq[0] = receiver1_irq;
-        sender_irq[8] = receiver2_irq;
-        sender_irq[9] = receiver3_irq;
-        sender_irq[4] = receiver4_irq;
-        sender_irq[5] = receiver5_irq;
+        sender_irq[0] = receiver0_irq;
+        sender_irq[8] = receiver1_irq;
+        sender_irq[9] = receiver2_irq;
+        sender_irq[4] = receiver3_irq;
+        sender_irq[5] = receiver4_irq;
+        sender_irq[1] = receiver5_irq;
+        sender_irq[2] = receiver6_irq;
     end
 
 endmodule

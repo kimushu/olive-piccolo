@@ -2,17 +2,17 @@
 module olive_std_core (
 	clk_100m_clk,
 	clk_25m_clk,
-	epcs_cso_n,
-	epcs_dclk,
-	epcs_asdo,
-	epcs_data0,
+	epcs_ss_n,
+	epcs_sclk,
+	epcs_mosi,
+	epcs_miso,
 	hostuart_rxd,
 	hostuart_txd,
 	i2c_scl,
 	i2c_scl_oe,
 	i2c_sda,
 	i2c_sda_oe,
-	mreset_mreset_n,
+	led_export,
 	nios2_cpu_resetrequest,
 	nios2_cpu_resettaken,
 	pfcif_pfc_clk,
@@ -35,8 +35,6 @@ module olive_std_core (
 	spi_sclk,
 	spi_mosi,
 	spi_miso,
-	swi_cpu_resetrequest,
-	swi_led,
 	uart0_rxd,
 	uart0_txd,
 	uart0_cts_n,
@@ -48,17 +46,17 @@ module olive_std_core (
 
 	input		clk_100m_clk;
 	input		clk_25m_clk;
-	output		epcs_cso_n;
-	output		epcs_dclk;
-	output		epcs_asdo;
-	input		epcs_data0;
+	output		epcs_ss_n;
+	output		epcs_sclk;
+	output		epcs_mosi;
+	input		epcs_miso;
 	input		hostuart_rxd;
 	output		hostuart_txd;
 	input		i2c_scl;
 	output		i2c_scl_oe;
 	input		i2c_sda;
 	output		i2c_sda_oe;
-	input		mreset_mreset_n;
+	output		led_export;
 	input		nios2_cpu_resetrequest;
 	output		nios2_cpu_resettaken;
 	output		pfcif_pfc_clk;
@@ -81,8 +79,6 @@ module olive_std_core (
 	output		spi_sclk;
 	output		spi_mosi;
 	input		spi_miso;
-	output		swi_cpu_resetrequest;
-	output	[3:0]	swi_led;
 	input		uart0_rxd;
 	output		uart0_txd;
 	input		uart0_cts_n;

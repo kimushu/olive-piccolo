@@ -2,17 +2,17 @@
 		port (
 			clk_100m_clk           : in    std_logic                     := 'X';             -- clk
 			clk_25m_clk            : in    std_logic                     := 'X';             -- clk
-			epcs_cso_n             : out   std_logic;                                        -- cso_n
-			epcs_dclk              : out   std_logic;                                        -- dclk
-			epcs_asdo              : out   std_logic;                                        -- asdo
-			epcs_data0             : in    std_logic                     := 'X';             -- data0
+			epcs_ss_n              : out   std_logic;                                        -- ss_n
+			epcs_sclk              : out   std_logic;                                        -- sclk
+			epcs_mosi              : out   std_logic;                                        -- mosi
+			epcs_miso              : in    std_logic                     := 'X';             -- miso
 			hostuart_rxd           : in    std_logic                     := 'X';             -- rxd
 			hostuart_txd           : out   std_logic;                                        -- txd
 			i2c_scl                : in    std_logic                     := 'X';             -- scl
 			i2c_scl_oe             : out   std_logic;                                        -- scl_oe
 			i2c_sda                : in    std_logic                     := 'X';             -- sda
 			i2c_sda_oe             : out   std_logic;                                        -- sda_oe
-			mreset_mreset_n        : in    std_logic                     := 'X';             -- mreset_n
+			led_export             : out   std_logic;                                        -- export
 			nios2_cpu_resetrequest : in    std_logic                     := 'X';             -- cpu_resetrequest
 			nios2_cpu_resettaken   : out   std_logic;                                        -- cpu_resettaken
 			pfcif_pfc_clk          : out   std_logic;                                        -- pfc_clk
@@ -35,8 +35,6 @@
 			spi_sclk               : out   std_logic;                                        -- sclk
 			spi_mosi               : out   std_logic;                                        -- mosi
 			spi_miso               : in    std_logic                     := 'X';             -- miso
-			swi_cpu_resetrequest   : out   std_logic;                                        -- cpu_resetrequest
-			swi_led                : out   std_logic_vector(3 downto 0);                     -- led
 			uart0_rxd              : in    std_logic                     := 'X';             -- rxd
 			uart0_txd              : out   std_logic;                                        -- txd
 			uart0_cts_n            : in    std_logic                     := 'X';             -- cts_n
@@ -52,17 +50,17 @@
 		port map (
 			clk_100m_clk           => CONNECTED_TO_clk_100m_clk,           -- clk_100m.clk
 			clk_25m_clk            => CONNECTED_TO_clk_25m_clk,            --  clk_25m.clk
-			epcs_cso_n             => CONNECTED_TO_epcs_cso_n,             --     epcs.cso_n
-			epcs_dclk              => CONNECTED_TO_epcs_dclk,              --         .dclk
-			epcs_asdo              => CONNECTED_TO_epcs_asdo,              --         .asdo
-			epcs_data0             => CONNECTED_TO_epcs_data0,             --         .data0
+			epcs_ss_n              => CONNECTED_TO_epcs_ss_n,              --     epcs.ss_n
+			epcs_sclk              => CONNECTED_TO_epcs_sclk,              --         .sclk
+			epcs_mosi              => CONNECTED_TO_epcs_mosi,              --         .mosi
+			epcs_miso              => CONNECTED_TO_epcs_miso,              --         .miso
 			hostuart_rxd           => CONNECTED_TO_hostuart_rxd,           -- hostuart.rxd
 			hostuart_txd           => CONNECTED_TO_hostuart_txd,           --         .txd
 			i2c_scl                => CONNECTED_TO_i2c_scl,                --      i2c.scl
 			i2c_scl_oe             => CONNECTED_TO_i2c_scl_oe,             --         .scl_oe
 			i2c_sda                => CONNECTED_TO_i2c_sda,                --         .sda
 			i2c_sda_oe             => CONNECTED_TO_i2c_sda_oe,             --         .sda_oe
-			mreset_mreset_n        => CONNECTED_TO_mreset_mreset_n,        --   mreset.mreset_n
+			led_export             => CONNECTED_TO_led_export,             --      led.export
 			nios2_cpu_resetrequest => CONNECTED_TO_nios2_cpu_resetrequest, --    nios2.cpu_resetrequest
 			nios2_cpu_resettaken   => CONNECTED_TO_nios2_cpu_resettaken,   --         .cpu_resettaken
 			pfcif_pfc_clk          => CONNECTED_TO_pfcif_pfc_clk,          --    pfcif.pfc_clk
@@ -85,8 +83,6 @@
 			spi_sclk               => CONNECTED_TO_spi_sclk,               --         .sclk
 			spi_mosi               => CONNECTED_TO_spi_mosi,               --         .mosi
 			spi_miso               => CONNECTED_TO_spi_miso,               --         .miso
-			swi_cpu_resetrequest   => CONNECTED_TO_swi_cpu_resetrequest,   --      swi.cpu_resetrequest
-			swi_led                => CONNECTED_TO_swi_led,                --         .led
 			uart0_rxd              => CONNECTED_TO_uart0_rxd,              --    uart0.rxd
 			uart0_txd              => CONNECTED_TO_uart0_txd,              --         .txd
 			uart0_cts_n            => CONNECTED_TO_uart0_cts_n,            --         .cts_n

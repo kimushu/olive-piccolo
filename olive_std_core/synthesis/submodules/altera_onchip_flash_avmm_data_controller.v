@@ -175,7 +175,7 @@ module altera_onchip_flash_avmm_data_controller (
     input [AVMM_DATA_BURSTCOUNT_WIDTH-1:0] avmm_burstcount;
     output avmm_waitrequest;
     output avmm_readdatavalid;
-    output [DATA_WIDTH-1:0] avmm_readdata;
+    output reg [DATA_WIDTH-1:0] avmm_readdata;
         
     // To/From Avalon_MM csr slave interface
     input [31:0] csr_control;
@@ -197,6 +197,7 @@ module altera_onchip_flash_avmm_data_controller (
     reg [2:0] flash_sector_addr;
     reg [FLASH_ADDR_WIDTH-1:0] flash_page_addr;
     reg [FLASH_ADDR_WIDTH-1:0] flash_seq_read_ardin;
+    reg [FLASH_ADDR_WIDTH-1:0] flash_addr_wire_neg_reg;
     reg [FLASH_ADDR_ALIGNMENT_BITS-1:0] flash_ardin_align_reg;
     reg [FLASH_ADDR_ALIGNMENT_BITS-1:0] flash_ardin_align_backup_reg;
     reg [AVMM_DATA_BURSTCOUNT_WIDTH-1:0] avmm_burstcount_input_reg;
@@ -277,12 +278,22 @@ module altera_onchip_flash_avmm_data_controller (
             assign is_busy = is_erase_busy || is_write_busy || is_read_busy;
             assign flash_drdin = flash_drdin_neg_reg;
             assign write_wait_w = (write_wait || write_wait_neg);
-            assign flash_addr_wire = 
-                (valid_csr_erase && valid_csr_sector_erase_addr) ? { flash_sector_addr, 1'b0, {(19){1'b1}} } : flash_page_addr;
             assign is_erase_addr_writable =
                 (valid_csr_erase && valid_csr_sector_erase_addr) ? is_sector_writable : is_addr_writable;
             assign csr_write_protection_mode = csr_control[27:23];
             assign is_valid_write_burst_count = (avmm_burstcount == 1);
+            always @ (negedge clock) begin
+                if (~reset_n_w) begin
+                    flash_addr_wire_neg_reg <= 0;
+                end
+                else if (valid_csr_erase && valid_csr_sector_erase_addr) begin
+                    flash_addr_wire_neg_reg <=  { flash_sector_addr, 1'b0, {(19){1'b1}}};
+                end
+                else begin
+                    flash_addr_wire_neg_reg <= flash_page_addr;
+                end
+            end
+            
         end
         else begin
             assign is_erase_busy = 1'b0;
@@ -291,7 +302,14 @@ module altera_onchip_flash_avmm_data_controller (
             assign is_busy = is_read_busy;
             assign flash_drdin = 1'b1;
             assign write_wait_w = 1'b0;
-            assign flash_addr_wire = flash_page_addr;
+             always @ (negedge clock) begin
+                if (~reset_n_w) begin
+                    flash_addr_wire_neg_reg <= 0;
+                end
+                else begin
+                    flash_addr_wire_neg_reg <= flash_page_addr;
+                end
+            end
         end
     endgenerate    
     
@@ -335,10 +353,17 @@ module altera_onchip_flash_avmm_data_controller (
     assign flash_nprogram = ~(write_state == WRITE_STATE_WAIT_BUSY || write_state == WRITE_STATE_WAIT_DONE);
     assign flash_xe_ye = ((~is_busy && avmm_read) || is_read_busy);
     assign flash_se = flash_se_neg_reg;
-    assign flash_ardin = flash_addr_wire;
+    assign flash_ardin = flash_addr_wire_neg_reg;
 
-    assign avmm_readdatavalid = avmm_readdatavalid_reg;
-    assign avmm_readdata = (csr_status_r_pass) ? flash_drdout : 32'hffffffff;
+    assign avmm_readdatavalid = avmm_readdatavalid_reg;    
+    always @(negedge clock) begin
+        if (~reset_n_w | ~csr_status_r_pass) begin
+            avmm_readdata <= 32'hffffffff;
+         end
+         else begin
+            avmm_readdata <= flash_drdout;
+         end
+    end
 
     // avoid async reset removal issue 
     assign reset_n_w = reset_n_reg2;
@@ -469,7 +494,7 @@ module altera_onchip_flash_avmm_data_controller (
             flash_page_addr <= flash_page_addr_wire;
         end
     end
-    
+
     generate // generate always block based on read and write mode. Write and erase operation is unnecessary in read only mode.
         if (READ_AND_WRITE_MODE == 1) begin
             // -------------------------------------------------------------------

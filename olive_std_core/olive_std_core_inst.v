@@ -1,17 +1,17 @@
 	olive_std_core u0 (
 		.clk_100m_clk           (<connected-to-clk_100m_clk>),           // clk_100m.clk
 		.clk_25m_clk            (<connected-to-clk_25m_clk>),            //  clk_25m.clk
-		.epcs_cso_n             (<connected-to-epcs_cso_n>),             //     epcs.cso_n
-		.epcs_dclk              (<connected-to-epcs_dclk>),              //         .dclk
-		.epcs_asdo              (<connected-to-epcs_asdo>),              //         .asdo
-		.epcs_data0             (<connected-to-epcs_data0>),             //         .data0
+		.epcs_ss_n              (<connected-to-epcs_ss_n>),              //     epcs.ss_n
+		.epcs_sclk              (<connected-to-epcs_sclk>),              //         .sclk
+		.epcs_mosi              (<connected-to-epcs_mosi>),              //         .mosi
+		.epcs_miso              (<connected-to-epcs_miso>),              //         .miso
 		.hostuart_rxd           (<connected-to-hostuart_rxd>),           // hostuart.rxd
 		.hostuart_txd           (<connected-to-hostuart_txd>),           //         .txd
 		.i2c_scl                (<connected-to-i2c_scl>),                //      i2c.scl
 		.i2c_scl_oe             (<connected-to-i2c_scl_oe>),             //         .scl_oe
 		.i2c_sda                (<connected-to-i2c_sda>),                //         .sda
 		.i2c_sda_oe             (<connected-to-i2c_sda_oe>),             //         .sda_oe
-		.mreset_mreset_n        (<connected-to-mreset_mreset_n>),        //   mreset.mreset_n
+		.led_export             (<connected-to-led_export>),             //      led.export
 		.nios2_cpu_resetrequest (<connected-to-nios2_cpu_resetrequest>), //    nios2.cpu_resetrequest
 		.nios2_cpu_resettaken   (<connected-to-nios2_cpu_resettaken>),   //         .cpu_resettaken
 		.pfcif_pfc_clk          (<connected-to-pfcif_pfc_clk>),          //    pfcif.pfc_clk
@@ -34,8 +34,6 @@
 		.spi_sclk               (<connected-to-spi_sclk>),               //         .sclk
 		.spi_mosi               (<connected-to-spi_mosi>),               //         .mosi
 		.spi_miso               (<connected-to-spi_miso>),               //         .miso
-		.swi_cpu_resetrequest   (<connected-to-swi_cpu_resetrequest>),   //      swi.cpu_resetrequest
-		.swi_led                (<connected-to-swi_led>),                //         .led
 		.uart0_rxd              (<connected-to-uart0_rxd>),              //    uart0.rxd
 		.uart0_txd              (<connected-to-uart0_txd>),              //         .txd
 		.uart0_cts_n            (<connected-to-uart0_cts_n>),            //         .cts_n
