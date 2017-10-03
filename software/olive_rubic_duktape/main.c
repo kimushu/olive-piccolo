@@ -12,19 +12,13 @@
 
 #include "named_fifo.h"
 #include "rubic_agent.h"
+#include "bson.h"
 #include "epcs_fatfs.h"
 
 static const char CJS_PROLOGUE[] = "(function(require,module,exports){";
 static const int CJS_PROLOGUE_LEN = sizeof(CJS_PROLOGUE) - 1;
 static const char CJS_EPILOGUE[] = "\n})(require,m={exports:{}},m.exports)";
 static const int CJS_EPILOGUE_LEN = sizeof(CJS_EPILOGUE) - 1;
-
-volatile int abort_request = 0;
-
-static void set_abort_request(int reason)
-{
-	abort_request = 1;
-}
 
 static int compile_file(duk_context *ctx, const char *filename)
 {
@@ -75,33 +69,40 @@ static int compile_file(duk_context *ctx, const char *filename)
 
 int main(void)
 {
-	rubic_agent_set_interrupt_handler(set_abort_request);
-
 	for (;;) {
-		rubic_agent_message msg;
+		const char *request;
+		const void *params = rubic_agent_wait_request(&request, NULL);
+		int off_target, off_debug, enable_debug;
+		const char *target;
+		
+		if (bson_get_props(params, "target", &off_target, "debug", &off_debug, NULL) < 0) {
+			goto invalid_params;
+		}
+		target = bson_get_string(params, off_target, NULL);
+		if (!target) {
+			goto invalid_params;
+		}
+		enable_debug = bson_get_boolean(params, off_debug, 0);
 
-		abort_request = 0;
-		rubic_agent_wait_request(&msg);
-
-		if (msg.request == RUBIC_AGENT_REQUEST_START) {
-			named_fifo_flush(NAMED_FIFO_STDIN_NAME);
-			named_fifo_flush(NAMED_FIFO_STDOUT_NAME);
-			named_fifo_flush(NAMED_FIFO_STDERR_NAME);
+		if (strcmp(request, "start") == 0) {
 			duk_context *ctx = duk_create_heap_default();
 			dux_initialize(ctx);
-			if (compile_file(ctx, msg.body.start.program) == 0 && duk_pcall(ctx, 0) == 0) {
+			if (compile_file(ctx, target) == 0 && duk_pcall(ctx, 0) == 0) {
 				// Start tick
-				while (!abort_request && dux_tick(ctx));
+				while (!rubic_agent_is_aborting() && dux_tick(ctx));
 			} else {
 				// Error
 				fprintf(stderr, "Error: Compile error\n%s\n", duk_safe_to_string(ctx, -1));
 			}
 			duk_destroy_heap(ctx);
-		} else if (msg.request == RUBIC_AGENT_REQUEST_FORMAT) {
+		} else if (strcmp(request, "format") == 0) {
 			epcs_fatfs_format();
+		} else {
+			// unknown request
 		}
 
-		rubic_agent_send_response(&msg);
+invalid_params:
+		rubic_agent_finish_request();
 	}
 	return 0;
 }

@@ -8,20 +8,16 @@
 #include "peridot_i2c_master.h"
 #include "peridot_spi_master.h"
 #include "peridot_pfc_interface.h"
+#include "altera_avalon_pio_regs.h"
+#include "system.h"
 
-extern peridot_i2c_master_state i2c;
-const peridot_i2c_master_state *peridot_i2c_drivers[] =
+void *peridot_query_start_led(int *width, int *offset)
 {
-	&i2c,
-	NULL
-};
-
-extern peridot_spi_master_state spi;
-const peridot_spi_master_state *peridot_spi_drivers[] =
-{
-	&spi,
-	NULL
-};
+	alt_u32 addr = (alt_u32)IOADDR_ALTERA_AVALON_PIO_DATA(LED_BASE);
+	*width = LED_DATA_WIDTH;
+	*offset = 0;
+	return (void *)(addr | (1u << 31));
+}
 
 const peridot_pfc_map_io i2c_scl_pfc_map =
 {
@@ -63,7 +59,14 @@ const peridot_pfc_map_io i2c_sda_pfc_map =
 	},
 };
 
-const peridot_pfc_map_out spi_ss_n_pfc_map =
+extern peridot_i2c_master_state i2c;
+const peridot_i2c_master_state *peridot_i2c_drivers[] =
+{
+	&i2c,
+	NULL
+};
+
+static const peridot_pfc_map_out spi_ss_n_pfc_map =
 {
 	.out_funcs =
 	{
@@ -74,7 +77,7 @@ const peridot_pfc_map_out spi_ss_n_pfc_map =
 	},
 };
 
-const peridot_pfc_map_out spi_sclk_pfc_map =
+static const peridot_pfc_map_out spi_sclk_pfc_map =
 {
 	.out_funcs =
 	{
@@ -85,7 +88,7 @@ const peridot_pfc_map_out spi_sclk_pfc_map =
 	},
 };
 
-const peridot_pfc_map_out spi_mosi_pfc_map =
+static const peridot_pfc_map_out spi_mosi_pfc_map =
 {
 	.out_funcs =
 	{
@@ -96,7 +99,7 @@ const peridot_pfc_map_out spi_mosi_pfc_map =
 	},
 };
 
-const peridot_pfc_map_in spi_miso_pfc_map =
+static const peridot_pfc_map_in spi_miso_pfc_map =
 {
 	.in_bank = 1,
 	.in_func = 0,
@@ -107,6 +110,20 @@ const peridot_pfc_map_in spi_miso_pfc_map =
 		-1,-1,-1,-1,-1,-1,-1,-1, /* Bank 2 */
 		-1,-1,-1,-1,-1,-1,-1,-1, /* Bank 3 */
 	},
+};
+
+extern peridot_spi_master_state spi;
+static const peridot_spi_master_pfc_map spi_map = {
+	&spi,
+	&spi_ss_n_pfc_map,
+	&spi_sclk_pfc_map,
+	&spi_mosi_pfc_map,
+	&spi_miso_pfc_map,
+};
+const peridot_spi_master_pfc_map *peridot_spi_drivers[] =
+{
+	&spi_map,
+	NULL
 };
 
 const peridot_pfc_map_out_ch servo_pwm_pfc_map =
@@ -144,4 +161,3 @@ const peridot_pfc_map_out_ch servo_dsm_pfc_map =
 		-1,-1,-1,-1,-1,-1,-1,-1, /* Bank 3 */
 	},
 };
-
