@@ -1,2 +1,2 @@
-/duktape-extension/dux.*
+/duktape-extension-*
 /duktape-*/duktape.*
