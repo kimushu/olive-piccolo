@@ -14,3 +14,7 @@ simulation
 vsim.wlf
 work
 transcript
+
+# Others
+node_modules
+/*.zip
