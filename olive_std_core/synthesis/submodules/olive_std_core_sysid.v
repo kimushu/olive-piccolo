@@ -49,7 +49,7 @@ module olive_std_core_sysid (
 
   wire    [ 31: 0] readdata;
   //control_slave, which is an e_avalon_slave
-  assign readdata = address ? 1507016425 : 1923109377;
+  assign readdata = address ? 1507084121 : 1923109377;
 
 endmodule
 

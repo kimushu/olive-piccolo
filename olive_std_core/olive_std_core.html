@@ -67,7 +67,7 @@ div.greydiv { vertical-align:top ; text-align:center ; background:#eeeeee ; bord
   </table>
   <table class="blueBar">
    <tr>
-    <td class="l">2017.10.03.16:40:25</td>
+    <td class="l">2017.10.04.11:28:42</td>
     <td class="r">Datasheet</td>
    </tr>
   </table>
@@ -96,6 +96,9 @@ div.greydiv { vertical-align:top ; text-align:center ; background:#eeeeee ; bord
      <a href="#module_nios2_fast"><b>nios2_fast</b>
      </a> Nios II 17.0
      <br/>All Components
+     <br/>&#160;&#160;
+     <a href="#module_chipid"><b>chipid</b>
+     </a> altchip_id_avm_wrapper 17.0
      <br/>&#160;&#160;
      <a href="#module_dual_boot_0"><b>dual_boot_0</b>
      </a> altera_dual_boot 17.0
@@ -159,6 +162,19 @@ div.greydiv { vertical-align:top ; text-align:center ; background:#eeeeee ; bord
    <tr>
     <td class="masterl">&#160;data_master</td>
     <td class="masterr">&#160;instruction_master</td>
+   </tr>
+   <tr>
+    <td class="slavemodule">&#160;
+     <a href="#module_chipid"><b>chipid</b>
+     </a>
+    </td>
+    <td class="empty"></td>
+    <td class="empty"></td>
+   </tr>
+   <tr>
+    <td class="slaveb">chipid&#160;</td>
+    <td class="addr"><span style="color:#989898">0x</span>10000008</td>
+    <td class="empty"></td>
    </tr>
    <tr>
     <td class="slavemodule">&#160;
@@ -356,6 +372,102 @@ div.greydiv { vertical-align:top ; text-align:center ; background:#eeeeee ; bord
     <td class="addr"><span style="color:#989898">0x</span>0f800000</td>
    </tr>
   </table>
+  <a name="module_chipid"> </a>
+  <div>
+   <hr/>
+   <h2>chipid</h2>altchip_id_avm_wrapper v17.0
+   <br/>
+   <div class="greydiv">
+    <table class="connectionboxes">
+     <tr>
+      <td class="neighbor" rowspan="2">
+       <a href="#module_peripheral_bridge">peripheral_bridge</a>
+      </td>
+      <td class="from">m0&#160;&#160;</td>
+      <td class="main" rowspan="8">chipid</td>
+     </tr>
+     <tr>
+      <td class="to">&#160;&#160;chipid</td>
+     </tr>
+     <tr style="height:6px">
+      <td></td>
+     </tr>
+     <tr>
+      <td class="neighbor" rowspan="2">
+       <a href="#module_peri_clk">peri_clk</a>
+      </td>
+      <td class="from">clk&#160;&#160;</td>
+     </tr>
+     <tr>
+      <td class="to">&#160;&#160;clock</td>
+     </tr>
+     <tr style="height:6px">
+      <td></td>
+     </tr>
+     <tr>
+      <td class="neighbor" rowspan="2">
+       <a href="#module_peri_reset">peri_reset</a>
+      </td>
+      <td class="from">out_reset&#160;&#160;</td>
+     </tr>
+     <tr>
+      <td class="to">&#160;&#160;reset</td>
+     </tr>
+    </table>
+   </div>
+   <br/>
+   <br/>
+   <table class="flowbox">
+    <tr>
+     <td class="parametersbox">
+      <h2>Parameters</h2>
+      <table>
+       <tr>
+        <td class="parametername">DEVICE_FAMILY</td>
+        <td class="parametervalue">MAX10FPGA</td>
+       </tr>
+       <tr>
+        <td class="parametername">CLOCKFREQ</td>
+        <td class="parametervalue">25000000</td>
+       </tr>
+       <tr>
+        <td class="parametername">VALIDITY_ASSERTION</td>
+        <td class="parametervalue">WAIT</td>
+       </tr>
+       <tr>
+        <td class="parametername">deviceFamily</td>
+        <td class="parametervalue">UNKNOWN</td>
+       </tr>
+       <tr>
+        <td class="parametername">generateLegacySim</td>
+        <td class="parametervalue">false</td>
+       </tr>
+      </table>
+     </td>
+    </tr>
+   </table>&#160;&#160;
+   <table class="flowbox">
+    <tr>
+     <td class="parametersbox">
+      <h2>Software Assignments</h2>
+      <table>
+       <tr>
+        <td class="parametername">STATUS_BIT</td>
+        <td class="parametervalue">0</td>
+       </tr>
+       <tr>
+        <td class="parametername">WAIT_MASTER</td>
+        <td class="parametervalue">1</td>
+       </tr>
+       <tr>
+        <td class="parametername">ZERO_INVALID</td>
+        <td class="parametervalue">0</td>
+       </tr>
+      </table>
+     </td>
+    </tr>
+   </table>
+  </div>
   <a name="module_core_clk"> </a>
   <div>
    <hr/>
@@ -2125,7 +2237,7 @@ div.greydiv { vertical-align:top ; text-align:center ; background:#eeeeee ; bord
        </tr>
        <tr>
         <td class="parametername">dataSlaveMapParam</td>
-        <td class="parametervalue">&lt;address-map&gt;&lt;slave name='sdram.s1' start='0x0' end='0x800000' type='altera_avalon_new_sdram_controller.s1' /&gt;&lt;slave name='ufm.data' start='0xF800000' end='0xF808000' type='altera_onchip_flash.data' /&gt;&lt;slave name='epcs.s1' start='0xFF00000' end='0xFF00008' type='peridot_spi_master.s1' /&gt;&lt;slave name='nios2_fast.debug_mem_slave' start='0xFFF0000' end='0xFFF0800' type='altera_nios2_gen2.debug_mem_slave' /&gt;&lt;slave name='sysid.control_slave' start='0x10000000' end='0x10000008' type='altera_avalon_sysid_qsys.control_slave' /&gt;&lt;slave name='hostbridge.s1' start='0x10000010' end='0x10000020' type='buffered_uart.s1' /&gt;&lt;slave name='systimer.s1' start='0x10000020' end='0x10000040' type='altera_avalon_timer.s1' /&gt;&lt;slave name='led.s1' start='0x10000040' end='0x10000050' type='altera_avalon_pio.s1' /&gt;&lt;slave name='dual_boot_0.avalon' start='0x10000060' end='0x10000080' type='altera_dual_boot.avalon' /&gt;&lt;slave name='pfc.avalon_slave' start='0x10000080' end='0x100000C0' type='peridot_pfc_interface.avalon_slave' /&gt;&lt;slave name='uart0.s1' start='0x10000100' end='0x10000120' type='altera_avalon_uart.s1' /&gt;&lt;slave name='uart1.s1' start='0x10000120' end='0x10000140' type='altera_avalon_uart.s1' /&gt;&lt;slave name='i2c.s1' start='0x10000140' end='0x10000148' type='peridot_i2c_master.s1' /&gt;&lt;slave name='spi.s1' start='0x10000160' end='0x10000168' type='peridot_spi_master.s1' /&gt;&lt;slave name='servo.avalon_slave' start='0x10000180' end='0x10000200' type='peridot_servo.avalon_slave' /&gt;&lt;/address-map&gt;</td>
+        <td class="parametervalue">&lt;address-map&gt;&lt;slave name='sdram.s1' start='0x0' end='0x800000' type='altera_avalon_new_sdram_controller.s1' /&gt;&lt;slave name='ufm.data' start='0xF800000' end='0xF808000' type='altera_onchip_flash.data' /&gt;&lt;slave name='epcs.s1' start='0xFF00000' end='0xFF00008' type='peridot_spi_master.s1' /&gt;&lt;slave name='nios2_fast.debug_mem_slave' start='0xFFF0000' end='0xFFF0800' type='altera_nios2_gen2.debug_mem_slave' /&gt;&lt;slave name='sysid.control_slave' start='0x10000000' end='0x10000008' type='altera_avalon_sysid_qsys.control_slave' /&gt;&lt;slave name='chipid.chipid' start='0x10000008' end='0x10000010' type='altchip_id_avm_wrapper.chipid' /&gt;&lt;slave name='hostbridge.s1' start='0x10000010' end='0x10000020' type='buffered_uart.s1' /&gt;&lt;slave name='systimer.s1' start='0x10000020' end='0x10000040' type='altera_avalon_timer.s1' /&gt;&lt;slave name='led.s1' start='0x10000040' end='0x10000050' type='altera_avalon_pio.s1' /&gt;&lt;slave name='dual_boot_0.avalon' start='0x10000060' end='0x10000080' type='altera_dual_boot.avalon' /&gt;&lt;slave name='pfc.avalon_slave' start='0x10000080' end='0x100000C0' type='peridot_pfc_interface.avalon_slave' /&gt;&lt;slave name='uart0.s1' start='0x10000100' end='0x10000120' type='altera_avalon_uart.s1' /&gt;&lt;slave name='uart1.s1' start='0x10000120' end='0x10000140' type='altera_avalon_uart.s1' /&gt;&lt;slave name='i2c.s1' start='0x10000140' end='0x10000148' type='peridot_i2c_master.s1' /&gt;&lt;slave name='spi.s1' start='0x10000160' end='0x10000168' type='peridot_spi_master.s1' /&gt;&lt;slave name='servo.avalon_slave' start='0x10000180' end='0x10000200' type='peridot_servo.avalon_slave' /&gt;&lt;/address-map&gt;</td>
        </tr>
        <tr>
         <td class="parametername">tightlyCoupledDataMaster0MapParam</td>
@@ -2381,7 +2493,7 @@ div.greydiv { vertical-align:top ; text-align:center ; background:#eeeeee ; bord
        <a href="#module_core_reset">core_reset</a>
       </td>
       <td class="from">out_reset&#160;&#160;</td>
-      <td class="main" rowspan="42">peri_clk</td>
+      <td class="main" rowspan="45">peri_clk</td>
      </tr>
      <tr>
       <td class="to">&#160;&#160;clk_in_reset</td>
@@ -2593,6 +2705,22 @@ div.greydiv { vertical-align:top ; text-align:center ; background:#eeeeee ; bord
       <td></td>
       <td class="from">clk&#160;&#160;</td>
       <td class="neighbor" rowspan="2">
+       <a href="#module_chipid">chipid</a>
+      </td>
+     </tr>
+     <tr>
+      <td></td>
+      <td></td>
+      <td class="to">&#160;&#160;clock</td>
+     </tr>
+     <tr style="height:6px">
+      <td></td>
+     </tr>
+     <tr>
+      <td></td>
+      <td></td>
+      <td class="from">clk&#160;&#160;</td>
+      <td class="neighbor" rowspan="2">
        <a href="#module_peripheral_bridge">peripheral_bridge</a>
       </td>
      </tr>
@@ -2657,7 +2785,7 @@ div.greydiv { vertical-align:top ; text-align:center ; background:#eeeeee ; bord
        <a href="#module_peri_clk">peri_clk</a>
       </td>
       <td class="from">clk&#160;&#160;</td>
-      <td class="main" rowspan="39">peri_reset</td>
+      <td class="main" rowspan="42">peri_reset</td>
      </tr>
      <tr>
       <td class="to">&#160;&#160;clk</td>
@@ -2857,6 +2985,22 @@ div.greydiv { vertical-align:top ; text-align:center ; background:#eeeeee ; bord
       <td></td>
       <td class="to">&#160;&#160;reset</td>
      </tr>
+     <tr style="height:6px">
+      <td></td>
+     </tr>
+     <tr>
+      <td></td>
+      <td></td>
+      <td class="from">out_reset&#160;&#160;</td>
+      <td class="neighbor" rowspan="2">
+       <a href="#module_chipid">chipid</a>
+      </td>
+     </tr>
+     <tr>
+      <td></td>
+      <td></td>
+      <td class="to">&#160;&#160;reset</td>
+     </tr>
     </table>
    </div>
    <br/>
@@ -2917,7 +3061,7 @@ div.greydiv { vertical-align:top ; text-align:center ; background:#eeeeee ; bord
        <a href="#module_nios2_fast">nios2_fast</a>
       </td>
       <td class="from">data_master&#160;&#160;</td>
-      <td class="main" rowspan="46">peripheral_bridge</td>
+      <td class="main" rowspan="49">peripheral_bridge</td>
      </tr>
      <tr>
       <td class="to">&#160;&#160;s0</td>
@@ -3014,6 +3158,22 @@ div.greydiv { vertical-align:top ; text-align:center ; background:#eeeeee ; bord
       <td></td>
       <td></td>
       <td class="to">&#160;&#160;avalon_slave</td>
+     </tr>
+     <tr style="height:6px">
+      <td></td>
+     </tr>
+     <tr>
+      <td></td>
+      <td></td>
+      <td class="from">m0&#160;&#160;</td>
+      <td class="neighbor" rowspan="2">
+       <a href="#module_chipid">chipid</a>
+      </td>
+     </tr>
+     <tr>
+      <td></td>
+      <td></td>
+      <td class="to">&#160;&#160;chipid</td>
      </tr>
      <tr style="height:6px">
       <td></td>
@@ -3826,7 +3986,7 @@ div.greydiv { vertical-align:top ; text-align:center ; background:#eeeeee ; bord
        </tr>
        <tr>
         <td class="parametername">timestamp</td>
-        <td class="parametervalue">1507016425</td>
+        <td class="parametervalue">1507084121</td>
        </tr>
        <tr>
         <td class="parametername">deviceFamily</td>
@@ -3851,7 +4011,7 @@ div.greydiv { vertical-align:top ; text-align:center ; background:#eeeeee ; bord
        </tr>
        <tr>
         <td class="parametername">TIMESTAMP</td>
-        <td class="parametervalue">1507016425</td>
+        <td class="parametervalue">1507084121</td>
        </tr>
       </table>
      </td>
@@ -4831,7 +4991,7 @@ div.greydiv { vertical-align:top ; text-align:center ; background:#eeeeee ; bord
   <table class="blueBar">
    <tr>
     <td class="l">generation took 0.01 seconds</td>
-    <td class="r">rendering took 0.09 seconds</td>
+    <td class="r">rendering took 0.10 seconds</td>
    </tr>
   </table>
  </body>

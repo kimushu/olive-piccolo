@@ -126,6 +126,10 @@ module olive_std_core (
 	wire         mm_interconnect_1_servo_avalon_slave_read;                // mm_interconnect_1:servo_avalon_slave_read -> servo:avs_read
 	wire         mm_interconnect_1_servo_avalon_slave_write;               // mm_interconnect_1:servo_avalon_slave_write -> servo:avs_write
 	wire  [31:0] mm_interconnect_1_servo_avalon_slave_writedata;           // mm_interconnect_1:servo_avalon_slave_writedata -> servo:avs_writedata
+	wire  [31:0] mm_interconnect_1_chipid_chipid_readdata;                 // chipid:chipid_readdata -> mm_interconnect_1:chipid_chipid_readdata
+	wire         mm_interconnect_1_chipid_chipid_waitrequest;              // chipid:chipid_waitrequest -> mm_interconnect_1:chipid_chipid_waitrequest
+	wire   [0:0] mm_interconnect_1_chipid_chipid_address;                  // mm_interconnect_1:chipid_chipid_address -> chipid:chipid_address
+	wire         mm_interconnect_1_chipid_chipid_read;                     // mm_interconnect_1:chipid_chipid_read -> chipid:chipid_read
 	wire  [31:0] mm_interconnect_1_sysid_control_slave_readdata;           // sysid:readdata -> mm_interconnect_1:sysid_control_slave_readdata
 	wire   [0:0] mm_interconnect_1_sysid_control_slave_address;            // mm_interconnect_1:sysid_control_slave_address -> sysid:address
 	wire         mm_interconnect_1_systimer_s1_chipselect;                 // mm_interconnect_1:systimer_s1_chipselect -> systimer:chipselect
@@ -184,7 +188,21 @@ module olive_std_core (
 	wire         rst_controller_reset_out_reset;                           // rst_controller:reset_out -> [rst_controller_001:reset_in0, rst_controller_002:reset_in0]
 	wire         rst_controller_001_reset_out_reset;                       // rst_controller_001:reset_out -> [epcs:rsi_reset, irq_mapper:reset, irq_synchronizer:sender_reset, irq_synchronizer_001:sender_reset, irq_synchronizer_002:sender_reset, irq_synchronizer_003:sender_reset, irq_synchronizer_004:sender_reset, irq_synchronizer_005:sender_reset, mm_interconnect_0:nios2_fast_reset_reset_bridge_in_reset_reset, nios2_fast:reset_n, peripheral_bridge:s0_reset, rst_translator:in_reset, sdram:reset_n, ufm:reset_n]
 	wire         rst_controller_001_reset_out_reset_req;                   // rst_controller_001:reset_req -> [nios2_fast:reset_req, rst_translator:reset_req_in]
-	wire         rst_controller_002_reset_out_reset;                       // rst_controller_002:reset_out -> [dual_boot_0:nreset, hostbridge:reset, i2c:rsi_reset, irq_synchronizer:receiver_reset, irq_synchronizer_001:receiver_reset, irq_synchronizer_002:receiver_reset, irq_synchronizer_003:receiver_reset, irq_synchronizer_004:receiver_reset, irq_synchronizer_005:receiver_reset, led:reset_n, mm_interconnect_1:peripheral_bridge_m0_reset_reset_bridge_in_reset_reset, peripheral_bridge:m0_reset, pfc:rsi_reset, servo:rsi_reset, spi:rsi_reset, sysid:reset_n, systimer:reset_n, uart0:reset_n, uart1:reset_n]
+	wire         rst_controller_002_reset_out_reset;                       // rst_controller_002:reset_out -> [chipid:reset, dual_boot_0:nreset, hostbridge:reset, i2c:rsi_reset, irq_synchronizer:receiver_reset, irq_synchronizer_001:receiver_reset, irq_synchronizer_002:receiver_reset, irq_synchronizer_003:receiver_reset, irq_synchronizer_004:receiver_reset, irq_synchronizer_005:receiver_reset, led:reset_n, mm_interconnect_1:peripheral_bridge_m0_reset_reset_bridge_in_reset_reset, peripheral_bridge:m0_reset, pfc:rsi_reset, servo:rsi_reset, spi:rsi_reset, sysid:reset_n, systimer:reset_n, uart0:reset_n, uart1:reset_n]
+
+	altchip_id_avm_wrapper #(
+		.DEVICE_FAMILY      ("MAX 10"),
+		.VALIDITY_ASSERTION ("WAIT")
+	) chipid (
+		.clk                (clk_25m_clk),                                 //  clock.clk
+		.reset              (rst_controller_002_reset_out_reset),          //  reset.reset
+		.chipid_address     (mm_interconnect_1_chipid_chipid_address),     // chipid.address
+		.chipid_read        (mm_interconnect_1_chipid_chipid_read),        //       .read
+		.chipid_readdata    (mm_interconnect_1_chipid_chipid_readdata),    //       .readdata
+		.chipid_waitrequest (mm_interconnect_1_chipid_chipid_waitrequest), //       .waitrequest
+		.valid_read         (1'b0),                                        // (terminated)
+		.valid_readdata     ()                                             // (terminated)
+	);
 
 	altera_dual_boot #(
 		.INTENDED_DEVICE_FAMILY ("MAX 10"),
@@ -594,6 +612,10 @@ module olive_std_core (
 		.peripheral_bridge_m0_write                             (peripheral_bridge_m0_write),                     //                                                 .write
 		.peripheral_bridge_m0_writedata                         (peripheral_bridge_m0_writedata),                 //                                                 .writedata
 		.peripheral_bridge_m0_debugaccess                       (peripheral_bridge_m0_debugaccess),               //                                                 .debugaccess
+		.chipid_chipid_address                                  (mm_interconnect_1_chipid_chipid_address),        //                                    chipid_chipid.address
+		.chipid_chipid_read                                     (mm_interconnect_1_chipid_chipid_read),           //                                                 .read
+		.chipid_chipid_readdata                                 (mm_interconnect_1_chipid_chipid_readdata),       //                                                 .readdata
+		.chipid_chipid_waitrequest                              (mm_interconnect_1_chipid_chipid_waitrequest),    //                                                 .waitrequest
 		.dual_boot_0_avalon_address                             (mm_interconnect_1_dual_boot_0_avalon_address),   //                               dual_boot_0_avalon.address
 		.dual_boot_0_avalon_write                               (mm_interconnect_1_dual_boot_0_avalon_write),     //                                                 .write
 		.dual_boot_0_avalon_read                                (mm_interconnect_1_dual_boot_0_avalon_read),      //                                                 .read

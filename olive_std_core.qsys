@@ -9,6 +9,14 @@
    categories="System" />
  <parameter name="bonusData"><![CDATA[bonusData 
 {
+   element chipid
+   {
+      datum _sortIndex
+      {
+         value = "10";
+         type = "int";
+      }
+   }
    element core_clk
    {
       datum _sortIndex
@@ -29,7 +37,7 @@
    {
       datum _sortIndex
       {
-         value = "13";
+         value = "14";
          type = "int";
       }
    }
@@ -61,7 +69,7 @@
    {
       datum _sortIndex
       {
-         value = "10";
+         value = "11";
          type = "int";
       }
    }
@@ -77,7 +85,7 @@
    {
       datum _sortIndex
       {
-         value = "17";
+         value = "18";
          type = "int";
       }
    }
@@ -101,7 +109,7 @@
    {
       datum _sortIndex
       {
-         value = "11";
+         value = "12";
          type = "int";
       }
    }
@@ -141,7 +149,23 @@
    {
       datum _originalDeviceFamily
       {
+         value = "MAX 10";
+         type = "String";
+      }
+   }
+   element olive_std_core
+   {
+      datum _originalDeviceFamily
+      {
          value = "Cyclone IV E";
+         type = "String";
+      }
+   }
+   element olive_std_core
+   {
+      datum _originalDeviceFamily
+      {
+         value = "MAX 10";
          type = "String";
       }
    }
@@ -213,7 +237,7 @@
    {
       datum _originalDeviceFamily
       {
-         value = "Cyclone IV E";
+         value = "MAX 10";
          type = "String";
       }
    }
@@ -237,7 +261,55 @@
    {
       datum _originalDeviceFamily
       {
+         value = "MAX 10";
+         type = "String";
+      }
+   }
+   element olive_std_core
+   {
+      datum _originalDeviceFamily
+      {
+         value = "MAX 10";
+         type = "String";
+      }
+   }
+   element olive_std_core
+   {
+      datum _originalDeviceFamily
+      {
+         value = "MAX 10";
+         type = "String";
+      }
+   }
+   element olive_std_core
+   {
+      datum _originalDeviceFamily
+      {
          value = "Cyclone IV E";
+         type = "String";
+      }
+   }
+   element olive_std_core
+   {
+      datum _originalDeviceFamily
+      {
+         value = "MAX 10";
+         type = "String";
+      }
+   }
+   element olive_std_core
+   {
+      datum _originalDeviceFamily
+      {
+         value = "Cyclone IV E";
+         type = "String";
+      }
+   }
+   element olive_std_core
+   {
+      datum _originalDeviceFamily
+      {
+         value = "MAX 10";
          type = "String";
       }
    }
@@ -254,6 +326,22 @@
       datum _originalDeviceFamily
       {
          value = "Cyclone IV E";
+         type = "String";
+      }
+   }
+   element olive_std_core
+   {
+      datum _originalDeviceFamily
+      {
+         value = "MAX 10";
+         type = "String";
+      }
+   }
+   element olive_std_core
+   {
+      datum _originalDeviceFamily
+      {
+         value = "MAX 10";
          type = "String";
       }
    }
@@ -309,7 +397,7 @@
    {
       datum _sortIndex
       {
-         value = "14";
+         value = "15";
          type = "int";
       }
    }
@@ -333,7 +421,7 @@
    {
       datum _sortIndex
       {
-         value = "19";
+         value = "20";
          type = "int";
       }
    }
@@ -349,7 +437,7 @@
    {
       datum _sortIndex
       {
-         value = "18";
+         value = "19";
          type = "int";
       }
    }
@@ -373,7 +461,7 @@
    {
       datum _sortIndex
       {
-         value = "12";
+         value = "13";
          type = "int";
       }
    }
@@ -389,7 +477,7 @@
    {
       datum _sortIndex
       {
-         value = "15";
+         value = "16";
          type = "int";
       }
    }
@@ -405,7 +493,7 @@
    {
       datum _sortIndex
       {
-         value = "16";
+         value = "17";
          type = "int";
       }
    }
@@ -489,6 +577,15 @@
    internal="uart1.external_connection"
    type="conduit"
    dir="end" />
+ <module
+   name="chipid"
+   kind="altchip_id_avm_wrapper"
+   version="17.0"
+   enabled="1">
+  <parameter name="CLOCKFREQ" value="25000000" />
+  <parameter name="DEVICE_FAMILY" value="MAX 10" />
+  <parameter name="VALIDITY_ASSERTION" value="WAIT" />
+ </module>
  <module name="core_clk" kind="clock_source" version="17.0" enabled="1">
   <parameter name="clockFrequency" value="100000000" />
   <parameter name="clockFrequencyKnown" value="true" />
@@ -565,7 +662,7 @@
   <parameter name="dataAddrWidth" value="29" />
   <parameter name="dataMasterHighPerformanceAddrWidth" value="1" />
   <parameter name="dataMasterHighPerformanceMapParam" value="" />
-  <parameter name="dataSlaveMapParam"><![CDATA[<address-map><slave name='sdram.s1' start='0x0' end='0x800000' type='altera_avalon_new_sdram_controller.s1' /><slave name='ufm.data' start='0xF800000' end='0xF808000' type='altera_onchip_flash.data' /><slave name='epcs.s1' start='0xFF00000' end='0xFF00008' type='peridot_spi_master.s1' /><slave name='nios2_fast.debug_mem_slave' start='0xFFF0000' end='0xFFF0800' type='altera_nios2_gen2.debug_mem_slave' /><slave name='sysid.control_slave' start='0x10000000' end='0x10000008' type='altera_avalon_sysid_qsys.control_slave' /><slave name='hostbridge.s1' start='0x10000010' end='0x10000020' type='buffered_uart.s1' /><slave name='systimer.s1' start='0x10000020' end='0x10000040' type='altera_avalon_timer.s1' /><slave name='led.s1' start='0x10000040' end='0x10000050' type='altera_avalon_pio.s1' /><slave name='dual_boot_0.avalon' start='0x10000060' end='0x10000080' type='altera_dual_boot.avalon' /><slave name='pfc.avalon_slave' start='0x10000080' end='0x100000C0' type='peridot_pfc_interface.avalon_slave' /><slave name='uart0.s1' start='0x10000100' end='0x10000120' type='altera_avalon_uart.s1' /><slave name='uart1.s1' start='0x10000120' end='0x10000140' type='altera_avalon_uart.s1' /><slave name='i2c.s1' start='0x10000140' end='0x10000148' type='peridot_i2c_master.s1' /><slave name='spi.s1' start='0x10000160' end='0x10000168' type='peridot_spi_master.s1' /><slave name='servo.avalon_slave' start='0x10000180' end='0x10000200' type='peridot_servo.avalon_slave' /></address-map>]]></parameter>
+  <parameter name="dataSlaveMapParam"><![CDATA[<address-map><slave name='sdram.s1' start='0x0' end='0x800000' type='altera_avalon_new_sdram_controller.s1' /><slave name='ufm.data' start='0xF800000' end='0xF808000' type='altera_onchip_flash.data' /><slave name='epcs.s1' start='0xFF00000' end='0xFF00008' type='peridot_spi_master.s1' /><slave name='nios2_fast.debug_mem_slave' start='0xFFF0000' end='0xFFF0800' type='altera_nios2_gen2.debug_mem_slave' /><slave name='sysid.control_slave' start='0x10000000' end='0x10000008' type='altera_avalon_sysid_qsys.control_slave' /><slave name='chipid.chipid' start='0x10000008' end='0x10000010' type='altchip_id_avm_wrapper.chipid' /><slave name='hostbridge.s1' start='0x10000010' end='0x10000020' type='buffered_uart.s1' /><slave name='systimer.s1' start='0x10000020' end='0x10000040' type='altera_avalon_timer.s1' /><slave name='led.s1' start='0x10000040' end='0x10000050' type='altera_avalon_pio.s1' /><slave name='dual_boot_0.avalon' start='0x10000060' end='0x10000080' type='altera_dual_boot.avalon' /><slave name='pfc.avalon_slave' start='0x10000080' end='0x100000C0' type='peridot_pfc_interface.avalon_slave' /><slave name='uart0.s1' start='0x10000100' end='0x10000120' type='altera_avalon_uart.s1' /><slave name='uart1.s1' start='0x10000120' end='0x10000140' type='altera_avalon_uart.s1' /><slave name='i2c.s1' start='0x10000140' end='0x10000148' type='peridot_i2c_master.s1' /><slave name='spi.s1' start='0x10000160' end='0x10000168' type='peridot_spi_master.s1' /><slave name='servo.avalon_slave' start='0x10000180' end='0x10000200' type='peridot_servo.avalon_slave' /></address-map>]]></parameter>
   <parameter name="data_master_high_performance_paddr_base" value="0" />
   <parameter name="data_master_high_performance_paddr_size" value="0" />
   <parameter name="data_master_paddr_base" value="0" />
@@ -968,6 +1065,15 @@
    kind="avalon"
    version="17.0"
    start="peripheral_bridge.m0"
+   end="chipid.chipid">
+  <parameter name="arbitrationPriority" value="1" />
+  <parameter name="baseAddress" value="0x0008" />
+  <parameter name="defaultConnection" value="false" />
+ </connection>
+ <connection
+   kind="avalon"
+   version="17.0"
+   start="peripheral_bridge.m0"
    end="sysid.control_slave">
   <parameter name="arbitrationPriority" value="1" />
   <parameter name="baseAddress" value="0x0000" />
@@ -1039,7 +1145,6 @@
  <connection kind="clock" version="17.0" start="peri_clk.clk" end="systimer.clk" />
  <connection kind="clock" version="17.0" start="peri_clk.clk" end="uart0.clk" />
  <connection kind="clock" version="17.0" start="peri_clk.clk" end="uart1.clk" />
- <connection kind="clock" version="17.0" start="core_clk.clk" end="nios2_fast.clk" />
  <connection kind="clock" version="17.0" start="core_clk.clk" end="sdram.clk" />
  <connection kind="clock" version="17.0" start="core_clk.clk" end="ufm.clk" />
  <connection kind="clock" version="17.0" start="core_clk.clk" end="core_reset.clk" />
@@ -1051,6 +1156,7 @@
    version="17.0"
    start="peri_clk.clk"
    end="dual_boot_0.clk" />
+ <connection kind="clock" version="17.0" start="core_clk.clk" end="nios2_fast.clk" />
  <connection kind="clock" version="17.0" start="peri_clk.clk" end="pfc.clock" />
  <connection kind="clock" version="17.0" start="peri_clk.clk" end="spi.clock" />
  <connection kind="clock" version="17.0" start="peri_clk.clk" end="servo.clock" />
@@ -1061,6 +1167,7 @@
    start="peri_clk.clk"
    end="hostbridge.clock" />
  <connection kind="clock" version="17.0" start="core_clk.clk" end="epcs.clock" />
+ <connection kind="clock" version="17.0" start="peri_clk.clk" end="chipid.clock" />
  <connection
    kind="clock"
    version="17.0"
@@ -1203,6 +1310,11 @@
    version="17.0"
    start="core_reset.out_reset"
    end="epcs.reset" />
+ <connection
+   kind="reset"
+   version="17.0"
+   start="peri_reset.out_reset"
+   end="chipid.reset" />
  <connection
    kind="reset"
    version="17.0"
