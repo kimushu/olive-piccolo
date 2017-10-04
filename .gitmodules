@@ -10,3 +10,6 @@
 [submodule "ip/buffered_uart"]
 	path = ip/buffered_uart
 	url = https://github.com/kimushu/buffered_uart.git
+[submodule "ip/altchip_id_avm_wrapper"]
+	path = ip/altchip_id_avm_wrapper
+	url = https://github.com/kimushu/altchip_id_avm_wrapper.git
