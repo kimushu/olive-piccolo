@@ -142,11 +142,11 @@ ACDS_VERSION := 16.1
 ELF := olive_rubic_duktape.elf
 
 # Paths to C, C++, and assembly source files.
-C_SRCS += duktape-2.1.0/duktape.c
 C_SRCS += main.c
 C_SRCS += resources.c
-C_SRCS += duktape-extension-0.0.1/dist/dukext.c
 C_SRCS += runtime_duktape.c
+C_SRCS += lib/duktape-extension/dukext.c
+C_SRCS += lib/duktape/duktape.c
 CXX_SRCS :=
 ASM_SRCS :=
 
@@ -184,8 +184,8 @@ SYS_LIB :=
 BSP_ROOT_DIR := ../olive_rubic_bsp/
 
 # List of application specific include directories, library directories and library names
-APP_INCLUDE_DIRS += duktape-2.1.0
-APP_INCLUDE_DIRS += duktape-extension-0.0.1/dist
+APP_INCLUDE_DIRS += lib/duktape
+APP_INCLUDE_DIRS += lib/duktape-extension
 APP_LIBRARY_DIRS :=
 APP_LIBRARY_NAMES :=
 
