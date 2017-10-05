@@ -4,7 +4,7 @@
  * Machine generated for CPU 'nios2_fast' in SOPC Builder design 'olive_std_core'
  * SOPC Builder design path: ../../olive_std_core.sopcinfo
  *
- * Generated: Tue Oct 03 17:00:48 JST 2017
+ * Generated: Wed Oct 04 19:30:14 JST 2017
  */
 
 /*
@@ -143,6 +143,7 @@
  *
  */
 
+#define __ALTCHIP_ID_AVM_WRAPPER
 #define __ALTERA_AVALON_NEW_SDRAM_CONTROLLER
 #define __ALTERA_AVALON_PIO
 #define __ALTERA_AVALON_SYSID_QSYS
@@ -186,6 +187,23 @@
 #define ALT_STDOUT_DEV null
 #define ALT_STDOUT_TYPE ""
 #define ALT_SYSTEM_NAME "olive_std_core"
+
+
+/*
+ * chipid configuration
+ *
+ */
+
+#define ALT_MODULE_CLASS_chipid altchip_id_avm_wrapper
+#define CHIPID_BASE 0x10000008
+#define CHIPID_IRQ -1
+#define CHIPID_IRQ_INTERRUPT_CONTROLLER_ID -1
+#define CHIPID_NAME "/dev/chipid"
+#define CHIPID_SPAN 8
+#define CHIPID_STATUS_BIT 0
+#define CHIPID_TYPE "altchip_id_avm_wrapper"
+#define CHIPID_WAIT_MASTER 1
+#define CHIPID_ZERO_INVALID 0
 
 
 /*
@@ -395,14 +413,10 @@
  *
  */
 
-#define RUBIC_AGENT_RUBIC_VERSION ">= 1.0.0"
-#define RUBIC_AGENT_RUNTIME1_NAME ""
-#define RUBIC_AGENT_RUNTIME1_VERSION "0.0.1"
-#define RUBIC_AGENT_RUNTIME2_NAME ""
-#define RUBIC_AGENT_RUNTIME2_VERSION "0.0.1"
-#define RUBIC_AGENT_RUNTIME3_NAME ""
-#define RUBIC_AGENT_RUNTIME3_VERSION "0.0.1"
-#define RUBIC_AGENT_STORAGE_INTERNAL "/mnt"
+#define RUBIC_AGENT_MAX_RUNTIMES 1
+#define RUBIC_AGENT_MAX_STORAGES 1
+#define RUBIC_AGENT_RUBIC_VERSION ">=0.99.100"
+#define RUBIC_AGENT_WORKER_THREADS 1
 
 
 /*
@@ -487,7 +501,7 @@
 #define SYSID_IRQ_INTERRUPT_CONTROLLER_ID -1
 #define SYSID_NAME "/dev/sysid"
 #define SYSID_SPAN 8
-#define SYSID_TIMESTAMP 1507016425
+#define SYSID_TIMESTAMP 1507084121
 #define SYSID_TYPE "altera_avalon_sysid_qsys"
 
 

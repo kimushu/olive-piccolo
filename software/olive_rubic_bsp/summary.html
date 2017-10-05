@@ -22,13 +22,13 @@
 <td width="20%" bgcolor="#77BBFF">BSP Version:</td><td>default</td>
 </tr>
 <tr mode="wrap">
-<td width="20%" bgcolor="#77BBFF">BSP Generated On:</td><td>2017/10/03 17:00:47</td>
+<td width="20%" bgcolor="#77BBFF">BSP Generated On:</td><td>2017/10/04 23:48:25</td>
 </tr>
 <tr mode="wrap">
-<td width="20%" bgcolor="#77BBFF">BSP Generated Timestamp:</td><td>1507017647422</td>
+<td width="20%" bgcolor="#77BBFF">BSP Generated Timestamp:</td><td>1507128505647</td>
 </tr>
 <tr mode="wrap">
-<td width="20%" bgcolor="#77BBFF">BSP Generated Location:</td><td>D:\Altera\olive-piccolo\software\olive_rubic_bsp</td>
+<td width="20%" bgcolor="#77BBFF">BSP Generated Location:</td><td>D:\Works\Altera\olive-piccolo\software\olive_rubic_bsp</td>
 </tr>
 </table>
 <br>
@@ -66,6 +66,9 @@
 </tr>
 <tr mode="wrap" STYLE="display: 'block'; font-family: 'courier'; color: '#000000'; font-weight: '500'; font-size: '14'; margin-top: '10pt'; text-align: 'left'">
 <td>hostbridge</td><td>0x10000010 - 0x1000001F</td><td>16</td><td class="listing">printable</td>
+</tr>
+<tr mode="wrap" STYLE="display: 'block'; font-family: 'courier'; color: '#000000'; font-weight: '500'; font-size: '14'; margin-top: '10pt'; text-align: 'left'">
+<td>chipid</td><td>0x10000008 - 0x1000000F</td><td>8</td><td class="listing">&nbsp;</td>
 </tr>
 <tr mode="wrap" STYLE="display: 'block'; font-family: 'courier'; color: '#000000'; font-weight: '500'; font-size: '14'; margin-top: '10pt'; text-align: 'left'">
 <td>sysid</td><td>0x10000000 - 0x10000007</td><td>8</td><td class="listing">&nbsp;</td>
@@ -3156,16 +3159,16 @@
 <br>
 <table border="1" bgcolor="#FFFFCC" width="60%">
 <tr bgcolor="#77BBFF">
-<td align="left" width="15%">Setting Name:</td><td align="left">rubic_agent.rubic.version</td>
+<td align="left" width="15%">Setting Name:</td><td align="left">rubic_agent.rubic_version</td>
 </tr>
 <tr>
 <td width="20%">Identifier:</td><td>RUBIC_AGENT_RUBIC_VERSION</td>
 </tr>
 <tr>
-<td width="20%">Default Value:</td><td>&gt;=0.99.1</td>
+<td width="20%">Default Value:</td><td>&gt;=1.0.0</td>
 </tr>
 <tr>
-<td width="20%">Value:</td><td>&gt;= 1.0.0</td>
+<td width="20%">Value:</td><td>&gt;=0.99.100</td>
 </tr>
 <tr>
 <td width="20%">Type:</td><td>QuotedString</td>
@@ -3183,25 +3186,25 @@
 <br>
 <table border="1" bgcolor="#FFFFCC" width="60%">
 <tr bgcolor="#77BBFF">
-<td align="left" width="15%">Setting Name:</td><td align="left">rubic_agent.runtime1.name</td>
+<td align="left" width="15%">Setting Name:</td><td align="left">rubic_agent.runtimes_max</td>
 </tr>
 <tr>
-<td width="20%">Identifier:</td><td>RUBIC_AGENT_RUNTIME1_NAME</td>
+<td width="20%">Identifier:</td><td>RUBIC_AGENT_MAX_RUNTIMES</td>
 </tr>
 <tr>
-<td width="20%">Default Value:</td><td></td>
+<td width="20%">Default Value:</td><td>1</td>
 </tr>
 <tr>
-<td width="20%">Value:</td><td></td>
+<td width="20%">Value:</td><td>1</td>
 </tr>
 <tr>
-<td width="20%">Type:</td><td>QuotedString</td>
+<td width="20%">Type:</td><td>DecimalNumber</td>
 </tr>
 <tr mode="wrap">
 <td width="20%">Destination:</td><td>system_h_define</td>
 </tr>
 <tr mode="wrap">
-<td width="20%">Description:</td><td>Name of runtime #1</td>
+<td width="20%">Description:</td><td>Maximum number of runtimes</td>
 </tr>
 <tr mode="wrap">
 <td width="20%">Restrictions:</td><td>none</td>
@@ -3210,25 +3213,25 @@
 <br>
 <table border="1" bgcolor="#FFFFCC" width="60%">
 <tr bgcolor="#77BBFF">
-<td align="left" width="15%">Setting Name:</td><td align="left">rubic_agent.runtime1.version</td>
+<td align="left" width="15%">Setting Name:</td><td align="left">rubic_agent.storages_max</td>
 </tr>
 <tr>
-<td width="20%">Identifier:</td><td>RUBIC_AGENT_RUNTIME1_VERSION</td>
+<td width="20%">Identifier:</td><td>RUBIC_AGENT_MAX_STORAGES</td>
 </tr>
 <tr>
-<td width="20%">Default Value:</td><td>0.0.1</td>
+<td width="20%">Default Value:</td><td>1</td>
 </tr>
 <tr>
-<td width="20%">Value:</td><td>0.0.1</td>
+<td width="20%">Value:</td><td>1</td>
 </tr>
 <tr>
-<td width="20%">Type:</td><td>QuotedString</td>
+<td width="20%">Type:</td><td>DecimalNumber</td>
 </tr>
 <tr mode="wrap">
 <td width="20%">Destination:</td><td>system_h_define</td>
 </tr>
 <tr mode="wrap">
-<td width="20%">Description:</td><td>Version of runtime #1</td>
+<td width="20%">Description:</td><td>Maximum number of storages</td>
 </tr>
 <tr mode="wrap">
 <td width="20%">Restrictions:</td><td>none</td>
@@ -3237,187 +3240,25 @@
 <br>
 <table border="1" bgcolor="#FFFFCC" width="60%">
 <tr bgcolor="#77BBFF">
-<td align="left" width="15%">Setting Name:</td><td align="left">rubic_agent.runtime2.name</td>
+<td align="left" width="15%">Setting Name:</td><td align="left">rubic_agent.workers_max</td>
 </tr>
 <tr>
-<td width="20%">Identifier:</td><td>RUBIC_AGENT_RUNTIME2_NAME</td>
+<td width="20%">Identifier:</td><td>RUBIC_AGENT_WORKER_THREADS</td>
 </tr>
 <tr>
-<td width="20%">Default Value:</td><td></td>
+<td width="20%">Default Value:</td><td>1</td>
 </tr>
 <tr>
-<td width="20%">Value:</td><td></td>
+<td width="20%">Value:</td><td>1</td>
 </tr>
 <tr>
-<td width="20%">Type:</td><td>QuotedString</td>
+<td width="20%">Type:</td><td>DecimalNumber</td>
 </tr>
 <tr mode="wrap">
 <td width="20%">Destination:</td><td>system_h_define</td>
 </tr>
 <tr mode="wrap">
-<td width="20%">Description:</td><td>Name of runtime #2</td>
-</tr>
-<tr mode="wrap">
-<td width="20%">Restrictions:</td><td>none</td>
-</tr>
-</table>
-<br>
-<table border="1" bgcolor="#FFFFCC" width="60%">
-<tr bgcolor="#77BBFF">
-<td align="left" width="15%">Setting Name:</td><td align="left">rubic_agent.runtime2.present</td>
-</tr>
-<tr>
-<td width="20%">Identifier:</td><td>RUBIC_AGENT_RUNTIME2_PRESENT</td>
-</tr>
-<tr>
-<td width="20%">Default Value:</td><td>0</td>
-</tr>
-<tr>
-<td width="20%">Value:</td><td>false</td>
-</tr>
-<tr>
-<td width="20%">Type:</td><td>BooleanDefineOnly</td>
-</tr>
-<tr mode="wrap">
-<td width="20%">Destination:</td><td>system_h_define</td>
-</tr>
-<tr mode="wrap">
-<td width="20%">Description:</td><td>Set if this system has second runtime (runtime #2)</td>
-</tr>
-<tr mode="wrap">
-<td width="20%">Restrictions:</td><td>none</td>
-</tr>
-</table>
-<br>
-<table border="1" bgcolor="#FFFFCC" width="60%">
-<tr bgcolor="#77BBFF">
-<td align="left" width="15%">Setting Name:</td><td align="left">rubic_agent.runtime2.version</td>
-</tr>
-<tr>
-<td width="20%">Identifier:</td><td>RUBIC_AGENT_RUNTIME2_VERSION</td>
-</tr>
-<tr>
-<td width="20%">Default Value:</td><td>0.0.1</td>
-</tr>
-<tr>
-<td width="20%">Value:</td><td>0.0.1</td>
-</tr>
-<tr>
-<td width="20%">Type:</td><td>QuotedString</td>
-</tr>
-<tr mode="wrap">
-<td width="20%">Destination:</td><td>system_h_define</td>
-</tr>
-<tr mode="wrap">
-<td width="20%">Description:</td><td>Version of runtime #2 (semver syntax)</td>
-</tr>
-<tr mode="wrap">
-<td width="20%">Restrictions:</td><td>none</td>
-</tr>
-</table>
-<br>
-<table border="1" bgcolor="#FFFFCC" width="60%">
-<tr bgcolor="#77BBFF">
-<td align="left" width="15%">Setting Name:</td><td align="left">rubic_agent.runtime3.name</td>
-</tr>
-<tr>
-<td width="20%">Identifier:</td><td>RUBIC_AGENT_RUNTIME3_NAME</td>
-</tr>
-<tr>
-<td width="20%">Default Value:</td><td></td>
-</tr>
-<tr>
-<td width="20%">Value:</td><td></td>
-</tr>
-<tr>
-<td width="20%">Type:</td><td>QuotedString</td>
-</tr>
-<tr mode="wrap">
-<td width="20%">Destination:</td><td>system_h_define</td>
-</tr>
-<tr mode="wrap">
-<td width="20%">Description:</td><td>Name of runtime #3</td>
-</tr>
-<tr mode="wrap">
-<td width="20%">Restrictions:</td><td>none</td>
-</tr>
-</table>
-<br>
-<table border="1" bgcolor="#FFFFCC" width="60%">
-<tr bgcolor="#77BBFF">
-<td align="left" width="15%">Setting Name:</td><td align="left">rubic_agent.runtime3.present</td>
-</tr>
-<tr>
-<td width="20%">Identifier:</td><td>RUBIC_AGENT_RUNTIME3_PRESENT</td>
-</tr>
-<tr>
-<td width="20%">Default Value:</td><td>0</td>
-</tr>
-<tr>
-<td width="20%">Value:</td><td>false</td>
-</tr>
-<tr>
-<td width="20%">Type:</td><td>BooleanDefineOnly</td>
-</tr>
-<tr mode="wrap">
-<td width="20%">Destination:</td><td>system_h_define</td>
-</tr>
-<tr mode="wrap">
-<td width="20%">Description:</td><td>Set if this system has third runtime (runtime #3)</td>
-</tr>
-<tr mode="wrap">
-<td width="20%">Restrictions:</td><td>none</td>
-</tr>
-</table>
-<br>
-<table border="1" bgcolor="#FFFFCC" width="60%">
-<tr bgcolor="#77BBFF">
-<td align="left" width="15%">Setting Name:</td><td align="left">rubic_agent.runtime3.version</td>
-</tr>
-<tr>
-<td width="20%">Identifier:</td><td>RUBIC_AGENT_RUNTIME3_VERSION</td>
-</tr>
-<tr>
-<td width="20%">Default Value:</td><td>0.0.1</td>
-</tr>
-<tr>
-<td width="20%">Value:</td><td>0.0.1</td>
-</tr>
-<tr>
-<td width="20%">Type:</td><td>QuotedString</td>
-</tr>
-<tr mode="wrap">
-<td width="20%">Destination:</td><td>system_h_define</td>
-</tr>
-<tr mode="wrap">
-<td width="20%">Description:</td><td>Version of runtime #3 (semver syntax)</td>
-</tr>
-<tr mode="wrap">
-<td width="20%">Restrictions:</td><td>none</td>
-</tr>
-</table>
-<br>
-<table border="1" bgcolor="#FFFFCC" width="60%">
-<tr bgcolor="#77BBFF">
-<td align="left" width="15%">Setting Name:</td><td align="left">rubic_agent.storage.internal</td>
-</tr>
-<tr>
-<td width="20%">Identifier:</td><td>RUBIC_AGENT_STORAGE_INTERNAL</td>
-</tr>
-<tr>
-<td width="20%">Default Value:</td><td>/mnt</td>
-</tr>
-<tr>
-<td width="20%">Value:</td><td>/mnt</td>
-</tr>
-<tr>
-<td width="20%">Type:</td><td>QuotedString</td>
-</tr>
-<tr mode="wrap">
-<td width="20%">Destination:</td><td>system_h_define</td>
-</tr>
-<tr mode="wrap">
-<td width="20%">Description:</td><td>Path of internal storage</td>
+<td width="20%">Description:</td><td>Maximum number of workers</td>
 </tr>
 <tr mode="wrap">
 <td width="20%">Restrictions:</td><td>none</td>

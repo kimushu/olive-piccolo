@@ -2,9 +2,9 @@
 <sch:Settings xmlns:sch="http://www.altera.com/embeddedsw/bsp/schema">
         <BspType>tinyth</BspType>
         <BspVersion>default</BspVersion>
-        <BspGeneratedTimeStamp>2017/10/03 17:00:47</BspGeneratedTimeStamp>
-        <BspGeneratedUnixTimeStamp>1507017647422</BspGeneratedUnixTimeStamp>
-        <BspGeneratedLocation>D:\Altera\olive-piccolo\software\olive_rubic_bsp</BspGeneratedLocation>
+        <BspGeneratedTimeStamp>2017/10/04 23:48:25</BspGeneratedTimeStamp>
+        <BspGeneratedUnixTimeStamp>1507128505647</BspGeneratedUnixTimeStamp>
+        <BspGeneratedLocation>D:\Works\Altera\olive-piccolo\software\olive_rubic_bsp</BspGeneratedLocation>
         <BspSettingsFile>settings.bsp</BspSettingsFile>
         <SopcDesignFile>..\..\olive_std_core.sopcinfo</SopcDesignFile>
         <JdiFile>default</JdiFile>
@@ -1091,11 +1091,11 @@
                 <Group xsi:nil="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
         </Setting>
         <Setting>
-                <SettingName>rubic_agent.rubic.version</SettingName>
+                <SettingName>rubic_agent.rubic_version</SettingName>
                 <Identifier>RUBIC_AGENT_RUBIC_VERSION</Identifier>
                 <Type>QuotedString</Type>
-                <Value>>= 1.0.0</Value>
-                <DefaultValue>>=0.99.1</DefaultValue>
+                <Value>>=0.99.100</Value>
+                <DefaultValue>>=1.0.0</DefaultValue>
                 <DestinationFile>system_h_define</DestinationFile>
                 <Description>Supported Rubic version (semver range syntax)</Description>
                 <Restrictions>none</Restrictions>
@@ -1103,109 +1103,37 @@
                 <Group xsi:nil="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
         </Setting>
         <Setting>
-                <SettingName>rubic_agent.storage.internal</SettingName>
-                <Identifier>RUBIC_AGENT_STORAGE_INTERNAL</Identifier>
-                <Type>QuotedString</Type>
-                <Value>/mnt</Value>
-                <DefaultValue>/mnt</DefaultValue>
+                <SettingName>rubic_agent.workers_max</SettingName>
+                <Identifier>RUBIC_AGENT_WORKER_THREADS</Identifier>
+                <Type>DecimalNumber</Type>
+                <Value>1</Value>
+                <DefaultValue>1</DefaultValue>
                 <DestinationFile>system_h_define</DestinationFile>
-                <Description>Path of internal storage</Description>
+                <Description>Maximum number of workers</Description>
                 <Restrictions>none</Restrictions>
                 <Enabled>false</Enabled>
                 <Group xsi:nil="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
         </Setting>
         <Setting>
-                <SettingName>rubic_agent.runtime1.name</SettingName>
-                <Identifier>RUBIC_AGENT_RUNTIME1_NAME</Identifier>
-                <Type>QuotedString</Type>
-                <Value/>
-                <DefaultValue/>
+                <SettingName>rubic_agent.runtimes_max</SettingName>
+                <Identifier>RUBIC_AGENT_MAX_RUNTIMES</Identifier>
+                <Type>DecimalNumber</Type>
+                <Value>1</Value>
+                <DefaultValue>1</DefaultValue>
                 <DestinationFile>system_h_define</DestinationFile>
-                <Description>Name of runtime #1</Description>
+                <Description>Maximum number of runtimes</Description>
                 <Restrictions>none</Restrictions>
                 <Enabled>false</Enabled>
                 <Group xsi:nil="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
         </Setting>
         <Setting>
-                <SettingName>rubic_agent.runtime1.version</SettingName>
-                <Identifier>RUBIC_AGENT_RUNTIME1_VERSION</Identifier>
-                <Type>QuotedString</Type>
-                <Value>0.0.1</Value>
-                <DefaultValue>0.0.1</DefaultValue>
+                <SettingName>rubic_agent.storages_max</SettingName>
+                <Identifier>RUBIC_AGENT_MAX_STORAGES</Identifier>
+                <Type>DecimalNumber</Type>
+                <Value>1</Value>
+                <DefaultValue>1</DefaultValue>
                 <DestinationFile>system_h_define</DestinationFile>
-                <Description>Version of runtime #1</Description>
-                <Restrictions>none</Restrictions>
-                <Enabled>false</Enabled>
-                <Group xsi:nil="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
-        </Setting>
-        <Setting>
-                <SettingName>rubic_agent.runtime2.present</SettingName>
-                <Identifier>RUBIC_AGENT_RUNTIME2_PRESENT</Identifier>
-                <Type>BooleanDefineOnly</Type>
-                <Value>false</Value>
-                <DefaultValue>0</DefaultValue>
-                <DestinationFile>system_h_define</DestinationFile>
-                <Description>Set if this system has second runtime (runtime #2)</Description>
-                <Restrictions>none</Restrictions>
-                <Enabled>false</Enabled>
-                <Group xsi:nil="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
-        </Setting>
-        <Setting>
-                <SettingName>rubic_agent.runtime2.name</SettingName>
-                <Identifier>RUBIC_AGENT_RUNTIME2_NAME</Identifier>
-                <Type>QuotedString</Type>
-                <Value/>
-                <DefaultValue/>
-                <DestinationFile>system_h_define</DestinationFile>
-                <Description>Name of runtime #2</Description>
-                <Restrictions>none</Restrictions>
-                <Enabled>false</Enabled>
-                <Group xsi:nil="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
-        </Setting>
-        <Setting>
-                <SettingName>rubic_agent.runtime2.version</SettingName>
-                <Identifier>RUBIC_AGENT_RUNTIME2_VERSION</Identifier>
-                <Type>QuotedString</Type>
-                <Value>0.0.1</Value>
-                <DefaultValue>0.0.1</DefaultValue>
-                <DestinationFile>system_h_define</DestinationFile>
-                <Description>Version of runtime #2 (semver syntax)</Description>
-                <Restrictions>none</Restrictions>
-                <Enabled>false</Enabled>
-                <Group xsi:nil="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
-        </Setting>
-        <Setting>
-                <SettingName>rubic_agent.runtime3.present</SettingName>
-                <Identifier>RUBIC_AGENT_RUNTIME3_PRESENT</Identifier>
-                <Type>BooleanDefineOnly</Type>
-                <Value>false</Value>
-                <DefaultValue>0</DefaultValue>
-                <DestinationFile>system_h_define</DestinationFile>
-                <Description>Set if this system has third runtime (runtime #3)</Description>
-                <Restrictions>none</Restrictions>
-                <Enabled>false</Enabled>
-                <Group xsi:nil="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
-        </Setting>
-        <Setting>
-                <SettingName>rubic_agent.runtime3.name</SettingName>
-                <Identifier>RUBIC_AGENT_RUNTIME3_NAME</Identifier>
-                <Type>QuotedString</Type>
-                <Value/>
-                <DefaultValue/>
-                <DestinationFile>system_h_define</DestinationFile>
-                <Description>Name of runtime #3</Description>
-                <Restrictions>none</Restrictions>
-                <Enabled>false</Enabled>
-                <Group xsi:nil="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
-        </Setting>
-        <Setting>
-                <SettingName>rubic_agent.runtime3.version</SettingName>
-                <Identifier>RUBIC_AGENT_RUNTIME3_VERSION</Identifier>
-                <Type>QuotedString</Type>
-                <Value>0.0.1</Value>
-                <DefaultValue>0.0.1</DefaultValue>
-                <DestinationFile>system_h_define</DestinationFile>
-                <Description>Version of runtime #3 (semver syntax)</Description>
+                <Description>Maximum number of storages</Description>
                 <Restrictions>none</Restrictions>
                 <Enabled>false</Enabled>
                 <Group xsi:nil="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
@@ -1699,6 +1627,12 @@
         <MemoryMap>
                 <slaveDescriptor>sysid</slaveDescriptor>
                 <addressRange>0x10000000 - 0x10000007</addressRange>
+                <addressSpan>8</addressSpan>
+                <attributes/>
+        </MemoryMap>
+        <MemoryMap>
+                <slaveDescriptor>chipid</slaveDescriptor>
+                <addressRange>0x10000008 - 0x1000000F</addressRange>
                 <addressSpan>8</addressSpan>
                 <attributes/>
         </MemoryMap>
