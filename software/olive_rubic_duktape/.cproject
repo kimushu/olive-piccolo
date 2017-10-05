@@ -12,20 +12,23 @@
 							<targetPlatform id="altera.nios2.mingw.gcc4.1957066861" name="Nios II" superClass="altera.nios2.mingw.gcc4"/>
 							<builder buildPath="${workspace_loc://olive_rubic_duktape}" id="altera.tool.gnu.builder.mingw.2139704005" keepEnvironmentInBuildfile="false" managedBuildOn="false" name="Gnu Make Builder" superClass="altera.tool.gnu.builder.mingw"/>
 							<tool id="altera.tool.gnu.c.compiler.mingw.363199857" name="Nios II GCC C Compiler" superClass="altera.tool.gnu.c.compiler.mingw">
-								<option id="gnu.c.compiler.option.preprocessor.def.symbols.1860458890" superClass="gnu.c.compiler.option.preprocessor.def.symbols" valueType="definedSymbols">
+								<option id="gnu.c.compiler.option.preprocessor.def.symbols.1860458890" name="Defined symbols (-D)" superClass="gnu.c.compiler.option.preprocessor.def.symbols" useByScannerDiscovery="false" valueType="definedSymbols">
 									<listOptionValue builtIn="false" value="DUX_USE_BOARD_PERIDOT"/>
 								</option>
+								<option id="gnu.c.compiler.option.include.paths.1433584860" name="Include paths (-I)" superClass="gnu.c.compiler.option.include.paths" useByScannerDiscovery="false" valueType="includePath"/>
 								<inputType id="cdt.managedbuild.tool.gnu.c.compiler.input.2007489279" superClass="cdt.managedbuild.tool.gnu.c.compiler.input"/>
 							</tool>
 							<tool id="altera.tool.gnu.cpp.compiler.mingw.45502976" name="Nios II GCC C++ Compiler" superClass="altera.tool.gnu.cpp.compiler.mingw">
-								<option id="gnu.cpp.compiler.option.preprocessor.def.1511223604" superClass="gnu.cpp.compiler.option.preprocessor.def" valueType="definedSymbols">
+								<option id="gnu.cpp.compiler.option.preprocessor.def.1511223604" name="Defined symbols (-D)" superClass="gnu.cpp.compiler.option.preprocessor.def" useByScannerDiscovery="false" valueType="definedSymbols">
 									<listOptionValue builtIn="false" value="DUX_USE_BOARD_PERIDOT"/>
 								</option>
+								<option id="gnu.cpp.compiler.option.include.paths.317093849" name="Include paths (-I)" superClass="gnu.cpp.compiler.option.include.paths" useByScannerDiscovery="false" valueType="includePath"/>
 								<inputType id="cdt.managedbuild.tool.gnu.cpp.compiler.input.667151266" superClass="cdt.managedbuild.tool.gnu.cpp.compiler.input"/>
 							</tool>
 							<tool id="altera.tool.gnu.archiver.mingw.1783177823" name="Nios II GCC Archiver" superClass="altera.tool.gnu.archiver.mingw"/>
 							<tool id="altera.tool.gnu.c.linker.mingw.1623079587" name="Nios II GCC C Linker" superClass="altera.tool.gnu.c.linker.mingw"/>
 							<tool id="altera.tool.gnu.assembler.mingw.252377145" name="Nios II GCC Assembler" superClass="altera.tool.gnu.assembler.mingw">
+								<option id="gnu.both.asm.option.include.paths.1661253400" name="Include paths (-I)" superClass="gnu.both.asm.option.include.paths" valueType="includePath"/>
 								<inputType id="cdt.managedbuild.tool.gnu.assembler.input.2001187338" superClass="cdt.managedbuild.tool.gnu.assembler.input"/>
 							</tool>
 						</toolChain>

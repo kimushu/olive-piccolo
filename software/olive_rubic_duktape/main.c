@@ -20,4 +20,3 @@ int main(void)
 	rubic_agent_service();
 	return 0;
 }
-
