@@ -7,7 +7,7 @@ const decompressTargz = require('decompress-targz');
 
 const DEST_DIR = path.join(__dirname, 'lib');
 const DUK_VER = '2.2.0';
-const DUX_VER = '0.0.1';
+const DUX_VER = '0.0.2';
 
 function downloadIfNotExist(url, dest) {
     let name = url.split('/').slice(-1)[0];
@@ -31,7 +31,7 @@ function extract(archive, dir, files, dest) {
         ]
     })
     .then((a_files) => {
-        a_files.reduce((promise, file) => {
+        return a_files.reduce((promise, file) => {
             let temp = file.path.split('/').slice(1);
             let a_file = temp.pop();
             let a_dir = temp.join('/');
