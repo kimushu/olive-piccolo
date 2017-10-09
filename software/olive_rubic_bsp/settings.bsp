@@ -2,9 +2,9 @@
 <sch:Settings xmlns:sch="http://www.altera.com/embeddedsw/bsp/schema">
         <BspType>tinyth</BspType>
         <BspVersion>default</BspVersion>
-        <BspGeneratedTimeStamp>2017/10/05 10:26:09</BspGeneratedTimeStamp>
-        <BspGeneratedUnixTimeStamp>1507166769901</BspGeneratedUnixTimeStamp>
-        <BspGeneratedLocation>D:\Altera\olive-piccolo\software\olive_rubic_bsp</BspGeneratedLocation>
+        <BspGeneratedTimeStamp>2017/10/09 17:51:18</BspGeneratedTimeStamp>
+        <BspGeneratedUnixTimeStamp>1507539078375</BspGeneratedUnixTimeStamp>
+        <BspGeneratedLocation>D:\Works\Altera\olive-piccolo\software\olive_rubic_bsp</BspGeneratedLocation>
         <BspSettingsFile>settings.bsp</BspSettingsFile>
         <SopcDesignFile>..\..\olive_std_core.sopcinfo</SopcDesignFile>
         <JdiFile>default</JdiFile>
@@ -1166,7 +1166,7 @@
                 <SettingName>peridot_rpc_server.request_length</SettingName>
                 <Identifier>PERIDOT_RPCSRV_MAX_REQUEST_LENGTH</Identifier>
                 <Type>DecimalNumber</Type>
-                <Value>1024</Value>
+                <Value>65536</Value>
                 <DefaultValue>8192</DefaultValue>
                 <DestinationFile>system_h_define</DestinationFile>
                 <Description>Maximum byte length of request data</Description>
@@ -1202,7 +1202,7 @@
                 <SettingName>peridot_client_fs.rw_path_list</SettingName>
                 <Identifier>PERIDOT_CLIENT_FS_RW_PATH</Identifier>
                 <Type>QuotedString</Type>
-                <Value>/sys/rubic/:/mnt/internal/</Value>
+                <Value>/mnt/internal/</Value>
                 <DefaultValue/>
                 <DestinationFile>system_h_define</DestinationFile>
                 <Description>A list of one or more full-access files or directories separated by colon(:) characters.</Description>
@@ -1214,7 +1214,7 @@
                 <SettingName>peridot_client_fs.ro_path_list</SettingName>
                 <Identifier>PERIDOT_CLIENT_FS_RO_PATH</Identifier>
                 <Type>QuotedString</Type>
-                <Value>/dev/stdout:/dev/stderr</Value>
+                <Value/>
                 <DefaultValue/>
                 <DestinationFile>system_h_define</DestinationFile>
                 <Description>A list of one or more read-only files or directories separated by colon(:) characters.</Description>
@@ -1226,7 +1226,7 @@
                 <SettingName>peridot_client_fs.wo_path_list</SettingName>
                 <Identifier>PERIDOT_CLIENT_FS_WO_PATH</Identifier>
                 <Type>QuotedString</Type>
-                <Value>/dev/stdin</Value>
+                <Value/>
                 <DefaultValue/>
                 <DestinationFile>system_h_define</DestinationFile>
                 <Description>A list of one or more write-only files or directories separated by colon(:) characters.</Description>
@@ -1526,8 +1526,8 @@
                 <SettingName>peridot_spi_master_driver.flash.bitrate</SettingName>
                 <Identifier>PERIDOT_SPI_FLASH_BITRATE</Identifier>
                 <Type>DecimalNumber</Type>
-                <Value>10000000</Value>
-                <DefaultValue>10000000</DefaultValue>
+                <Value>40000000</Value>
+                <DefaultValue>40000000</DefaultValue>
                 <DestinationFile>system_h_define</DestinationFile>
                 <Description>Bitrate for SPI flash device</Description>
                 <Restrictions>none</Restrictions>
@@ -1538,10 +1538,46 @@
                 <SettingName>peridot_spi_master_driver.flash_boot.enable</SettingName>
                 <Identifier>PERIDOT_SPI_FLASH_BOOT_ENABLE</Identifier>
                 <Type>BooleanDefineOnly</Type>
-                <Value>true</Value>
+                <Value>false</Value>
                 <DefaultValue>0</DefaultValue>
                 <DestinationFile>system_h_define</DestinationFile>
                 <Description>Enable boot from flash (hal.linker.allow_code_at_reset must be disabled)</Description>
+                <Restrictions>none</Restrictions>
+                <Enabled>false</Enabled>
+                <Group xsi:nil="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+        </Setting>
+        <Setting>
+                <SettingName>peridot_spi_master_driver.flash_boot.name</SettingName>
+                <Identifier>PERIDOT_SPI_FLASH_BOOT_NAME</Identifier>
+                <Type>UnquotedString</Type>
+                <Value>epcs</Value>
+                <DefaultValue>none</DefaultValue>
+                <DestinationFile>system_h_define</DestinationFile>
+                <Description>Slave descriptor for SPI flash</Description>
+                <Restrictions>none</Restrictions>
+                <Enabled>false</Enabled>
+                <Group xsi:nil="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+        </Setting>
+        <Setting>
+                <SettingName>peridot_spi_master_driver.flash_boot.bitrate</SettingName>
+                <Identifier>PERIDOT_SPI_FLASH_BITRATE</Identifier>
+                <Type>DecimalNumber</Type>
+                <Value>40000000</Value>
+                <DefaultValue>40000000</DefaultValue>
+                <DestinationFile>system_h_define</DestinationFile>
+                <Description>Bitrate for SPI flash device</Description>
+                <Restrictions>none</Restrictions>
+                <Enabled>false</Enabled>
+                <Group xsi:nil="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+        </Setting>
+        <Setting>
+                <SettingName>peridot_spi_master_driver.flash_boot.after_cfg</SettingName>
+                <Identifier>PERIDOT_SPI_FLASH_BOOT_AFTER_CFG</Identifier>
+                <Type>BooleanDefineOnly</Type>
+                <Value>false</Value>
+                <DefaultValue>0</DefaultValue>
+                <DestinationFile>system_h_define</DestinationFile>
+                <Description>Load ELF image after FPGA configuration data (Not available in MAX10 devices)</Description>
                 <Restrictions>none</Restrictions>
                 <Enabled>false</Enabled>
                 <Group xsi:nil="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
@@ -1559,7 +1595,7 @@
                 <Group xsi:nil="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
         </Setting>
         <Setting>
-                <SettingName>peridot_spi_master_driver.flash_boot.decompress.lz4</SettingName>
+                <SettingName>peridot_spi_master_driver.flash_boot.decompress_lz4</SettingName>
                 <Identifier>PERIDOT_SPI_FLASH_BOOT_DECOMPRESS_LZ4</Identifier>
                 <Type>BooleanDefineOnly</Type>
                 <Value>true</Value>
@@ -1569,18 +1605,6 @@
                 <Restrictions>none</Restrictions>
                 <Enabled>false</Enabled>
                 <Group xsi:nil="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
-        </Setting>
-        <Setting>
-                <SettingName>peridot_spi_master_driver.flash_boot.after_cfg</SettingName>
-                <Identifier>peridot_spi_master_driver_PERIDOT_SPI_FLASH_BOOT_AFTER_CFG</Identifier>
-                <Type>BooleanDefineOnly</Type>
-                <Value>0</Value>
-                <DefaultValue>0</DefaultValue>
-                <DestinationFile>system_h_define</DestinationFile>
-                <Description>Load ELF image after FPGA configuration data</Description>
-                <Restrictions>none</Restrictions>
-                <Enabled>true</Enabled>
-                <Group>module_setting</Group>
         </Setting>
         <Setting>
                 <SettingName>altera_avalon_uart_driver.enable_small_driver</SettingName>

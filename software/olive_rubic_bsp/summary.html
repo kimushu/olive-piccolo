@@ -22,13 +22,13 @@
 <td width="20%" bgcolor="#77BBFF">BSP Version:</td><td>default</td>
 </tr>
 <tr mode="wrap">
-<td width="20%" bgcolor="#77BBFF">BSP Generated On:</td><td>2017/10/05 10:26:09</td>
+<td width="20%" bgcolor="#77BBFF">BSP Generated On:</td><td>2017/10/09 17:51:18</td>
 </tr>
 <tr mode="wrap">
-<td width="20%" bgcolor="#77BBFF">BSP Generated Timestamp:</td><td>1507166769901</td>
+<td width="20%" bgcolor="#77BBFF">BSP Generated Timestamp:</td><td>1507539078375</td>
 </tr>
 <tr mode="wrap">
-<td width="20%" bgcolor="#77BBFF">BSP Generated Location:</td><td>D:\Altera\olive-piccolo\software\olive_rubic_bsp</td>
+<td width="20%" bgcolor="#77BBFF">BSP Generated Location:</td><td>D:\Works\Altera\olive-piccolo\software\olive_rubic_bsp</td>
 </tr>
 </table>
 <br>
@@ -2763,7 +2763,7 @@
 <td width="20%">Default Value:</td><td></td>
 </tr>
 <tr>
-<td width="20%">Value:</td><td>/dev/stdout:/dev/stderr</td>
+<td width="20%">Value:</td><td></td>
 </tr>
 <tr>
 <td width="20%">Type:</td><td>QuotedString</td>
@@ -2790,7 +2790,7 @@
 <td width="20%">Default Value:</td><td></td>
 </tr>
 <tr>
-<td width="20%">Value:</td><td>/sys/rubic/:/mnt/internal/</td>
+<td width="20%">Value:</td><td>/mnt/internal/</td>
 </tr>
 <tr>
 <td width="20%">Type:</td><td>QuotedString</td>
@@ -2817,7 +2817,7 @@
 <td width="20%">Default Value:</td><td></td>
 </tr>
 <tr>
-<td width="20%">Value:</td><td>/dev/stdin</td>
+<td width="20%">Value:</td><td></td>
 </tr>
 <tr>
 <td width="20%">Type:</td><td>QuotedString</td>
@@ -2871,7 +2871,7 @@
 <td width="20%">Default Value:</td><td>8192</td>
 </tr>
 <tr>
-<td width="20%">Value:</td><td>1024</td>
+<td width="20%">Value:</td><td>65536</td>
 </tr>
 <tr>
 <td width="20%">Type:</td><td>DecimalNumber</td>
@@ -2919,13 +2919,13 @@
 <td align="left" width="15%">Setting Name:</td><td align="left">peridot_spi_master_driver.flash_boot.after_cfg</td>
 </tr>
 <tr>
-<td width="20%">Identifier:</td><td>peridot_spi_master_driver_PERIDOT_SPI_FLASH_BOOT_AFTER_CFG</td>
+<td width="20%">Identifier:</td><td>PERIDOT_SPI_FLASH_BOOT_AFTER_CFG</td>
 </tr>
 <tr>
 <td width="20%">Default Value:</td><td>0</td>
 </tr>
 <tr>
-<td width="20%">Value:</td><td>0</td>
+<td width="20%">Value:</td><td>false</td>
 </tr>
 <tr>
 <td width="20%">Type:</td><td>BooleanDefineOnly</td>
@@ -2934,7 +2934,7 @@
 <td width="20%">Destination:</td><td>system_h_define</td>
 </tr>
 <tr mode="wrap">
-<td width="20%">Description:</td><td>Load ELF image after FPGA configuration data</td>
+<td width="20%">Description:</td><td>Load ELF image after FPGA configuration data (Not available in MAX10 devices)</td>
 </tr>
 <tr mode="wrap">
 <td width="20%">Restrictions:</td><td>none</td>
@@ -2943,7 +2943,34 @@
 <br>
 <table border="1" bgcolor="#FFFFCC" width="60%">
 <tr bgcolor="#77BBFF">
-<td align="left" width="15%">Setting Name:</td><td align="left">peridot_spi_master_driver.flash_boot.decompress.lz4</td>
+<td align="left" width="15%">Setting Name:</td><td align="left">peridot_spi_master_driver.flash_boot.bitrate</td>
+</tr>
+<tr>
+<td width="20%">Identifier:</td><td>PERIDOT_SPI_FLASH_BITRATE</td>
+</tr>
+<tr>
+<td width="20%">Default Value:</td><td>40000000</td>
+</tr>
+<tr>
+<td width="20%">Value:</td><td>40000000</td>
+</tr>
+<tr>
+<td width="20%">Type:</td><td>DecimalNumber</td>
+</tr>
+<tr mode="wrap">
+<td width="20%">Destination:</td><td>system_h_define</td>
+</tr>
+<tr mode="wrap">
+<td width="20%">Description:</td><td>Bitrate for SPI flash device</td>
+</tr>
+<tr mode="wrap">
+<td width="20%">Restrictions:</td><td>none</td>
+</tr>
+</table>
+<br>
+<table border="1" bgcolor="#FFFFCC" width="60%">
+<tr bgcolor="#77BBFF">
+<td align="left" width="15%">Setting Name:</td><td align="left">peridot_spi_master_driver.flash_boot.decompress_lz4</td>
 </tr>
 <tr>
 <td width="20%">Identifier:</td><td>PERIDOT_SPI_FLASH_BOOT_DECOMPRESS_LZ4</td>
@@ -2979,7 +3006,7 @@
 <td width="20%">Default Value:</td><td>0</td>
 </tr>
 <tr>
-<td width="20%">Value:</td><td>true</td>
+<td width="20%">Value:</td><td>false</td>
 </tr>
 <tr>
 <td width="20%">Type:</td><td>BooleanDefineOnly</td>
@@ -2989,6 +3016,33 @@
 </tr>
 <tr mode="wrap">
 <td width="20%">Description:</td><td>Enable boot from flash (hal.linker.allow_code_at_reset must be disabled)</td>
+</tr>
+<tr mode="wrap">
+<td width="20%">Restrictions:</td><td>none</td>
+</tr>
+</table>
+<br>
+<table border="1" bgcolor="#FFFFCC" width="60%">
+<tr bgcolor="#77BBFF">
+<td align="left" width="15%">Setting Name:</td><td align="left">peridot_spi_master_driver.flash_boot.name</td>
+</tr>
+<tr>
+<td width="20%">Identifier:</td><td>PERIDOT_SPI_FLASH_BOOT_NAME</td>
+</tr>
+<tr>
+<td width="20%">Default Value:</td><td>none</td>
+</tr>
+<tr>
+<td width="20%">Value:</td><td>epcs</td>
+</tr>
+<tr>
+<td width="20%">Type:</td><td>UnquotedString</td>
+</tr>
+<tr mode="wrap">
+<td width="20%">Destination:</td><td>system_h_define</td>
+</tr>
+<tr mode="wrap">
+<td width="20%">Description:</td><td>Slave descriptor for SPI flash</td>
 </tr>
 <tr mode="wrap">
 <td width="20%">Restrictions:</td><td>none</td>
@@ -3030,10 +3084,10 @@
 <td width="20%">Identifier:</td><td>PERIDOT_SPI_FLASH_BITRATE</td>
 </tr>
 <tr>
-<td width="20%">Default Value:</td><td>10000000</td>
+<td width="20%">Default Value:</td><td>40000000</td>
 </tr>
 <tr>
-<td width="20%">Value:</td><td>10000000</td>
+<td width="20%">Value:</td><td>40000000</td>
 </tr>
 <tr>
 <td width="20%">Type:</td><td>DecimalNumber</td>

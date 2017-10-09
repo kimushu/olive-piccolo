@@ -4,7 +4,7 @@
  * Machine generated for CPU 'nios2_fast' in SOPC Builder design 'olive_std_core'
  * SOPC Builder design path: ../../olive_std_core.sopcinfo
  *
- * Generated: Thu Oct 05 10:26:10 JST 2017
+ * Generated: Mon Oct 09 17:49:40 JST 2017
  */
 
 /*
@@ -345,9 +345,9 @@
  */
 
 #define PERIDOT_CLIENT_FS_MAX_FDS 16
-#define PERIDOT_CLIENT_FS_RO_PATH "/dev/stdout:/dev/stderr"
-#define PERIDOT_CLIENT_FS_RW_PATH "/sys/rubic/:/mnt/internal/"
-#define PERIDOT_CLIENT_FS_WO_PATH "/dev/stdin"
+#define PERIDOT_CLIENT_FS_RO_PATH ""
+#define PERIDOT_CLIENT_FS_RW_PATH "/mnt/internal/"
+#define PERIDOT_CLIENT_FS_WO_PATH ""
 
 
 /*
@@ -364,7 +364,7 @@
  */
 
 #define PERIDOT_RPCSRV_CHANNEL 1
-#define PERIDOT_RPCSRV_MAX_REQUEST_LENGTH 1024
+#define PERIDOT_RPCSRV_MAX_REQUEST_LENGTH 65536
 #define PERIDOT_RPCSRV_WORKER_THREADS 1
 
 
@@ -374,15 +374,15 @@
  */
 
 #define EPCS_DRIVER_INSTANCE ({ extern peridot_spi_master_state epcs; &epcs; })
-#define EPCS_FLASH_CLKDIV (4)
-#define PERIDOT_SPI_FLASH_BITRATE 10000000
+#define PERIDOT_SPI_FLASH_BITRATE 40000000
 #define PERIDOT_SPI_FLASH_BOOT_DECOMPRESS_LZ4
-#define PERIDOT_SPI_FLASH_BOOT_ENABLE
+#define PERIDOT_SPI_FLASH_BOOT_NAME epcs
 #define PERIDOT_SPI_FLASH_BOOT_OFFSET 0x0
 #define PERIDOT_SPI_FLASH_ENABLE
 #define PERIDOT_SPI_FLASH_NAME epcs
 #define PERIDOT_SPI_FLASH_SLAVE_NUMBER 0
-#define PERIDOT_SPI_MASTER_DRIVER_INSTANCE EPCS
+#define PERIDOT_SPI_MASTER_DRIVER_FLASH_CLKDIV 1
+#define PERIDOT_SPI_MASTER_DRIVER_FLASH_INSTANCE epcs
 #define SPI_DRIVER_INSTANCE ({ extern peridot_spi_master_state spi; &spi; })
 
 

@@ -3,7 +3,7 @@
 # Machine generated for CPU 'nios2_fast' in SOPC Builder design 'olive_std_core'
 # SOPC Builder design path: ../../olive_std_core.sopcinfo
 #
-# Generated: Thu Oct 05 10:26:10 JST 2017
+# Generated: Fri Oct 06 01:54:07 JST 2017
 
 # DO NOT MODIFY THIS FILE
 #
