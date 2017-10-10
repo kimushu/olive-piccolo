@@ -29,7 +29,7 @@ info.variations.reduce((promise, variation) => {
         zip_in.file("spi.elf", data);
         zip_in.file("image1.rpd", fs.readFileSync(RPD_IMG1));
         zip_in.file("ufm.rpd", fs.readFileSync(RPD_UFM));
-        return zip_in.generateAsync({type: "nodebuffer"})
+        return zip_in.generateAsync({type: "nodebuffer", compression: "DEFLATE"});
     })
     .then((content) => {
         zip.file(name, content);
