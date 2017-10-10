@@ -1,7 +1,7 @@
 	component olive_std_core is
 		port (
 			clk_100m_clk           : in    std_logic                     := 'X';             -- clk
-			clk_25m_clk            : in    std_logic                     := 'X';             -- clk
+			clk_40m_clk            : in    std_logic                     := 'X';             -- clk
 			epcs_ss_n              : out   std_logic;                                        -- ss_n
 			epcs_sclk              : out   std_logic;                                        -- sclk
 			epcs_mosi              : out   std_logic;                                        -- mosi

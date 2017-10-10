@@ -1,7 +1,7 @@
 	component olive_std_core is
 		port (
 			clk_100m_clk           : in    std_logic                     := 'X';             -- clk
-			clk_25m_clk            : in    std_logic                     := 'X';             -- clk
+			clk_40m_clk            : in    std_logic                     := 'X';             -- clk
 			epcs_ss_n              : out   std_logic;                                        -- ss_n
 			epcs_sclk              : out   std_logic;                                        -- sclk
 			epcs_mosi              : out   std_logic;                                        -- mosi
@@ -49,7 +49,7 @@
 	u0 : component olive_std_core
 		port map (
 			clk_100m_clk           => CONNECTED_TO_clk_100m_clk,           -- clk_100m.clk
-			clk_25m_clk            => CONNECTED_TO_clk_25m_clk,            --  clk_25m.clk
+			clk_40m_clk            => CONNECTED_TO_clk_40m_clk,            --  clk_40m.clk
 			epcs_ss_n              => CONNECTED_TO_epcs_ss_n,              --     epcs.ss_n
 			epcs_sclk              => CONNECTED_TO_epcs_sclk,              --         .sclk
 			epcs_mosi              => CONNECTED_TO_epcs_mosi,              --         .mosi

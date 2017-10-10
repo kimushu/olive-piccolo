@@ -1,7 +1,7 @@
 
 module olive_std_core (
 	clk_100m_clk,
-	clk_25m_clk,
+	clk_40m_clk,
 	epcs_ss_n,
 	epcs_sclk,
 	epcs_mosi,
@@ -45,7 +45,7 @@ module olive_std_core (
 	uart1_rts_n);	
 
 	input		clk_100m_clk;
-	input		clk_25m_clk;
+	input		clk_40m_clk;
 	output		epcs_ss_n;
 	output		epcs_sclk;
 	output		epcs_mosi;

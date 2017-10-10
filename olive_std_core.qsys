@@ -141,14 +141,6 @@
    {
       datum _originalDeviceFamily
       {
-         value = "Cyclone IV E";
-         type = "String";
-      }
-   }
-   element olive_std_core
-   {
-      datum _originalDeviceFamily
-      {
          value = "MAX 10";
          type = "String";
       }
@@ -166,38 +158,6 @@
       datum _originalDeviceFamily
       {
          value = "MAX 10";
-         type = "String";
-      }
-   }
-   element olive_std_core
-   {
-      datum _originalDeviceFamily
-      {
-         value = "Cyclone IV E";
-         type = "String";
-      }
-   }
-   element olive_std_core
-   {
-      datum _originalDeviceFamily
-      {
-         value = "Cyclone IV E";
-         type = "String";
-      }
-   }
-   element olive_std_core
-   {
-      datum _originalDeviceFamily
-      {
-         value = "Cyclone IV E";
-         type = "String";
-      }
-   }
-   element olive_std_core
-   {
-      datum _originalDeviceFamily
-      {
-         value = "Cyclone IV E";
          type = "String";
       }
    }
@@ -269,7 +229,23 @@
    {
       datum _originalDeviceFamily
       {
-         value = "MAX 10";
+         value = "Cyclone IV E";
+         type = "String";
+      }
+   }
+   element olive_std_core
+   {
+      datum _originalDeviceFamily
+      {
+         value = "Cyclone IV E";
+         type = "String";
+      }
+   }
+   element olive_std_core
+   {
+      datum _originalDeviceFamily
+      {
+         value = "Cyclone IV E";
          type = "String";
       }
    }
@@ -278,6 +254,46 @@
       datum _originalDeviceFamily
       {
          value = "MAX 10";
+         type = "String";
+      }
+   }
+   element olive_std_core
+   {
+      datum _originalDeviceFamily
+      {
+         value = "Cyclone IV E";
+         type = "String";
+      }
+   }
+   element olive_std_core
+   {
+      datum _originalDeviceFamily
+      {
+         value = "MAX 10";
+         type = "String";
+      }
+   }
+   element olive_std_core
+   {
+      datum _originalDeviceFamily
+      {
+         value = "Cyclone IV E";
+         type = "String";
+      }
+   }
+   element olive_std_core
+   {
+      datum _originalDeviceFamily
+      {
+         value = "MAX 10";
+         type = "String";
+      }
+   }
+   element olive_std_core
+   {
+      datum _originalDeviceFamily
+      {
+         value = "Cyclone IV E";
          type = "String";
       }
    }
@@ -334,22 +350,6 @@
       datum _originalDeviceFamily
       {
          value = "MAX 10";
-         type = "String";
-      }
-   }
-   element olive_std_core
-   {
-      datum _originalDeviceFamily
-      {
-         value = "MAX 10";
-         type = "String";
-      }
-   }
-   element olive_std_core
-   {
-      datum _originalDeviceFamily
-      {
-         value = "Cyclone IV E";
          type = "String";
       }
    }
@@ -548,7 +548,7 @@
  <parameter name="useTestBenchNamingPattern" value="false" />
  <instanceScript></instanceScript>
  <interface name="clk_100m" internal="core_clk.clk_in" type="clock" dir="end" />
- <interface name="clk_25m" internal="peri_clk.clk_in" type="clock" dir="end" />
+ <interface name="clk_40m" internal="peri_clk.clk_in" type="clock" dir="end" />
  <interface name="epcs" internal="epcs.export" type="conduit" dir="end" />
  <interface name="hostuart" internal="hostbridge.uart" type="conduit" dir="end" />
  <interface name="i2c" internal="i2c.export" type="conduit" dir="end" />
@@ -582,7 +582,7 @@
    kind="altchip_id_avm_wrapper"
    version="17.0"
    enabled="1">
-  <parameter name="CLOCKFREQ" value="25000000" />
+  <parameter name="CLOCKFREQ" value="40000000" />
   <parameter name="DEVICE_FAMILY" value="MAX 10" />
   <parameter name="VALIDITY_ASSERTION" value="WAIT" />
  </module>
@@ -614,25 +614,25 @@
   <parameter name="DEFAULT_REG_MODE" value="0" />
  </module>
  <module name="hostbridge" kind="buffered_uart" version="16.1" enabled="1">
-  <parameter name="CLOCK_FREQ" value="25000000" />
+  <parameter name="CLOCK_FREQ" value="40000000" />
   <parameter name="CUSTOM_BAUD" value="115200" />
   <parameter name="DATA_BITS" value="8" />
   <parameter name="DEVICE_FAMILY" value="MAX 10" />
   <parameter name="FIXED_BAUD" value="true" />
-  <parameter name="LIST_BAUD" value="115200" />
+  <parameter name="LIST_BAUD" value="921600" />
   <parameter name="MANUAL_DIV_BITS" value="8" />
   <parameter name="RX_DEPTH_BITS" value="10" />
   <parameter name="TX_DEPTH_BITS" value="10" />
   <parameter name="USE_RTSCTS" value="false" />
  </module>
  <module name="i2c" kind="peridot_i2c_master" version="16.1" enabled="1">
-  <parameter name="CLOCKFREQ" value="25000000" />
+  <parameter name="CLOCKFREQ" value="40000000" />
  </module>
  <module name="led" kind="altera_avalon_pio" version="17.0" enabled="1">
   <parameter name="bitClearingEdgeCapReg" value="false" />
   <parameter name="bitModifyingOutReg" value="false" />
   <parameter name="captureEdge" value="false" />
-  <parameter name="clockRate" value="25000000" />
+  <parameter name="clockRate" value="40000000" />
   <parameter name="direction" value="Output" />
   <parameter name="edgeType" value="RISING" />
   <parameter name="generateIRQ" value="false" />
@@ -678,7 +678,7 @@
   <parameter name="debug_datatrigger" value="0" />
   <parameter name="debug_debugReqSignals" value="false" />
   <parameter name="debug_enabled" value="true" />
-  <parameter name="debug_hwbreakpoint" value="0" />
+  <parameter name="debug_hwbreakpoint" value="2" />
   <parameter name="debug_jtagInstanceID" value="0" />
   <parameter name="debug_traceStorage" value="onchip_trace" />
   <parameter name="debug_traceType" value="none" />
@@ -821,7 +821,7 @@
   <parameter name="userDefinedSettings" value="" />
  </module>
  <module name="peri_clk" kind="clock_source" version="17.0" enabled="1">
-  <parameter name="clockFrequency" value="25000000" />
+  <parameter name="clockFrequency" value="40000000" />
   <parameter name="clockFrequencyKnown" value="true" />
   <parameter name="inputClockFrequency" value="0" />
   <parameter name="resetSynchronousEdges" value="NONE" />
@@ -832,7 +832,7 @@
    version="17.0"
    enabled="1">
   <parameter name="ACTIVE_LOW_RESET" value="0" />
-  <parameter name="AUTO_CLK_CLOCK_RATE" value="25000000" />
+  <parameter name="AUTO_CLK_CLOCK_RATE" value="40000000" />
   <parameter name="NUM_RESET_OUTPUTS" value="1" />
   <parameter name="SYNCHRONOUS_EDGES" value="deassert" />
   <parameter name="USE_RESET_REQUEST" value="0" />
@@ -885,11 +885,11 @@
   <parameter name="rowWidth" value="12" />
  </module>
  <module name="servo" kind="peridot_servo" version="16.1" enabled="1">
-  <parameter name="CLOCKFREQ" value="25000000" />
+  <parameter name="CLOCKFREQ" value="40000000" />
   <parameter name="PWM_CHANNEL" value="8" />
  </module>
  <module name="spi" kind="peridot_spi_master" version="16.1" enabled="1">
-  <parameter name="CLOCKFREQ" value="25000000" />
+  <parameter name="CLOCKFREQ" value="40000000" />
   <parameter name="DEFAULT_REG_BITRVS" value="0" />
   <parameter name="DEFAULT_REG_CLKDIV" value="255" />
   <parameter name="DEFAULT_REG_MODE" value="0" />
@@ -909,13 +909,13 @@
   <parameter name="periodUnits" value="MSEC" />
   <parameter name="resetOutput" value="false" />
   <parameter name="snapshot" value="true" />
-  <parameter name="systemFrequency" value="25000000" />
+  <parameter name="systemFrequency" value="40000000" />
   <parameter name="timeoutPulseOutput" value="false" />
   <parameter name="watchdogPulse" value="2" />
  </module>
  <module name="uart0" kind="altera_avalon_uart" version="17.0" enabled="1">
   <parameter name="baud" value="115200" />
-  <parameter name="clockRate" value="25000000" />
+  <parameter name="clockRate" value="40000000" />
   <parameter name="dataBits" value="8" />
   <parameter name="fixedBaud" value="false" />
   <parameter name="parity" value="NONE" />
@@ -931,7 +931,7 @@
  </module>
  <module name="uart1" kind="altera_avalon_uart" version="17.0" enabled="1">
   <parameter name="baud" value="115200" />
-  <parameter name="clockRate" value="25000000" />
+  <parameter name="clockRate" value="40000000" />
   <parameter name="dataBits" value="8" />
   <parameter name="fixedBaud" value="false" />
   <parameter name="parity" value="NONE" />
@@ -1225,6 +1225,11 @@
    version="17.0"
    start="peri_clk.clk_reset"
    end="peri_reset.in_reset" />
+ <connection
+   kind="reset"
+   version="17.0"
+   start="nios2_fast.debug_reset_request"
+   end="nios2_fast.reset" />
  <connection
    kind="reset"
    version="17.0"

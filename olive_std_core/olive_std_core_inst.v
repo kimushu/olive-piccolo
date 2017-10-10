@@ -1,6 +1,6 @@
 	olive_std_core u0 (
 		.clk_100m_clk           (<connected-to-clk_100m_clk>),           // clk_100m.clk
-		.clk_25m_clk            (<connected-to-clk_25m_clk>),            //  clk_25m.clk
+		.clk_40m_clk            (<connected-to-clk_40m_clk>),            //  clk_40m.clk
 		.epcs_ss_n              (<connected-to-epcs_ss_n>),              //     epcs.ss_n
 		.epcs_sclk              (<connected-to-epcs_sclk>),              //         .sclk
 		.epcs_mosi              (<connected-to-epcs_mosi>),              //         .mosi

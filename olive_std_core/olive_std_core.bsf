@@ -34,8 +34,8 @@ agreement for further details.
 	(port
 		(pt 0 112)
 		(input)
-		(text "clk_25m_clk" (rect 0 0 50 12)(font "Arial" (font_size 8)))
-		(text "clk_25m_clk" (rect 4 101 70 112)(font "Arial" (font_size 8)))
+		(text "clk_40m_clk" (rect 0 0 51 12)(font "Arial" (font_size 8)))
+		(text "clk_40m_clk" (rect 4 101 70 112)(font "Arial" (font_size 8)))
 		(line (pt 0 112)(pt 128 112)(line_width 1))
 	)
 	(port
@@ -328,7 +328,7 @@ agreement for further details.
 	(drawing
 		(text "clk_100m" (rect 75 43 198 99)(font "Arial" (color 128 0 0)(font_size 9)))
 		(text "clk" (rect 133 67 284 144)(font "Arial" (color 0 0 0)))
-		(text "clk_25m" (rect 80 83 202 179)(font "Arial" (color 128 0 0)(font_size 9)))
+		(text "clk_40m" (rect 80 83 202 179)(font "Arial" (color 128 0 0)(font_size 9)))
 		(text "clk" (rect 133 107 284 224)(font "Arial" (color 0 0 0)))
 		(text "epcs" (rect 102 123 228 259)(font "Arial" (color 128 0 0)(font_size 9)))
 		(text "ss_n" (rect 133 147 290 304)(font "Arial" (color 0 0 0)))

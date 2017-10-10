@@ -5,7 +5,7 @@
 `timescale 1 ps / 1 ps
 module olive_std_core (
 		input  wire        clk_100m_clk,           // clk_100m.clk
-		input  wire        clk_25m_clk,            //  clk_25m.clk
+		input  wire        clk_40m_clk,            //  clk_40m.clk
 		output wire        epcs_ss_n,              //     epcs.ss_n
 		output wire        epcs_sclk,              //         .sclk
 		output wire        epcs_mosi,              //         .mosi
@@ -185,16 +185,17 @@ module olive_std_core (
 	wire   [0:0] irq_synchronizer_004_receiver_irq;                        // i2c:ins_irq -> irq_synchronizer_004:receiver_irq
 	wire         irq_mapper_receiver5_irq;                                 // irq_synchronizer_005:sender_irq -> irq_mapper:receiver5_irq
 	wire   [0:0] irq_synchronizer_005_receiver_irq;                        // hostbridge:ins_irq -> irq_synchronizer_005:receiver_irq
-	wire         rst_controller_reset_out_reset;                           // rst_controller:reset_out -> [rst_controller_001:reset_in0, rst_controller_002:reset_in0]
-	wire         rst_controller_001_reset_out_reset;                       // rst_controller_001:reset_out -> [epcs:rsi_reset, irq_mapper:reset, irq_synchronizer:sender_reset, irq_synchronizer_001:sender_reset, irq_synchronizer_002:sender_reset, irq_synchronizer_003:sender_reset, irq_synchronizer_004:sender_reset, irq_synchronizer_005:sender_reset, mm_interconnect_0:nios2_fast_reset_reset_bridge_in_reset_reset, nios2_fast:reset_n, peripheral_bridge:s0_reset, rst_translator:in_reset, sdram:reset_n, ufm:reset_n]
+	wire         rst_controller_reset_out_reset;                           // rst_controller:reset_out -> [epcs:rsi_reset, mm_interconnect_0:ufm_nreset_reset_bridge_in_reset_reset, peripheral_bridge:s0_reset, rst_controller_001:reset_in1, rst_controller_002:reset_in0, sdram:reset_n, ufm:reset_n]
+	wire         rst_controller_001_reset_out_reset;                       // rst_controller_001:reset_out -> [irq_mapper:reset, irq_synchronizer:sender_reset, irq_synchronizer_001:sender_reset, irq_synchronizer_002:sender_reset, irq_synchronizer_003:sender_reset, irq_synchronizer_004:sender_reset, irq_synchronizer_005:sender_reset, mm_interconnect_0:nios2_fast_reset_reset_bridge_in_reset_reset, nios2_fast:reset_n, rst_translator:in_reset]
 	wire         rst_controller_001_reset_out_reset_req;                   // rst_controller_001:reset_req -> [nios2_fast:reset_req, rst_translator:reset_req_in]
+	wire         nios2_fast_debug_reset_request_reset;                     // nios2_fast:debug_reset_request -> rst_controller_001:reset_in0
 	wire         rst_controller_002_reset_out_reset;                       // rst_controller_002:reset_out -> [chipid:reset, dual_boot_0:nreset, hostbridge:reset, i2c:rsi_reset, irq_synchronizer:receiver_reset, irq_synchronizer_001:receiver_reset, irq_synchronizer_002:receiver_reset, irq_synchronizer_003:receiver_reset, irq_synchronizer_004:receiver_reset, irq_synchronizer_005:receiver_reset, led:reset_n, mm_interconnect_1:peripheral_bridge_m0_reset_reset_bridge_in_reset_reset, peripheral_bridge:m0_reset, pfc:rsi_reset, servo:rsi_reset, spi:rsi_reset, sysid:reset_n, systimer:reset_n, uart0:reset_n, uart1:reset_n]
 
 	altchip_id_avm_wrapper #(
 		.DEVICE_FAMILY      ("MAX 10"),
 		.VALIDITY_ASSERTION ("WAIT")
 	) chipid (
-		.clk                (clk_25m_clk),                                 //  clock.clk
+		.clk                (clk_40m_clk),                                 //  clock.clk
 		.reset              (rst_controller_002_reset_out_reset),          //  reset.reset
 		.chipid_address     (mm_interconnect_1_chipid_chipid_address),     // chipid.address
 		.chipid_read        (mm_interconnect_1_chipid_chipid_read),        //       .read
@@ -209,7 +210,7 @@ module olive_std_core (
 		.CONFIG_CYCLE           (9),
 		.RESET_TIMER_CYCLE      (13)
 	) dual_boot_0 (
-		.clk                (clk_25m_clk),                                    //    clk.clk
+		.clk                (clk_40m_clk),                                    //    clk.clk
 		.nreset             (~rst_controller_002_reset_out_reset),            // nreset.reset_n
 		.avmm_rcv_address   (mm_interconnect_1_dual_boot_0_avalon_address),   // avalon.address
 		.avmm_rcv_read      (mm_interconnect_1_dual_boot_0_avalon_read),      //       .read
@@ -224,7 +225,7 @@ module olive_std_core (
 		.DEFAULT_REG_CLKDIV (255)
 	) epcs (
 		.csi_clk       (clk_100m_clk),                        //  clock.clk
-		.rsi_reset     (rst_controller_001_reset_out_reset),  //  reset.reset
+		.rsi_reset     (rst_controller_reset_out_reset),      //  reset.reset
 		.avs_address   (mm_interconnect_0_epcs_s1_address),   //     s1.address
 		.avs_read      (mm_interconnect_0_epcs_s1_read),      //       .read
 		.avs_readdata  (mm_interconnect_0_epcs_s1_readdata),  //       .readdata
@@ -239,15 +240,15 @@ module olive_std_core (
 
 	buffered_uart #(
 		.DEVICE_FAMILY ("MAX 10"),
-		.DIVIDER_BITS  (6),
-		.DIVIDER_INIT  (53),
+		.DIVIDER_BITS  (4),
+		.DIVIDER_INIT  (10),
 		.DIVIDER_FIXED (1),
 		.RTSCTS_ENABLE (0),
 		.DATA_BITS     (8),
 		.RX_DEPTH_BITS (10),
 		.TX_DEPTH_BITS (10)
 	) hostbridge (
-		.clk           (clk_25m_clk),                               // clock.clk
+		.clk           (clk_40m_clk),                               // clock.clk
 		.reset         (rst_controller_002_reset_out_reset),        // reset.reset
 		.avs_address   (mm_interconnect_1_hostbridge_s1_address),   //    s1.address
 		.avs_read      (mm_interconnect_1_hostbridge_s1_read),      //      .read
@@ -262,7 +263,7 @@ module olive_std_core (
 	);
 
 	peridot_i2c i2c (
-		.csi_clk       (clk_25m_clk),                        //  clock.clk
+		.csi_clk       (clk_40m_clk),                        //  clock.clk
 		.rsi_reset     (rst_controller_002_reset_out_reset), //  reset.reset
 		.avs_address   (mm_interconnect_1_i2c_s1_address),   //     s1.address
 		.avs_read      (mm_interconnect_1_i2c_s1_read),      //       .read
@@ -277,7 +278,7 @@ module olive_std_core (
 	);
 
 	olive_std_core_led led (
-		.clk        (clk_25m_clk),                         //                 clk.clk
+		.clk        (clk_40m_clk),                         //                 clk.clk
 		.reset_n    (~rst_controller_002_reset_out_reset), //               reset.reset_n
 		.address    (mm_interconnect_1_led_s1_address),    //                  s1.address
 		.write_n    (~mm_interconnect_1_led_s1_write),     //                    .write_n
@@ -306,7 +307,7 @@ module olive_std_core (
 		.i_waitrequest                       (nios2_fast_instruction_master_waitrequest),                //                          .waitrequest
 		.i_readdatavalid                     (nios2_fast_instruction_master_readdatavalid),              //                          .readdatavalid
 		.irq                                 (nios2_fast_irq_irq),                                       //                       irq.irq
-		.debug_reset_request                 (),                                                         //       debug_reset_request.reset
+		.debug_reset_request                 (nios2_fast_debug_reset_request_reset),                     //       debug_reset_request.reset
 		.debug_mem_slave_address             (mm_interconnect_0_nios2_fast_debug_mem_slave_address),     //           debug_mem_slave.address
 		.debug_mem_slave_byteenable          (mm_interconnect_0_nios2_fast_debug_mem_slave_byteenable),  //                          .byteenable
 		.debug_mem_slave_debugaccess         (mm_interconnect_0_nios2_fast_debug_mem_slave_debugaccess), //                          .debugaccess
@@ -330,10 +331,10 @@ module olive_std_core (
 		.MASTER_SYNC_DEPTH   (2),
 		.SLAVE_SYNC_DEPTH    (2)
 	) peripheral_bridge (
-		.m0_clk           (clk_25m_clk),                                          //   m0_clk.clk
+		.m0_clk           (clk_40m_clk),                                          //   m0_clk.clk
 		.m0_reset         (rst_controller_002_reset_out_reset),                   // m0_reset.reset
 		.s0_clk           (clk_100m_clk),                                         //   s0_clk.clk
-		.s0_reset         (rst_controller_001_reset_out_reset),                   // s0_reset.reset
+		.s0_reset         (rst_controller_reset_out_reset),                       // s0_reset.reset
 		.s0_waitrequest   (mm_interconnect_0_peripheral_bridge_s0_waitrequest),   //       s0.waitrequest
 		.s0_readdata      (mm_interconnect_0_peripheral_bridge_s0_readdata),      //         .readdata
 		.s0_readdatavalid (mm_interconnect_0_peripheral_bridge_s0_readdatavalid), //         .readdatavalid
@@ -357,7 +358,7 @@ module olive_std_core (
 	);
 
 	peridot_pfc_interface pfc (
-		.csi_clk       (clk_25m_clk),                                  //        clock.clk
+		.csi_clk       (clk_40m_clk),                                  //        clock.clk
 		.rsi_reset     (rst_controller_002_reset_out_reset),           //        reset.reset
 		.avs_address   (mm_interconnect_1_pfc_avalon_slave_address),   // avalon_slave.address
 		.avs_read      (mm_interconnect_1_pfc_avalon_slave_read),      //             .read
@@ -372,7 +373,7 @@ module olive_std_core (
 
 	olive_std_core_sdram sdram (
 		.clk            (clk_100m_clk),                             //   clk.clk
-		.reset_n        (~rst_controller_001_reset_out_reset),      // reset.reset_n
+		.reset_n        (~rst_controller_reset_out_reset),          // reset.reset_n
 		.az_addr        (mm_interconnect_0_sdram_s1_address),       //    s1.address
 		.az_be_n        (~mm_interconnect_0_sdram_s1_byteenable),   //      .byteenable_n
 		.az_cs          (mm_interconnect_0_sdram_s1_chipselect),    //      .chipselect
@@ -395,9 +396,9 @@ module olive_std_core (
 
 	peridot_servo #(
 		.PWM_CHANNEL (8),
-		.CLOCKFREQ   (25000000)
+		.CLOCKFREQ   (40000000)
 	) servo (
-		.csi_clk       (clk_25m_clk),                                    //        clock.clk
+		.csi_clk       (clk_40m_clk),                                    //        clock.clk
 		.rsi_reset     (rst_controller_002_reset_out_reset),             //        reset.reset
 		.avs_address   (mm_interconnect_1_servo_avalon_slave_address),   // avalon_slave.address
 		.avs_read      (mm_interconnect_1_servo_avalon_slave_read),      //             .read
@@ -413,7 +414,7 @@ module olive_std_core (
 		.DEFAULT_REG_MODE   (0),
 		.DEFAULT_REG_CLKDIV (255)
 	) spi (
-		.csi_clk       (clk_25m_clk),                        //  clock.clk
+		.csi_clk       (clk_40m_clk),                        //  clock.clk
 		.rsi_reset     (rst_controller_002_reset_out_reset), //  reset.reset
 		.avs_address   (mm_interconnect_1_spi_s1_address),   //     s1.address
 		.avs_read      (mm_interconnect_1_spi_s1_read),      //       .read
@@ -428,14 +429,14 @@ module olive_std_core (
 	);
 
 	olive_std_core_sysid sysid (
-		.clock    (clk_25m_clk),                                    //           clk.clk
+		.clock    (clk_40m_clk),                                    //           clk.clk
 		.reset_n  (~rst_controller_002_reset_out_reset),            //         reset.reset_n
 		.readdata (mm_interconnect_1_sysid_control_slave_readdata), // control_slave.readdata
 		.address  (mm_interconnect_1_sysid_control_slave_address)   //              .address
 	);
 
 	olive_std_core_systimer systimer (
-		.clk        (clk_25m_clk),                              //   clk.clk
+		.clk        (clk_40m_clk),                              //   clk.clk
 		.reset_n    (~rst_controller_002_reset_out_reset),      // reset.reset_n
 		.address    (mm_interconnect_1_systimer_s1_address),    //    s1.address
 		.writedata  (mm_interconnect_1_systimer_s1_writedata),  //      .writedata
@@ -446,7 +447,7 @@ module olive_std_core (
 	);
 
 	olive_std_core_uart0 uart0 (
-		.clk           (clk_25m_clk),                              //                 clk.clk
+		.clk           (clk_40m_clk),                              //                 clk.clk
 		.reset_n       (~rst_controller_002_reset_out_reset),      //               reset.reset_n
 		.address       (mm_interconnect_1_uart0_s1_address),       //                  s1.address
 		.begintransfer (mm_interconnect_1_uart0_s1_begintransfer), //                    .begintransfer
@@ -463,7 +464,7 @@ module olive_std_core (
 	);
 
 	olive_std_core_uart0 uart1 (
-		.clk           (clk_25m_clk),                              //                 clk.clk
+		.clk           (clk_40m_clk),                              //                 clk.clk
 		.reset_n       (~rst_controller_002_reset_out_reset),      //               reset.reset_n
 		.address       (mm_interconnect_1_uart1_s1_address),       //                  s1.address
 		.begintransfer (mm_interconnect_1_uart1_s1_begintransfer), //                    .begintransfer
@@ -526,7 +527,7 @@ module olive_std_core (
 		.IS_COMPRESSED_IMAGE                 ("True")
 	) ufm (
 		.clock                   (clk_100m_clk),                             //    clk.clk
-		.reset_n                 (~rst_controller_001_reset_out_reset),      // nreset.reset_n
+		.reset_n                 (~rst_controller_reset_out_reset),          // nreset.reset_n
 		.avmm_data_addr          (mm_interconnect_0_ufm_data_address),       //   data.address
 		.avmm_data_read          (mm_interconnect_0_ufm_data_read),          //       .read
 		.avmm_data_readdata      (mm_interconnect_0_ufm_data_readdata),      //       .readdata
@@ -545,6 +546,7 @@ module olive_std_core (
 	olive_std_core_mm_interconnect_0 mm_interconnect_0 (
 		.core_clk_clk_clk                             (clk_100m_clk),                                             //                           core_clk_clk.clk
 		.nios2_fast_reset_reset_bridge_in_reset_reset (rst_controller_001_reset_out_reset),                       // nios2_fast_reset_reset_bridge_in_reset.reset
+		.ufm_nreset_reset_bridge_in_reset_reset       (rst_controller_reset_out_reset),                           //       ufm_nreset_reset_bridge_in_reset.reset
 		.nios2_fast_data_master_address               (nios2_fast_data_master_address),                           //                 nios2_fast_data_master.address
 		.nios2_fast_data_master_waitrequest           (nios2_fast_data_master_waitrequest),                       //                                       .waitrequest
 		.nios2_fast_data_master_byteenable            (nios2_fast_data_master_byteenable),                        //                                       .byteenable
@@ -600,7 +602,7 @@ module olive_std_core (
 	);
 
 	olive_std_core_mm_interconnect_1 mm_interconnect_1 (
-		.peri_clk_clk_clk                                       (clk_25m_clk),                                    //                                     peri_clk_clk.clk
+		.peri_clk_clk_clk                                       (clk_40m_clk),                                    //                                     peri_clk_clk.clk
 		.peripheral_bridge_m0_reset_reset_bridge_in_reset_reset (rst_controller_002_reset_out_reset),             // peripheral_bridge_m0_reset_reset_bridge_in_reset.reset
 		.peripheral_bridge_m0_address                           (peripheral_bridge_m0_address),                   //                             peripheral_bridge_m0.address
 		.peripheral_bridge_m0_waitrequest                       (peripheral_bridge_m0_waitrequest),               //                                                 .waitrequest
@@ -690,7 +692,7 @@ module olive_std_core (
 	altera_irq_clock_crosser #(
 		.IRQ_WIDTH (1)
 	) irq_synchronizer (
-		.receiver_clk   (clk_25m_clk),                        //       receiver_clk.clk
+		.receiver_clk   (clk_40m_clk),                        //       receiver_clk.clk
 		.sender_clk     (clk_100m_clk),                       //         sender_clk.clk
 		.receiver_reset (rst_controller_002_reset_out_reset), // receiver_clk_reset.reset
 		.sender_reset   (rst_controller_001_reset_out_reset), //   sender_clk_reset.reset
@@ -701,7 +703,7 @@ module olive_std_core (
 	altera_irq_clock_crosser #(
 		.IRQ_WIDTH (1)
 	) irq_synchronizer_001 (
-		.receiver_clk   (clk_25m_clk),                        //       receiver_clk.clk
+		.receiver_clk   (clk_40m_clk),                        //       receiver_clk.clk
 		.sender_clk     (clk_100m_clk),                       //         sender_clk.clk
 		.receiver_reset (rst_controller_002_reset_out_reset), // receiver_clk_reset.reset
 		.sender_reset   (rst_controller_001_reset_out_reset), //   sender_clk_reset.reset
@@ -712,7 +714,7 @@ module olive_std_core (
 	altera_irq_clock_crosser #(
 		.IRQ_WIDTH (1)
 	) irq_synchronizer_002 (
-		.receiver_clk   (clk_25m_clk),                        //       receiver_clk.clk
+		.receiver_clk   (clk_40m_clk),                        //       receiver_clk.clk
 		.sender_clk     (clk_100m_clk),                       //         sender_clk.clk
 		.receiver_reset (rst_controller_002_reset_out_reset), // receiver_clk_reset.reset
 		.sender_reset   (rst_controller_001_reset_out_reset), //   sender_clk_reset.reset
@@ -723,7 +725,7 @@ module olive_std_core (
 	altera_irq_clock_crosser #(
 		.IRQ_WIDTH (1)
 	) irq_synchronizer_003 (
-		.receiver_clk   (clk_25m_clk),                        //       receiver_clk.clk
+		.receiver_clk   (clk_40m_clk),                        //       receiver_clk.clk
 		.sender_clk     (clk_100m_clk),                       //         sender_clk.clk
 		.receiver_reset (rst_controller_002_reset_out_reset), // receiver_clk_reset.reset
 		.sender_reset   (rst_controller_001_reset_out_reset), //   sender_clk_reset.reset
@@ -734,7 +736,7 @@ module olive_std_core (
 	altera_irq_clock_crosser #(
 		.IRQ_WIDTH (1)
 	) irq_synchronizer_004 (
-		.receiver_clk   (clk_25m_clk),                        //       receiver_clk.clk
+		.receiver_clk   (clk_40m_clk),                        //       receiver_clk.clk
 		.sender_clk     (clk_100m_clk),                       //         sender_clk.clk
 		.receiver_reset (rst_controller_002_reset_out_reset), // receiver_clk_reset.reset
 		.sender_reset   (rst_controller_001_reset_out_reset), //   sender_clk_reset.reset
@@ -745,7 +747,7 @@ module olive_std_core (
 	altera_irq_clock_crosser #(
 		.IRQ_WIDTH (1)
 	) irq_synchronizer_005 (
-		.receiver_clk   (clk_25m_clk),                        //       receiver_clk.clk
+		.receiver_clk   (clk_40m_clk),                        //       receiver_clk.clk
 		.sender_clk     (clk_100m_clk),                       //         sender_clk.clk
 		.receiver_reset (rst_controller_002_reset_out_reset), // receiver_clk_reset.reset
 		.sender_reset   (rst_controller_001_reset_out_reset), //   sender_clk_reset.reset
@@ -817,7 +819,7 @@ module olive_std_core (
 	);
 
 	altera_reset_controller #(
-		.NUM_RESET_INPUTS          (1),
+		.NUM_RESET_INPUTS          (2),
 		.OUTPUT_RESET_SYNC_EDGES   ("deassert"),
 		.SYNC_DEPTH                (2),
 		.RESET_REQUEST_PRESENT     (1),
@@ -842,12 +844,12 @@ module olive_std_core (
 		.USE_RESET_REQUEST_IN15    (0),
 		.ADAPT_RESET_REQUEST       (0)
 	) rst_controller_001 (
-		.reset_in0      (rst_controller_reset_out_reset),         // reset_in0.reset
+		.reset_in0      (nios2_fast_debug_reset_request_reset),   // reset_in0.reset
+		.reset_in1      (rst_controller_reset_out_reset),         // reset_in1.reset
 		.clk            (clk_100m_clk),                           //       clk.clk
 		.reset_out      (rst_controller_001_reset_out_reset),     // reset_out.reset
 		.reset_req      (rst_controller_001_reset_out_reset_req), //          .reset_req
 		.reset_req_in0  (1'b0),                                   // (terminated)
-		.reset_in1      (1'b0),                                   // (terminated)
 		.reset_req_in1  (1'b0),                                   // (terminated)
 		.reset_in2      (1'b0),                                   // (terminated)
 		.reset_req_in2  (1'b0),                                   // (terminated)
@@ -906,7 +908,7 @@ module olive_std_core (
 		.ADAPT_RESET_REQUEST       (0)
 	) rst_controller_002 (
 		.reset_in0      (rst_controller_reset_out_reset),     // reset_in0.reset
-		.clk            (clk_25m_clk),                        //       clk.clk
+		.clk            (clk_40m_clk),                        //       clk.clk
 		.reset_out      (rst_controller_002_reset_out_reset), // reset_out.reset
 		.reset_req      (),                                   // (terminated)
 		.reset_req_in0  (1'b0),                               // (terminated)

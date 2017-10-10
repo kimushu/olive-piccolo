@@ -129,7 +129,7 @@ module olive_std_top(
 	u1 (
         .reset_reset_n   (qsys_reset_n_sig),		//    reset.reset_n
         .clk_100m_clk    (clock_core_sig),			// clk_100m.clk
-        .clk_25m_clk     (clock_peri_sig),			//  clk_25m.clk
+        .clk_40m_clk     (clock_peri_sig),			//  clk_40m.clk
 
         .hostuart_rxd    (RXD),						// hostuart.rxd
         .hostuart_txd    (TXD),						//         .txd
