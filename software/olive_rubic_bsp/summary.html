@@ -22,10 +22,10 @@
 <td width="20%" bgcolor="#77BBFF">BSP Version:</td><td>default</td>
 </tr>
 <tr mode="wrap">
-<td width="20%" bgcolor="#77BBFF">BSP Generated On:</td><td>2017/10/09 17:51:18</td>
+<td width="20%" bgcolor="#77BBFF">BSP Generated On:</td><td>2017/10/11 0:27:36</td>
 </tr>
 <tr mode="wrap">
-<td width="20%" bgcolor="#77BBFF">BSP Generated Timestamp:</td><td>1507539078375</td>
+<td width="20%" bgcolor="#77BBFF">BSP Generated Timestamp:</td><td>1507649256315</td>
 </tr>
 <tr mode="wrap">
 <td width="20%" bgcolor="#77BBFF">BSP Generated Location:</td><td>D:\Works\Altera\olive-piccolo\software\olive_rubic_bsp</td>
@@ -128,6 +128,9 @@
 <th align="left" width="15%">Software Package</th><th align="left" width="15%">Version</th>
 </tr>
 <tr mode="wrap" STYLE="display: 'block'; font-family: 'courier'; color: '#000000'; font-weight: '500'; font-size: '14'; margin-top: '10pt'; text-align: 'left'">
+<td>digests</td><td>default</td>
+</tr>
+<tr mode="wrap" STYLE="display: 'block'; font-family: 'courier'; color: '#000000'; font-weight: '500'; font-size: '14'; margin-top: '10pt'; text-align: 'left'">
 <td>epcs_fatfs</td><td>default</td>
 </tr>
 <tr mode="wrap" STYLE="display: 'block'; font-family: 'courier'; color: '#000000'; font-weight: '500'; font-size: '14'; margin-top: '10pt'; text-align: 'left'">
@@ -208,6 +211,141 @@
 </tr>
 <tr mode="wrap">
 <td width="20%">Description:</td><td>Small-footprint (polled mode) driver</td>
+</tr>
+<tr mode="wrap">
+<td width="20%">Restrictions:</td><td>none</td>
+</tr>
+</table>
+<br>
+<table border="1" bgcolor="#FFFFCC" width="60%">
+<tr bgcolor="#77BBFF">
+<td align="left" width="15%">Setting Name:</td><td align="left">digests.crc32.enable</td>
+</tr>
+<tr>
+<td width="20%">Identifier:</td><td>DIGESTS_CRC32_ENABLE</td>
+</tr>
+<tr>
+<td width="20%">Default Value:</td><td>1</td>
+</tr>
+<tr>
+<td width="20%">Value:</td><td>false</td>
+</tr>
+<tr>
+<td width="20%">Type:</td><td>BooleanDefineOnly</td>
+</tr>
+<tr mode="wrap">
+<td width="20%">Destination:</td><td>system_h_define</td>
+</tr>
+<tr mode="wrap">
+<td width="20%">Description:</td><td>Enable CRC-32 digest</td>
+</tr>
+<tr mode="wrap">
+<td width="20%">Restrictions:</td><td>none</td>
+</tr>
+</table>
+<br>
+<table border="1" bgcolor="#FFFFCC" width="60%">
+<tr bgcolor="#77BBFF">
+<td align="left" width="15%">Setting Name:</td><td align="left">digests.crc32.static_table</td>
+</tr>
+<tr>
+<td width="20%">Identifier:</td><td>DIGESTS_CRC32_STATIC_TABLE</td>
+</tr>
+<tr>
+<td width="20%">Default Value:</td><td>1</td>
+</tr>
+<tr>
+<td width="20%">Value:</td><td>false</td>
+</tr>
+<tr>
+<td width="20%">Type:</td><td>BooleanDefineOnly</td>
+</tr>
+<tr mode="wrap">
+<td width="20%">Destination:</td><td>system_h_define</td>
+</tr>
+<tr mode="wrap">
+<td width="20%">Description:</td><td>Use statically defined table for CRC-32. Turn off to reduce .rodata section size.</td>
+</tr>
+<tr mode="wrap">
+<td width="20%">Restrictions:</td><td>none</td>
+</tr>
+</table>
+<br>
+<table border="1" bgcolor="#FFFFCC" width="60%">
+<tr bgcolor="#77BBFF">
+<td align="left" width="15%">Setting Name:</td><td align="left">digests.md5.enable</td>
+</tr>
+<tr>
+<td width="20%">Identifier:</td><td>DIGESTS_MD5_ENABLE</td>
+</tr>
+<tr>
+<td width="20%">Default Value:</td><td>1</td>
+</tr>
+<tr>
+<td width="20%">Value:</td><td>true</td>
+</tr>
+<tr>
+<td width="20%">Type:</td><td>BooleanDefineOnly</td>
+</tr>
+<tr mode="wrap">
+<td width="20%">Destination:</td><td>system_h_define</td>
+</tr>
+<tr mode="wrap">
+<td width="20%">Description:</td><td>Enable MD5 digest</td>
+</tr>
+<tr mode="wrap">
+<td width="20%">Restrictions:</td><td>none</td>
+</tr>
+</table>
+<br>
+<table border="1" bgcolor="#FFFFCC" width="60%">
+<tr bgcolor="#77BBFF">
+<td align="left" width="15%">Setting Name:</td><td align="left">digests.md5.static_table</td>
+</tr>
+<tr>
+<td width="20%">Identifier:</td><td>DIGESTS_MD5_STATIC_TABLE</td>
+</tr>
+<tr>
+<td width="20%">Default Value:</td><td>1</td>
+</tr>
+<tr>
+<td width="20%">Value:</td><td>false</td>
+</tr>
+<tr>
+<td width="20%">Type:</td><td>BooleanDefineOnly</td>
+</tr>
+<tr mode="wrap">
+<td width="20%">Destination:</td><td>system_h_define</td>
+</tr>
+<tr mode="wrap">
+<td width="20%">Description:</td><td>Use statically defined table for MD5. Turn off to reduce .rodata section size. (However, dynamic table construction requires double-precision math functions.)</td>
+</tr>
+<tr mode="wrap">
+<td width="20%">Restrictions:</td><td>none</td>
+</tr>
+</table>
+<br>
+<table border="1" bgcolor="#FFFFCC" width="60%">
+<tr bgcolor="#77BBFF">
+<td align="left" width="15%">Setting Name:</td><td align="left">epcs_fatfs.block_device</td>
+</tr>
+<tr>
+<td width="20%">Identifier:</td><td>EPCS_FATFS_BLOCK_DEVICE</td>
+</tr>
+<tr>
+<td width="20%">Default Value:</td><td>1</td>
+</tr>
+<tr>
+<td width="20%">Value:</td><td>true</td>
+</tr>
+<tr>
+<td width="20%">Type:</td><td>BooleanDefineOnly</td>
+</tr>
+<tr mode="wrap">
+<td width="20%">Destination:</td><td>system_h_define</td>
+</tr>
+<tr mode="wrap">
+<td width="20%">Description:</td><td>Enable block device at root of mount point</td>
 </tr>
 <tr mode="wrap">
 <td width="20%">Restrictions:</td><td>none</td>
@@ -2727,6 +2865,60 @@
 <br>
 <table border="1" bgcolor="#FFFFCC" width="60%">
 <tr bgcolor="#77BBFF">
+<td align="left" width="15%">Setting Name:</td><td align="left">peridot_client_fs.hash_crc32</td>
+</tr>
+<tr>
+<td width="20%">Identifier:</td><td>PERIDOT_CLIENT_FS_HASH_CRC32</td>
+</tr>
+<tr>
+<td width="20%">Default Value:</td><td>0</td>
+</tr>
+<tr>
+<td width="20%">Value:</td><td>false</td>
+</tr>
+<tr>
+<td width="20%">Type:</td><td>BooleanDefineOnly</td>
+</tr>
+<tr mode="wrap">
+<td width="20%">Destination:</td><td>system_h_define</td>
+</tr>
+<tr mode="wrap">
+<td width="20%">Description:</td><td>Enable CRC-32 for hash calculation</td>
+</tr>
+<tr mode="wrap">
+<td width="20%">Restrictions:</td><td>none</td>
+</tr>
+</table>
+<br>
+<table border="1" bgcolor="#FFFFCC" width="60%">
+<tr bgcolor="#77BBFF">
+<td align="left" width="15%">Setting Name:</td><td align="left">peridot_client_fs.hash_md5</td>
+</tr>
+<tr>
+<td width="20%">Identifier:</td><td>PERIDOT_CLIENT_FS_HASH_MD5</td>
+</tr>
+<tr>
+<td width="20%">Default Value:</td><td>1</td>
+</tr>
+<tr>
+<td width="20%">Value:</td><td>true</td>
+</tr>
+<tr>
+<td width="20%">Type:</td><td>BooleanDefineOnly</td>
+</tr>
+<tr mode="wrap">
+<td width="20%">Destination:</td><td>system_h_define</td>
+</tr>
+<tr mode="wrap">
+<td width="20%">Description:</td><td>Enable MD5 for hash calculation</td>
+</tr>
+<tr mode="wrap">
+<td width="20%">Restrictions:</td><td>none</td>
+</tr>
+</table>
+<br>
+<table border="1" bgcolor="#FFFFCC" width="60%">
+<tr bgcolor="#77BBFF">
 <td align="left" width="15%">Setting Name:</td><td align="left">peridot_client_fs.max_fds</td>
 </tr>
 <tr>
@@ -3006,7 +3198,7 @@
 <td width="20%">Default Value:</td><td>0</td>
 </tr>
 <tr>
-<td width="20%">Value:</td><td>false</td>
+<td width="20%">Value:</td><td>true</td>
 </tr>
 <tr>
 <td width="20%">Type:</td><td>BooleanDefineOnly</td>
@@ -3204,7 +3396,7 @@
 <td width="20%">Destination:</td><td>system_h_define</td>
 </tr>
 <tr mode="wrap">
-<td width="20%">Description:</td><td>Use receiver thread in multi-thread system.</td>
+<td width="20%">Description:</td><td>Use receiver thread in multi-thread system</td>
 </tr>
 <tr mode="wrap">
 <td width="20%">Restrictions:</td><td>none</td>
@@ -3330,7 +3522,7 @@
 <td width="20%">Default Value:</td><td>1</td>
 </tr>
 <tr>
-<td width="20%">Value:</td><td>1</td>
+<td width="20%">Value:</td><td>0</td>
 </tr>
 <tr>
 <td width="20%">Type:</td><td>Boolean</td>
@@ -3375,6 +3567,33 @@
 <br>
 <table border="1" bgcolor="#FFFFCC" width="60%">
 <tr bgcolor="#77BBFF">
+<td align="left" width="15%">Setting Name:</td><td align="left">tinyth.feature.enable_name</td>
+</tr>
+<tr>
+<td width="20%">Identifier:</td><td>TTHREAD_ENABLE_NAME</td>
+</tr>
+<tr>
+<td width="20%">Default Value:</td><td>0</td>
+</tr>
+<tr>
+<td width="20%">Value:</td><td>1</td>
+</tr>
+<tr>
+<td width="20%">Type:</td><td>Boolean</td>
+</tr>
+<tr mode="wrap">
+<td width="20%">Destination:</td><td>system_h_define</td>
+</tr>
+<tr mode="wrap">
+<td width="20%">Description:</td><td>Enable thread name for debugging</td>
+</tr>
+<tr mode="wrap">
+<td width="20%">Restrictions:</td><td>none</td>
+</tr>
+</table>
+<br>
+<table border="1" bgcolor="#FFFFCC" width="60%">
+<tr bgcolor="#77BBFF">
 <td align="left" width="15%">Setting Name:</td><td align="left">tinyth.feature.enable_once</td>
 </tr>
 <tr>
@@ -3384,7 +3603,7 @@
 <td width="20%">Default Value:</td><td>1</td>
 </tr>
 <tr>
-<td width="20%">Value:</td><td>1</td>
+<td width="20%">Value:</td><td>0</td>
 </tr>
 <tr>
 <td width="20%">Type:</td><td>Boolean</td>
@@ -3411,7 +3630,7 @@
 <td width="20%">Default Value:</td><td>0</td>
 </tr>
 <tr>
-<td width="20%">Value:</td><td>0</td>
+<td width="20%">Value:</td><td>1</td>
 </tr>
 <tr>
 <td width="20%">Type:</td><td>Boolean</td>
@@ -3438,7 +3657,7 @@
 <td width="20%">Default Value:</td><td>1</td>
 </tr>
 <tr>
-<td width="20%">Value:</td><td>1</td>
+<td width="20%">Value:</td><td>0</td>
 </tr>
 <tr>
 <td width="20%">Type:</td><td>Boolean</td>
@@ -3519,7 +3738,7 @@
 <td width="20%">Default Value:</td><td>1</td>
 </tr>
 <tr>
-<td width="20%">Value:</td><td>1</td>
+<td width="20%">Value:</td><td>0</td>
 </tr>
 <tr>
 <td width="20%">Type:</td><td>Boolean</td>

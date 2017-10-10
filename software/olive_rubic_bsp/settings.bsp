@@ -2,8 +2,8 @@
 <sch:Settings xmlns:sch="http://www.altera.com/embeddedsw/bsp/schema">
         <BspType>tinyth</BspType>
         <BspVersion>default</BspVersion>
-        <BspGeneratedTimeStamp>2017/10/09 17:51:18</BspGeneratedTimeStamp>
-        <BspGeneratedUnixTimeStamp>1507539078375</BspGeneratedUnixTimeStamp>
+        <BspGeneratedTimeStamp>2017/10/11 0:27:36</BspGeneratedTimeStamp>
+        <BspGeneratedUnixTimeStamp>1507649256315</BspGeneratedUnixTimeStamp>
         <BspGeneratedLocation>D:\Works\Altera\olive-piccolo\software\olive_rubic_bsp</BspGeneratedLocation>
         <BspSettingsFile>settings.bsp</BspSettingsFile>
         <SopcDesignFile>..\..\olive_std_core.sopcinfo</SopcDesignFile>
@@ -878,7 +878,7 @@
                 <SettingName>tinyth.feature.enable_cond</SettingName>
                 <Identifier>TTHREAD_ENABLE_COND</Identifier>
                 <Type>Boolean</Type>
-                <Value>1</Value>
+                <Value>0</Value>
                 <DefaultValue>1</DefaultValue>
                 <DestinationFile>system_h_define</DestinationFile>
                 <Description>Enable pthread_cond*() APIs</Description>
@@ -914,7 +914,7 @@
                 <SettingName>tinyth.feature.enable_once</SettingName>
                 <Identifier>TTHREAD_ENABLE_ONCE</Identifier>
                 <Type>Boolean</Type>
-                <Value>1</Value>
+                <Value>0</Value>
                 <DefaultValue>1</DefaultValue>
                 <DestinationFile>system_h_define</DestinationFile>
                 <Description>Enable pthread_once*() APIs</Description>
@@ -926,7 +926,7 @@
                 <SettingName>tinyth.feature.enable_rwlock</SettingName>
                 <Identifier>TTHREAD_ENABLE_RWLOCK</Identifier>
                 <Type>Boolean</Type>
-                <Value>1</Value>
+                <Value>0</Value>
                 <DefaultValue>1</DefaultValue>
                 <DestinationFile>system_h_define</DestinationFile>
                 <Description>Enable pthread_rwlock*() APIs</Description>
@@ -938,7 +938,7 @@
                 <SettingName>tinyth.feature.enable_spin</SettingName>
                 <Identifier>TTHREAD_ENABLE_SPIN</Identifier>
                 <Type>Boolean</Type>
-                <Value>1</Value>
+                <Value>0</Value>
                 <DefaultValue>1</DefaultValue>
                 <DestinationFile>system_h_define</DestinationFile>
                 <Description>Enable pthread_spin*() APIs</Description>
@@ -962,10 +962,22 @@
                 <SettingName>tinyth.feature.enable_profile</SettingName>
                 <Identifier>TTHREAD_ENABLE_PROF</Identifier>
                 <Type>Boolean</Type>
-                <Value>0</Value>
+                <Value>1</Value>
                 <DefaultValue>0</DefaultValue>
                 <DestinationFile>system_h_define</DestinationFile>
                 <Description>Enable internal profiling (Switch counter / Wait state monitor)</Description>
+                <Restrictions>none</Restrictions>
+                <Enabled>false</Enabled>
+                <Group xsi:nil="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+        </Setting>
+        <Setting>
+                <SettingName>tinyth.feature.enable_name</SettingName>
+                <Identifier>TTHREAD_ENABLE_NAME</Identifier>
+                <Type>Boolean</Type>
+                <Value>1</Value>
+                <DefaultValue>0</DefaultValue>
+                <DestinationFile>system_h_define</DestinationFile>
+                <Description>Enable thread name for debugging</Description>
                 <Restrictions>none</Restrictions>
                 <Enabled>false</Enabled>
                 <Group xsi:nil="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
@@ -1145,7 +1157,7 @@
                 <Value>true</Value>
                 <DefaultValue>0</DefaultValue>
                 <DestinationFile>system_h_define</DestinationFile>
-                <Description>Use receiver thread in multi-thread system.</Description>
+                <Description>Use receiver thread in multi-thread system</Description>
                 <Restrictions>none</Restrictions>
                 <Enabled>false</Enabled>
                 <Group xsi:nil="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
@@ -1230,6 +1242,30 @@
                 <DefaultValue/>
                 <DestinationFile>system_h_define</DestinationFile>
                 <Description>A list of one or more write-only files or directories separated by colon(:) characters.</Description>
+                <Restrictions>none</Restrictions>
+                <Enabled>false</Enabled>
+                <Group xsi:nil="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+        </Setting>
+        <Setting>
+                <SettingName>peridot_client_fs.hash_md5</SettingName>
+                <Identifier>PERIDOT_CLIENT_FS_HASH_MD5</Identifier>
+                <Type>BooleanDefineOnly</Type>
+                <Value>true</Value>
+                <DefaultValue>1</DefaultValue>
+                <DestinationFile>system_h_define</DestinationFile>
+                <Description>Enable MD5 for hash calculation</Description>
+                <Restrictions>none</Restrictions>
+                <Enabled>false</Enabled>
+                <Group xsi:nil="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+        </Setting>
+        <Setting>
+                <SettingName>peridot_client_fs.hash_crc32</SettingName>
+                <Identifier>PERIDOT_CLIENT_FS_HASH_CRC32</Identifier>
+                <Type>BooleanDefineOnly</Type>
+                <Value>false</Value>
+                <DefaultValue>0</DefaultValue>
+                <DestinationFile>system_h_define</DestinationFile>
+                <Description>Enable CRC-32 for hash calculation</Description>
                 <Restrictions>none</Restrictions>
                 <Enabled>false</Enabled>
                 <Group xsi:nil="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
@@ -1367,6 +1403,18 @@
                 <Group xsi:nil="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
         </Setting>
         <Setting>
+                <SettingName>epcs_fatfs.block_device</SettingName>
+                <Identifier>EPCS_FATFS_BLOCK_DEVICE</Identifier>
+                <Type>BooleanDefineOnly</Type>
+                <Value>true</Value>
+                <DefaultValue>1</DefaultValue>
+                <DestinationFile>system_h_define</DestinationFile>
+                <Description>Enable block device at root of mount point</Description>
+                <Restrictions>none</Restrictions>
+                <Enabled>false</Enabled>
+                <Group xsi:nil="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+        </Setting>
+        <Setting>
                 <SettingName>epcs_fatfs.interface.use_peridot_spi_flash</SettingName>
                 <Identifier>EPCS_FATFS_IF_PERIDOT_SPI_FLASH</Identifier>
                 <Type>BooleanDefineOnly</Type>
@@ -1487,6 +1535,54 @@
                 <Group xsi:nil="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
         </Setting>
         <Setting>
+                <SettingName>digests.md5.enable</SettingName>
+                <Identifier>DIGESTS_MD5_ENABLE</Identifier>
+                <Type>BooleanDefineOnly</Type>
+                <Value>true</Value>
+                <DefaultValue>1</DefaultValue>
+                <DestinationFile>system_h_define</DestinationFile>
+                <Description>Enable MD5 digest</Description>
+                <Restrictions>none</Restrictions>
+                <Enabled>false</Enabled>
+                <Group xsi:nil="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+        </Setting>
+        <Setting>
+                <SettingName>digests.md5.static_table</SettingName>
+                <Identifier>DIGESTS_MD5_STATIC_TABLE</Identifier>
+                <Type>BooleanDefineOnly</Type>
+                <Value>false</Value>
+                <DefaultValue>1</DefaultValue>
+                <DestinationFile>system_h_define</DestinationFile>
+                <Description>Use statically defined table for MD5. Turn off to reduce .rodata section size. (However, dynamic table construction requires double-precision math functions.)</Description>
+                <Restrictions>none</Restrictions>
+                <Enabled>false</Enabled>
+                <Group xsi:nil="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+        </Setting>
+        <Setting>
+                <SettingName>digests.crc32.enable</SettingName>
+                <Identifier>DIGESTS_CRC32_ENABLE</Identifier>
+                <Type>BooleanDefineOnly</Type>
+                <Value>false</Value>
+                <DefaultValue>1</DefaultValue>
+                <DestinationFile>system_h_define</DestinationFile>
+                <Description>Enable CRC-32 digest</Description>
+                <Restrictions>none</Restrictions>
+                <Enabled>false</Enabled>
+                <Group xsi:nil="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+        </Setting>
+        <Setting>
+                <SettingName>digests.crc32.static_table</SettingName>
+                <Identifier>DIGESTS_CRC32_STATIC_TABLE</Identifier>
+                <Type>BooleanDefineOnly</Type>
+                <Value>false</Value>
+                <DefaultValue>1</DefaultValue>
+                <DestinationFile>system_h_define</DestinationFile>
+                <Description>Use statically defined table for CRC-32. Turn off to reduce .rodata section size.</Description>
+                <Restrictions>none</Restrictions>
+                <Enabled>false</Enabled>
+                <Group xsi:nil="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+        </Setting>
+        <Setting>
                 <SettingName>peridot_spi_master_driver.flash.enable</SettingName>
                 <Identifier>PERIDOT_SPI_FLASH_ENABLE</Identifier>
                 <Type>BooleanDefineOnly</Type>
@@ -1538,7 +1634,7 @@
                 <SettingName>peridot_spi_master_driver.flash_boot.enable</SettingName>
                 <Identifier>PERIDOT_SPI_FLASH_BOOT_ENABLE</Identifier>
                 <Type>BooleanDefineOnly</Type>
-                <Value>false</Value>
+                <Value>true</Value>
                 <DefaultValue>0</DefaultValue>
                 <DestinationFile>system_h_define</DestinationFile>
                 <Description>Enable boot from flash (hal.linker.allow_code_at_reset must be disabled)</Description>
@@ -1774,6 +1870,10 @@
         </SoftwarePackageInfo>
         <SoftwarePackageInfo>
                 <name>epcs_fatfs</name>
+                <version>default</version>
+        </SoftwarePackageInfo>
+        <SoftwarePackageInfo>
+                <name>digests</name>
                 <version>default</version>
         </SoftwarePackageInfo>
 </sch:Settings>

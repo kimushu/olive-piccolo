@@ -282,6 +282,14 @@ buffered_uart_driver_SRCS_ROOT := drivers
 buffered_uart_driver_C_LIB_SRCS := \
 	$(buffered_uart_driver_SRCS_ROOT)/src/buffered_uart.c
 
+# digests sources root 
+digests_SRCS_ROOT := services
+
+# digests sources 
+digests_C_LIB_SRCS := \
+	$(digests_SRCS_ROOT)/src/md5.c \
+	$(digests_SRCS_ROOT)/src/crc32.c
+
 # epcs_fatfs sources root 
 epcs_fatfs_SRCS_ROOT := drivers
 
@@ -408,7 +416,8 @@ peridot_sw_hostbridge_gen2_SRCS_ROOT := services
 # peridot_sw_hostbridge_gen2 sources 
 peridot_sw_hostbridge_gen2_C_LIB_SRCS := \
 	$(peridot_sw_hostbridge_gen2_SRCS_ROOT)/src/peridot_sw_hostbridge_gen2.c \
-	$(peridot_sw_hostbridge_gen2_SRCS_ROOT)/src/peridot_sw_hostbridge_gen2_avm.c
+	$(peridot_sw_hostbridge_gen2_SRCS_ROOT)/src/peridot_sw_hostbridge_gen2_avm.c \
+	$(peridot_sw_hostbridge_gen2_SRCS_ROOT)/src/peridot_sw_hostbridge_gen2_pipe.c
 
 # rubic_agent sources root 
 rubic_agent_SRCS_ROOT := services
@@ -445,6 +454,7 @@ COMPONENT_C_LIB_SRCS += \
 	$(altera_avalon_uart_driver_C_LIB_SRCS) \
 	$(altera_nios2_gen2_hal_driver_C_LIB_SRCS) \
 	$(buffered_uart_driver_C_LIB_SRCS) \
+	$(digests_C_LIB_SRCS) \
 	$(epcs_fatfs_C_LIB_SRCS) \
 	$(hal_C_LIB_SRCS) \
 	$(named_fifo_C_LIB_SRCS) \

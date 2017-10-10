@@ -28,19 +28,24 @@ enum {
 };
 
 typedef struct rubic_agent_worker_s {
-	char tid;
+	pthread_t tid;
+	char thread_index;
 	char state;
 	pthread_mutex_t mutex;
 	sem_t sem;
 	peridot_rpc_server_async_context *context;
+	peridot_rpc_server_async_context *callback_context;
 } rubic_agent_worker;
 
-static struct rubic_agent_state_s {
+struct rubic_agent_state_s {
 	rubic_agent_runtime runtimes[RUBIC_AGENT_MAX_RUNTIMES];
 	rubic_agent_storage storages[RUBIC_AGENT_MAX_STORAGES];
 	rubic_agent_worker workers[RUBIC_AGENT_WORKER_THREADS];
 	void *cached_info;
-} state;
+} rubic_agent_state __attribute__((weak));
+
+static struct rubic_agent_state_s state
+__attribute__((alias("rubic_agent_state")));
 
 /**
  * @func find_runtime
@@ -62,11 +67,12 @@ static rubic_agent_runtime *find_runtime(const char *name)
 }
 
 /**
- * @func worker
+ * @func worker_thread
  * @brief Main worker thread
  */
-static void *worker(rubic_agent_worker *worker)
+static void *worker_thread(rubic_agent_worker *worker)
 {
+	pthread_mutex_lock(&worker->mutex);
 	for (;;) {
 		peridot_rpc_server_async_context *context;
 		rubic_agent_runtime *runtime;
@@ -76,8 +82,10 @@ static void *worker(rubic_agent_worker *worker)
 		const char *file_or_source;
 		int result;
 
-		// Wait new start request
 		worker->state = WORKER_STATE_IDLE;
+		pthread_mutex_unlock(&worker->mutex);
+
+		// Wait new start request
 		sem_wait(&worker->sem);
 		pthread_mutex_lock(&worker->mutex);
 		context = worker->context;
@@ -116,12 +124,23 @@ static void *worker(rubic_agent_worker *worker)
 		}
 		result = (*runtime->runner)(file_or_source, flags, worker);
 
+		pthread_mutex_lock(&worker->mutex);
 		if (worker->state == WORKER_STATE_STARTING) {
 			// context for "start" still alive
 reply_error:
 			worker->context = NULL;
 			peridot_rpc_server_async_callback(context, NULL, result);
-			continue;
+		}
+
+		context = worker->callback_context;
+		if (context) {
+			worker->callback_context = NULL;
+			void *output = malloc(bson_empty_size + bson_measure_int32("result"));
+			if (output) {
+				bson_create_empty_document(output);
+				bson_set_int32(output, "result", result);
+			}
+			peridot_rpc_server_async_callback(context, output, output ? 0 : -ENOMEM);
 		}
 	}
 
@@ -144,7 +163,7 @@ int rubic_agent_runner_notify_init(void *context)
 	}
 
 	bson_create_empty_document(output);
-	bson_set_int32(output, "tid", worker->tid);
+	bson_set_int32(output, "tid", worker->thread_index);
 	peridot_rpc_server_async_callback(worker->context, output, 0);
 	worker->context = NULL;
 	worker->state = WORKER_STATE_RUNNING;
@@ -174,6 +193,14 @@ void rubic_agent_runner_cooperate(void *context)
 		// Abort request always succeeds with "null" response
 		worker->state = WORKER_STATE_ABORTING;
 		peridot_rpc_server_async_callback(rpc_ctx, NULL, 0);
+		return;
+	} else if (strcmp(name, "callback") == 0) {
+		if (worker->callback_context) {
+			// Callback already exists
+			peridot_rpc_server_async_callback(rpc_ctx, NULL, EEXIST);
+			return;
+		}
+		worker->callback_context = rpc_ctx;
 		return;
 	}
 
@@ -352,9 +379,9 @@ int rubic_agent_init(void)
 	int i;
 	for (i = 0; i < RUBIC_AGENT_WORKER_THREADS; ++i) {
 		rubic_agent_worker *worker = &state.workers[i];
+		memset(worker, 0, sizeof(*worker));
 		pthread_mutex_init(&worker->mutex, NULL);
 		sem_init(&worker->sem, 0, 0);
-		worker->tid = i;
 	}
 	peridot_rpc_server_register_sync_method("rubic.info", rubic_agent_method_info);
 	peridot_rpc_server_register_async_method("rubic.queue", rubic_agent_method_queue);
@@ -403,17 +430,24 @@ int rubic_agent_register_storage(const char *name, const char *path)
  */
 int rubic_agent_service(void)
 {
-	int i;
 #if (RUBIC_AGENT_WORKER_THREADS < 1)
 # error "rubic_agent.workers_max must be equal or larger than 1."
 #endif
+#if (RUBIC_AGENT_WORKER_THREADS > 1)
+	int i;
+	char name[16];
+	strcpy(name, "rubic_agent_0");
 	for (i = 1; i < RUBIC_AGENT_WORKER_THREADS; ++i) {
-		pthread_t tid;
-		int result = pthread_create(&tid, NULL, (void *(*)(void *))worker, &state.workers[i]);
+		rubic_agent_worker *worker = &state.workers[i];
+		int result = pthread_create(&worker->tid, NULL, (void *(*)(void *))worker_thread, worker);
 		if (result != 0) {
 			return result;
 		}
+		name[12] = i + '0';
+		pthread_setname_np(worker->tid, name);
 	}
-	worker(&state.workers[0]);
+#endif  /* RUBIC_AGENT_WORKER_THREADS > 1 */
+	state.workers[0].tid = pthread_self();
+	worker_thread(&state.workers[0]);
 	return 0;
 }

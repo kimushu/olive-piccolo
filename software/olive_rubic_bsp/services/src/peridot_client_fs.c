@@ -3,6 +3,7 @@
 #include <string.h>
 #include <malloc.h>
 #include <unistd.h>
+#include <sys/ioctl.h>
 #include "os/alt_sem.h"
 #include "sys/alt_irq.h"
 #include "peridot_client_fs.h"
@@ -12,6 +13,11 @@
 
 #ifndef O_DIRECTORY
 # define O_DIRECTORY 0x200000
+#endif
+
+#if defined(PERIDOT_CLIENT_FS_HASH_MD5) || defined(PERIDOT_CLIENT_FS_HASH_CRC32)
+# define PERIDOT_CLIENT_FS_ENABLE_HASH 1
+# include "digests.h"
 #endif
 
 ALT_STATIC_SEM(sem_lock);
@@ -188,7 +194,7 @@ static void *peridot_client_fs_open(const void *params)
 		errno = EBADF;
 		return NULL;
 	}
-	memcpy(result, &bson_empty_document, bson_empty_size);
+	bson_create_empty_document(result);
 	bson_set_int32(result, "fd", vfd);
 	errno = 0;
 	return result;
@@ -304,7 +310,7 @@ static void *peridot_client_fs_read(const void *params)
 		return NULL;
 	}
 
-	memcpy(result, &bson_empty_document, bson_empty_size);
+	bson_create_empty_document(result);
 	bson_set_binary_generic(result, "data", len, &buf);
 
 	read_len = read(fd, buf, len);
@@ -315,10 +321,109 @@ static void *peridot_client_fs_read(const void *params)
 		errno = errno_saved;
 		return NULL;
 	}
+	bson_shrink_binary(result, buf, read_len);
 
 	bson_set_int32(result, "length", read_len);
 	return result;
 }
+
+#ifdef PERIDOT_CLIENT_FS_ENABLE_HASH
+/*
+ * method: "fs.hash"
+ * params: {
+ *   fd: <int32>        // file descriptor
+ *   length: <int32>    // read length
+ *   method: <string>   // hash algorithm
+ * }
+ * result: {
+ *   hash: <binary>     // hash value
+ *   length: <int32>    // length (may be smaller than binary data)
+ * }
+ */
+static void *peridot_client_fs_hash(const void *params)
+{
+	int off_vfd;
+	int off_len;
+	int off_method;
+	int len;
+	int fd;
+	const char *method;
+	int result_len;
+	void *result;
+	int read_len;
+	void *buf;
+
+	if (bson_get_props(params,
+			"fd", &off_vfd,
+			"length", &off_len,
+			"method", &off_method,
+			NULL) < 0) {
+		errno = JSONRPC_ERR_INVALID_REQUEST;
+		return NULL;
+	}
+
+	if ((fd = peridot_client_fs_get_fd(params, off_vfd, NULL)) < 0) {
+		// errno already set
+		return NULL;
+	}
+
+	if ((len = bson_get_int32(params, off_len, -1)) < 0) {
+		errno = JSONRPC_ERR_INVALID_PARAMS;
+		return NULL;
+	}
+
+	buf = malloc(len);
+	if (!buf) {
+		errno = ENOMEM;
+		return NULL;
+	}
+
+	read_len = read(fd, buf, len);
+	if (read_len < 0) {
+		// errno already set
+		int errno_saved = errno;
+		free(buf);
+		errno = errno_saved;
+		return NULL;
+	}
+
+	result_len = bson_empty_size + bson_measure_int32("length") + bson_measure_binary("hash", 32);
+	result = malloc(result_len + len);
+	if (!result) {
+		free(buf);
+		errno = ENOMEM;
+		return NULL;
+	}
+
+	bson_create_empty_document(result);
+	bson_set_int32(result, "length", read_len);
+
+	method = bson_get_string(params, off_method, "");
+	if (0) {
+#ifdef PERIDOT_CLIENT_FS_HASH_MD5
+	} else if (strcmp(method, "md5") == 0) {
+		digest_md5_t *phash;
+		bson_set_binary_generic(result, "hash", sizeof(*phash), (void **)&phash);
+		digest_md5_calc(phash, buf, read_len);
+#endif  /* PERIDOT_CLIENT_FS_HASH_MD5 */
+#ifdef PERIDOT_CLIENT_FS_HASH_CRC32
+	} else if (strcmp(method, "crc32") == 0) {
+		digest_crc32_t *phash;
+		bson_set_binary_generic(result, "hash", sizeof(*phash), (void **)&phash);
+		digest_crc32_calc(phash, buf, read_len);
+#endif  /* PERIDOT_CLIENT_FS_HASH_CRC32 */
+	} else {
+		// Unknown hash method
+		free(buf);
+		free(result);
+		errno = JSONRPC_ERR_INVALID_PARAMS;
+		return NULL;
+	}
+
+	free(buf);
+	return result;
+}
+#endif  /* PERIDOT_CLIENT_FS_ENABLE_HASH */
 
 /*
  * method: "fs.write"
@@ -375,7 +480,7 @@ static void *peridot_client_fs_write(const void *params)
 		return NULL;
 	}
 
-	memcpy(result, &bson_empty_document, bson_empty_size);
+	bson_create_empty_document(result);
 	bson_set_int32(result, "length", written_len);
 	return result;
 }
@@ -440,8 +545,89 @@ static void *peridot_client_fs_lseek(const void *params)
 		return NULL;
 	}
 
-	memcpy(result, &bson_empty_document, bson_empty_size);
+	bson_create_empty_document(result);
 	bson_set_int32(result, "offset", offset_after);
+	return result;
+}
+
+/*
+ * method: "fs.ioctl"
+ * params: {
+ *   fd: <int32>    // file descriptor
+ *   req: <int32>   // request number (must be a zero or positive number)
+ *   arg: <binary>  // argument (can be null)
+ * }
+ * result: {
+ *   result: <int32>    // return value from ioctl
+ *   response: <binary> // response (modified arg data)
+ * }
+ */
+static void *peridot_client_fs_ioctl(const void *params)
+{
+	int off_vfd;
+	int off_req;
+	int off_arg;
+	int fd;
+	int req;
+	const void *arg_input;
+	void *arg_output;
+	int arg_len;
+	int result_len;
+	void *result;
+	int return_value;
+
+	if (bson_get_props(params,
+			"fd", &off_vfd,
+			"req", &off_req,
+			"arg", &off_arg,
+			NULL) < 0) {
+		errno = JSONRPC_ERR_INVALID_REQUEST;
+		return NULL;
+	}
+
+	if ((fd = peridot_client_fs_get_fd(params, off_vfd, NULL)) < 0) {
+		// errno already set
+		return NULL;
+	}
+
+	req = bson_get_int32(params, off_req, -1);
+	arg_input = bson_get_binary(params, off_arg, &arg_len);
+
+	if (req < 0) {
+		errno = JSONRPC_ERR_INVALID_PARAMS;
+		return NULL;
+	}
+
+	result_len = bson_empty_size + bson_measure_int32("result");
+	if (arg_input) {
+		result_len += bson_measure_binary("response", arg_len);
+	} else {
+		result_len += bson_measure_null("response");
+	}
+	result = malloc(result_len);
+	if (!result) {
+		errno = ENOMEM;
+		return NULL;
+	}
+
+	bson_create_empty_document(result);
+	if (arg_input) {
+		bson_set_binary_generic(result, "response", arg_len, &arg_output);
+		memcpy(arg_output, arg_input, arg_len);
+	} else {
+		bson_set_null(result, "response");
+	}
+
+	return_value = ioctl(fd, req, arg_output);
+	if (return_value < 0) {
+		// errno already set
+		int errno_saved = errno;
+		free(result);
+		errno = errno_saved;
+		return NULL;
+	}
+
+	bson_set_int32(result, "result", return_value);
 	return result;
 }
 
@@ -559,8 +745,12 @@ void peridot_client_fs_init(const char *rw_path, const char *ro_path, const char
 	peridot_rpc_server_register_sync_method("fs.open", peridot_client_fs_open);
 	peridot_rpc_server_register_sync_method("fs.close", peridot_client_fs_close);
 	peridot_rpc_server_register_sync_method("fs.read", peridot_client_fs_read);
+#ifdef PERIDOT_CLIENT_FS_ENABLE_HASH
+	peridot_rpc_server_register_sync_method("fs.hash", peridot_client_fs_hash);
+#endif
 	peridot_rpc_server_register_sync_method("fs.write", peridot_client_fs_write);
 	peridot_rpc_server_register_sync_method("fs.lseek", peridot_client_fs_lseek);
+	peridot_rpc_server_register_sync_method("fs.ioctl", peridot_client_fs_ioctl);
 	peridot_rpc_server_register_sync_method("fs.cleanup", peridot_client_fs_cleanup);
 }
 

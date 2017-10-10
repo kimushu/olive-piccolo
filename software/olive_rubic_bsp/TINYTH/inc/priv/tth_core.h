@@ -24,13 +24,18 @@ enum
   TTHREAD_WAIT_MUTEX  = 'M',  /* pthread_mutex_lock */
   TTHREAD_WAIT_SEM    = 'S',  /* sem_wait           */
   TTHREAD_WAIT_COND   = 'C',  /* pthread_cond_wait  */
-  TTHREAD_WAIT_SLEEP  = 'S',  /* usleep             */
+  TTHREAD_WAIT_SLEEP  = 'Z',  /* usleep             */
 };
 
 typedef struct tth_thread
 {
   void *context;          /* Must be 1st item in tth_thread */
+#if (TTHREAD_ENABLE_PROF != 0)
   unsigned int switches;  /* Must be 2nd item in tth_thread */
+#endif
+#if (TTHREAD_ENABLE_NAME != 0)
+  char *name;
+#endif
   struct tth_thread *waiter;
   struct tth_thread *follower;
   unsigned char detachstate;

@@ -11,9 +11,35 @@ static void buffered_uart_irq(void *context, alt_u32 id)
 {
     buffered_uart_state *sp = (buffered_uart_state *)context;
     alt_u32 base = sp->base;
+    alt_irq_context irq_context;
+    int i;
+
     sp->causes |= (IORD_BUFFERED_UART_STATUS(base) & BUFFERED_UART_STATUS_CAUSES_MSK);
     IOWR_BUFFERED_UART_INTR(base, IORD_BUFFERED_UART_INTR(base) & ~(sp->causes));
-    ALT_SEM_POST(sp->sem);
+
+    irq_context = alt_irq_disable_all();
+    for (i = sp->waiters; i > 0; --i) {
+        ALT_SEM_POST(sp->sem);
+    }
+    alt_irq_enable_all(irq_context);
+}
+
+static void buffered_uart_wait(buffered_uart_state *sp, alt_irq_context context, int trigger)
+{
+    alt_u32 base = sp->base;
+
+    sp->causes &= ~trigger;
+    IOWR_BUFFERED_UART_INTR(base, IORD_BUFFERED_UART_INTR(base) | trigger);
+    ++sp->waiters;
+    alt_irq_enable_all(context);
+
+    do {
+        ALT_SEM_PEND(sp->sem, 0);
+    } while ((sp->causes & trigger) == 0);
+
+    context = alt_irq_disable_all();
+    --sp->waiters;
+    alt_irq_enable_all(context);
 }
 
 void buffered_uart_init(buffered_uart_state *sp, alt_u32 irq_controller_id, alt_u32 irq)
@@ -22,6 +48,7 @@ void buffered_uart_init(buffered_uart_state *sp, alt_u32 irq_controller_id, alt_
 
     // Initialize sync object
     error = ALT_SEM_CREATE(&sp->sem, 0);
+    sp->waiters = 0;
 
     if (!error) {
         // Clear buffer
@@ -41,7 +68,6 @@ void buffered_uart_init(buffered_uart_state *sp, alt_u32 irq_controller_id, alt_
 
 int buffered_uart_close(buffered_uart_state *sp, int flags)
 {
-    alt_irq_context context;
     alt_u32 base = sp->base;
 
     if (IORD_BUFFERED_UART_STATUS(base) & BUFFERED_UART_STATUS_TXE_MSK) {
@@ -50,21 +76,12 @@ int buffered_uart_close(buffered_uart_state *sp, int flags)
         return -EWOULDBLOCK;
     }
 
-    context = alt_irq_disable_all();
-    sp->causes &= ~BUFFERED_UART_STATUS_TXE_MSK;
-    IOWR_BUFFERED_UART_INTR(base, IORD_BUFFERED_UART_INTR(base) | BUFFERED_UART_INTR_TXE_MSK);
-    alt_irq_enable_all(context);
-
-    do {
-        ALT_SEM_PEND(sp->sem, 0);
-    } while ((sp->causes & BUFFERED_UART_STATUS_TXE_MSK) == 0);
-
+    buffered_uart_wait(sp, alt_irq_disable_all(), BUFFERED_UART_STATUS_TXE_MSK);
     return 0;
 }
 
 int buffered_uart_read(buffered_uart_state *sp, char *ptr, int len, int flags)
 {
-    alt_irq_context context;
     alt_u32 base = sp->base;
     int actual = 0;
     int paired = (sp->dataMask > 0xff);
@@ -83,14 +100,7 @@ int buffered_uart_read(buffered_uart_state *sp, char *ptr, int len, int flags)
                     return -EWOULDBLOCK;
                 }
             }
-            context = alt_irq_disable_all();
-            sp->causes &= ~BUFFERED_UART_STATUS_RXNE_MSK;
-            IOWR_BUFFERED_UART_INTR(base, IORD_BUFFERED_UART_INTR(base) | BUFFERED_UART_INTR_RXNE_MSK);
-            alt_irq_enable_all(context);
-
-            do {
-                ALT_SEM_PEND(sp->sem, 0);
-            } while ((sp->causes & BUFFERED_UART_STATUS_RXNE_MSK) == 0);
+            buffered_uart_wait(sp, alt_irq_disable_all(), BUFFERED_UART_INTR_RXNE_MSK);
         } else {
             *((alt_u8 *)ptr++) = (data & 0xff);
             if (paired) {
@@ -134,13 +144,7 @@ int buffered_uart_write(buffered_uart_state *sp, const char *ptr, int len, int f
             }
             break;
         } else {
-            sp->causes &= ~BUFFERED_UART_STATUS_TXNF_MSK;
-            IOWR_BUFFERED_UART_INTR(base, IORD_BUFFERED_UART_INTR(base) | BUFFERED_UART_INTR_TXNF_MSK);
-            alt_irq_enable_all(context);
-
-            do {
-                ALT_SEM_PEND(sp->sem, 0);
-            } while ((sp->causes & BUFFERED_UART_STATUS_TXNF_MSK) == 0);
+            buffered_uart_wait(sp, context, BUFFERED_UART_STATUS_TXNF_MSK);
         }
     }
 

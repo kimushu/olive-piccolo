@@ -4,7 +4,7 @@
  * Machine generated for CPU 'nios2_fast' in SOPC Builder design 'olive_std_core'
  * SOPC Builder design path: ../../olive_std_core.sopcinfo
  *
- * Generated: Fri Oct 06 01:54:07 JST 2017
+ * Generated: Tue Oct 10 14:50:17 JST 2017
  */
 
 /*
@@ -63,6 +63,7 @@
 #include "altera_avalon_timer.h"
 #include "altera_avalon_uart.h"
 #include "buffered_uart.h"
+#include "digests.h"
 #include "epcs_fatfs.h"
 #include "named_fifo.h"
 #include "peridot_client_fs.h"
@@ -84,6 +85,7 @@ ALTERA_AVALON_TIMER_INSTANCE ( SYSTIMER, systimer);
 ALTERA_AVALON_UART_INSTANCE ( UART0, uart0);
 ALTERA_AVALON_UART_INSTANCE ( UART1, uart1);
 BUFFERED_UART_INSTANCE ( HOSTBRIDGE, hostbridge);
+DIGESTS_INSTANCE ( DIGESTS, digests);
 EPCS_FATFS_INSTANCE ( EPCS_FATFS, epcs_fatfs);
 NAMED_FIFO_INSTANCE ( NAMED_FIFO, named_fifo);
 PERIDOT_CLIENT_FS_INSTANCE ( PERIDOT_CLIENT_FS, peridot_client_fs);
@@ -118,6 +120,7 @@ void alt_irq_init ( const void* base )
 void alt_sys_init( void )
 {
     ALTERA_AVALON_TIMER_INIT ( SYSTIMER, systimer);
+    DIGESTS_INIT ( DIGESTS, digests);
     ALTERA_AVALON_SYSID_QSYS_INIT ( SYSID, sysid);
     ALTERA_AVALON_UART_INIT ( UART0, uart0);
     ALTERA_AVALON_UART_INIT ( UART1, uart1);
