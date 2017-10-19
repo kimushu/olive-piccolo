@@ -13,3 +13,6 @@
 [submodule "ip/altchip_id_avm_wrapper"]
 	path = ip/altchip_id_avm_wrapper
 	url = https://github.com/kimushu/altchip_id_avm_wrapper.git
+[submodule "ip/dummy_avalon_slave"]
+	path = ip/dummy_avalon_slave
+	url = https://github.com/kimushu/dummy_avalon_slave.git
