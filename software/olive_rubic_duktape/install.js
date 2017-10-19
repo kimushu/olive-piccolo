@@ -4,6 +4,7 @@ const download = require('download');
 const decompress = require('decompress');
 const decompressTarxz = require('decompress-tarxz');
 const decompressTargz = require('decompress-targz');
+const JsDiff = require('diff');
 
 const DEST_DIR = path.join(__dirname, 'lib');
 const DUK_VER = '2.2.0';
@@ -69,6 +70,22 @@ fs.ensureDir(DEST_DIR)
             'dukext.c', 'dukext.h', 'dux_config.h'
         ], path.join(DEST_DIR, 'duktape-extension'));
     });
+})
+.then(() => {
+    return [['duktape', 'duk_config.h']].reduce((promise, target) => {
+        let file = path.join(DEST_DIR, ...target);
+        return promise
+        .then(() => {
+            return Promise.all([
+                fs.readFile(file, "utf8"),
+                fs.readFile(path.join(__dirname, `${target[1]}.patch`), "utf8"),
+            ]);
+        })
+        .then(([input, patch]) => {
+            console.log(`Applying patch to ${target[1]} ...`);
+            return fs.writeFile(file, JsDiff.applyPatch(input, patch), "utf8");
+        });
+    }, Promise.resolve());
 })
 .then(() => {
     console.log('done!');
