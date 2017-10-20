@@ -101,6 +101,10 @@ module olive_std_core (
 	wire         mm_interconnect_0_epcs_s1_read;                           // mm_interconnect_0:epcs_s1_read -> epcs:avs_read
 	wire         mm_interconnect_0_epcs_s1_write;                          // mm_interconnect_0:epcs_s1_write -> epcs:avs_write
 	wire  [31:0] mm_interconnect_0_epcs_s1_writedata;                      // mm_interconnect_0:epcs_s1_writedata -> epcs:avs_writedata
+	wire  [31:0] mm_interconnect_0_dummy_s1_readdata;                      // dummy:avs_readdata -> mm_interconnect_0:dummy_s1_readdata
+	wire         mm_interconnect_0_dummy_s1_read;                          // mm_interconnect_0:dummy_s1_read -> dummy:avs_read
+	wire         mm_interconnect_0_dummy_s1_write;                         // mm_interconnect_0:dummy_s1_write -> dummy:avs_write
+	wire  [31:0] mm_interconnect_0_dummy_s1_writedata;                     // mm_interconnect_0:dummy_s1_writedata -> dummy:avs_writedata
 	wire         peripheral_bridge_m0_waitrequest;                         // mm_interconnect_1:peripheral_bridge_m0_waitrequest -> peripheral_bridge:m0_waitrequest
 	wire  [31:0] peripheral_bridge_m0_readdata;                            // mm_interconnect_1:peripheral_bridge_m0_readdata -> peripheral_bridge:m0_readdata
 	wire         peripheral_bridge_m0_debugaccess;                         // peripheral_bridge:m0_debugaccess -> mm_interconnect_1:peripheral_bridge_m0_debugaccess
@@ -111,11 +115,11 @@ module olive_std_core (
 	wire  [31:0] peripheral_bridge_m0_writedata;                           // peripheral_bridge:m0_writedata -> mm_interconnect_1:peripheral_bridge_m0_writedata
 	wire         peripheral_bridge_m0_write;                               // peripheral_bridge:m0_write -> mm_interconnect_1:peripheral_bridge_m0_write
 	wire   [0:0] peripheral_bridge_m0_burstcount;                          // peripheral_bridge:m0_burstcount -> mm_interconnect_1:peripheral_bridge_m0_burstcount
-	wire  [31:0] mm_interconnect_1_dual_boot_0_avalon_readdata;            // dual_boot_0:avmm_rcv_readdata -> mm_interconnect_1:dual_boot_0_avalon_readdata
-	wire   [2:0] mm_interconnect_1_dual_boot_0_avalon_address;             // mm_interconnect_1:dual_boot_0_avalon_address -> dual_boot_0:avmm_rcv_address
-	wire         mm_interconnect_1_dual_boot_0_avalon_read;                // mm_interconnect_1:dual_boot_0_avalon_read -> dual_boot_0:avmm_rcv_read
-	wire         mm_interconnect_1_dual_boot_0_avalon_write;               // mm_interconnect_1:dual_boot_0_avalon_write -> dual_boot_0:avmm_rcv_write
-	wire  [31:0] mm_interconnect_1_dual_boot_0_avalon_writedata;           // mm_interconnect_1:dual_boot_0_avalon_writedata -> dual_boot_0:avmm_rcv_writedata
+	wire  [31:0] mm_interconnect_1_dual_boot_avalon_readdata;              // dual_boot:avmm_rcv_readdata -> mm_interconnect_1:dual_boot_avalon_readdata
+	wire   [2:0] mm_interconnect_1_dual_boot_avalon_address;               // mm_interconnect_1:dual_boot_avalon_address -> dual_boot:avmm_rcv_address
+	wire         mm_interconnect_1_dual_boot_avalon_read;                  // mm_interconnect_1:dual_boot_avalon_read -> dual_boot:avmm_rcv_read
+	wire         mm_interconnect_1_dual_boot_avalon_write;                 // mm_interconnect_1:dual_boot_avalon_write -> dual_boot:avmm_rcv_write
+	wire  [31:0] mm_interconnect_1_dual_boot_avalon_writedata;             // mm_interconnect_1:dual_boot_avalon_writedata -> dual_boot:avmm_rcv_writedata
 	wire  [31:0] mm_interconnect_1_pfc_avalon_slave_readdata;              // pfc:avs_readdata -> mm_interconnect_1:pfc_avalon_slave_readdata
 	wire   [3:0] mm_interconnect_1_pfc_avalon_slave_address;               // mm_interconnect_1:pfc_avalon_slave_address -> pfc:avs_address
 	wire         mm_interconnect_1_pfc_avalon_slave_read;                  // mm_interconnect_1:pfc_avalon_slave_read -> pfc:avs_read
@@ -185,11 +189,11 @@ module olive_std_core (
 	wire   [0:0] irq_synchronizer_004_receiver_irq;                        // i2c:ins_irq -> irq_synchronizer_004:receiver_irq
 	wire         irq_mapper_receiver5_irq;                                 // irq_synchronizer_005:sender_irq -> irq_mapper:receiver5_irq
 	wire   [0:0] irq_synchronizer_005_receiver_irq;                        // hostbridge:ins_irq -> irq_synchronizer_005:receiver_irq
-	wire         rst_controller_reset_out_reset;                           // rst_controller:reset_out -> [epcs:rsi_reset, mm_interconnect_0:ufm_nreset_reset_bridge_in_reset_reset, peripheral_bridge:s0_reset, rst_controller_001:reset_in1, rst_controller_002:reset_in0, sdram:reset_n, ufm:reset_n]
+	wire         rst_controller_reset_out_reset;                           // rst_controller:reset_out -> [dummy:rsi_reset, epcs:rsi_reset, mm_interconnect_0:ufm_nreset_reset_bridge_in_reset_reset, peripheral_bridge:s0_reset, rst_controller_001:reset_in1, rst_controller_002:reset_in0, sdram:reset_n, ufm:reset_n]
 	wire         rst_controller_001_reset_out_reset;                       // rst_controller_001:reset_out -> [irq_mapper:reset, irq_synchronizer:sender_reset, irq_synchronizer_001:sender_reset, irq_synchronizer_002:sender_reset, irq_synchronizer_003:sender_reset, irq_synchronizer_004:sender_reset, irq_synchronizer_005:sender_reset, mm_interconnect_0:nios2_fast_reset_reset_bridge_in_reset_reset, nios2_fast:reset_n, rst_translator:in_reset]
 	wire         rst_controller_001_reset_out_reset_req;                   // rst_controller_001:reset_req -> [nios2_fast:reset_req, rst_translator:reset_req_in]
 	wire         nios2_fast_debug_reset_request_reset;                     // nios2_fast:debug_reset_request -> rst_controller_001:reset_in0
-	wire         rst_controller_002_reset_out_reset;                       // rst_controller_002:reset_out -> [chipid:reset, dual_boot_0:nreset, hostbridge:reset, i2c:rsi_reset, irq_synchronizer:receiver_reset, irq_synchronizer_001:receiver_reset, irq_synchronizer_002:receiver_reset, irq_synchronizer_003:receiver_reset, irq_synchronizer_004:receiver_reset, irq_synchronizer_005:receiver_reset, led:reset_n, mm_interconnect_1:peripheral_bridge_m0_reset_reset_bridge_in_reset_reset, peripheral_bridge:m0_reset, pfc:rsi_reset, servo:rsi_reset, spi:rsi_reset, sysid:reset_n, systimer:reset_n, uart0:reset_n, uart1:reset_n]
+	wire         rst_controller_002_reset_out_reset;                       // rst_controller_002:reset_out -> [chipid:reset, dual_boot:nreset, hostbridge:reset, i2c:rsi_reset, irq_synchronizer:receiver_reset, irq_synchronizer_001:receiver_reset, irq_synchronizer_002:receiver_reset, irq_synchronizer_003:receiver_reset, irq_synchronizer_004:receiver_reset, irq_synchronizer_005:receiver_reset, led:reset_n, mm_interconnect_1:peripheral_bridge_m0_reset_reset_bridge_in_reset_reset, peripheral_bridge:m0_reset, pfc:rsi_reset, servo:rsi_reset, spi:rsi_reset, sysid:reset_n, systimer:reset_n, uart0:reset_n, uart1:reset_n]
 
 	altchip_id_avm_wrapper #(
 		.DEVICE_FAMILY      ("MAX 10"),
@@ -207,16 +211,25 @@ module olive_std_core (
 
 	altera_dual_boot #(
 		.INTENDED_DEVICE_FAMILY ("MAX 10"),
-		.CONFIG_CYCLE           (9),
-		.RESET_TIMER_CYCLE      (13)
-	) dual_boot_0 (
-		.clk                (clk_40m_clk),                                    //    clk.clk
-		.nreset             (~rst_controller_002_reset_out_reset),            // nreset.reset_n
-		.avmm_rcv_address   (mm_interconnect_1_dual_boot_0_avalon_address),   // avalon.address
-		.avmm_rcv_read      (mm_interconnect_1_dual_boot_0_avalon_read),      //       .read
-		.avmm_rcv_writedata (mm_interconnect_1_dual_boot_0_avalon_writedata), //       .writedata
-		.avmm_rcv_write     (mm_interconnect_1_dual_boot_0_avalon_write),     //       .write
-		.avmm_rcv_readdata  (mm_interconnect_1_dual_boot_0_avalon_readdata)   //       .readdata
+		.CONFIG_CYCLE           (15),
+		.RESET_TIMER_CYCLE      (21)
+	) dual_boot (
+		.clk                (clk_40m_clk),                                  //    clk.clk
+		.nreset             (~rst_controller_002_reset_out_reset),          // nreset.reset_n
+		.avmm_rcv_address   (mm_interconnect_1_dual_boot_avalon_address),   // avalon.address
+		.avmm_rcv_read      (mm_interconnect_1_dual_boot_avalon_read),      //       .read
+		.avmm_rcv_writedata (mm_interconnect_1_dual_boot_avalon_writedata), //       .writedata
+		.avmm_rcv_write     (mm_interconnect_1_dual_boot_avalon_write),     //       .write
+		.avmm_rcv_readdata  (mm_interconnect_1_dual_boot_avalon_readdata)   //       .readdata
+	);
+
+	dummy_avalon_slave dummy (
+		.csi_clk       (clk_100m_clk),                         // clock.clk
+		.rsi_reset     (rst_controller_reset_out_reset),       // reset.reset
+		.avs_read      (mm_interconnect_0_dummy_s1_read),      //    s1.read
+		.avs_readdata  (mm_interconnect_0_dummy_s1_readdata),  //      .readdata
+		.avs_write     (mm_interconnect_0_dummy_s1_write),     //      .write
+		.avs_writedata (mm_interconnect_0_dummy_s1_writedata)  //      .writedata
 	);
 
 	peridot_csr_spi #(
@@ -561,6 +574,10 @@ module olive_std_core (
 		.nios2_fast_instruction_master_read           (nios2_fast_instruction_master_read),                       //                                       .read
 		.nios2_fast_instruction_master_readdata       (nios2_fast_instruction_master_readdata),                   //                                       .readdata
 		.nios2_fast_instruction_master_readdatavalid  (nios2_fast_instruction_master_readdatavalid),              //                                       .readdatavalid
+		.dummy_s1_write                               (mm_interconnect_0_dummy_s1_write),                         //                               dummy_s1.write
+		.dummy_s1_read                                (mm_interconnect_0_dummy_s1_read),                          //                                       .read
+		.dummy_s1_readdata                            (mm_interconnect_0_dummy_s1_readdata),                      //                                       .readdata
+		.dummy_s1_writedata                           (mm_interconnect_0_dummy_s1_writedata),                     //                                       .writedata
 		.epcs_s1_address                              (mm_interconnect_0_epcs_s1_address),                        //                                epcs_s1.address
 		.epcs_s1_write                                (mm_interconnect_0_epcs_s1_write),                          //                                       .write
 		.epcs_s1_read                                 (mm_interconnect_0_epcs_s1_read),                           //                                       .read
@@ -618,11 +635,11 @@ module olive_std_core (
 		.chipid_chipid_read                                     (mm_interconnect_1_chipid_chipid_read),           //                                                 .read
 		.chipid_chipid_readdata                                 (mm_interconnect_1_chipid_chipid_readdata),       //                                                 .readdata
 		.chipid_chipid_waitrequest                              (mm_interconnect_1_chipid_chipid_waitrequest),    //                                                 .waitrequest
-		.dual_boot_0_avalon_address                             (mm_interconnect_1_dual_boot_0_avalon_address),   //                               dual_boot_0_avalon.address
-		.dual_boot_0_avalon_write                               (mm_interconnect_1_dual_boot_0_avalon_write),     //                                                 .write
-		.dual_boot_0_avalon_read                                (mm_interconnect_1_dual_boot_0_avalon_read),      //                                                 .read
-		.dual_boot_0_avalon_readdata                            (mm_interconnect_1_dual_boot_0_avalon_readdata),  //                                                 .readdata
-		.dual_boot_0_avalon_writedata                           (mm_interconnect_1_dual_boot_0_avalon_writedata), //                                                 .writedata
+		.dual_boot_avalon_address                               (mm_interconnect_1_dual_boot_avalon_address),     //                                 dual_boot_avalon.address
+		.dual_boot_avalon_write                                 (mm_interconnect_1_dual_boot_avalon_write),       //                                                 .write
+		.dual_boot_avalon_read                                  (mm_interconnect_1_dual_boot_avalon_read),        //                                                 .read
+		.dual_boot_avalon_readdata                              (mm_interconnect_1_dual_boot_avalon_readdata),    //                                                 .readdata
+		.dual_boot_avalon_writedata                             (mm_interconnect_1_dual_boot_avalon_writedata),   //                                                 .writedata
 		.hostbridge_s1_address                                  (mm_interconnect_1_hostbridge_s1_address),        //                                    hostbridge_s1.address
 		.hostbridge_s1_write                                    (mm_interconnect_1_hostbridge_s1_write),          //                                                 .write
 		.hostbridge_s1_read                                     (mm_interconnect_1_hostbridge_s1_read),           //                                                 .read

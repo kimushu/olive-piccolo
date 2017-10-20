@@ -4,7 +4,7 @@
  * Machine generated for CPU 'nios2_fast' in SOPC Builder design 'olive_std_core'
  * SOPC Builder design path: ../../olive_std_core.sopcinfo
  *
- * Generated: Tue Oct 10 15:53:23 JST 2017
+ * Generated: Thu Oct 19 23:50:12 JST 2017
  */
 
 /*
@@ -215,17 +215,17 @@
 
 
 /*
- * dual_boot_0 configuration
+ * dual_boot configuration
  *
  */
 
-#define ALT_MODULE_CLASS_dual_boot_0 altera_dual_boot
-#define DUAL_BOOT_0_BASE 0x10000060
-#define DUAL_BOOT_0_IRQ -1
-#define DUAL_BOOT_0_IRQ_INTERRUPT_CONTROLLER_ID -1
-#define DUAL_BOOT_0_NAME "/dev/dual_boot_0"
-#define DUAL_BOOT_0_SPAN 32
-#define DUAL_BOOT_0_TYPE "altera_dual_boot"
+#define ALT_MODULE_CLASS_dual_boot altera_dual_boot
+#define DUAL_BOOT_BASE 0x10000060
+#define DUAL_BOOT_IRQ -1
+#define DUAL_BOOT_IRQ_INTERRUPT_CONTROLLER_ID -1
+#define DUAL_BOOT_NAME "/dev/dual_boot"
+#define DUAL_BOOT_SPAN 32
+#define DUAL_BOOT_TYPE "altera_dual_boot"
 
 
 /*
@@ -514,7 +514,7 @@
 #define SYSID_IRQ_INTERRUPT_CONTROLLER_ID -1
 #define SYSID_NAME "/dev/sysid"
 #define SYSID_SPAN 8
-#define SYSID_TIMESTAMP 1507600124
+#define SYSID_TIMESTAMP 1508422076
 #define SYSID_TYPE "altera_avalon_sysid_qsys"
 
 

@@ -13,7 +13,7 @@
    {
       datum _sortIndex
       {
-         value = "10";
+         value = "11";
          type = "int";
       }
    }
@@ -33,19 +33,35 @@
          type = "int";
       }
    }
-   element dual_boot_0
+   element dual_boot
    {
       datum _sortIndex
       {
-         value = "14";
+         value = "15";
          type = "int";
       }
    }
-   element dual_boot_0.avalon
+   element dual_boot.avalon
    {
       datum baseAddress
       {
          value = "96";
+         type = "String";
+      }
+   }
+   element dummy
+   {
+      datum _sortIndex
+      {
+         value = "8";
+         type = "int";
+      }
+   }
+   element dummy.s1
+   {
+      datum baseAddress
+      {
+         value = "268431360";
          type = "String";
       }
    }
@@ -69,7 +85,7 @@
    {
       datum _sortIndex
       {
-         value = "11";
+         value = "12";
          type = "int";
       }
    }
@@ -85,7 +101,7 @@
    {
       datum _sortIndex
       {
-         value = "18";
+         value = "19";
          type = "int";
       }
    }
@@ -109,7 +125,7 @@
    {
       datum _sortIndex
       {
-         value = "12";
+         value = "13";
          type = "int";
       }
    }
@@ -141,46 +157,6 @@
    {
       datum _originalDeviceFamily
       {
-         value = "MAX 10";
-         type = "String";
-      }
-   }
-   element olive_std_core
-   {
-      datum _originalDeviceFamily
-      {
-         value = "Cyclone IV E";
-         type = "String";
-      }
-   }
-   element olive_std_core
-   {
-      datum _originalDeviceFamily
-      {
-         value = "MAX 10";
-         type = "String";
-      }
-   }
-   element olive_std_core
-   {
-      datum _originalDeviceFamily
-      {
-         value = "Cyclone IV E";
-         type = "String";
-      }
-   }
-   element olive_std_core
-   {
-      datum _originalDeviceFamily
-      {
-         value = "Cyclone IV E";
-         type = "String";
-      }
-   }
-   element olive_std_core
-   {
-      datum _originalDeviceFamily
-      {
          value = "Cyclone IV E";
          type = "String";
       }
@@ -205,7 +181,7 @@
    {
       datum _originalDeviceFamily
       {
-         value = "Cyclone IV E";
+         value = "MAX 10";
          type = "String";
       }
    }
@@ -229,30 +205,6 @@
    {
       datum _originalDeviceFamily
       {
-         value = "Cyclone IV E";
-         type = "String";
-      }
-   }
-   element olive_std_core
-   {
-      datum _originalDeviceFamily
-      {
-         value = "Cyclone IV E";
-         type = "String";
-      }
-   }
-   element olive_std_core
-   {
-      datum _originalDeviceFamily
-      {
-         value = "Cyclone IV E";
-         type = "String";
-      }
-   }
-   element olive_std_core
-   {
-      datum _originalDeviceFamily
-      {
          value = "MAX 10";
          type = "String";
       }
@@ -261,7 +213,7 @@
    {
       datum _originalDeviceFamily
       {
-         value = "Cyclone IV E";
+         value = "MAX 10";
          type = "String";
       }
    }
@@ -325,6 +277,30 @@
    {
       datum _originalDeviceFamily
       {
+         value = "Cyclone IV E";
+         type = "String";
+      }
+   }
+   element olive_std_core
+   {
+      datum _originalDeviceFamily
+      {
+         value = "Cyclone IV E";
+         type = "String";
+      }
+   }
+   element olive_std_core
+   {
+      datum _originalDeviceFamily
+      {
+         value = "Cyclone IV E";
+         type = "String";
+      }
+   }
+   element olive_std_core
+   {
+      datum _originalDeviceFamily
+      {
          value = "MAX 10";
          type = "String";
       }
@@ -349,6 +325,46 @@
    {
       datum _originalDeviceFamily
       {
+         value = "Cyclone IV E";
+         type = "String";
+      }
+   }
+   element olive_std_core
+   {
+      datum _originalDeviceFamily
+      {
+         value = "Cyclone IV E";
+         type = "String";
+      }
+   }
+   element olive_std_core
+   {
+      datum _originalDeviceFamily
+      {
+         value = "Cyclone IV E";
+         type = "String";
+      }
+   }
+   element olive_std_core
+   {
+      datum _originalDeviceFamily
+      {
+         value = "Cyclone IV E";
+         type = "String";
+      }
+   }
+   element olive_std_core
+   {
+      datum _originalDeviceFamily
+      {
+         value = "Cyclone IV E";
+         type = "String";
+      }
+   }
+   element olive_std_core
+   {
+      datum _originalDeviceFamily
+      {
          value = "MAX 10";
          type = "String";
       }
@@ -358,6 +374,14 @@
       datum _originalDeviceFamily
       {
          value = "Cyclone IV E";
+         type = "String";
+      }
+   }
+   element olive_std_core
+   {
+      datum _originalDeviceFamily
+      {
+         value = "MAX 10";
          type = "String";
       }
    }
@@ -381,7 +405,7 @@
    {
       datum _sortIndex
       {
-         value = "8";
+         value = "9";
          type = "int";
       }
    }
@@ -397,7 +421,7 @@
    {
       datum _sortIndex
       {
-         value = "15";
+         value = "16";
          type = "int";
       }
    }
@@ -421,7 +445,7 @@
    {
       datum _sortIndex
       {
-         value = "20";
+         value = "21";
          type = "int";
       }
    }
@@ -437,7 +461,7 @@
    {
       datum _sortIndex
       {
-         value = "19";
+         value = "20";
          type = "int";
       }
    }
@@ -453,7 +477,7 @@
    {
       datum _sortIndex
       {
-         value = "9";
+         value = "10";
          type = "int";
       }
    }
@@ -461,7 +485,7 @@
    {
       datum _sortIndex
       {
-         value = "13";
+         value = "14";
          type = "int";
       }
    }
@@ -477,7 +501,7 @@
    {
       datum _sortIndex
       {
-         value = "16";
+         value = "17";
          type = "int";
       }
    }
@@ -493,7 +517,7 @@
    {
       datum _sortIndex
       {
-         value = "17";
+         value = "18";
          type = "int";
       }
    }
@@ -603,10 +627,11 @@
   <parameter name="SYNCHRONOUS_EDGES" value="deassert" />
   <parameter name="USE_RESET_REQUEST" value="0" />
  </module>
- <module name="dual_boot_0" kind="altera_dual_boot" version="17.0" enabled="1">
-  <parameter name="CLOCK_FREQUENCY" value="25.0" />
+ <module name="dual_boot" kind="altera_dual_boot" version="17.0" enabled="1">
+  <parameter name="CLOCK_FREQUENCY" value="40.0" />
   <parameter name="INTENDED_DEVICE_FAMILY" value="MAX 10" />
  </module>
+ <module name="dummy" kind="dummy_avalon_slave" version="16.1" enabled="1" />
  <module name="epcs" kind="peridot_spi_master" version="16.1" enabled="1">
   <parameter name="CLOCKFREQ" value="100000000" />
   <parameter name="DEFAULT_REG_BITRVS" value="0" />
@@ -662,7 +687,7 @@
   <parameter name="dataAddrWidth" value="29" />
   <parameter name="dataMasterHighPerformanceAddrWidth" value="1" />
   <parameter name="dataMasterHighPerformanceMapParam" value="" />
-  <parameter name="dataSlaveMapParam"><![CDATA[<address-map><slave name='sdram.s1' start='0x0' end='0x800000' type='altera_avalon_new_sdram_controller.s1' /><slave name='ufm.data' start='0xF800000' end='0xF808000' type='altera_onchip_flash.data' /><slave name='epcs.s1' start='0xFF00000' end='0xFF00008' type='peridot_spi_master.s1' /><slave name='nios2_fast.debug_mem_slave' start='0xFFF0000' end='0xFFF0800' type='altera_nios2_gen2.debug_mem_slave' /><slave name='sysid.control_slave' start='0x10000000' end='0x10000008' type='altera_avalon_sysid_qsys.control_slave' /><slave name='chipid.chipid' start='0x10000008' end='0x10000010' type='altchip_id_avm_wrapper.chipid' /><slave name='hostbridge.s1' start='0x10000010' end='0x10000020' type='buffered_uart.s1' /><slave name='systimer.s1' start='0x10000020' end='0x10000040' type='altera_avalon_timer.s1' /><slave name='led.s1' start='0x10000040' end='0x10000050' type='altera_avalon_pio.s1' /><slave name='dual_boot_0.avalon' start='0x10000060' end='0x10000080' type='altera_dual_boot.avalon' /><slave name='pfc.avalon_slave' start='0x10000080' end='0x100000C0' type='peridot_pfc_interface.avalon_slave' /><slave name='uart0.s1' start='0x10000100' end='0x10000120' type='altera_avalon_uart.s1' /><slave name='uart1.s1' start='0x10000120' end='0x10000140' type='altera_avalon_uart.s1' /><slave name='i2c.s1' start='0x10000140' end='0x10000148' type='peridot_i2c_master.s1' /><slave name='spi.s1' start='0x10000160' end='0x10000168' type='peridot_spi_master.s1' /><slave name='servo.avalon_slave' start='0x10000180' end='0x10000200' type='peridot_servo.avalon_slave' /></address-map>]]></parameter>
+  <parameter name="dataSlaveMapParam"><![CDATA[<address-map><slave name='sdram.s1' start='0x0' end='0x800000' type='altera_avalon_new_sdram_controller.s1' /><slave name='ufm.data' start='0xF800000' end='0xF808000' type='altera_onchip_flash.data' /><slave name='epcs.s1' start='0xFF00000' end='0xFF00008' type='peridot_spi_master.s1' /><slave name='nios2_fast.debug_mem_slave' start='0xFFF0000' end='0xFFF0800' type='altera_nios2_gen2.debug_mem_slave' /><slave name='sysid.control_slave' start='0x10000000' end='0x10000008' type='altera_avalon_sysid_qsys.control_slave' /><slave name='chipid.chipid' start='0x10000008' end='0x10000010' type='altchip_id_avm_wrapper.chipid' /><slave name='hostbridge.s1' start='0x10000010' end='0x10000020' type='buffered_uart.s1' /><slave name='systimer.s1' start='0x10000020' end='0x10000040' type='altera_avalon_timer.s1' /><slave name='led.s1' start='0x10000040' end='0x10000050' type='altera_avalon_pio.s1' /><slave name='dual_boot.avalon' start='0x10000060' end='0x10000080' type='altera_dual_boot.avalon' /><slave name='pfc.avalon_slave' start='0x10000080' end='0x100000C0' type='peridot_pfc_interface.avalon_slave' /><slave name='uart0.s1' start='0x10000100' end='0x10000120' type='altera_avalon_uart.s1' /><slave name='uart1.s1' start='0x10000120' end='0x10000140' type='altera_avalon_uart.s1' /><slave name='i2c.s1' start='0x10000140' end='0x10000148' type='peridot_i2c_master.s1' /><slave name='spi.s1' start='0x10000160' end='0x10000168' type='peridot_spi_master.s1' /><slave name='servo.avalon_slave' start='0x10000180' end='0x10000200' type='peridot_servo.avalon_slave' /></address-map>]]></parameter>
   <parameter name="data_master_high_performance_paddr_base" value="0" />
   <parameter name="data_master_high_performance_paddr_size" value="0" />
   <parameter name="data_master_paddr_base" value="0" />
@@ -1010,6 +1035,15 @@
  <connection
    kind="avalon"
    version="17.0"
+   start="nios2_fast.data_master"
+   end="dummy.s1">
+  <parameter name="arbitrationPriority" value="1" />
+  <parameter name="baseAddress" value="0x0ffff000" />
+  <parameter name="defaultConnection" value="true" />
+ </connection>
+ <connection
+   kind="avalon"
+   version="17.0"
    start="nios2_fast.instruction_master"
    end="ufm.data">
   <parameter name="arbitrationPriority" value="1" />
@@ -1038,7 +1072,7 @@
    kind="avalon"
    version="17.0"
    start="peripheral_bridge.m0"
-   end="dual_boot_0.avalon">
+   end="dual_boot.avalon">
   <parameter name="arbitrationPriority" value="1" />
   <parameter name="baseAddress" value="0x0060" />
   <parameter name="defaultConnection" value="false" />
@@ -1143,7 +1177,6 @@
   <parameter name="defaultConnection" value="false" />
  </connection>
  <connection kind="clock" version="17.0" start="peri_clk.clk" end="systimer.clk" />
- <connection kind="clock" version="17.0" start="peri_clk.clk" end="uart0.clk" />
  <connection kind="clock" version="17.0" start="peri_clk.clk" end="uart1.clk" />
  <connection kind="clock" version="17.0" start="core_clk.clk" end="sdram.clk" />
  <connection kind="clock" version="17.0" start="core_clk.clk" end="ufm.clk" />
@@ -1151,16 +1184,9 @@
  <connection kind="clock" version="17.0" start="peri_clk.clk" end="peri_reset.clk" />
  <connection kind="clock" version="17.0" start="peri_clk.clk" end="sysid.clk" />
  <connection kind="clock" version="17.0" start="peri_clk.clk" end="led.clk" />
- <connection
-   kind="clock"
-   version="17.0"
-   start="peri_clk.clk"
-   end="dual_boot_0.clk" />
+ <connection kind="clock" version="17.0" start="peri_clk.clk" end="dual_boot.clk" />
  <connection kind="clock" version="17.0" start="core_clk.clk" end="nios2_fast.clk" />
- <connection kind="clock" version="17.0" start="peri_clk.clk" end="pfc.clock" />
- <connection kind="clock" version="17.0" start="peri_clk.clk" end="spi.clock" />
- <connection kind="clock" version="17.0" start="peri_clk.clk" end="servo.clock" />
- <connection kind="clock" version="17.0" start="peri_clk.clk" end="i2c.clock" />
+ <connection kind="clock" version="17.0" start="peri_clk.clk" end="uart0.clk" />
  <connection
    kind="clock"
    version="17.0"
@@ -1168,6 +1194,11 @@
    end="hostbridge.clock" />
  <connection kind="clock" version="17.0" start="core_clk.clk" end="epcs.clock" />
  <connection kind="clock" version="17.0" start="peri_clk.clk" end="chipid.clock" />
+ <connection kind="clock" version="17.0" start="peri_clk.clk" end="pfc.clock" />
+ <connection kind="clock" version="17.0" start="peri_clk.clk" end="spi.clock" />
+ <connection kind="clock" version="17.0" start="peri_clk.clk" end="i2c.clock" />
+ <connection kind="clock" version="17.0" start="peri_clk.clk" end="servo.clock" />
+ <connection kind="clock" version="17.0" start="core_clk.clk" end="dummy.clock" />
  <connection
    kind="clock"
    version="17.0"
@@ -1249,7 +1280,7 @@
    kind="reset"
    version="17.0"
    start="peri_reset.out_reset"
-   end="dual_boot_0.nreset" />
+   end="dual_boot.nreset" />
  <connection
    kind="reset"
    version="17.0"
@@ -1265,36 +1296,6 @@
    version="17.0"
    start="peri_reset.out_reset"
    end="systimer.reset" />
- <connection
-   kind="reset"
-   version="17.0"
-   start="peri_reset.out_reset"
-   end="pfc.reset" />
- <connection
-   kind="reset"
-   version="17.0"
-   start="peri_reset.out_reset"
-   end="uart0.reset" />
- <connection
-   kind="reset"
-   version="17.0"
-   start="peri_reset.out_reset"
-   end="uart1.reset" />
- <connection
-   kind="reset"
-   version="17.0"
-   start="peri_reset.out_reset"
-   end="i2c.reset" />
- <connection
-   kind="reset"
-   version="17.0"
-   start="peri_reset.out_reset"
-   end="spi.reset" />
- <connection
-   kind="reset"
-   version="17.0"
-   start="peri_reset.out_reset"
-   end="servo.reset" />
  <connection
    kind="reset"
    version="17.0"
@@ -1320,6 +1321,41 @@
    version="17.0"
    start="peri_reset.out_reset"
    end="chipid.reset" />
+ <connection
+   kind="reset"
+   version="17.0"
+   start="peri_reset.out_reset"
+   end="servo.reset" />
+ <connection
+   kind="reset"
+   version="17.0"
+   start="peri_reset.out_reset"
+   end="spi.reset" />
+ <connection
+   kind="reset"
+   version="17.0"
+   start="peri_reset.out_reset"
+   end="i2c.reset" />
+ <connection
+   kind="reset"
+   version="17.0"
+   start="peri_reset.out_reset"
+   end="uart1.reset" />
+ <connection
+   kind="reset"
+   version="17.0"
+   start="peri_reset.out_reset"
+   end="uart0.reset" />
+ <connection
+   kind="reset"
+   version="17.0"
+   start="peri_reset.out_reset"
+   end="pfc.reset" />
+ <connection
+   kind="reset"
+   version="17.0"
+   start="core_reset.out_reset"
+   end="dummy.reset" />
  <connection
    kind="reset"
    version="17.0"
