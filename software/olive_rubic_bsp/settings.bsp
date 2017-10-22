@@ -2,8 +2,8 @@
 <sch:Settings xmlns:sch="http://www.altera.com/embeddedsw/bsp/schema">
         <BspType>tinyth</BspType>
         <BspVersion>default</BspVersion>
-        <BspGeneratedTimeStamp>2017/10/19 23:50:08</BspGeneratedTimeStamp>
-        <BspGeneratedUnixTimeStamp>1508424608983</BspGeneratedUnixTimeStamp>
+        <BspGeneratedTimeStamp>2017/10/22 16:16:31</BspGeneratedTimeStamp>
+        <BspGeneratedUnixTimeStamp>1508656591811</BspGeneratedUnixTimeStamp>
         <BspGeneratedLocation>D:\Works\Altera\olive-piccolo\software\olive_rubic_bsp</BspGeneratedLocation>
         <BspSettingsFile>settings.bsp</BspSettingsFile>
         <SopcDesignFile>..\..\olive_std_core.sopcinfo</SopcDesignFile>
@@ -1151,6 +1151,18 @@
                 <Group xsi:nil="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
         </Setting>
         <Setting>
+                <SettingName>rubic_agent.enable_programmer</SettingName>
+                <Identifier>RUBIC_AGENT_ENABLE_PROGRAMMER</Identifier>
+                <Type>BooleanDefineOnly</Type>
+                <Value>true</Value>
+                <DefaultValue>1</DefaultValue>
+                <DestinationFile>system_h_define</DestinationFile>
+                <Description>Enable programmer (Firmware updater)</Description>
+                <Restrictions>none</Restrictions>
+                <Enabled>false</Enabled>
+                <Group xsi:nil="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+        </Setting>
+        <Setting>
                 <SettingName>peridot_sw_hostbridge_gen2.use_receiver_thread</SettingName>
                 <Identifier>PERIDOT_SW_HOSTBRIDGE_GEN2_USE_RECEIVER_THREAD</Identifier>
                 <Type>BooleanDefineOnly</Type>
@@ -1403,18 +1415,6 @@
                 <Group xsi:nil="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
         </Setting>
         <Setting>
-                <SettingName>epcs_fatfs.block_device</SettingName>
-                <Identifier>EPCS_FATFS_BLOCK_DEVICE</Identifier>
-                <Type>BooleanDefineOnly</Type>
-                <Value>true</Value>
-                <DefaultValue>1</DefaultValue>
-                <DestinationFile>system_h_define</DestinationFile>
-                <Description>Enable block device at root of mount point</Description>
-                <Restrictions>none</Restrictions>
-                <Enabled>false</Enabled>
-                <Group xsi:nil="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
-        </Setting>
-        <Setting>
                 <SettingName>epcs_fatfs.interface.use_peridot_spi_flash</SettingName>
                 <Identifier>EPCS_FATFS_IF_PERIDOT_SPI_FLASH</Identifier>
                 <Type>BooleanDefineOnly</Type>
@@ -1550,7 +1550,7 @@
                 <SettingName>digests.md5.static_table</SettingName>
                 <Identifier>DIGESTS_MD5_STATIC_TABLE</Identifier>
                 <Type>BooleanDefineOnly</Type>
-                <Value>false</Value>
+                <Value>true</Value>
                 <DefaultValue>1</DefaultValue>
                 <DestinationFile>system_h_define</DestinationFile>
                 <Description>Use statically defined table for MD5. Turn off to reduce .rodata section size. (However, dynamic table construction requires double-precision math functions.)</Description>
@@ -1734,8 +1734,8 @@
         </MemoryMap>
         <MemoryMap>
                 <slaveDescriptor>ufm</slaveDescriptor>
-                <addressRange>0x0F800000 - 0x0F807FFF</addressRange>
-                <addressSpan>32768</addressSpan>
+                <addressRange>0x0F800000 - 0x0F82AFFF</addressRange>
+                <addressSpan>176128</addressSpan>
                 <attributes>flash, memory, non-volatile</attributes>
         </MemoryMap>
         <MemoryMap>

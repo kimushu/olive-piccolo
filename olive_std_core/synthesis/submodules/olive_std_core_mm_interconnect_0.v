@@ -60,9 +60,11 @@ module olive_std_core_mm_interconnect_0 (
 		input  wire        sdram_s1_readdatavalid,                       //                                       .readdatavalid
 		input  wire        sdram_s1_waitrequest,                         //                                       .waitrequest
 		output wire        sdram_s1_chipselect,                          //                                       .chipselect
-		output wire [12:0] ufm_data_address,                             //                               ufm_data.address
+		output wire [15:0] ufm_data_address,                             //                               ufm_data.address
+		output wire        ufm_data_write,                               //                                       .write
 		output wire        ufm_data_read,                                //                                       .read
 		input  wire [31:0] ufm_data_readdata,                            //                                       .readdata
+		output wire [31:0] ufm_data_writedata,                           //                                       .writedata
 		output wire [1:0]  ufm_data_burstcount,                          //                                       .burstcount
 		input  wire        ufm_data_readdatavalid,                       //                                       .readdatavalid
 		input  wire        ufm_data_waitrequest                          //                                       .waitrequest
@@ -259,11 +261,6 @@ module olive_std_core_mm_interconnect_0 (
 	wire          nios2_fast_instruction_master_agent_cp_ready;                                     // router_001:sink_ready -> nios2_fast_instruction_master_agent:cp_ready
 	wire          nios2_fast_instruction_master_agent_cp_startofpacket;                             // nios2_fast_instruction_master_agent:cp_startofpacket -> router_001:sink_startofpacket
 	wire          nios2_fast_instruction_master_agent_cp_endofpacket;                               // nios2_fast_instruction_master_agent:cp_endofpacket -> router_001:sink_endofpacket
-	wire          ufm_data_agent_rp_valid;                                                          // ufm_data_agent:rp_valid -> router_002:sink_valid
-	wire  [105:0] ufm_data_agent_rp_data;                                                           // ufm_data_agent:rp_data -> router_002:sink_data
-	wire          ufm_data_agent_rp_ready;                                                          // router_002:sink_ready -> ufm_data_agent:rp_ready
-	wire          ufm_data_agent_rp_startofpacket;                                                  // ufm_data_agent:rp_startofpacket -> router_002:sink_startofpacket
-	wire          ufm_data_agent_rp_endofpacket;                                                    // ufm_data_agent:rp_endofpacket -> router_002:sink_endofpacket
 	wire          router_002_src_valid;                                                             // router_002:src_valid -> rsp_demux:sink_valid
 	wire  [105:0] router_002_src_data;                                                              // router_002:src_data -> rsp_demux:sink_data
 	wire          router_002_src_ready;                                                             // rsp_demux:sink_ready -> router_002:src_ready
@@ -503,6 +500,16 @@ module olive_std_core_mm_interconnect_0 (
 	wire    [5:0] sdram_s1_cmd_width_adapter_src_channel;                                           // sdram_s1_cmd_width_adapter:out_channel -> sdram_s1_burst_adapter:sink0_channel
 	wire          sdram_s1_cmd_width_adapter_src_startofpacket;                                     // sdram_s1_cmd_width_adapter:out_startofpacket -> sdram_s1_burst_adapter:sink0_startofpacket
 	wire          sdram_s1_cmd_width_adapter_src_endofpacket;                                       // sdram_s1_cmd_width_adapter:out_endofpacket -> sdram_s1_burst_adapter:sink0_endofpacket
+	wire          ufm_data_agent_rp_valid;                                                          // ufm_data_agent:rp_valid -> pipeline_stage:in_valid
+	wire  [105:0] ufm_data_agent_rp_data;                                                           // ufm_data_agent:rp_data -> pipeline_stage:in_data
+	wire          ufm_data_agent_rp_ready;                                                          // pipeline_stage:in_ready -> ufm_data_agent:rp_ready
+	wire          ufm_data_agent_rp_startofpacket;                                                  // ufm_data_agent:rp_startofpacket -> pipeline_stage:in_startofpacket
+	wire          ufm_data_agent_rp_endofpacket;                                                    // ufm_data_agent:rp_endofpacket -> pipeline_stage:in_endofpacket
+	wire          pipeline_stage_source0_valid;                                                     // pipeline_stage:out_valid -> router_002:sink_valid
+	wire  [105:0] pipeline_stage_source0_data;                                                      // pipeline_stage:out_data -> router_002:sink_data
+	wire          pipeline_stage_source0_ready;                                                     // router_002:sink_ready -> pipeline_stage:out_ready
+	wire          pipeline_stage_source0_startofpacket;                                             // pipeline_stage:out_startofpacket -> router_002:sink_startofpacket
+	wire          pipeline_stage_source0_endofpacket;                                               // pipeline_stage:out_endofpacket -> router_002:sink_endofpacket
 	wire    [5:0] nios2_fast_data_master_limiter_cmd_valid_data;                                    // nios2_fast_data_master_limiter:cmd_src_valid -> cmd_demux:sink_valid
 	wire    [5:0] nios2_fast_instruction_master_limiter_cmd_valid_data;                             // nios2_fast_instruction_master_limiter:cmd_src_valid -> cmd_demux_001:sink_valid
 	wire          ufm_data_agent_rdata_fifo_src_valid;                                              // ufm_data_agent:rdata_fifo_src_valid -> avalon_st_adapter:in_0_valid
@@ -669,7 +676,7 @@ module olive_std_core_mm_interconnect_0 (
 	);
 
 	altera_merlin_slave_translator #(
-		.AV_ADDRESS_W                   (13),
+		.AV_ADDRESS_W                   (16),
 		.AV_DATA_W                      (32),
 		.UAV_DATA_W                     (32),
 		.AV_BURSTCOUNT_W                (2),
@@ -709,13 +716,13 @@ module olive_std_core_mm_interconnect_0 (
 		.uav_lock               (ufm_data_agent_m0_lock),                 //                         .lock
 		.uav_debugaccess        (ufm_data_agent_m0_debugaccess),          //                         .debugaccess
 		.av_address             (ufm_data_address),                       //      avalon_anti_slave_0.address
+		.av_write               (ufm_data_write),                         //                         .write
 		.av_read                (ufm_data_read),                          //                         .read
 		.av_readdata            (ufm_data_readdata),                      //                         .readdata
+		.av_writedata           (ufm_data_writedata),                     //                         .writedata
 		.av_burstcount          (ufm_data_burstcount),                    //                         .burstcount
 		.av_readdatavalid       (ufm_data_readdatavalid),                 //                         .readdatavalid
 		.av_waitrequest         (ufm_data_waitrequest),                   //                         .waitrequest
-		.av_write               (),                                       //              (terminated)
-		.av_writedata           (),                                       //              (terminated)
 		.av_begintransfer       (),                                       //              (terminated)
 		.av_beginbursttransfer  (),                                       //              (terminated)
 		.av_byteenable          (),                                       //              (terminated)
@@ -2038,11 +2045,11 @@ module olive_std_core_mm_interconnect_0 (
 	);
 
 	olive_std_core_mm_interconnect_0_router_002 router_002 (
-		.sink_ready         (ufm_data_agent_rp_ready),                //      sink.ready
-		.sink_valid         (ufm_data_agent_rp_valid),                //          .valid
-		.sink_data          (ufm_data_agent_rp_data),                 //          .data
-		.sink_startofpacket (ufm_data_agent_rp_startofpacket),        //          .startofpacket
-		.sink_endofpacket   (ufm_data_agent_rp_endofpacket),          //          .endofpacket
+		.sink_ready         (pipeline_stage_source0_ready),           //      sink.ready
+		.sink_valid         (pipeline_stage_source0_valid),           //          .valid
+		.sink_data          (pipeline_stage_source0_data),            //          .data
+		.sink_startofpacket (pipeline_stage_source0_startofpacket),   //          .startofpacket
+		.sink_endofpacket   (pipeline_stage_source0_endofpacket),     //          .endofpacket
 		.clk                (core_clk_clk_clk),                       //       clk.clk
 		.reset              (ufm_nreset_reset_bridge_in_reset_reset), // clk_reset.reset
 		.src_ready          (router_002_src_ready),                   //       src.ready
@@ -2805,6 +2812,37 @@ module olive_std_core_mm_interconnect_0 (
 		.out_ready            (sdram_s1_cmd_width_adapter_src_ready),         //          .ready
 		.out_startofpacket    (sdram_s1_cmd_width_adapter_src_startofpacket), //          .startofpacket
 		.in_command_size_data (3'b000)                                        // (terminated)
+	);
+
+	altera_avalon_st_pipeline_stage #(
+		.SYMBOLS_PER_BEAT (1),
+		.BITS_PER_SYMBOL  (106),
+		.USE_PACKETS      (1),
+		.USE_EMPTY        (0),
+		.EMPTY_WIDTH      (0),
+		.CHANNEL_WIDTH    (0),
+		.PACKET_WIDTH     (2),
+		.ERROR_WIDTH      (0),
+		.PIPELINE_READY   (1)
+	) pipeline_stage (
+		.clk               (core_clk_clk_clk),                       //       cr0.clk
+		.reset             (ufm_nreset_reset_bridge_in_reset_reset), // cr0_reset.reset
+		.in_ready          (ufm_data_agent_rp_ready),                //     sink0.ready
+		.in_valid          (ufm_data_agent_rp_valid),                //          .valid
+		.in_startofpacket  (ufm_data_agent_rp_startofpacket),        //          .startofpacket
+		.in_endofpacket    (ufm_data_agent_rp_endofpacket),          //          .endofpacket
+		.in_data           (ufm_data_agent_rp_data),                 //          .data
+		.out_ready         (pipeline_stage_source0_ready),           //   source0.ready
+		.out_valid         (pipeline_stage_source0_valid),           //          .valid
+		.out_startofpacket (pipeline_stage_source0_startofpacket),   //          .startofpacket
+		.out_endofpacket   (pipeline_stage_source0_endofpacket),     //          .endofpacket
+		.out_data          (pipeline_stage_source0_data),            //          .data
+		.in_empty          (1'b0),                                   // (terminated)
+		.out_empty         (),                                       // (terminated)
+		.out_error         (),                                       // (terminated)
+		.in_error          (1'b0),                                   // (terminated)
+		.out_channel       (),                                       // (terminated)
+		.in_channel        (1'b0)                                    // (terminated)
 	);
 
 	olive_std_core_mm_interconnect_0_avalon_st_adapter #(

@@ -4,7 +4,7 @@
  * Machine generated for CPU 'nios2_fast' in SOPC Builder design 'olive_std_core'
  * SOPC Builder design path: ../../olive_std_core.sopcinfo
  *
- * Generated: Thu Oct 19 23:50:12 JST 2017
+ * Generated: Sun Oct 22 16:16:35 JST 2017
  */
 
 /*
@@ -212,6 +212,7 @@
  */
 
 #define DIGESTS_MD5_ENABLE
+#define DIGESTS_MD5_STATIC_TABLE
 
 
 /*
@@ -248,7 +249,6 @@
  *
  */
 
-#define EPCS_FATFS_BLOCK_DEVICE
 #define EPCS_FATFS_FLASH_CMD_ERASE 0x20
 #define EPCS_FATFS_FLASH_END 0x0
 #define EPCS_FATFS_FLASH_SECTOR 4096
@@ -426,6 +426,7 @@
  *
  */
 
+#define RUBIC_AGENT_ENABLE_PROGRAMMER
 #define RUBIC_AGENT_MAX_RUNTIMES 1
 #define RUBIC_AGENT_MAX_STORAGES 1
 #define RUBIC_AGENT_RUBIC_VERSION ">=0.99.100"
@@ -514,7 +515,7 @@
 #define SYSID_IRQ_INTERRUPT_CONTROLLER_ID -1
 #define SYSID_NAME "/dev/sysid"
 #define SYSID_SPAN 8
-#define SYSID_TIMESTAMP 1508422076
+#define SYSID_TIMESTAMP 1508641734
 #define SYSID_TYPE "altera_avalon_sysid_qsys"
 
 
@@ -630,23 +631,23 @@
 #define UFM_IRQ -1
 #define UFM_IRQ_INTERRUPT_CONTROLLER_ID -1
 #define UFM_NAME "/dev/ufm"
-#define UFM_READ_ONLY_MODE 1
+#define UFM_READ_ONLY_MODE 0
 #define UFM_SECTOR1_ENABLED 1
 #define UFM_SECTOR1_END_ADDR 0x3fff
 #define UFM_SECTOR1_START_ADDR 0
 #define UFM_SECTOR2_ENABLED 1
 #define UFM_SECTOR2_END_ADDR 0x7fff
 #define UFM_SECTOR2_START_ADDR 0x4000
-#define UFM_SECTOR3_ENABLED 0
-#define UFM_SECTOR3_END_ADDR 0xffffffff
-#define UFM_SECTOR3_START_ADDR 0xffffffff
-#define UFM_SECTOR4_ENABLED 0
-#define UFM_SECTOR4_END_ADDR 0xffffffff
-#define UFM_SECTOR4_START_ADDR 0xffffffff
+#define UFM_SECTOR3_ENABLED 1
+#define UFM_SECTOR3_END_ADDR 0x1c7ff
+#define UFM_SECTOR3_START_ADDR 0x8000
+#define UFM_SECTOR4_ENABLED 1
+#define UFM_SECTOR4_END_ADDR 0x2afff
+#define UFM_SECTOR4_START_ADDR 0x1c800
 #define UFM_SECTOR5_ENABLED 0
 #define UFM_SECTOR5_END_ADDR 0xffffffff
 #define UFM_SECTOR5_START_ADDR 0xffffffff
-#define UFM_SPAN 32768
+#define UFM_SPAN 176128
 #define UFM_TYPE "altera_onchip_flash"
 
 #endif /* __SYSTEM_H_ */

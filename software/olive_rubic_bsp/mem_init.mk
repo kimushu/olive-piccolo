@@ -201,8 +201,8 @@ SYM_FILES += $(HDL_SIM_DIR)/$(MEM_1).sym
 HDL_SIM_INSTALL_FILES += $(HDL_SIM_INSTALL_DIR)/$(MEM_1).sym
 FLASH_FILES += $(MEM_1).flash
 $(MEM_1)_START := 0x0f800000
-$(MEM_1)_END := 0x0f807fff
-$(MEM_1)_SPAN := 0x00008000
+$(MEM_1)_END := 0x0f82afff
+$(MEM_1)_SPAN := 0x0002b000
 $(MEM_1)_HIERARCHICAL_PATH := ufm
 $(MEM_1)_WIDTH := 32
 $(MEM_1)_HEX_DATA_WIDTH := 8
@@ -215,7 +215,7 @@ $(HDL_SIM_DIR)/$(MEM_1).dat: $(MEM_1).flash
 	$(post-process-info)
 	$(MKDIR) -p $(@D)
 	$(FLASH2DAT) --infile=$< --outfile=$@ \
-		--base=0x0 --end=0x7fff --width=$(mem_width) \
+		--base=0x0 --end=0x2afff --width=$(mem_width) \
 		--create-lanes=$(mem_create_lanes) $(flash2dat_extra_args)
 
 

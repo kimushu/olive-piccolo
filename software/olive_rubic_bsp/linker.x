@@ -4,7 +4,7 @@
  * Machine generated for CPU 'nios2_fast' in SOPC Builder design 'olive_std_core'
  * SOPC Builder design path: ../../olive_std_core.sopcinfo
  *
- * Generated: Fri Oct 06 01:54:07 JST 2017
+ * Generated: Sun Oct 22 16:16:35 JST 2017
  */
 
 /*
@@ -53,7 +53,7 @@ MEMORY
     sdram_BEFORE_EXCEPTION : ORIGIN = 0x0, LENGTH = 32
     sdram : ORIGIN = 0x20, LENGTH = 8388576
     reset : ORIGIN = 0xf800000, LENGTH = 32
-    ufm : ORIGIN = 0xf800020, LENGTH = 32736
+    ufm : ORIGIN = 0xf800020, LENGTH = 176096
 }
 
 /* Define symbols for each memory base-address */

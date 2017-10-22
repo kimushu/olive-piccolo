@@ -67,7 +67,7 @@ div.greydiv { vertical-align:top ; text-align:center ; background:#eeeeee ; bord
   </table>
   <table class="blueBar">
    <tr>
-    <td class="l">2017.10.19.23:07:57</td>
+    <td class="l">2017.10.22.12:08:54</td>
     <td class="r">Datasheet</td>
    </tr>
   </table>
@@ -383,9 +383,14 @@ div.greydiv { vertical-align:top ; text-align:center ; background:#eeeeee ; bord
     <td class="empty"></td>
    </tr>
    <tr>
-    <td class="slaveb">data&#160;</td>
+    <td class="slavem">data&#160;</td>
     <td class="addr"><span style="color:#989898">0x</span>0f800000</td>
     <td class="addr"><span style="color:#989898">0x</span>0f800000</td>
+   </tr>
+   <tr>
+    <td class="slavem">csr&#160;</td>
+    <td class="empty"></td>
+    <td class="empty"></td>
    </tr>
   </table>
   <a name="module_chipid"> </a>
@@ -2346,7 +2351,7 @@ div.greydiv { vertical-align:top ; text-align:center ; background:#eeeeee ; bord
        </tr>
        <tr>
         <td class="parametername">instSlaveMapParam</td>
-        <td class="parametervalue">&lt;address-map&gt;&lt;slave name='sdram.s1' start='0x0' end='0x800000' type='altera_avalon_new_sdram_controller.s1' /&gt;&lt;slave name='ufm.data' start='0xF800000' end='0xF808000' type='altera_onchip_flash.data' /&gt;&lt;slave name='nios2_fast.debug_mem_slave' start='0xFFF0000' end='0xFFF0800' type='altera_nios2_gen2.debug_mem_slave' /&gt;&lt;/address-map&gt;</td>
+        <td class="parametervalue">&lt;address-map&gt;&lt;slave name='sdram.s1' start='0x0' end='0x800000' type='altera_avalon_new_sdram_controller.s1' /&gt;&lt;slave name='ufm.data' start='0xF800000' end='0xF82B000' type='altera_onchip_flash.data' /&gt;&lt;slave name='nios2_fast.debug_mem_slave' start='0xFFF0000' end='0xFFF0800' type='altera_nios2_gen2.debug_mem_slave' /&gt;&lt;/address-map&gt;</td>
        </tr>
        <tr>
         <td class="parametername">faSlaveMapParam</td>
@@ -2354,7 +2359,7 @@ div.greydiv { vertical-align:top ; text-align:center ; background:#eeeeee ; bord
        </tr>
        <tr>
         <td class="parametername">dataSlaveMapParam</td>
-        <td class="parametervalue">&lt;address-map&gt;&lt;slave name='sdram.s1' start='0x0' end='0x800000' type='altera_avalon_new_sdram_controller.s1' /&gt;&lt;slave name='ufm.data' start='0xF800000' end='0xF808000' type='altera_onchip_flash.data' /&gt;&lt;slave name='epcs.s1' start='0xFF00000' end='0xFF00008' type='peridot_spi_master.s1' /&gt;&lt;slave name='nios2_fast.debug_mem_slave' start='0xFFF0000' end='0xFFF0800' type='altera_nios2_gen2.debug_mem_slave' /&gt;&lt;slave name='sysid.control_slave' start='0x10000000' end='0x10000008' type='altera_avalon_sysid_qsys.control_slave' /&gt;&lt;slave name='chipid.chipid' start='0x10000008' end='0x10000010' type='altchip_id_avm_wrapper.chipid' /&gt;&lt;slave name='hostbridge.s1' start='0x10000010' end='0x10000020' type='buffered_uart.s1' /&gt;&lt;slave name='systimer.s1' start='0x10000020' end='0x10000040' type='altera_avalon_timer.s1' /&gt;&lt;slave name='led.s1' start='0x10000040' end='0x10000050' type='altera_avalon_pio.s1' /&gt;&lt;slave name='dual_boot.avalon' start='0x10000060' end='0x10000080' type='altera_dual_boot.avalon' /&gt;&lt;slave name='pfc.avalon_slave' start='0x10000080' end='0x100000C0' type='peridot_pfc_interface.avalon_slave' /&gt;&lt;slave name='uart0.s1' start='0x10000100' end='0x10000120' type='altera_avalon_uart.s1' /&gt;&lt;slave name='uart1.s1' start='0x10000120' end='0x10000140' type='altera_avalon_uart.s1' /&gt;&lt;slave name='i2c.s1' start='0x10000140' end='0x10000148' type='peridot_i2c_master.s1' /&gt;&lt;slave name='spi.s1' start='0x10000160' end='0x10000168' type='peridot_spi_master.s1' /&gt;&lt;slave name='servo.avalon_slave' start='0x10000180' end='0x10000200' type='peridot_servo.avalon_slave' /&gt;&lt;/address-map&gt;</td>
+        <td class="parametervalue">&lt;address-map&gt;&lt;slave name='sdram.s1' start='0x0' end='0x800000' type='altera_avalon_new_sdram_controller.s1' /&gt;&lt;slave name='ufm.data' start='0xF800000' end='0xF82B000' type='altera_onchip_flash.data' /&gt;&lt;slave name='epcs.s1' start='0xFF00000' end='0xFF00008' type='peridot_spi_master.s1' /&gt;&lt;slave name='nios2_fast.debug_mem_slave' start='0xFFF0000' end='0xFFF0800' type='altera_nios2_gen2.debug_mem_slave' /&gt;&lt;slave name='sysid.control_slave' start='0x10000000' end='0x10000008' type='altera_avalon_sysid_qsys.control_slave' /&gt;&lt;slave name='chipid.chipid' start='0x10000008' end='0x10000010' type='altchip_id_avm_wrapper.chipid' /&gt;&lt;slave name='hostbridge.s1' start='0x10000010' end='0x10000020' type='buffered_uart.s1' /&gt;&lt;slave name='systimer.s1' start='0x10000020' end='0x10000040' type='altera_avalon_timer.s1' /&gt;&lt;slave name='led.s1' start='0x10000040' end='0x10000050' type='altera_avalon_pio.s1' /&gt;&lt;slave name='dual_boot.avalon' start='0x10000060' end='0x10000080' type='altera_dual_boot.avalon' /&gt;&lt;slave name='pfc.avalon_slave' start='0x10000080' end='0x100000C0' type='peridot_pfc_interface.avalon_slave' /&gt;&lt;slave name='uart0.s1' start='0x10000100' end='0x10000120' type='altera_avalon_uart.s1' /&gt;&lt;slave name='uart1.s1' start='0x10000120' end='0x10000140' type='altera_avalon_uart.s1' /&gt;&lt;slave name='i2c.s1' start='0x10000140' end='0x10000148' type='peridot_i2c_master.s1' /&gt;&lt;slave name='spi.s1' start='0x10000160' end='0x10000168' type='peridot_spi_master.s1' /&gt;&lt;slave name='servo.avalon_slave' start='0x10000180' end='0x10000200' type='peridot_servo.avalon_slave' /&gt;&lt;/address-map&gt;</td>
        </tr>
        <tr>
         <td class="parametername">tightlyCoupledDataMaster0MapParam</td>
@@ -4103,7 +4108,7 @@ div.greydiv { vertical-align:top ; text-align:center ; background:#eeeeee ; bord
        </tr>
        <tr>
         <td class="parametername">timestamp</td>
-        <td class="parametervalue">1508422076</td>
+        <td class="parametervalue">1508641734</td>
        </tr>
        <tr>
         <td class="parametername">deviceFamily</td>
@@ -4128,7 +4133,7 @@ div.greydiv { vertical-align:top ; text-align:center ; background:#eeeeee ; bord
        </tr>
        <tr>
         <td class="parametername">TIMESTAMP</td>
-        <td class="parametervalue">1508422076</td>
+        <td class="parametervalue">1508641734</td>
        </tr>
       </table>
      </td>
@@ -4801,15 +4806,15 @@ div.greydiv { vertical-align:top ; text-align:center ; background:#eeeeee ; bord
        </tr>
        <tr>
         <td class="parametername">SECTOR_ID</td>
-        <td class="parametervalue">1,2,NA,NA,NA</td>
+        <td class="parametervalue">1,2,3,4,NA</td>
        </tr>
        <tr>
         <td class="parametername">SECTOR_ACCESS_MODE</td>
-        <td class="parametervalue">Read only,Read only,Hidden,Hidden,Hidden</td>
+        <td class="parametervalue">Read and write,Read and write,Read and write,Read and write,Hidden</td>
        </tr>
        <tr>
         <td class="parametername">SECTOR_ADDRESS_MAPPING</td>
-        <td class="parametervalue">0x00000 - 0x03fff,0x04000 - 0x07fff,NA,NA,NA</td>
+        <td class="parametervalue">0x00000 - 0x03fff,0x04000 - 0x07fff,0x08000 - 0x1c7ff,0x1c800 - 0x2afff,NA</td>
        </tr>
        <tr>
         <td class="parametername">SECTOR_STORAGE_TYPE</td>
@@ -4877,19 +4882,19 @@ div.greydiv { vertical-align:top ; text-align:center ; background:#eeeeee ; bord
        </tr>
        <tr>
         <td class="parametername">SECTOR3_START_ADDR</td>
-        <td class="parametervalue">0</td>
+        <td class="parametervalue">8192</td>
        </tr>
        <tr>
         <td class="parametername">SECTOR3_END_ADDR</td>
-        <td class="parametervalue">0</td>
+        <td class="parametervalue">29183</td>
        </tr>
        <tr>
         <td class="parametername">SECTOR4_START_ADDR</td>
-        <td class="parametervalue">0</td>
+        <td class="parametervalue">29184</td>
        </tr>
        <tr>
         <td class="parametername">SECTOR4_END_ADDR</td>
-        <td class="parametervalue">0</td>
+        <td class="parametervalue">44031</td>
        </tr>
        <tr>
         <td class="parametername">SECTOR5_START_ADDR</td>
@@ -4905,7 +4910,7 @@ div.greydiv { vertical-align:top ; text-align:center ; background:#eeeeee ; bord
        </tr>
        <tr>
         <td class="parametername">MAX_VALID_ADDR</td>
-        <td class="parametervalue">8191</td>
+        <td class="parametervalue">44031</td>
        </tr>
        <tr>
         <td class="parametername">MIN_UFM_VALID_ADDR</td>
@@ -4925,11 +4930,11 @@ div.greydiv { vertical-align:top ; text-align:center ; background:#eeeeee ; bord
        </tr>
        <tr>
         <td class="parametername">SECTOR3_MAP</td>
-        <td class="parametervalue">0</td>
+        <td class="parametervalue">3</td>
        </tr>
        <tr>
         <td class="parametername">SECTOR4_MAP</td>
-        <td class="parametervalue">0</td>
+        <td class="parametervalue">4</td>
        </tr>
        <tr>
         <td class="parametername">SECTOR5_MAP</td>
@@ -4937,7 +4942,7 @@ div.greydiv { vertical-align:top ; text-align:center ; background:#eeeeee ; bord
        </tr>
        <tr>
         <td class="parametername">ADDR_RANGE1_END_ADDR</td>
-        <td class="parametervalue">8191</td>
+        <td class="parametervalue">44031</td>
        </tr>
        <tr>
         <td class="parametername">ADDR_RANGE1_OFFSET</td>
@@ -4949,7 +4954,7 @@ div.greydiv { vertical-align:top ; text-align:center ; background:#eeeeee ; bord
        </tr>
        <tr>
         <td class="parametername">AVMM_DATA_ADDR_WIDTH</td>
-        <td class="parametervalue">13</td>
+        <td class="parametervalue">16</td>
        </tr>
        <tr>
         <td class="parametername">AVMM_DATA_DATA_WIDTH</td>
@@ -4961,7 +4966,7 @@ div.greydiv { vertical-align:top ; text-align:center ; background:#eeeeee ; bord
        </tr>
        <tr>
         <td class="parametername">SECTOR_READ_PROTECTION_MODE</td>
-        <td class="parametervalue">31</td>
+        <td class="parametervalue">16</td>
        </tr>
        <tr>
         <td class="parametername">FLASH_SEQ_READ_DATA_COUNT</td>
@@ -4997,7 +5002,7 @@ div.greydiv { vertical-align:top ; text-align:center ; background:#eeeeee ; bord
        </tr>
        <tr>
         <td class="parametername">READ_AND_WRITE_MODE</td>
-        <td class="parametervalue">false</td>
+        <td class="parametervalue">true</td>
        </tr>
        <tr>
         <td class="parametername">WRAPPING_BURST_MODE</td>
@@ -5038,7 +5043,7 @@ div.greydiv { vertical-align:top ; text-align:center ; background:#eeeeee ; bord
        </tr>
        <tr>
         <td class="parametername">READ_ONLY_MODE</td>
-        <td class="parametervalue">1</td>
+        <td class="parametervalue">0</td>
        </tr>
        <tr>
         <td class="parametername">SECTOR1_ENABLED</td>
@@ -5066,27 +5071,27 @@ div.greydiv { vertical-align:top ; text-align:center ; background:#eeeeee ; bord
        </tr>
        <tr>
         <td class="parametername">SECTOR3_ENABLED</td>
-        <td class="parametervalue">0</td>
+        <td class="parametervalue">1</td>
        </tr>
        <tr>
         <td class="parametername">SECTOR3_END_ADDR</td>
-        <td class="parametervalue">-1</td>
+        <td class="parametervalue">116735</td>
        </tr>
        <tr>
         <td class="parametername">SECTOR3_START_ADDR</td>
-        <td class="parametervalue">-1</td>
+        <td class="parametervalue">32768</td>
        </tr>
        <tr>
         <td class="parametername">SECTOR4_ENABLED</td>
-        <td class="parametervalue">0</td>
+        <td class="parametervalue">1</td>
        </tr>
        <tr>
         <td class="parametername">SECTOR4_END_ADDR</td>
-        <td class="parametervalue">-1</td>
+        <td class="parametervalue">176127</td>
        </tr>
        <tr>
         <td class="parametername">SECTOR4_START_ADDR</td>
-        <td class="parametervalue">-1</td>
+        <td class="parametervalue">116736</td>
        </tr>
        <tr>
         <td class="parametername">SECTOR5_ENABLED</td>
@@ -5108,7 +5113,7 @@ div.greydiv { vertical-align:top ; text-align:center ; background:#eeeeee ; bord
   <table class="blueBar">
    <tr>
     <td class="l">generation took 0.01 seconds</td>
-    <td class="r">rendering took 0.11 seconds</td>
+    <td class="r">rendering took 0.08 seconds</td>
    </tr>
   </table>
  </body>

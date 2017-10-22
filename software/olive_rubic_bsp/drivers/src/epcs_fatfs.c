@@ -10,15 +10,6 @@
 
 static epcs_fatfs_dev *target_dev;
 
-#ifdef EPCS_FATFS_BLOCK_DEVICE
-static int epcs_fatfs_block_open(alt_fd *fd, const char *name, int flags, int mode);
-static int epcs_fatfs_block_ioctl(alt_fd *fd, int req, void *arg);
-
-static const alt_dev block_dev = {
-	.ioctl = epcs_fatfs_block_ioctl,
-};
-#endif  /* EPCS_FATFS_BLOCK_DEVICE */
-
 int epcs_fatfs_init(epcs_fatfs_dev *dev)
 {
 	dev->fatfs = (FATFS *)malloc(sizeof(FATFS));
@@ -78,14 +69,6 @@ int epcs_fatfs_open(alt_fd *fd, const char *name, int flags, int mode)
 	if (!target_dev)
 	{
 		return -ENODEV;
-	}
-
-	if (name[target_dev->prefix_len] == '\0') {
-#ifdef EPCS_FATFS_BLOCK_DEVICE
-		return epcs_fatfs_block_open(fd, name, flags, mode);
-#else   /* !EPCS_FATFS_BLOCK_DEVICE */
-		return -ENOENT;
-#endif  /* !EPCS_FATFS_BLOCK_DEVICE */
 	}
 
 	fp = (FIL *)malloc(sizeof(FIL));
@@ -332,28 +315,3 @@ int epcs_fatfs_fstat(alt_fd *fd, struct stat *buf)
 	return 0;
 }
 
-#ifdef EPCS_FATFS_BLOCK_DEVICE
-static int epcs_fatfs_block_open(alt_fd *fd, const char *name, int flags, int mode)
-{
-	if (flags & O_CREAT) {
-		return -EACCES;
-	}
-
-	// Replace device descriptor to offer special functions
-	fd->dev = (alt_dev *)&block_dev;
-	fd->priv = NULL;
-	return 0;
-}
-
-static int epcs_fatfs_block_ioctl(alt_fd *fd, int req, void *arg)
-{
-	switch (req) {
-	case EPCS_FATFS_IOCTL_FORMAT:
-		if ((fd->fd_flags + 1) & FWRITE) {
-			return epcs_fatfs_format();
-		}
-		return -EACCES;
-	}
-	return -EINVAL;
-}
-#endif  /* EPCS_FATFS_BLOCK_DEVICE */

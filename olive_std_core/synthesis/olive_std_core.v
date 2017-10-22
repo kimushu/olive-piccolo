@@ -65,9 +65,11 @@ module olive_std_core (
 	wire         nios2_fast_instruction_master_readdatavalid;              // mm_interconnect_0:nios2_fast_instruction_master_readdatavalid -> nios2_fast:i_readdatavalid
 	wire  [31:0] mm_interconnect_0_ufm_data_readdata;                      // ufm:avmm_data_readdata -> mm_interconnect_0:ufm_data_readdata
 	wire         mm_interconnect_0_ufm_data_waitrequest;                   // ufm:avmm_data_waitrequest -> mm_interconnect_0:ufm_data_waitrequest
-	wire  [12:0] mm_interconnect_0_ufm_data_address;                       // mm_interconnect_0:ufm_data_address -> ufm:avmm_data_addr
+	wire  [15:0] mm_interconnect_0_ufm_data_address;                       // mm_interconnect_0:ufm_data_address -> ufm:avmm_data_addr
 	wire         mm_interconnect_0_ufm_data_read;                          // mm_interconnect_0:ufm_data_read -> ufm:avmm_data_read
 	wire         mm_interconnect_0_ufm_data_readdatavalid;                 // ufm:avmm_data_readdatavalid -> mm_interconnect_0:ufm_data_readdatavalid
+	wire         mm_interconnect_0_ufm_data_write;                         // mm_interconnect_0:ufm_data_write -> ufm:avmm_data_write
+	wire  [31:0] mm_interconnect_0_ufm_data_writedata;                     // mm_interconnect_0:ufm_data_writedata -> ufm:avmm_data_writedata
 	wire   [1:0] mm_interconnect_0_ufm_data_burstcount;                    // mm_interconnect_0:ufm_data_burstcount -> ufm:avmm_data_burstcount
 	wire  [31:0] mm_interconnect_0_nios2_fast_debug_mem_slave_readdata;    // nios2_fast:debug_mem_slave_readdata -> mm_interconnect_0:nios2_fast_debug_mem_slave_readdata
 	wire         mm_interconnect_0_nios2_fast_debug_mem_slave_waitrequest; // nios2_fast:debug_mem_slave_waitrequest -> mm_interconnect_0:nios2_fast_debug_mem_slave_waitrequest
@@ -503,28 +505,28 @@ module olive_std_core (
 		.SECTOR1_END_ADDR                    (4095),
 		.SECTOR2_START_ADDR                  (4096),
 		.SECTOR2_END_ADDR                    (8191),
-		.SECTOR3_START_ADDR                  (0),
-		.SECTOR3_END_ADDR                    (0),
-		.SECTOR4_START_ADDR                  (0),
-		.SECTOR4_END_ADDR                    (0),
+		.SECTOR3_START_ADDR                  (8192),
+		.SECTOR3_END_ADDR                    (29183),
+		.SECTOR4_START_ADDR                  (29184),
+		.SECTOR4_END_ADDR                    (44031),
 		.SECTOR5_START_ADDR                  (0),
 		.SECTOR5_END_ADDR                    (0),
 		.MIN_VALID_ADDR                      (0),
-		.MAX_VALID_ADDR                      (8191),
+		.MAX_VALID_ADDR                      (44031),
 		.MIN_UFM_VALID_ADDR                  (0),
 		.MAX_UFM_VALID_ADDR                  (8191),
 		.SECTOR1_MAP                         (1),
 		.SECTOR2_MAP                         (2),
-		.SECTOR3_MAP                         (0),
-		.SECTOR4_MAP                         (0),
+		.SECTOR3_MAP                         (3),
+		.SECTOR4_MAP                         (4),
 		.SECTOR5_MAP                         (0),
-		.ADDR_RANGE1_END_ADDR                (8191),
+		.ADDR_RANGE1_END_ADDR                (44031),
 		.ADDR_RANGE1_OFFSET                  (512),
 		.ADDR_RANGE2_OFFSET                  (0),
-		.AVMM_DATA_ADDR_WIDTH                (13),
+		.AVMM_DATA_ADDR_WIDTH                (16),
 		.AVMM_DATA_DATA_WIDTH                (32),
 		.AVMM_DATA_BURSTCOUNT_WIDTH          (2),
-		.SECTOR_READ_PROTECTION_MODE         (31),
+		.SECTOR_READ_PROTECTION_MODE         (16),
 		.FLASH_SEQ_READ_DATA_COUNT           (2),
 		.FLASH_ADDR_ALIGNMENT_BITS           (1),
 		.FLASH_READ_CYCLE_MAX_INDEX          (4),
@@ -533,7 +535,7 @@ module olive_std_core (
 		.FLASH_ERASE_TIMEOUT_CYCLE_MAX_INDEX (35000000),
 		.FLASH_WRITE_TIMEOUT_CYCLE_MAX_INDEX (30500),
 		.PARALLEL_MODE                       (1),
-		.READ_AND_WRITE_MODE                 (0),
+		.READ_AND_WRITE_MODE                 (1),
 		.WRAPPING_BURST_MODE                 (0),
 		.IS_DUAL_BOOT                        ("True"),
 		.IS_ERAM_SKIP                        ("True"),
@@ -543,17 +545,17 @@ module olive_std_core (
 		.reset_n                 (~rst_controller_reset_out_reset),          // nreset.reset_n
 		.avmm_data_addr          (mm_interconnect_0_ufm_data_address),       //   data.address
 		.avmm_data_read          (mm_interconnect_0_ufm_data_read),          //       .read
+		.avmm_data_writedata     (mm_interconnect_0_ufm_data_writedata),     //       .writedata
+		.avmm_data_write         (mm_interconnect_0_ufm_data_write),         //       .write
 		.avmm_data_readdata      (mm_interconnect_0_ufm_data_readdata),      //       .readdata
 		.avmm_data_waitrequest   (mm_interconnect_0_ufm_data_waitrequest),   //       .waitrequest
 		.avmm_data_readdatavalid (mm_interconnect_0_ufm_data_readdatavalid), //       .readdatavalid
 		.avmm_data_burstcount    (mm_interconnect_0_ufm_data_burstcount),    //       .burstcount
-		.avmm_data_writedata     (32'b00000000000000000000000000000000),     // (terminated)
-		.avmm_data_write         (1'b0),                                     // (terminated)
-		.avmm_csr_addr           (1'b0),                                     // (terminated)
-		.avmm_csr_read           (1'b0),                                     // (terminated)
-		.avmm_csr_writedata      (32'b00000000000000000000000000000000),     // (terminated)
-		.avmm_csr_write          (1'b0),                                     // (terminated)
-		.avmm_csr_readdata       ()                                          // (terminated)
+		.avmm_csr_addr           (),                                         //    csr.address
+		.avmm_csr_read           (),                                         //       .read
+		.avmm_csr_writedata      (),                                         //       .writedata
+		.avmm_csr_write          (),                                         //       .write
+		.avmm_csr_readdata       ()                                          //       .readdata
 	);
 
 	olive_std_core_mm_interconnect_0 mm_interconnect_0 (
@@ -611,8 +613,10 @@ module olive_std_core (
 		.sdram_s1_waitrequest                         (mm_interconnect_0_sdram_s1_waitrequest),                   //                                       .waitrequest
 		.sdram_s1_chipselect                          (mm_interconnect_0_sdram_s1_chipselect),                    //                                       .chipselect
 		.ufm_data_address                             (mm_interconnect_0_ufm_data_address),                       //                               ufm_data.address
+		.ufm_data_write                               (mm_interconnect_0_ufm_data_write),                         //                                       .write
 		.ufm_data_read                                (mm_interconnect_0_ufm_data_read),                          //                                       .read
 		.ufm_data_readdata                            (mm_interconnect_0_ufm_data_readdata),                      //                                       .readdata
+		.ufm_data_writedata                           (mm_interconnect_0_ufm_data_writedata),                     //                                       .writedata
 		.ufm_data_burstcount                          (mm_interconnect_0_ufm_data_burstcount),                    //                                       .burstcount
 		.ufm_data_readdatavalid                       (mm_interconnect_0_ufm_data_readdatavalid),                 //                                       .readdatavalid
 		.ufm_data_waitrequest                         (mm_interconnect_0_ufm_data_waitrequest)                    //                                       .waitrequest

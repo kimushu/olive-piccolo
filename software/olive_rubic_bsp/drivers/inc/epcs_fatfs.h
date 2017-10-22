@@ -5,14 +5,16 @@
 #include "sys/alt_dev.h"
 #include "sys/alt_llist.h"
 
-enum {
-  EPCS_FATFS_IOCTL_FORMAT = 0x4501,
-};
-
 typedef struct epcs_fatfs epcs_fatfs_dev;
 
 extern int epcs_fatfs_init(epcs_fatfs_dev *dev);
 extern int epcs_fatfs_format(void);
+
+extern int epcs_fatfs_raw_get_sectsize(void);
+extern int epcs_fatfs_raw_read(int offset, void *ptr, int len);
+extern int epcs_fatfs_raw_write(int offset, const void *ptr, int len);
+extern void epcs_fatfs_raw_lock(void);
+extern void epcs_fatfs_raw_unlock(void);
 
 extern int epcs_fatfs_open(alt_fd *fd, const char *name, int flags, int mode);
 extern int epcs_fatfs_close(alt_fd *fd);

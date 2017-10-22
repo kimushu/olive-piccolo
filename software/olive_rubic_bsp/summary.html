@@ -22,10 +22,10 @@
 <td width="20%" bgcolor="#77BBFF">BSP Version:</td><td>default</td>
 </tr>
 <tr mode="wrap">
-<td width="20%" bgcolor="#77BBFF">BSP Generated On:</td><td>2017/10/19 23:50:08</td>
+<td width="20%" bgcolor="#77BBFF">BSP Generated On:</td><td>2017/10/22 16:16:31</td>
 </tr>
 <tr mode="wrap">
-<td width="20%" bgcolor="#77BBFF">BSP Generated Timestamp:</td><td>1508424608983</td>
+<td width="20%" bgcolor="#77BBFF">BSP Generated Timestamp:</td><td>1508656591811</td>
 </tr>
 <tr mode="wrap">
 <td width="20%" bgcolor="#77BBFF">BSP Generated Location:</td><td>D:\Works\Altera\olive-piccolo\software\olive_rubic_bsp</td>
@@ -77,7 +77,7 @@
 <td>epcs</td><td>0x0FF00000 - 0x0FF00007</td><td>8</td><td class="listing">&nbsp;</td>
 </tr>
 <tr mode="wrap" STYLE="display: 'block'; font-family: 'courier'; color: '#000000'; font-weight: '500'; font-size: '14'; margin-top: '10pt'; text-align: 'left'">
-<td>ufm</td><td>0x0F800000 - 0x0F807FFF</td><td>32768</td><td class="listing">flash, memory, non-volatile</td>
+<td>ufm</td><td>0x0F800000 - 0x0F82AFFF</td><td>176128</td><td class="listing">flash, memory, non-volatile</td>
 </tr>
 <tr mode="wrap" STYLE="display: 'block'; font-family: 'courier'; color: '#000000'; font-weight: '500'; font-size: '14'; margin-top: '10pt'; text-align: 'left'">
 <td>sdram</td><td>0x00000000 - 0x007FFFFF</td><td>8388608</td><td class="listing">memory</td>
@@ -309,33 +309,6 @@
 <td width="20%">Default Value:</td><td>1</td>
 </tr>
 <tr>
-<td width="20%">Value:</td><td>false</td>
-</tr>
-<tr>
-<td width="20%">Type:</td><td>BooleanDefineOnly</td>
-</tr>
-<tr mode="wrap">
-<td width="20%">Destination:</td><td>system_h_define</td>
-</tr>
-<tr mode="wrap">
-<td width="20%">Description:</td><td>Use statically defined table for MD5. Turn off to reduce .rodata section size. (However, dynamic table construction requires double-precision math functions.)</td>
-</tr>
-<tr mode="wrap">
-<td width="20%">Restrictions:</td><td>none</td>
-</tr>
-</table>
-<br>
-<table border="1" bgcolor="#FFFFCC" width="60%">
-<tr bgcolor="#77BBFF">
-<td align="left" width="15%">Setting Name:</td><td align="left">epcs_fatfs.block_device</td>
-</tr>
-<tr>
-<td width="20%">Identifier:</td><td>EPCS_FATFS_BLOCK_DEVICE</td>
-</tr>
-<tr>
-<td width="20%">Default Value:</td><td>1</td>
-</tr>
-<tr>
 <td width="20%">Value:</td><td>true</td>
 </tr>
 <tr>
@@ -345,7 +318,7 @@
 <td width="20%">Destination:</td><td>system_h_define</td>
 </tr>
 <tr mode="wrap">
-<td width="20%">Description:</td><td>Enable block device at root of mount point</td>
+<td width="20%">Description:</td><td>Use statically defined table for MD5. Turn off to reduce .rodata section size. (However, dynamic table construction requires double-precision math functions.)</td>
 </tr>
 <tr mode="wrap">
 <td width="20%">Restrictions:</td><td>none</td>
@@ -3397,6 +3370,33 @@
 </tr>
 <tr mode="wrap">
 <td width="20%">Description:</td><td>Use receiver thread in multi-thread system</td>
+</tr>
+<tr mode="wrap">
+<td width="20%">Restrictions:</td><td>none</td>
+</tr>
+</table>
+<br>
+<table border="1" bgcolor="#FFFFCC" width="60%">
+<tr bgcolor="#77BBFF">
+<td align="left" width="15%">Setting Name:</td><td align="left">rubic_agent.enable_programmer</td>
+</tr>
+<tr>
+<td width="20%">Identifier:</td><td>RUBIC_AGENT_ENABLE_PROGRAMMER</td>
+</tr>
+<tr>
+<td width="20%">Default Value:</td><td>1</td>
+</tr>
+<tr>
+<td width="20%">Value:</td><td>true</td>
+</tr>
+<tr>
+<td width="20%">Type:</td><td>BooleanDefineOnly</td>
+</tr>
+<tr mode="wrap">
+<td width="20%">Destination:</td><td>system_h_define</td>
+</tr>
+<tr mode="wrap">
+<td width="20%">Description:</td><td>Enable programmer (Firmware updater)</td>
 </tr>
 <tr mode="wrap">
 <td width="20%">Restrictions:</td><td>none</td>

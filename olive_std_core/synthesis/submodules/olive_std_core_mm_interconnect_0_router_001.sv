@@ -135,7 +135,7 @@ module olive_std_core_mm_interconnect_0_router_001
     // during address decoding
     // -------------------------------------------------------
     localparam PAD0 = log2ceil(64'h800000 - 64'h0); 
-    localparam PAD1 = log2ceil(64'hf808000 - 64'hf800000); 
+    localparam PAD1 = log2ceil(64'hf840000 - 64'hf800000); 
     localparam PAD2 = log2ceil(64'hfff0800 - 64'hfff0000); 
     // -------------------------------------------------------
     // Work out which address bits are significant based on the
@@ -171,11 +171,6 @@ module olive_std_core_mm_interconnect_0_router_001
 
 
 
-    // -------------------------------------------------------
-    // Write and read transaction signals
-    // -------------------------------------------------------
-    wire read_transaction;
-    assign read_transaction  = sink_data[PKT_TRANS_READ];
 
 
     olive_std_core_mm_interconnect_0_router_001_default_decode the_default_decode(
@@ -201,8 +196,8 @@ module olive_std_core_mm_interconnect_0_router_001
             src_data[PKT_DEST_ID_H:PKT_DEST_ID_L] = 4;
     end
 
-    // ( 0xf800000 .. 0xf808000 )
-    if ( {address[RG:PAD1],{PAD1{1'b0}}} == 28'hf800000  && read_transaction  ) begin
+    // ( 0xf800000 .. 0xf840000 )
+    if ( {address[RG:PAD1],{PAD1{1'b0}}} == 28'hf800000   ) begin
             src_channel = 6'b001;
             src_data[PKT_DEST_ID_H:PKT_DEST_ID_L] = 5;
     end
