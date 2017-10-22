@@ -8,7 +8,7 @@ const JsDiff = require('diff');
 
 const DEST_DIR = path.join(__dirname, 'lib');
 const DUK_VER = '2.2.0';
-const DUX_VER = '0.0.2';
+const DUX_VER = '0.0.3';
 
 function downloadIfNotExist(url, dest) {
     let name = url.split('/').slice(-1)[0];
@@ -72,7 +72,10 @@ fs.ensureDir(DEST_DIR)
     });
 })
 .then(() => {
-    return [['duktape', 'duk_config.h']].reduce((promise, target) => {
+    return [
+        ['duktape', 'duk_config.h'],
+        ['duktape-extension', 'dux_config.h'],
+    ].reduce((promise, target) => {
         let file = path.join(DEST_DIR, ...target);
         return promise
         .then(() => {
