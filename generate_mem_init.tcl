@@ -455,6 +455,14 @@ proc main { argv0 argv } {
 		}
 		set temp [ lindex [ XML_list_tags temp value ] 0 ]
 		set outfile $dir[ XML_get_data temp ]
+		set temp [ lindex [ XML_list_tags module parameter name MAX_UFM_VALID_ADDR ] 0 ]
+		if { $temp != "" } {
+			set temp [ lindex [ XML_list_tags temp value ] 0 ]
+			set temp [ XML_get_data temp ]
+			set max_span [ expr $temp + 1 ]
+		} else {
+			set max_span -1
+		}
 		set assignments [ XML_list_tags module assignment ]
 		set width {}
 		set baddr 0
@@ -519,6 +527,9 @@ proc main { argv0 argv } {
 				}
 			}
 			if { $base != "" } { break }
+		}
+		if { ($max_span >= 0) && ($span > $max_span) } {
+			set span $max_span
 		}
 		if { $base == "" } {
 			puts stderr "Warning: No master connected to $slave_path"
