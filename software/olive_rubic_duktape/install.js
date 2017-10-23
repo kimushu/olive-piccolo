@@ -8,7 +8,7 @@ const JsDiff = require('diff');
 
 const DEST_DIR = path.join(__dirname, 'lib');
 const DUK_VER = '2.2.0';
-const DUX_VER = '0.0.3';
+const DUX_VER = '0.0.4';
 
 function downloadIfNotExist(url, dest) {
     let name = url.split('/').slice(-1)[0];
@@ -86,7 +86,11 @@ fs.ensureDir(DEST_DIR)
         })
         .then(([input, patch]) => {
             console.log(`Applying patch to ${target[1]} ...`);
-            return fs.writeFile(file, JsDiff.applyPatch(input, patch), "utf8");
+            result = JsDiff.applyPatch(input, patch);
+            if (result === false) {
+                throw new Error("Patch failed!");
+            }
+            return fs.writeFile(file, result, "utf8");
         });
     }, Promise.resolve());
 })
