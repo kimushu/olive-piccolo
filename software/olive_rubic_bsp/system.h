@@ -4,7 +4,7 @@
  * Machine generated for CPU 'nios2_fast' in SOPC Builder design 'olive_std_core'
  * SOPC Builder design path: ../../olive_std_core.sopcinfo
  *
- * Generated: Mon Oct 23 16:41:24 JST 2017
+ * Generated: Tue Oct 24 00:59:05 JST 2017
  */
 
 /*
@@ -249,6 +249,7 @@
  *
  */
 
+#define EPCS_FATFS_CODE_PAGE 437
 #define EPCS_FATFS_FLASH_CMD_ERASE 0x20
 #define EPCS_FATFS_FLASH_END 0x0
 #define EPCS_FATFS_FLASH_SECTOR 4096
@@ -257,6 +258,7 @@
 #define EPCS_FATFS_IF_PERIDOT_SPI_FLASH
 #define EPCS_FATFS_IF_SPI_SLAVE 0
 #define EPCS_FATFS_MOUNT_POINT "/mnt/internal"
+#define EPCS_FATFS_USE_LFN 1
 
 
 /*

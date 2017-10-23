@@ -303,6 +303,7 @@ epcs_fatfs_SRCS_ROOT := drivers
 # epcs_fatfs sources 
 epcs_fatfs_C_LIB_SRCS := \
 	$(epcs_fatfs_SRCS_ROOT)/fatfs/src/ff.c \
+	$(epcs_fatfs_SRCS_ROOT)/fatfs/src/option/unicode.c \
 	$(epcs_fatfs_SRCS_ROOT)/src/epcs_fatfs.c \
 	$(epcs_fatfs_SRCS_ROOT)/src/epcs_fatfs_diskio.c
 

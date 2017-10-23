@@ -2,8 +2,8 @@
 <sch:Settings xmlns:sch="http://www.altera.com/embeddedsw/bsp/schema">
         <BspType>tinyth</BspType>
         <BspVersion>default</BspVersion>
-        <BspGeneratedTimeStamp>2017/10/23 17:21:47</BspGeneratedTimeStamp>
-        <BspGeneratedUnixTimeStamp>1508746907792</BspGeneratedUnixTimeStamp>
+        <BspGeneratedTimeStamp>2017/10/24 1:38:40</BspGeneratedTimeStamp>
+        <BspGeneratedUnixTimeStamp>1508776720274</BspGeneratedUnixTimeStamp>
         <BspGeneratedLocation>D:\Works\Altera\olive-piccolo\software\olive_rubic_bsp</BspGeneratedLocation>
         <BspSettingsFile>settings.bsp</BspSettingsFile>
         <SopcDesignFile>..\..\olive_std_core.sopcinfo</SopcDesignFile>
@@ -1530,6 +1530,30 @@
                 <DefaultValue>0</DefaultValue>
                 <DestinationFile>system_h_define</DestinationFile>
                 <Description>Verify after writing sector</Description>
+                <Restrictions>none</Restrictions>
+                <Enabled>false</Enabled>
+                <Group xsi:nil="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+        </Setting>
+        <Setting>
+                <SettingName>epcs_fatfs.fatfs.use_lfn</SettingName>
+                <Identifier>EPCS_FATFS_USE_LFN</Identifier>
+                <Type>Boolean</Type>
+                <Value>1</Value>
+                <DefaultValue>1</DefaultValue>
+                <DestinationFile>system_h_define</DestinationFile>
+                <Description>Use LFN feature</Description>
+                <Restrictions>none</Restrictions>
+                <Enabled>false</Enabled>
+                <Group xsi:nil="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+        </Setting>
+        <Setting>
+                <SettingName>epcs_fatfs.fatfs.code_page</SettingName>
+                <Identifier>EPCS_FATFS_CODE_PAGE</Identifier>
+                <Type>DecimalNumber</Type>
+                <Value>437</Value>
+                <DefaultValue>1</DefaultValue>
+                <DestinationFile>system_h_define</DestinationFile>
+                <Description>Code page (1:ASCII, 437:US, 932:Japanese, etc)</Description>
                 <Restrictions>none</Restrictions>
                 <Enabled>false</Enabled>
                 <Group xsi:nil="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
