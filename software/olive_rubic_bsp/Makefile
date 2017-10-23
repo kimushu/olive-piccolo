@@ -275,6 +275,13 @@ altera_nios2_gen2_hal_driver_ASM_LIB_SRCS := \
 	$(altera_nios2_gen2_hal_driver_SRCS_ROOT)/src/alt_log_macro.S \
 	$(altera_nios2_gen2_hal_driver_SRCS_ROOT)/src/crt0.S
 
+# altera_onchip_flash_driver sources root 
+altera_onchip_flash_driver_SRCS_ROOT := drivers
+
+# altera_onchip_flash_driver sources 
+altera_onchip_flash_driver_C_LIB_SRCS := \
+	$(altera_onchip_flash_driver_SRCS_ROOT)/src/altera_onchip_flash.c
+
 # buffered_uart_driver sources root 
 buffered_uart_driver_SRCS_ROOT := drivers
 
@@ -453,6 +460,7 @@ COMPONENT_C_LIB_SRCS += \
 	$(altera_avalon_timer_driver_C_LIB_SRCS) \
 	$(altera_avalon_uart_driver_C_LIB_SRCS) \
 	$(altera_nios2_gen2_hal_driver_C_LIB_SRCS) \
+	$(altera_onchip_flash_driver_C_LIB_SRCS) \
 	$(buffered_uart_driver_C_LIB_SRCS) \
 	$(digests_C_LIB_SRCS) \
 	$(epcs_fatfs_C_LIB_SRCS) \

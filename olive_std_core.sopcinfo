@@ -5,11 +5,11 @@
  version="1.0"
  fabric="QSYS">
  <!-- Format version 17.0 602 (Future versions may contain additional information.) -->
- <!-- 2017.10.22.12:08:54 -->
+ <!-- 2017.10.23.16:39:24 -->
  <!-- A collection of modules and connections -->
  <parameter name="AUTO_GENERATION_ID">
   <type>java.lang.Integer</type>
-  <value>1508641734</value>
+  <value>1508744364</value>
   <derived>false</derived>
   <enabled>true</enabled>
   <visible>false</visible>
@@ -6712,7 +6712,7 @@ the requested settings for a module instance. -->
   </parameter>
   <parameter name="dataSlaveMapParam">
    <type>java.lang.String</type>
-   <value><![CDATA[<address-map><slave name='sdram.s1' start='0x0' end='0x800000' type='altera_avalon_new_sdram_controller.s1' /><slave name='ufm.data' start='0xF800000' end='0xF82B000' type='altera_onchip_flash.data' /><slave name='epcs.s1' start='0xFF00000' end='0xFF00008' type='peridot_spi_master.s1' /><slave name='nios2_fast.debug_mem_slave' start='0xFFF0000' end='0xFFF0800' type='altera_nios2_gen2.debug_mem_slave' /><slave name='sysid.control_slave' start='0x10000000' end='0x10000008' type='altera_avalon_sysid_qsys.control_slave' /><slave name='chipid.chipid' start='0x10000008' end='0x10000010' type='altchip_id_avm_wrapper.chipid' /><slave name='hostbridge.s1' start='0x10000010' end='0x10000020' type='buffered_uart.s1' /><slave name='systimer.s1' start='0x10000020' end='0x10000040' type='altera_avalon_timer.s1' /><slave name='led.s1' start='0x10000040' end='0x10000050' type='altera_avalon_pio.s1' /><slave name='dual_boot.avalon' start='0x10000060' end='0x10000080' type='altera_dual_boot.avalon' /><slave name='pfc.avalon_slave' start='0x10000080' end='0x100000C0' type='peridot_pfc_interface.avalon_slave' /><slave name='uart0.s1' start='0x10000100' end='0x10000120' type='altera_avalon_uart.s1' /><slave name='uart1.s1' start='0x10000120' end='0x10000140' type='altera_avalon_uart.s1' /><slave name='i2c.s1' start='0x10000140' end='0x10000148' type='peridot_i2c_master.s1' /><slave name='spi.s1' start='0x10000160' end='0x10000168' type='peridot_spi_master.s1' /><slave name='servo.avalon_slave' start='0x10000180' end='0x10000200' type='peridot_servo.avalon_slave' /></address-map>]]></value>
+   <value><![CDATA[<address-map><slave name='sdram.s1' start='0x0' end='0x800000' type='altera_avalon_new_sdram_controller.s1' /><slave name='ufm.data' start='0xF800000' end='0xF82B000' type='altera_onchip_flash.data' /><slave name='ufm.csr' start='0xFE00000' end='0xFE00008' type='altera_onchip_flash.csr' /><slave name='epcs.s1' start='0xFF00000' end='0xFF00008' type='peridot_spi_master.s1' /><slave name='nios2_fast.debug_mem_slave' start='0xFFF0000' end='0xFFF0800' type='altera_nios2_gen2.debug_mem_slave' /><slave name='sysid.control_slave' start='0x10000000' end='0x10000008' type='altera_avalon_sysid_qsys.control_slave' /><slave name='chipid.chipid' start='0x10000008' end='0x10000010' type='altchip_id_avm_wrapper.chipid' /><slave name='hostbridge.s1' start='0x10000010' end='0x10000020' type='buffered_uart.s1' /><slave name='systimer.s1' start='0x10000020' end='0x10000040' type='altera_avalon_timer.s1' /><slave name='led.s1' start='0x10000040' end='0x10000050' type='altera_avalon_pio.s1' /><slave name='dual_boot.avalon' start='0x10000060' end='0x10000080' type='altera_dual_boot.avalon' /><slave name='pfc.avalon_slave' start='0x10000080' end='0x100000C0' type='peridot_pfc_interface.avalon_slave' /><slave name='uart0.s1' start='0x10000100' end='0x10000120' type='altera_avalon_uart.s1' /><slave name='uart1.s1' start='0x10000120' end='0x10000140' type='altera_avalon_uart.s1' /><slave name='i2c.s1' start='0x10000140' end='0x10000148' type='peridot_i2c_master.s1' /><slave name='spi.s1' start='0x10000160' end='0x10000168' type='peridot_spi_master.s1' /><slave name='servo.avalon_slave' start='0x10000180' end='0x10000200' type='peridot_servo.avalon_slave' /></address-map>]]></value>
    <derived>false</derived>
    <enabled>true</enabled>
    <visible>false</visible>
@@ -7384,6 +7384,14 @@ parameters are a RESULT of the module parameters. -->
     <width>1</width>
     <role>debugaccess</role>
    </port>
+   <memoryBlock>
+    <isBridge>false</isBridge>
+    <moduleName>ufm</moduleName>
+    <slaveName>csr</slaveName>
+    <name>ufm.csr</name>
+    <baseAddress>266338304</baseAddress>
+    <span>8</span>
+   </memoryBlock>
    <memoryBlock>
     <isBridge>false</isBridge>
     <moduleName>ufm</moduleName>
@@ -12998,7 +13006,7 @@ the requested settings for a module instance. -->
   </assignment>
   <assignment>
    <name>embeddedsw.CMacro.TIMESTAMP</name>
-   <value>1508641734</value>
+   <value>1508744364</value>
   </assignment>
   <assignment>
    <name>embeddedsw.dts.compatible</name>
@@ -13018,7 +13026,7 @@ the requested settings for a module instance. -->
   </assignment>
   <assignment>
    <name>embeddedsw.dts.params.timestamp</name>
-   <value>1508641734</value>
+   <value>1508744364</value>
   </assignment>
   <assignment>
    <name>embeddedsw.dts.vendor</name>
@@ -13034,7 +13042,7 @@ the requested settings for a module instance. -->
   </parameter>
   <parameter name="timestamp">
    <type>int</type>
-   <value>1508641734</value>
+   <value>1508744364</value>
    <derived>true</derived>
    <enabled>false</enabled>
    <visible>false</visible>
@@ -17435,6 +17443,57 @@ parameters are a RESULT of the module parameters. -->
   </interface>
  </module>
  <connection
+   name="nios2_fast.data_master/ufm.csr"
+   kind="avalon"
+   version="17.0"
+   start="nios2_fast.data_master"
+   end="ufm.csr">
+  <parameter name="arbitrationPriority">
+   <type>int</type>
+   <value>1</value>
+   <derived>false</derived>
+   <enabled>true</enabled>
+   <visible>true</visible>
+   <valid>true</valid>
+  </parameter>
+  <parameter name="baseAddress">
+   <type>java.math.BigInteger</type>
+   <value>0x0fe00000</value>
+   <derived>false</derived>
+   <enabled>true</enabled>
+   <visible>true</visible>
+   <valid>true</valid>
+  </parameter>
+  <parameter name="defaultConnection">
+   <type>boolean</type>
+   <value>false</value>
+   <derived>false</derived>
+   <enabled>true</enabled>
+   <visible>true</visible>
+   <valid>true</valid>
+  </parameter>
+  <parameter name="deviceFamily">
+   <type>java.lang.String</type>
+   <value>UNKNOWN</value>
+   <derived>false</derived>
+   <enabled>true</enabled>
+   <visible>true</visible>
+   <valid>true</valid>
+  </parameter>
+  <parameter name="generateLegacySim">
+   <type>boolean</type>
+   <value>false</value>
+   <derived>false</derived>
+   <enabled>true</enabled>
+   <visible>true</visible>
+   <valid>true</valid>
+  </parameter>
+  <startModule>nios2_fast</startModule>
+  <startConnectionPoint>data_master</startConnectionPoint>
+  <endModule>ufm</endModule>
+  <endConnectionPoint>csr</endConnectionPoint>
+ </connection>
+ <connection
    name="nios2_fast.data_master/ufm.data"
    kind="avalon"
    version="17.0"
@@ -20187,7 +20246,7 @@ parameters are a RESULT of the module parameters. -->
   <version>17.0</version>
  </plugin>
  <plugin>
-  <instanceCount>21</instanceCount>
+  <instanceCount>22</instanceCount>
   <name>avalon</name>
   <type>com.altera.entityinterfaces.IElementClass</type>
   <subtype>com.altera.entityinterfaces.IConnection</subtype>

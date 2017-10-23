@@ -4,7 +4,7 @@
  * Machine generated for CPU 'nios2_fast' in SOPC Builder design 'olive_std_core'
  * SOPC Builder design path: ../../olive_std_core.sopcinfo
  *
- * Generated: Sun Oct 22 16:16:35 JST 2017
+ * Generated: Mon Oct 23 16:41:24 JST 2017
  */
 
 /*
@@ -53,12 +53,12 @@ MEMORY
     sdram_BEFORE_EXCEPTION : ORIGIN = 0x0, LENGTH = 32
     sdram : ORIGIN = 0x20, LENGTH = 8388576
     reset : ORIGIN = 0xf800000, LENGTH = 32
-    ufm : ORIGIN = 0xf800020, LENGTH = 176096
+    ufm_data : ORIGIN = 0xf800020, LENGTH = 176096
 }
 
 /* Define symbols for each memory base-address */
 __alt_mem_sdram = 0x0;
-__alt_mem_ufm = 0xf800000;
+__alt_mem_ufm_data = 0xf800000;
 
 OUTPUT_FORMAT( "elf32-littlenios2",
                "elf32-littlenios2",
@@ -121,7 +121,7 @@ SECTIONS
         *(.ipl .ipl.*)
         . = ALIGN(4);
         PROVIDE (_alt_partition_ipl_end = ABSOLUTE(.));
-    } > ufm
+    } > ufm_data
 
     .text :
     {
@@ -298,15 +298,15 @@ SECTIONS
 
     PROVIDE (_alt_partition_sdram_load_addr = LOADADDR(.sdram));
 
-    .ufm :
+    .ufm_data :
     {
-        PROVIDE (_alt_partition_ufm_start = ABSOLUTE(.));
-        *(.ufm .ufm. ufm.*)
+        PROVIDE (_alt_partition_ufm_data_start = ABSOLUTE(.));
+        *(.ufm_data .ufm_data. ufm_data.*)
         . = ALIGN(4);
-        PROVIDE (_alt_partition_ufm_end = ABSOLUTE(.));
-    } > ufm
+        PROVIDE (_alt_partition_ufm_data_end = ABSOLUTE(.));
+    } > ufm_data
 
-    PROVIDE (_alt_partition_ufm_load_addr = LOADADDR(.ufm));
+    PROVIDE (_alt_partition_ufm_data_load_addr = LOADADDR(.ufm_data));
 
     /*
      * Stabs debugging sections.

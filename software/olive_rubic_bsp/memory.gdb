@@ -3,7 +3,7 @@
 # Machine generated for CPU 'nios2_fast' in SOPC Builder design 'olive_std_core'
 # SOPC Builder design path: ../../olive_std_core.sopcinfo
 #
-# Generated: Sun Oct 22 16:16:35 JST 2017
+# Generated: Mon Oct 23 16:41:24 JST 2017
 
 # DO NOT MODIFY THIS FILE
 #
@@ -49,5 +49,5 @@
 # sdram
 memory 0x0 0x800000 cache
 
-# ufm
+# ufm_data
 memory 0xf800000 0xf82b000 cache

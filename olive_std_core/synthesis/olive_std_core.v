@@ -63,6 +63,11 @@ module olive_std_core (
 	wire  [27:0] nios2_fast_instruction_master_address;                    // nios2_fast:i_address -> mm_interconnect_0:nios2_fast_instruction_master_address
 	wire         nios2_fast_instruction_master_read;                       // nios2_fast:i_read -> mm_interconnect_0:nios2_fast_instruction_master_read
 	wire         nios2_fast_instruction_master_readdatavalid;              // mm_interconnect_0:nios2_fast_instruction_master_readdatavalid -> nios2_fast:i_readdatavalid
+	wire  [31:0] mm_interconnect_0_ufm_csr_readdata;                       // ufm:avmm_csr_readdata -> mm_interconnect_0:ufm_csr_readdata
+	wire   [0:0] mm_interconnect_0_ufm_csr_address;                        // mm_interconnect_0:ufm_csr_address -> ufm:avmm_csr_addr
+	wire         mm_interconnect_0_ufm_csr_read;                           // mm_interconnect_0:ufm_csr_read -> ufm:avmm_csr_read
+	wire         mm_interconnect_0_ufm_csr_write;                          // mm_interconnect_0:ufm_csr_write -> ufm:avmm_csr_write
+	wire  [31:0] mm_interconnect_0_ufm_csr_writedata;                      // mm_interconnect_0:ufm_csr_writedata -> ufm:avmm_csr_writedata
 	wire  [31:0] mm_interconnect_0_ufm_data_readdata;                      // ufm:avmm_data_readdata -> mm_interconnect_0:ufm_data_readdata
 	wire         mm_interconnect_0_ufm_data_waitrequest;                   // ufm:avmm_data_waitrequest -> mm_interconnect_0:ufm_data_waitrequest
 	wire  [15:0] mm_interconnect_0_ufm_data_address;                       // mm_interconnect_0:ufm_data_address -> ufm:avmm_data_addr
@@ -551,11 +556,11 @@ module olive_std_core (
 		.avmm_data_waitrequest   (mm_interconnect_0_ufm_data_waitrequest),   //       .waitrequest
 		.avmm_data_readdatavalid (mm_interconnect_0_ufm_data_readdatavalid), //       .readdatavalid
 		.avmm_data_burstcount    (mm_interconnect_0_ufm_data_burstcount),    //       .burstcount
-		.avmm_csr_addr           (),                                         //    csr.address
-		.avmm_csr_read           (),                                         //       .read
-		.avmm_csr_writedata      (),                                         //       .writedata
-		.avmm_csr_write          (),                                         //       .write
-		.avmm_csr_readdata       ()                                          //       .readdata
+		.avmm_csr_addr           (mm_interconnect_0_ufm_csr_address),        //    csr.address
+		.avmm_csr_read           (mm_interconnect_0_ufm_csr_read),           //       .read
+		.avmm_csr_writedata      (mm_interconnect_0_ufm_csr_writedata),      //       .writedata
+		.avmm_csr_write          (mm_interconnect_0_ufm_csr_write),          //       .write
+		.avmm_csr_readdata       (mm_interconnect_0_ufm_csr_readdata)        //       .readdata
 	);
 
 	olive_std_core_mm_interconnect_0 mm_interconnect_0 (
@@ -612,6 +617,11 @@ module olive_std_core (
 		.sdram_s1_readdatavalid                       (mm_interconnect_0_sdram_s1_readdatavalid),                 //                                       .readdatavalid
 		.sdram_s1_waitrequest                         (mm_interconnect_0_sdram_s1_waitrequest),                   //                                       .waitrequest
 		.sdram_s1_chipselect                          (mm_interconnect_0_sdram_s1_chipselect),                    //                                       .chipselect
+		.ufm_csr_address                              (mm_interconnect_0_ufm_csr_address),                        //                                ufm_csr.address
+		.ufm_csr_write                                (mm_interconnect_0_ufm_csr_write),                          //                                       .write
+		.ufm_csr_read                                 (mm_interconnect_0_ufm_csr_read),                           //                                       .read
+		.ufm_csr_readdata                             (mm_interconnect_0_ufm_csr_readdata),                       //                                       .readdata
+		.ufm_csr_writedata                            (mm_interconnect_0_ufm_csr_writedata),                      //                                       .writedata
 		.ufm_data_address                             (mm_interconnect_0_ufm_data_address),                       //                               ufm_data.address
 		.ufm_data_write                               (mm_interconnect_0_ufm_data_write),                         //                                       .write
 		.ufm_data_read                                (mm_interconnect_0_ufm_data_read),                          //                                       .read

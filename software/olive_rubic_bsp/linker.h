@@ -4,7 +4,7 @@
  * Machine generated for CPU 'nios2_fast' in SOPC Builder design 'olive_std_core'
  * SOPC Builder design path: ../../olive_std_core.sopcinfo
  *
- * Generated: Sun Oct 22 16:16:35 JST 2017
+ * Generated: Mon Oct 23 16:41:24 JST 2017
  */
 
 /*
@@ -71,8 +71,8 @@
 #define SDRAM_BEFORE_EXCEPTION_REGION_SPAN 32
 #define SDRAM_REGION_BASE 0x20
 #define SDRAM_REGION_SPAN 8388576
-#define UFM_REGION_BASE 0xf800020
-#define UFM_REGION_SPAN 176096
+#define UFM_DATA_REGION_BASE 0xf800020
+#define UFM_DATA_REGION_SPAN 176096
 
 
 /*
@@ -81,7 +81,7 @@
  */
 
 #define ALT_EXCEPTIONS_DEVICE SDRAM
-#define ALT_RESET_DEVICE UFM
+#define ALT_RESET_DEVICE UFM_DATA
 #define ALT_RODATA_DEVICE SDRAM
 #define ALT_RWDATA_DEVICE SDRAM
 #define ALT_TEXT_DEVICE SDRAM

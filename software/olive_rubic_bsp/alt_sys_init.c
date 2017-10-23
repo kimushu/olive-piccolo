@@ -4,7 +4,7 @@
  * Machine generated for CPU 'nios2_fast' in SOPC Builder design 'olive_std_core'
  * SOPC Builder design path: ../../olive_std_core.sopcinfo
  *
- * Generated: Tue Oct 10 14:50:17 JST 2017
+ * Generated: Mon Oct 23 16:41:24 JST 2017
  */
 
 /*
@@ -62,6 +62,7 @@
 #include "altera_avalon_sysid_qsys.h"
 #include "altera_avalon_timer.h"
 #include "altera_avalon_uart.h"
+#include "altera_onchip_flash.h"
 #include "buffered_uart.h"
 #include "digests.h"
 #include "epcs_fatfs.h"
@@ -84,6 +85,7 @@ ALTERA_AVALON_SYSID_QSYS_INSTANCE ( SYSID, sysid);
 ALTERA_AVALON_TIMER_INSTANCE ( SYSTIMER, systimer);
 ALTERA_AVALON_UART_INSTANCE ( UART0, uart0);
 ALTERA_AVALON_UART_INSTANCE ( UART1, uart1);
+ALTERA_ONCHIP_FLASH_DATA_CSR_INSTANCE ( UFM, UFM_DATA, UFM_CSR, ufm);
 BUFFERED_UART_INSTANCE ( HOSTBRIDGE, hostbridge);
 DIGESTS_INSTANCE ( DIGESTS, digests);
 EPCS_FATFS_INSTANCE ( EPCS_FATFS, epcs_fatfs);
@@ -124,6 +126,7 @@ void alt_sys_init( void )
     ALTERA_AVALON_SYSID_QSYS_INIT ( SYSID, sysid);
     ALTERA_AVALON_UART_INIT ( UART0, uart0);
     ALTERA_AVALON_UART_INIT ( UART1, uart1);
+    ALTERA_ONCHIP_FLASH_INIT ( UFM, ufm);
     BUFFERED_UART_INIT ( HOSTBRIDGE, hostbridge);
     EPCS_FATFS_INIT ( EPCS_FATFS, epcs_fatfs);
     NAMED_FIFO_INIT ( NAMED_FIFO, named_fifo);

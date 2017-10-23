@@ -4,7 +4,7 @@
  * Machine generated for CPU 'nios2_fast' in SOPC Builder design 'olive_std_core'
  * SOPC Builder design path: ../../olive_std_core.sopcinfo
  *
- * Generated: Sun Oct 22 16:16:35 JST 2017
+ * Generated: Mon Oct 23 16:41:24 JST 2017
  */
 
 /*
@@ -515,7 +515,7 @@
 #define SYSID_IRQ_INTERRUPT_CONTROLLER_ID -1
 #define SYSID_NAME "/dev/sysid"
 #define SYSID_SPAN 8
-#define SYSID_TIMESTAMP 1508641734
+#define SYSID_TIMESTAMP 1508744364
 #define SYSID_TYPE "altera_avalon_sysid_qsys"
 
 
@@ -621,33 +621,64 @@
 
 
 /*
- * ufm configuration
+ * ufm_csr configuration
  *
  */
 
-#define ALT_MODULE_CLASS_ufm altera_onchip_flash
-#define UFM_BASE 0xf800000
-#define UFM_BYTES_PER_PAGE 2048
-#define UFM_IRQ -1
-#define UFM_IRQ_INTERRUPT_CONTROLLER_ID -1
-#define UFM_NAME "/dev/ufm"
-#define UFM_READ_ONLY_MODE 0
-#define UFM_SECTOR1_ENABLED 1
-#define UFM_SECTOR1_END_ADDR 0x3fff
-#define UFM_SECTOR1_START_ADDR 0
-#define UFM_SECTOR2_ENABLED 1
-#define UFM_SECTOR2_END_ADDR 0x7fff
-#define UFM_SECTOR2_START_ADDR 0x4000
-#define UFM_SECTOR3_ENABLED 1
-#define UFM_SECTOR3_END_ADDR 0x1c7ff
-#define UFM_SECTOR3_START_ADDR 0x8000
-#define UFM_SECTOR4_ENABLED 1
-#define UFM_SECTOR4_END_ADDR 0x2afff
-#define UFM_SECTOR4_START_ADDR 0x1c800
-#define UFM_SECTOR5_ENABLED 0
-#define UFM_SECTOR5_END_ADDR 0xffffffff
-#define UFM_SECTOR5_START_ADDR 0xffffffff
-#define UFM_SPAN 176128
-#define UFM_TYPE "altera_onchip_flash"
+#define ALT_MODULE_CLASS_ufm_csr altera_onchip_flash
+#define UFM_CSR_BASE 0xfe00000
+#define UFM_CSR_BYTES_PER_PAGE 2048
+#define UFM_CSR_IRQ -1
+#define UFM_CSR_IRQ_INTERRUPT_CONTROLLER_ID -1
+#define UFM_CSR_NAME "/dev/ufm_csr"
+#define UFM_CSR_READ_ONLY_MODE 0
+#define UFM_CSR_SECTOR1_ENABLED 1
+#define UFM_CSR_SECTOR1_END_ADDR 0x3fff
+#define UFM_CSR_SECTOR1_START_ADDR 0
+#define UFM_CSR_SECTOR2_ENABLED 1
+#define UFM_CSR_SECTOR2_END_ADDR 0x7fff
+#define UFM_CSR_SECTOR2_START_ADDR 0x4000
+#define UFM_CSR_SECTOR3_ENABLED 1
+#define UFM_CSR_SECTOR3_END_ADDR 0x1c7ff
+#define UFM_CSR_SECTOR3_START_ADDR 0x8000
+#define UFM_CSR_SECTOR4_ENABLED 1
+#define UFM_CSR_SECTOR4_END_ADDR 0x2afff
+#define UFM_CSR_SECTOR4_START_ADDR 0x1c800
+#define UFM_CSR_SECTOR5_ENABLED 0
+#define UFM_CSR_SECTOR5_END_ADDR 0xffffffff
+#define UFM_CSR_SECTOR5_START_ADDR 0xffffffff
+#define UFM_CSR_SPAN 8
+#define UFM_CSR_TYPE "altera_onchip_flash"
+
+
+/*
+ * ufm_data configuration
+ *
+ */
+
+#define ALT_MODULE_CLASS_ufm_data altera_onchip_flash
+#define UFM_DATA_BASE 0xf800000
+#define UFM_DATA_BYTES_PER_PAGE 2048
+#define UFM_DATA_IRQ -1
+#define UFM_DATA_IRQ_INTERRUPT_CONTROLLER_ID -1
+#define UFM_DATA_NAME "/dev/ufm_data"
+#define UFM_DATA_READ_ONLY_MODE 0
+#define UFM_DATA_SECTOR1_ENABLED 1
+#define UFM_DATA_SECTOR1_END_ADDR 0x3fff
+#define UFM_DATA_SECTOR1_START_ADDR 0
+#define UFM_DATA_SECTOR2_ENABLED 1
+#define UFM_DATA_SECTOR2_END_ADDR 0x7fff
+#define UFM_DATA_SECTOR2_START_ADDR 0x4000
+#define UFM_DATA_SECTOR3_ENABLED 1
+#define UFM_DATA_SECTOR3_END_ADDR 0x1c7ff
+#define UFM_DATA_SECTOR3_START_ADDR 0x8000
+#define UFM_DATA_SECTOR4_ENABLED 1
+#define UFM_DATA_SECTOR4_END_ADDR 0x2afff
+#define UFM_DATA_SECTOR4_START_ADDR 0x1c800
+#define UFM_DATA_SECTOR5_ENABLED 0
+#define UFM_DATA_SECTOR5_END_ADDR 0xffffffff
+#define UFM_DATA_SECTOR5_START_ADDR 0xffffffff
+#define UFM_DATA_SPAN 176128
+#define UFM_DATA_TYPE "altera_onchip_flash"
 
 #endif /* __SYSTEM_H_ */

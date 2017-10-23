@@ -2,8 +2,8 @@
 <sch:Settings xmlns:sch="http://www.altera.com/embeddedsw/bsp/schema">
         <BspType>tinyth</BspType>
         <BspVersion>default</BspVersion>
-        <BspGeneratedTimeStamp>2017/10/22 16:16:31</BspGeneratedTimeStamp>
-        <BspGeneratedUnixTimeStamp>1508656591811</BspGeneratedUnixTimeStamp>
+        <BspGeneratedTimeStamp>2017/10/23 17:21:47</BspGeneratedTimeStamp>
+        <BspGeneratedUnixTimeStamp>1508746907792</BspGeneratedUnixTimeStamp>
         <BspGeneratedLocation>D:\Works\Altera\olive-piccolo\software\olive_rubic_bsp</BspGeneratedLocation>
         <BspSettingsFile>settings.bsp</BspSettingsFile>
         <SopcDesignFile>..\..\olive_std_core.sopcinfo</SopcDesignFile>
@@ -1733,10 +1733,16 @@
                 <attributes>memory</attributes>
         </MemoryMap>
         <MemoryMap>
-                <slaveDescriptor>ufm</slaveDescriptor>
+                <slaveDescriptor>ufm_data</slaveDescriptor>
                 <addressRange>0x0F800000 - 0x0F82AFFF</addressRange>
                 <addressSpan>176128</addressSpan>
                 <attributes>flash, memory, non-volatile</attributes>
+        </MemoryMap>
+        <MemoryMap>
+                <slaveDescriptor>ufm_csr</slaveDescriptor>
+                <addressRange>0x0FE00000 - 0x0FE00007</addressRange>
+                <addressSpan>8</addressSpan>
+                <attributes/>
         </MemoryMap>
         <MemoryMap>
                 <slaveDescriptor>epcs</slaveDescriptor>
@@ -1842,12 +1848,8 @@
         </LinkerSection>
         <LinkerSection>
                 <sectionName>.ipl</sectionName>
-                <regionName>ufm</regionName>
+                <regionName>ufm_data</regionName>
         </LinkerSection>
-        <DriverPackageInfo>
-                <name>none</name>
-                <moduleName>ufm</moduleName>
-        </DriverPackageInfo>
         <SoftwarePackageInfo>
                 <name>rubic_agent</name>
                 <version>default</version>
