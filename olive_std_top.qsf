@@ -65,7 +65,7 @@ set_global_assignment -name PARTITION_NETLIST_TYPE SOURCE -section_id Top
 set_global_assignment -name PARTITION_FITTER_PRESERVATION_LEVEL PLACEMENT_AND_ROUTING -section_id Top
 set_global_assignment -name PARTITION_COLOR 16764057 -section_id Top
 set_global_assignment -name USE_CHECKSUM_AS_USERCODE OFF
-set_global_assignment -name STRATIX_JTAG_USER_CODE 20171002
+set_global_assignment -name STRATIX_JTAG_USER_CODE 20171023
 
 
 
