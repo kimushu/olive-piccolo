@@ -10,6 +10,9 @@
 #include "peridot_pfc_interface.h"
 #include "altera_avalon_pio_regs.h"
 #include "system.h"
+#include <pthread.h>
+
+pthread_mutex_t epcs_fatfs_lock = PTHREAD_MUTEX_INITIALIZER;
 
 void *peridot_query_start_led(int *width, int *offset)
 {
@@ -17,6 +20,16 @@ void *peridot_query_start_led(int *width, int *offset)
 	*width = LED_DATA_WIDTH;
 	*offset = 0;
 	return (void *)(addr | (1u << 31));
+}
+
+void epcs_fatfs_raw_lock(void)
+{
+	pthread_mutex_lock(&epcs_fatfs_lock);
+}
+
+void epcs_fatfs_raw_unlock(void)
+{
+	pthread_mutex_unlock(&epcs_fatfs_lock);
 }
 
 const peridot_pfc_map_io i2c_scl_pfc_map =

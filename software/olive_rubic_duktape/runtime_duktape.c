@@ -200,7 +200,10 @@ static int runner(const char *data, int flags, void *agent_context)
     }
 
     // Run
-    if ((result == 0) && (duk_pcall(ctx, 0) == 0)) {
+    if (result != 0) {
+        // Report compile error
+        fprintf(stderr, "Error: Compile error\n%s\n", duk_safe_to_string(ctx, -1));
+    } else if (duk_pcall(ctx, 0) == 0) {
         // Start tick
         while (dux_tick(ctx)) {
             rubic_agent_runner_cooperate(agent_context);
@@ -215,8 +218,12 @@ static int runner(const char *data, int flags, void *agent_context)
 #endif
         }
     } else {
-        // Error
-        fprintf(stderr, "Error: Compile error\n%s\n", duk_safe_to_string(ctx, -1));
+        // Report runtime error
+        duk_get_prop_string(ctx, -1, "stack");
+        if (!duk_is_string(ctx, -1)) {
+            duk_pop(ctx);
+        }
+        fprintf(stderr, "%s\n", duk_safe_to_string(ctx, -1));
     }
     duk_destroy_heap(ctx);
     return 0;

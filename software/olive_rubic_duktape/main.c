@@ -13,6 +13,11 @@
 
 extern int runtime_duktape_init(void);
 
+extern void prog_init();
+extern int prog_blocksize(const char *area, void *user_data);
+extern int prog_reader(const char *area, void *user_data, int offset, void *ptr, int len);
+extern int prog_writer(const char *area, void *user_data, int offset, const void *ptr, int len);
+
 int debug_stream_fd;
 
 int main(void)
@@ -31,7 +36,11 @@ int main(void)
 	// Register storages
 	rubic_agent_register_storage("internal", EPCS_FATFS_MOUNT_POINT);
 
+	// Register firmware updater
+	prog_init();
+	rubic_agent_register_programmer(prog_blocksize, prog_reader, prog_writer, NULL);
+
 	// Start rubic agent
-	rubic_agent_service();
+	rubic_agent_service(0);
 	return 0;
 }

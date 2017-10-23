@@ -144,6 +144,7 @@ ELF := olive_rubic_duktape.elf
 # Paths to C, C++, and assembly source files.
 C_SRCS += main.c
 C_SRCS += resources.c
+C_SRCS += programmer.c
 C_SRCS += runtime_duktape.c
 C_SRCS += lib/duktape-extension/dukext.c
 C_SRCS += lib/duktape/duktape.c
