@@ -22,13 +22,13 @@
 <td width="20%" bgcolor="#77BBFF">BSP Version:</td><td>default</td>
 </tr>
 <tr mode="wrap">
-<td width="20%" bgcolor="#77BBFF">BSP Generated On:</td><td>2017/10/24 1:38:40</td>
+<td width="20%" bgcolor="#77BBFF">BSP Generated On:</td><td>2017/10/27 13:17:21</td>
 </tr>
 <tr mode="wrap">
-<td width="20%" bgcolor="#77BBFF">BSP Generated Timestamp:</td><td>1508776720274</td>
+<td width="20%" bgcolor="#77BBFF">BSP Generated Timestamp:</td><td>1509077841357</td>
 </tr>
 <tr mode="wrap">
-<td width="20%" bgcolor="#77BBFF">BSP Generated Location:</td><td>D:\Works\Altera\olive-piccolo\software\olive_rubic_bsp</td>
+<td width="20%" bgcolor="#77BBFF">BSP Generated Location:</td><td>D:\Altera\olive-piccolo\software\olive_rubic_bsp</td>
 </tr>
 </table>
 <br>
@@ -135,9 +135,6 @@
 </tr>
 <tr mode="wrap" STYLE="display: 'block'; font-family: 'courier'; color: '#000000'; font-weight: '500'; font-size: '14'; margin-top: '10pt'; text-align: 'left'">
 <td>epcs_fatfs</td><td>default</td>
-</tr>
-<tr mode="wrap" STYLE="display: 'block'; font-family: 'courier'; color: '#000000'; font-weight: '500'; font-size: '14'; margin-top: '10pt'; text-align: 'left'">
-<td>named_fifo</td><td>default</td>
 </tr>
 <tr mode="wrap" STYLE="display: 'block'; font-family: 'courier'; color: '#000000'; font-weight: '500'; font-size: '14'; margin-top: '10pt'; text-align: 'left'">
 <td>peridot_client_fs</td><td>default</td>
@@ -352,7 +349,7 @@
 <td width="20%">Identifier:</td><td>EPCS_FATFS_USE_LFN</td>
 </tr>
 <tr>
-<td width="20%">Default Value:</td><td>1</td>
+<td width="20%">Default Value:</td><td>0</td>
 </tr>
 <tr>
 <td width="20%">Value:</td><td>1</td>
@@ -2614,276 +2611,6 @@
 <br>
 <table border="1" bgcolor="#FFFFCC" width="60%">
 <tr bgcolor="#77BBFF">
-<td align="left" width="15%">Setting Name:</td><td align="left">named_fifo.stderr.enable</td>
-</tr>
-<tr>
-<td width="20%">Identifier:</td><td>NAMED_FIFO_STDERR_ENABLE</td>
-</tr>
-<tr>
-<td width="20%">Default Value:</td><td>0</td>
-</tr>
-<tr>
-<td width="20%">Value:</td><td>1</td>
-</tr>
-<tr>
-<td width="20%">Type:</td><td>Boolean</td>
-</tr>
-<tr mode="wrap">
-<td width="20%">Destination:</td><td>system_h_define</td>
-</tr>
-<tr mode="wrap">
-<td width="20%">Description:</td><td>Enable named FIFO for standard error. When enabled, hal.stderr in Main page must be set to 'none'.</td>
-</tr>
-<tr mode="wrap">
-<td width="20%">Restrictions:</td><td>none</td>
-</tr>
-</table>
-<br>
-<table border="1" bgcolor="#FFFFCC" width="60%">
-<tr bgcolor="#77BBFF">
-<td align="left" width="15%">Setting Name:</td><td align="left">named_fifo.stderr.name</td>
-</tr>
-<tr>
-<td width="20%">Identifier:</td><td>NAMED_FIFO_STDERR_NAME</td>
-</tr>
-<tr>
-<td width="20%">Default Value:</td><td>/dev/stderr</td>
-</tr>
-<tr>
-<td width="20%">Value:</td><td>/dev/stderr</td>
-</tr>
-<tr>
-<td width="20%">Type:</td><td>QuotedString</td>
-</tr>
-<tr mode="wrap">
-<td width="20%">Destination:</td><td>system_h_define</td>
-</tr>
-<tr mode="wrap">
-<td width="20%">Description:</td><td>Name of stderr device</td>
-</tr>
-<tr mode="wrap">
-<td width="20%">Restrictions:</td><td>none</td>
-</tr>
-</table>
-<br>
-<table border="1" bgcolor="#FFFFCC" width="60%">
-<tr bgcolor="#77BBFF">
-<td align="left" width="15%">Setting Name:</td><td align="left">named_fifo.stderr.size</td>
-</tr>
-<tr>
-<td width="20%">Identifier:</td><td>NAMED_FIFO_STDERR_SIZE</td>
-</tr>
-<tr>
-<td width="20%">Default Value:</td><td>1024</td>
-</tr>
-<tr>
-<td width="20%">Value:</td><td>1024</td>
-</tr>
-<tr>
-<td width="20%">Type:</td><td>DecimalNumber</td>
-</tr>
-<tr mode="wrap">
-<td width="20%">Destination:</td><td>system_h_define</td>
-</tr>
-<tr mode="wrap">
-<td width="20%">Description:</td><td>Buffer length for stderr device (in bytes)</td>
-</tr>
-<tr mode="wrap">
-<td width="20%">Restrictions:</td><td>none</td>
-</tr>
-</table>
-<br>
-<table border="1" bgcolor="#FFFFCC" width="60%">
-<tr bgcolor="#77BBFF">
-<td align="left" width="15%">Setting Name:</td><td align="left">named_fifo.stdin.enable</td>
-</tr>
-<tr>
-<td width="20%">Identifier:</td><td>NAMED_FIFO_STDIN_ENABLE</td>
-</tr>
-<tr>
-<td width="20%">Default Value:</td><td>0</td>
-</tr>
-<tr>
-<td width="20%">Value:</td><td>1</td>
-</tr>
-<tr>
-<td width="20%">Type:</td><td>Boolean</td>
-</tr>
-<tr mode="wrap">
-<td width="20%">Destination:</td><td>system_h_define</td>
-</tr>
-<tr mode="wrap">
-<td width="20%">Description:</td><td>Enable named FIFO for standard input. When enabled, hal.stdin in Main page must be set to 'none'.</td>
-</tr>
-<tr mode="wrap">
-<td width="20%">Restrictions:</td><td>none</td>
-</tr>
-</table>
-<br>
-<table border="1" bgcolor="#FFFFCC" width="60%">
-<tr bgcolor="#77BBFF">
-<td align="left" width="15%">Setting Name:</td><td align="left">named_fifo.stdin.name</td>
-</tr>
-<tr>
-<td width="20%">Identifier:</td><td>NAMED_FIFO_STDIN_NAME</td>
-</tr>
-<tr>
-<td width="20%">Default Value:</td><td>/dev/stdin</td>
-</tr>
-<tr>
-<td width="20%">Value:</td><td>/dev/stdin</td>
-</tr>
-<tr>
-<td width="20%">Type:</td><td>QuotedString</td>
-</tr>
-<tr mode="wrap">
-<td width="20%">Destination:</td><td>system_h_define</td>
-</tr>
-<tr mode="wrap">
-<td width="20%">Description:</td><td>Name of stdin device</td>
-</tr>
-<tr mode="wrap">
-<td width="20%">Restrictions:</td><td>none</td>
-</tr>
-</table>
-<br>
-<table border="1" bgcolor="#FFFFCC" width="60%">
-<tr bgcolor="#77BBFF">
-<td align="left" width="15%">Setting Name:</td><td align="left">named_fifo.stdin.size</td>
-</tr>
-<tr>
-<td width="20%">Identifier:</td><td>NAMED_FIFO_STDIN_SIZE</td>
-</tr>
-<tr>
-<td width="20%">Default Value:</td><td>1024</td>
-</tr>
-<tr>
-<td width="20%">Value:</td><td>1024</td>
-</tr>
-<tr>
-<td width="20%">Type:</td><td>DecimalNumber</td>
-</tr>
-<tr mode="wrap">
-<td width="20%">Destination:</td><td>system_h_define</td>
-</tr>
-<tr mode="wrap">
-<td width="20%">Description:</td><td>Buffer length for stdin device (in bytes)</td>
-</tr>
-<tr mode="wrap">
-<td width="20%">Restrictions:</td><td>none</td>
-</tr>
-</table>
-<br>
-<table border="1" bgcolor="#FFFFCC" width="60%">
-<tr bgcolor="#77BBFF">
-<td align="left" width="15%">Setting Name:</td><td align="left">named_fifo.stdio.initially_opened</td>
-</tr>
-<tr>
-<td width="20%">Identifier:</td><td>NAMED_FIFO_STDIO_INIT_OPENED</td>
-</tr>
-<tr>
-<td width="20%">Default Value:</td><td>1</td>
-</tr>
-<tr>
-<td width="20%">Value:</td><td>0</td>
-</tr>
-<tr>
-<td width="20%">Type:</td><td>Boolean</td>
-</tr>
-<tr mode="wrap">
-<td width="20%">Destination:</td><td>system_h_define</td>
-</tr>
-<tr mode="wrap">
-<td width="20%">Description:</td><td>Start system with stdio opened.</td>
-</tr>
-<tr mode="wrap">
-<td width="20%">Restrictions:</td><td>none</td>
-</tr>
-</table>
-<br>
-<table border="1" bgcolor="#FFFFCC" width="60%">
-<tr bgcolor="#77BBFF">
-<td align="left" width="15%">Setting Name:</td><td align="left">named_fifo.stdout.enable</td>
-</tr>
-<tr>
-<td width="20%">Identifier:</td><td>NAMED_FIFO_STDOUT_ENABLE</td>
-</tr>
-<tr>
-<td width="20%">Default Value:</td><td>0</td>
-</tr>
-<tr>
-<td width="20%">Value:</td><td>1</td>
-</tr>
-<tr>
-<td width="20%">Type:</td><td>Boolean</td>
-</tr>
-<tr mode="wrap">
-<td width="20%">Destination:</td><td>system_h_define</td>
-</tr>
-<tr mode="wrap">
-<td width="20%">Description:</td><td>Enable named FIFO for standard output. When enabled, hal.stdout in Main page must be set to 'none'.</td>
-</tr>
-<tr mode="wrap">
-<td width="20%">Restrictions:</td><td>none</td>
-</tr>
-</table>
-<br>
-<table border="1" bgcolor="#FFFFCC" width="60%">
-<tr bgcolor="#77BBFF">
-<td align="left" width="15%">Setting Name:</td><td align="left">named_fifo.stdout.name</td>
-</tr>
-<tr>
-<td width="20%">Identifier:</td><td>NAMED_FIFO_STDOUT_NAME</td>
-</tr>
-<tr>
-<td width="20%">Default Value:</td><td>/dev/stdout</td>
-</tr>
-<tr>
-<td width="20%">Value:</td><td>/dev/stdout</td>
-</tr>
-<tr>
-<td width="20%">Type:</td><td>QuotedString</td>
-</tr>
-<tr mode="wrap">
-<td width="20%">Destination:</td><td>system_h_define</td>
-</tr>
-<tr mode="wrap">
-<td width="20%">Description:</td><td>Name of stdout device</td>
-</tr>
-<tr mode="wrap">
-<td width="20%">Restrictions:</td><td>none</td>
-</tr>
-</table>
-<br>
-<table border="1" bgcolor="#FFFFCC" width="60%">
-<tr bgcolor="#77BBFF">
-<td align="left" width="15%">Setting Name:</td><td align="left">named_fifo.stdout.size</td>
-</tr>
-<tr>
-<td width="20%">Identifier:</td><td>NAMED_FIFO_STDOUT_SIZE</td>
-</tr>
-<tr>
-<td width="20%">Default Value:</td><td>1024</td>
-</tr>
-<tr>
-<td width="20%">Value:</td><td>1024</td>
-</tr>
-<tr>
-<td width="20%">Type:</td><td>DecimalNumber</td>
-</tr>
-<tr mode="wrap">
-<td width="20%">Destination:</td><td>system_h_define</td>
-</tr>
-<tr mode="wrap">
-<td width="20%">Description:</td><td>Buffer length for stdout device (in bytes)</td>
-</tr>
-<tr mode="wrap">
-<td width="20%">Restrictions:</td><td>none</td>
-</tr>
-</table>
-<br>
-<table border="1" bgcolor="#FFFFCC" width="60%">
-<tr bgcolor="#77BBFF">
 <td align="left" width="15%">Setting Name:</td><td align="left">peridot_client_fs.hash_crc32</td>
 </tr>
 <tr>
@@ -3416,6 +3143,33 @@
 </tr>
 <tr mode="wrap">
 <td width="20%">Description:</td><td>Use receiver thread in multi-thread system</td>
+</tr>
+<tr mode="wrap">
+<td width="20%">Restrictions:</td><td>none</td>
+</tr>
+</table>
+<br>
+<table border="1" bgcolor="#FFFFCC" width="60%">
+<tr bgcolor="#77BBFF">
+<td align="left" width="15%">Setting Name:</td><td align="left">rubic_agent.dualboot_base</td>
+</tr>
+<tr>
+<td width="20%">Identifier:</td><td>RUBIC_AGENT_DUALBOOT_BASE</td>
+</tr>
+<tr>
+<td width="20%">Default Value:</td><td>0</td>
+</tr>
+<tr>
+<td width="20%">Value:</td><td>DUAL_BOOT_BASE</td>
+</tr>
+<tr>
+<td width="20%">Type:</td><td>UnquotedString</td>
+</tr>
+<tr mode="wrap">
+<td width="20%">Destination:</td><td>system_h_define</td>
+</tr>
+<tr mode="wrap">
+<td width="20%">Description:</td><td>Base address of altera_dual_boot IP for programmer reset (disabled if zero)</td>
 </tr>
 <tr mode="wrap">
 <td width="20%">Restrictions:</td><td>none</td>

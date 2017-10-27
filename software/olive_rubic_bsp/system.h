@@ -4,7 +4,7 @@
  * Machine generated for CPU 'nios2_fast' in SOPC Builder design 'olive_std_core'
  * SOPC Builder design path: ../../olive_std_core.sopcinfo
  *
- * Generated: Tue Oct 24 00:59:05 JST 2017
+ * Generated: Fri Oct 27 13:17:23 JST 2017
  */
 
 /*
@@ -334,23 +334,6 @@
 
 
 /*
- * named_fifo configuration
- *
- */
-
-#define NAMED_FIFO_STDERR_ENABLE 1
-#define NAMED_FIFO_STDERR_NAME "/dev/stderr"
-#define NAMED_FIFO_STDERR_SIZE 1024
-#define NAMED_FIFO_STDIN_ENABLE 1
-#define NAMED_FIFO_STDIN_NAME "/dev/stdin"
-#define NAMED_FIFO_STDIN_SIZE 1024
-#define NAMED_FIFO_STDIO_INIT_OPENED 0
-#define NAMED_FIFO_STDOUT_ENABLE 1
-#define NAMED_FIFO_STDOUT_NAME "/dev/stdout"
-#define NAMED_FIFO_STDOUT_SIZE 1024
-
-
-/*
  * peridot_client_fs configuration
  *
  */
@@ -428,6 +411,7 @@
  *
  */
 
+#define RUBIC_AGENT_DUALBOOT_BASE DUAL_BOOT_BASE
 #define RUBIC_AGENT_ENABLE_PROGRAMMER
 #define RUBIC_AGENT_MAX_RUNTIMES 1
 #define RUBIC_AGENT_MAX_STORAGES 1

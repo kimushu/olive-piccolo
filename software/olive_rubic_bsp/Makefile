@@ -364,13 +364,6 @@ hal_C_LIB_SRCS := \
 	$(hal_SRCS_ROOT)/src/alt_wait.c \
 	$(hal_SRCS_ROOT)/src/alt_write.c
 
-# named_fifo sources root 
-named_fifo_SRCS_ROOT := services
-
-# named_fifo sources 
-named_fifo_C_LIB_SRCS := \
-	$(named_fifo_SRCS_ROOT)/src/named_fifo.c
-
 # peridot_client_fs sources root 
 peridot_client_fs_SRCS_ROOT := services
 
@@ -466,7 +459,6 @@ COMPONENT_C_LIB_SRCS += \
 	$(digests_C_LIB_SRCS) \
 	$(epcs_fatfs_C_LIB_SRCS) \
 	$(hal_C_LIB_SRCS) \
-	$(named_fifo_C_LIB_SRCS) \
 	$(peridot_client_fs_C_LIB_SRCS) \
 	$(peridot_i2c_master_driver_C_LIB_SRCS) \
 	$(peridot_pfc_interface_C_LIB_SRCS) \

@@ -4,7 +4,7 @@
  * Machine generated for CPU 'nios2_fast' in SOPC Builder design 'olive_std_core'
  * SOPC Builder design path: ../../olive_std_core.sopcinfo
  *
- * Generated: Mon Oct 23 16:41:24 JST 2017
+ * Generated: Fri Oct 27 13:17:23 JST 2017
  */
 
 /*
@@ -66,7 +66,6 @@
 #include "buffered_uart.h"
 #include "digests.h"
 #include "epcs_fatfs.h"
-#include "named_fifo.h"
 #include "peridot_client_fs.h"
 #include "peridot_i2c_master.h"
 #include "peridot_pfc_interface.h"
@@ -89,7 +88,6 @@ ALTERA_ONCHIP_FLASH_DATA_CSR_INSTANCE ( UFM, UFM_DATA, UFM_CSR, ufm);
 BUFFERED_UART_INSTANCE ( HOSTBRIDGE, hostbridge);
 DIGESTS_INSTANCE ( DIGESTS, digests);
 EPCS_FATFS_INSTANCE ( EPCS_FATFS, epcs_fatfs);
-NAMED_FIFO_INSTANCE ( NAMED_FIFO, named_fifo);
 PERIDOT_CLIENT_FS_INSTANCE ( PERIDOT_CLIENT_FS, peridot_client_fs);
 PERIDOT_I2C_MASTER_INSTANCE ( I2C, i2c);
 PERIDOT_PFC_INTERFACE_INSTANCE ( PFC, pfc);
@@ -129,7 +127,6 @@ void alt_sys_init( void )
     ALTERA_ONCHIP_FLASH_INIT ( UFM, ufm);
     BUFFERED_UART_INIT ( HOSTBRIDGE, hostbridge);
     EPCS_FATFS_INIT ( EPCS_FATFS, epcs_fatfs);
-    NAMED_FIFO_INIT ( NAMED_FIFO, named_fifo);
     PERIDOT_I2C_MASTER_INIT ( I2C, i2c);
     PERIDOT_PFC_INTERFACE_INIT ( PFC, pfc);
     PERIDOT_SERVO_INIT ( SERVO, servo);

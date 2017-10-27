@@ -2,9 +2,9 @@
 <sch:Settings xmlns:sch="http://www.altera.com/embeddedsw/bsp/schema">
         <BspType>tinyth</BspType>
         <BspVersion>default</BspVersion>
-        <BspGeneratedTimeStamp>2017/10/24 1:38:40</BspGeneratedTimeStamp>
-        <BspGeneratedUnixTimeStamp>1508776720274</BspGeneratedUnixTimeStamp>
-        <BspGeneratedLocation>D:\Works\Altera\olive-piccolo\software\olive_rubic_bsp</BspGeneratedLocation>
+        <BspGeneratedTimeStamp>2017/10/27 13:17:21</BspGeneratedTimeStamp>
+        <BspGeneratedUnixTimeStamp>1509077841357</BspGeneratedUnixTimeStamp>
+        <BspGeneratedLocation>D:\Altera\olive-piccolo\software\olive_rubic_bsp</BspGeneratedLocation>
         <BspSettingsFile>settings.bsp</BspSettingsFile>
         <SopcDesignFile>..\..\olive_std_core.sopcinfo</SopcDesignFile>
         <JdiFile>default</JdiFile>
@@ -1163,6 +1163,18 @@
                 <Group xsi:nil="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
         </Setting>
         <Setting>
+                <SettingName>rubic_agent.dualboot_base</SettingName>
+                <Identifier>RUBIC_AGENT_DUALBOOT_BASE</Identifier>
+                <Type>UnquotedString</Type>
+                <Value>DUAL_BOOT_BASE</Value>
+                <DefaultValue>0</DefaultValue>
+                <DestinationFile>system_h_define</DestinationFile>
+                <Description>Base address of altera_dual_boot IP for programmer reset (disabled if zero)</Description>
+                <Restrictions>none</Restrictions>
+                <Enabled>false</Enabled>
+                <Group xsi:nil="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+        </Setting>
+        <Setting>
                 <SettingName>peridot_sw_hostbridge_gen2.use_receiver_thread</SettingName>
                 <Identifier>PERIDOT_SW_HOSTBRIDGE_GEN2_USE_RECEIVER_THREAD</Identifier>
                 <Type>BooleanDefineOnly</Type>
@@ -1278,126 +1290,6 @@
                 <DefaultValue>0</DefaultValue>
                 <DestinationFile>system_h_define</DestinationFile>
                 <Description>Enable CRC-32 for hash calculation</Description>
-                <Restrictions>none</Restrictions>
-                <Enabled>false</Enabled>
-                <Group xsi:nil="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
-        </Setting>
-        <Setting>
-                <SettingName>named_fifo.stdin.enable</SettingName>
-                <Identifier>NAMED_FIFO_STDIN_ENABLE</Identifier>
-                <Type>Boolean</Type>
-                <Value>1</Value>
-                <DefaultValue>0</DefaultValue>
-                <DestinationFile>system_h_define</DestinationFile>
-                <Description>Enable named FIFO for standard input. When enabled, hal.stdin in Main page must be set to 'none'.</Description>
-                <Restrictions>none</Restrictions>
-                <Enabled>false</Enabled>
-                <Group xsi:nil="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
-        </Setting>
-        <Setting>
-                <SettingName>named_fifo.stdin.name</SettingName>
-                <Identifier>NAMED_FIFO_STDIN_NAME</Identifier>
-                <Type>QuotedString</Type>
-                <Value>/dev/stdin</Value>
-                <DefaultValue>/dev/stdin</DefaultValue>
-                <DestinationFile>system_h_define</DestinationFile>
-                <Description>Name of stdin device</Description>
-                <Restrictions>none</Restrictions>
-                <Enabled>false</Enabled>
-                <Group xsi:nil="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
-        </Setting>
-        <Setting>
-                <SettingName>named_fifo.stdin.size</SettingName>
-                <Identifier>NAMED_FIFO_STDIN_SIZE</Identifier>
-                <Type>DecimalNumber</Type>
-                <Value>1024</Value>
-                <DefaultValue>1024</DefaultValue>
-                <DestinationFile>system_h_define</DestinationFile>
-                <Description>Buffer length for stdin device (in bytes)</Description>
-                <Restrictions>none</Restrictions>
-                <Enabled>false</Enabled>
-                <Group xsi:nil="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
-        </Setting>
-        <Setting>
-                <SettingName>named_fifo.stdout.enable</SettingName>
-                <Identifier>NAMED_FIFO_STDOUT_ENABLE</Identifier>
-                <Type>Boolean</Type>
-                <Value>1</Value>
-                <DefaultValue>0</DefaultValue>
-                <DestinationFile>system_h_define</DestinationFile>
-                <Description>Enable named FIFO for standard output. When enabled, hal.stdout in Main page must be set to 'none'.</Description>
-                <Restrictions>none</Restrictions>
-                <Enabled>false</Enabled>
-                <Group xsi:nil="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
-        </Setting>
-        <Setting>
-                <SettingName>named_fifo.stdout.name</SettingName>
-                <Identifier>NAMED_FIFO_STDOUT_NAME</Identifier>
-                <Type>QuotedString</Type>
-                <Value>/dev/stdout</Value>
-                <DefaultValue>/dev/stdout</DefaultValue>
-                <DestinationFile>system_h_define</DestinationFile>
-                <Description>Name of stdout device</Description>
-                <Restrictions>none</Restrictions>
-                <Enabled>false</Enabled>
-                <Group xsi:nil="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
-        </Setting>
-        <Setting>
-                <SettingName>named_fifo.stdout.size</SettingName>
-                <Identifier>NAMED_FIFO_STDOUT_SIZE</Identifier>
-                <Type>DecimalNumber</Type>
-                <Value>1024</Value>
-                <DefaultValue>1024</DefaultValue>
-                <DestinationFile>system_h_define</DestinationFile>
-                <Description>Buffer length for stdout device (in bytes)</Description>
-                <Restrictions>none</Restrictions>
-                <Enabled>false</Enabled>
-                <Group xsi:nil="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
-        </Setting>
-        <Setting>
-                <SettingName>named_fifo.stderr.enable</SettingName>
-                <Identifier>NAMED_FIFO_STDERR_ENABLE</Identifier>
-                <Type>Boolean</Type>
-                <Value>1</Value>
-                <DefaultValue>0</DefaultValue>
-                <DestinationFile>system_h_define</DestinationFile>
-                <Description>Enable named FIFO for standard error. When enabled, hal.stderr in Main page must be set to 'none'.</Description>
-                <Restrictions>none</Restrictions>
-                <Enabled>false</Enabled>
-                <Group xsi:nil="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
-        </Setting>
-        <Setting>
-                <SettingName>named_fifo.stderr.name</SettingName>
-                <Identifier>NAMED_FIFO_STDERR_NAME</Identifier>
-                <Type>QuotedString</Type>
-                <Value>/dev/stderr</Value>
-                <DefaultValue>/dev/stderr</DefaultValue>
-                <DestinationFile>system_h_define</DestinationFile>
-                <Description>Name of stderr device</Description>
-                <Restrictions>none</Restrictions>
-                <Enabled>false</Enabled>
-                <Group xsi:nil="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
-        </Setting>
-        <Setting>
-                <SettingName>named_fifo.stderr.size</SettingName>
-                <Identifier>NAMED_FIFO_STDERR_SIZE</Identifier>
-                <Type>DecimalNumber</Type>
-                <Value>1024</Value>
-                <DefaultValue>1024</DefaultValue>
-                <DestinationFile>system_h_define</DestinationFile>
-                <Description>Buffer length for stderr device (in bytes)</Description>
-                <Restrictions>none</Restrictions>
-                <Enabled>false</Enabled>
-                <Group xsi:nil="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
-        </Setting>
-        <Setting>
-                <SettingName>named_fifo.stdio.initially_opened</SettingName>
-                <Identifier>NAMED_FIFO_STDIO_INIT_OPENED</Identifier>
-                <Type>Boolean</Type>
-                <Value>0</Value>
-                <DefaultValue>1</DefaultValue>
-                <DestinationFile>system_h_define</DestinationFile>
-                <Description>Start system with stdio opened.</Description>
                 <Restrictions>none</Restrictions>
                 <Enabled>false</Enabled>
                 <Group xsi:nil="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
@@ -1539,7 +1431,7 @@
                 <Identifier>EPCS_FATFS_USE_LFN</Identifier>
                 <Type>Boolean</Type>
                 <Value>1</Value>
-                <DefaultValue>1</DefaultValue>
+                <DefaultValue>0</DefaultValue>
                 <DestinationFile>system_h_define</DestinationFile>
                 <Description>Use LFN feature</Description>
                 <Restrictions>none</Restrictions>
@@ -1888,10 +1780,6 @@
         </SoftwarePackageInfo>
         <SoftwarePackageInfo>
                 <name>peridot_client_fs</name>
-                <version>default</version>
-        </SoftwarePackageInfo>
-        <SoftwarePackageInfo>
-                <name>named_fifo</name>
                 <version>default</version>
         </SoftwarePackageInfo>
         <SoftwarePackageInfo>
