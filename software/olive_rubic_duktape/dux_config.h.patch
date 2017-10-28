@@ -1,6 +1,6 @@
---- dux_config.h~	2017-10-23 16:30:21.602071700 +0900
-+++ dux_config.h	2017-10-23 16:30:23.610650900 +0900
-@@ -1,7 +1,7 @@
+--- dux_config.h~	2017-10-28 01:16:21.824449900 +0900
++++ dux_config.h	2017-10-28 01:16:26.819418700 +0900
+@@ -1,8 +1,8 @@
  #ifndef DUX_CONFIG_H_INCLUDED
  #define DUX_CONFIG_H_INCLUDED
  
@@ -9,4 +9,5 @@
 +#define DUX_ENABLE_PACKAGE_DELAY
 +#define DUX_ENABLE_PACKAGE_SPRINTF
  
- #endif  /* !DUX_CONFIG_H_INCLUDED */
+ #define DUX_PATH_DELIMITER      ':'
+ #define DUX_PATH_SEPARATOR      '/'

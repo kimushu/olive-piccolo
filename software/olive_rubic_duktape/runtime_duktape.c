@@ -15,89 +15,62 @@
 
 #define AUTO_GC_CYCLES  50
 
-static const char CJS_PROLOGUE[] = "(function(require,module,exports){";
-static const int CJS_PROLOGUE_LEN = sizeof(CJS_PROLOGUE) - 1;
-static const char CJS_EPILOGUE[] = "\n})(require,m={exports:{}},m.exports)";
-static const int CJS_EPILOGUE_LEN = sizeof(CJS_EPILOGUE) - 1;
-
 extern int debug_stream_fd;
+
+static duk_ret_t file_reader(duk_context *ctx, const char *path);
+
+static const dux_file_accessor file_accessor = {
+    .reader = file_reader,
+};
 
 char debug_has_push_back;
 char debug_push_back_value;
 
 /**
- * @func compile_file
- * @brief Compile JS file to Duktape function object (and push it)
- * @param ctx Duktape context
- * @param data File name to compile or source data
- * @param direct Direct mode (data contains source)
- * @return Result of duk_pcompile*()
+ * @func file_reader
+ * @brief Read file
  */
-static int compile_file(duk_context *ctx, const char *data, int direct)
+static duk_ret_t file_reader(duk_context *ctx, const char *path)
 {
-	int fd;
-	char *src, *next;
-	duk_size_t file_len, total_len, remainder;
-	duk_int_t result;
+    /* [ ... ] */
+    int fd;
+    duk_size_t file_len, remainder;
+    char *next;
 
-    if (direct) {
-        file_len = strlen(data);
-    } else {
-        fd = open(data, O_RDONLY);
-        if (fd < 0) {
-            duk_push_error_object(ctx, DUK_ERR_ERROR, "Cannot open file");
-            return -1;
+    fd = open(path, O_RDONLY);
+    if (fd < 0) {
+        if (errno == ENOENT) {
+            duk_push_error_object(ctx, DUK_ERR_ERROR, "File not found: %s", path);
+        } else {
+            duk_push_error_object(ctx, DUK_ERR_ERROR, "Cannot open file: %s", path);
         }
-        file_len = lseek(fd, 0, SEEK_END);
-        if (file_len == ((duk_size_t)-1)) {
-            duk_push_error_object(ctx, DUK_ERR_ERROR, "Cannot seek file");
-            return -1;
-        }
-        lseek(fd, 0, SEEK_SET);
+        return DUK_EXEC_ERROR;
     }
-	total_len = file_len + CJS_PROLOGUE_LEN + CJS_EPILOGUE_LEN;
-	src = malloc(total_len);
-	if (!src) {
-        if (!direct) {
-            close(fd);
-        }
-		duk_push_error_object(ctx, DUK_ERR_ERROR, "Not enough memory");
-		return -1;
-	}
-	next = src;
-	memcpy(next, CJS_PROLOGUE, CJS_PROLOGUE_LEN);
-    next += CJS_PROLOGUE_LEN;
-    if (direct) {
-        memcpy(next, data, file_len);
-        next += file_len;
-    } else {
-        for (remainder = file_len; remainder > 0;) {
-            int done = read(fd, next, remainder);
-            if (done < 0) {
-                close(fd);
-                free(src);
-                duk_push_error_object(ctx, DUK_ERR_ERROR, "Cannot read file");
-                return -1;
-            }
-            next += done;
-            remainder -= done;
-        }
+    file_len = lseek(fd, 0, SEEK_END);
+    if (file_len == ((duk_size_t)-1)) {
+        duk_push_error_object(ctx, DUK_ERR_ERROR, "Cannot seek file");
         close(fd);
+        return DUK_EXEC_ERROR;
     }
-    memcpy(next, CJS_EPILOGUE, CJS_EPILOGUE_LEN);
+    lseek(fd, 0, SEEK_SET);
+    next = (char *)duk_push_fixed_buffer(ctx, file_len);
+    /* [ ... buffer ] */
+    for (remainder = file_len; remainder > 0;) {
+        int done = read(fd, next, remainder);
+        if (done < 0) {
+            close(fd);
+            duk_pop(ctx);
+            duk_push_error_object(ctx, DUK_ERR_ERROR, "Cannot read file: %s", path);
+            return DUK_EXEC_ERROR;
+        }
+        next += done;
+        remainder -= done;
+    }
+    close(fd);
 
-    duk_push_lstring(ctx, src, total_len);
-    /* [ source ] */
-	free(src);
-    if (direct) {
-        duk_push_string(ctx, "input");
-    } else {
-        duk_push_string(ctx, data);
-    }
-    /* [ source filename ] */
-    result = duk_pcompile(ctx, 0);
-    /* [ function/err ] */
-	return result;
+    duk_buffer_to_string(ctx, -1);
+    /* [ ... string ] */
+    return DUK_EXEC_SUCCESS;
 }
 
 /**
@@ -170,7 +143,7 @@ static int runner(const char *data, int flags, void *agent_context)
     }
 
     // Initialize duktape-extension
-    result = dux_initialize(ctx);
+    result = dux_initialize(ctx, &file_accessor);
     if (result != 0) {
         return result;
     }
@@ -190,20 +163,23 @@ static int runner(const char *data, int flags, void *agent_context)
         );
     }
 
-    // Compile
-    result = compile_file(ctx, data, (flags & RUBIC_AGENT_RUNNER_FLAG_SOURCE));
-
     // Notify initialization complete
     if (rubic_agent_runner_notify_init(agent_context) != 0) {
         duk_destroy_heap(ctx);
         return 0;
     }
 
+    if (flags & RUBIC_AGENT_RUNNER_FLAG_SOURCE) {
+        result = dux_peval_module_string(ctx, data);
+    } else {
+        result = dux_peval_module_file(ctx, data);
+    }
+
     // Run
-    if (result != 0) {
-        // Report compile error
-        fprintf(stderr, "Error: Compile error\n%s\n", duk_safe_to_string(ctx, -1));
-    } else if (duk_pcall(ctx, 0) == 0) {
+    if (result == DUK_EXEC_SUCCESS) {
+        // Drop result
+        duk_pop(ctx);
+
         // Start tick
         while (dux_tick(ctx)) {
             rubic_agent_runner_cooperate(agent_context);
@@ -218,7 +194,7 @@ static int runner(const char *data, int flags, void *agent_context)
 #endif
         }
     } else {
-        // Report runtime error
+        // Report error
         duk_get_prop_string(ctx, -1, "stack");
         if (!duk_is_string(ctx, -1)) {
             duk_pop(ctx);
