@@ -1,6 +1,6 @@
 {
   "name": "olive-piccolo",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Rubic firmware for PERIDOT Piccolo (Olive configuration)",
   "private": true,
   "scripts": {

@@ -2,9 +2,9 @@
 <sch:Settings xmlns:sch="http://www.altera.com/embeddedsw/bsp/schema">
         <BspType>tinyth</BspType>
         <BspVersion>default</BspVersion>
-        <BspGeneratedTimeStamp>2017/10/27 13:17:21</BspGeneratedTimeStamp>
-        <BspGeneratedUnixTimeStamp>1509077841357</BspGeneratedUnixTimeStamp>
-        <BspGeneratedLocation>D:\Altera\olive-piccolo\software\olive_rubic_bsp</BspGeneratedLocation>
+        <BspGeneratedTimeStamp>2017/10/29 21:34:07</BspGeneratedTimeStamp>
+        <BspGeneratedUnixTimeStamp>1509280447588</BspGeneratedUnixTimeStamp>
+        <BspGeneratedLocation>D:\Works\Altera\olive-piccolo\software\olive_rubic_bsp</BspGeneratedLocation>
         <BspSettingsFile>settings.bsp</BspSettingsFile>
         <SopcDesignFile>..\..\olive_std_core.sopcinfo</SopcDesignFile>
         <JdiFile>default</JdiFile>
@@ -878,7 +878,7 @@
                 <SettingName>tinyth.feature.enable_cond</SettingName>
                 <Identifier>TTHREAD_ENABLE_COND</Identifier>
                 <Type>Boolean</Type>
-                <Value>0</Value>
+                <Value>1</Value>
                 <DefaultValue>1</DefaultValue>
                 <DestinationFile>system_h_define</DestinationFile>
                 <Description>Enable pthread_cond*() APIs</Description>
@@ -1076,6 +1076,18 @@
                 <Description>Require thread safe C library</Description>
                 <Restrictions>none</Restrictions>
                 <Enabled>false</Enabled>
+                <Group xsi:nil="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+        </Setting>
+        <Setting>
+                <SettingName>tinyth.feature.enable_flag</SettingName>
+                <Identifier>TTHREAD_ENABLE_FLAG</Identifier>
+                <Type>Boolean</Type>
+                <Value>1</Value>
+                <DefaultValue>1</DefaultValue>
+                <DestinationFile>system_h_define</DestinationFile>
+                <Description>Enable ALT_FLAG_* macros</Description>
+                <Restrictions>none</Restrictions>
+                <Enabled>true</Enabled>
                 <Group xsi:nil="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
         </Setting>
         <Setting>
