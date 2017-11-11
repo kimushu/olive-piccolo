@@ -7,3 +7,4 @@ mem_init
 *.elf
 lib*_bsp.a
 .force_*
+language.settings.xml
