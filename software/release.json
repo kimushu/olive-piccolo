@@ -3,8 +3,8 @@
         {
             "path": "olive_rubic_duktape.zip",
             "name": {
-                "en": "Duktape搭載ファームウェア",
-                "ja": "Firmware with Duktape"
+                "en": "Firmware with Duktape",
+                "ja": "Duktape搭載ファームウェア"
             },
             "description": {
                 "en": "This firmware includes embeddable JavaScript engine, Duktape. Supports JavaScript/TypeScript.",
@@ -14,6 +14,23 @@
                 {
                     "name": "duktape",
                     "version": "2.2.0"
+                }
+            ]
+        },
+        {
+            "path": "olive_rubic_lua.zip",
+            "name": {
+                "en": "Firmware with Lua",
+                "ja": "Lua搭載ファームウェア"
+            },
+            "description": {
+                "en": "This firmware includes Lua scripting language engine.",
+                "ja": "Luaスクリプト言語の実行エンジンを搭載したファームウェアです。"
+            },
+            "runtimes": [
+                {
+                    "name": "lua",
+                    "version": "5.3.4"
                 }
             ]
         }

@@ -1,0 +1,11 @@
+--- luaconf.h~	2017-11-11 15:04:08.302574300 +0900
++++ luaconf.h	2017-11-11 15:04:12.491144000 +0900
+@@ -33,7 +33,7 @@
+ ** ensure that all software connected to Lua will be compiled with the
+ ** same configuration.
+ */
+-/* #define LUA_32BITS */
++#define LUA_32BITS
+ 
+ 
+ /*

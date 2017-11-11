@@ -5,8 +5,9 @@
   "private": true,
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "install": "npm-run-all -p install.*",
-    "install.duktape": "node software/olive_rubic_duktape/install.js",
+    "install": "npm-run-all -p install:*",
+    "install:duktape": "node software/olive_rubic_duktape/install.js",
+    "install:lua": "node software/olive_rubic_lua/install.js",
     "release": "node software/release.js"
   },
   "repository": {
