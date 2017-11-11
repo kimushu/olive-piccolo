@@ -202,7 +202,7 @@ static int runner(const char *data, int flags, void *agent_context)
         fprintf(stderr, "%s\n", duk_safe_to_string(ctx, -1));
     }
     duk_destroy_heap(ctx);
-    return 0;
+    return result;
 }
 
 /**
