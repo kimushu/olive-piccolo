@@ -4,7 +4,7 @@
  * Machine generated for CPU 'nios2_fast' in SOPC Builder design 'olive_std_core'
  * SOPC Builder design path: ../../olive_std_core.sopcinfo
  *
- * Generated: Sun Oct 29 15:53:08 JST 2017
+ * Generated: Sun Nov 12 13:46:00 JST 2017
  */
 
 /*
@@ -541,8 +541,7 @@
 #define SCHED_PRIORITY_DEFAULT 10
 #define SCHED_PRIORITY_MAX 99
 #define SCHED_PRIORITY_MIN 1
-#define TTHREAD_ENABLE_COND 1
-#define TTHREAD_ENABLE_FLAG 1
+#define TTHREAD_ENABLE_COND 0
 #define TTHREAD_ENABLE_MUTEX 1
 #define TTHREAD_ENABLE_NAME 1
 #define TTHREAD_ENABLE_ONCE 0
