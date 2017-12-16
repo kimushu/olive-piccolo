@@ -8,7 +8,7 @@ const JsDiff = require('diff');
 
 const DEST_DIR = path.join(__dirname, 'lib');
 const DUK_VER = '2.2.0';
-const DUX_VER = '0.1.1';
+const DUX_VER = '0.1.2';
 
 function downloadIfNotExist(url, dest) {
     let name = url.split('/').slice(-1)[0];
